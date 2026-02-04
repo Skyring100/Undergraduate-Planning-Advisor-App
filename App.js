@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginView from './screens/Login';
 
 export default function App() {
   return (
@@ -9,18 +10,13 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen 
           name="Login" 
-          component={LoginForm}
+          component={LoginView}
           options={{ headerShown: false }}
         />
         <Stack.Screen 
-          name="Home" 
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen 
-          name="Profile" 
-          component={ProfileScreen}
-          options={{ title: 'Profile' }}
+          name="Course" 
+          component={CurrentCourses}
+          options={{ title: 'Course' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
