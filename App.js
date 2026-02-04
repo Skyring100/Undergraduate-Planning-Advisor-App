@@ -13,16 +13,9 @@ const RootStack = createNativeStackNavigator({
       screen: LoginScreen,
       options: {title: 'Welcome'},
     },
-    Register: {
-      screen: RegisterScreen,
-    },
     Dashboard: {
       screen: DashboardScreen,
     },
-    RequiredCourses: {
-      screen: RequiredCoursesScreen,
-    },
-    
   },
 });
 
