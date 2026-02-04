@@ -2,11 +2,43 @@
 Degree program and start year will be dropdowns.
 On clicking register it will validate inputs and navigate to Dashboard page.*/
 
-
+import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, Text, StyleSheet } from "react-native"
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
 export function RegisterScreen() {
+
+    const navigation = useNavigation();
+
     return(
-        null
+        <SafeAreaProvider>
+            <SafeAreaView >
+                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Login',{})}}>
+                    <Text style={styles.buttonText}>
+                        Go back to Login page (Submit button)
+                    </Text>
+                </TouchableOpacity>
+            </SafeAreaView >
+        </SafeAreaProvider>
     );
 }
+
+
+const styles = StyleSheet.create({
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#0088ff',
+        padding: 10,
+        margin: 'auto',
+        borderRadius: 20,
+        width: 'auto',
+        height: 'auto',
+    },
+    buttonText: {
+        color: '#fff',
+    },
+});
+
+
