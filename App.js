@@ -4,6 +4,7 @@ import { createStaticNavigation, NavigationContainer } from '@react-navigation/n
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import { DashboardScreen } from './screens/DashboardScreen';
 
 const RootStack = createNativeStackNavigator({
@@ -12,9 +13,16 @@ const RootStack = createNativeStackNavigator({
       screen: LoginScreen,
       options: {title: 'Welcome'},
     },
+    Register: {
+      screen: RegisterScreen,
+    },
     Dashboard: {
       screen: DashboardScreen,
     },
+    RequiredCourses: {
+      screen: RequiredCoursesScreen,
+    },
+    
   },
 });
 
