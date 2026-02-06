@@ -3,23 +3,68 @@ It will have two buttons one for login and one for signup.
 On clicking signup it will navigate to Register page.
 On clicking login it will validate credentials and navigate to Dashboard page.*/
 
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, TouchableOpacity, } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
+import { useUserStore } from '../contexts/UserContext';
+
+const screenWidth = Dimensions.get('window').width;
+const inputWidth = screenWidth * 0.85; // 85% of screen
 
 
 
-export function LoginScreen() {
+export default function LoginScreen() {
 
     const navigation = useNavigation();
+    
+    const { setUser } = useUserStore();
+    const [emailInput, setEmailInput] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleLogin = () => {
+
+
+
+        
+        setUser(user => ({
+            ...user,
+            email: emailInput,
+        }));
+    }
+
+
+
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{flexDirection: 'column', padding: 10, flex: 1}}>
-                <LoginButton onPress={()=>{navigation.navigate('Dashboard',{})}}/>
-                <RegisterButton onPress={()=>{navigation.navigate('Register',{})}}/>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title}>Login</Text>
+                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your email"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={emailInput}
+                    onChangeText={setEmailInput}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your password"
+                    secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                
+
+                <LoginButton style={styles.button} onPress={()=>{navigation.navigate('Dashboard',{})}}/>
+
+                <RegisterButton style={styles.button} onPress={()=>{navigation.navigate('Register',{})}}/>
                 
             </SafeAreaView >
         </SafeAreaProvider>
@@ -27,17 +72,36 @@ export function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-    button: {
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignContent: 'center',
+        margin: 'auto',
+    },
+    titleContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#035642',
-        padding: 10,
-        margin: 'auto',
-        borderRadius: 20,
-        width: 'auto',
-        height: 'auto',
+        marginBottom: 30,
+        padding: 80
+    },
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
     },
     buttonText: {
         color: '#fff',
+    },
+    input: {
+        height: 50,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        fontSize: 16,
+        backgroundColor: '#f9f9f9',
+        marginTop: 10,
+        width: inputWidth
     },
 });
