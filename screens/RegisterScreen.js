@@ -13,7 +13,7 @@ export function RegisterScreen() {
 
     return(
         <SafeAreaProvider>
-            <SafeAreaView >
+            <SafeAreaView style={{flexDirection: 'column', padding: 10, flex: 1}}>
                 <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Login',{})}}>
                     <Text style={styles.buttonText}>
                         Go back to Login page (Submit button)

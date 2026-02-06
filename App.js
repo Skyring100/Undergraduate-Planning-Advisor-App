@@ -7,29 +7,23 @@ import { LoginScreen } from './screens/LoginScreen';
 import { RegisterScreen } from './screens/RegisterScreen';
 import { DashboardScreen } from './screens/DashboardScreen';
 
-const RootStack = createNativeStackNavigator({
-  screens: {
-    Login: {
-      screen: LoginScreen,
-      options: {title: 'Login Page'},
-    },
-    Dashboard: {
-      screen: DashboardScreen,
-      options: {title: 'Dashboard'},
-    },
-    Register: {
-      screen: RegisterScreen,
-      options: {title: 'Registration'},
-    },
-  },
-});
 
-const Navigation=createStaticNavigation(RootStack);
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return( <Navigation /> );
-  
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
