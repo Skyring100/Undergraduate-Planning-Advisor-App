@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createStaticNavigation, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 

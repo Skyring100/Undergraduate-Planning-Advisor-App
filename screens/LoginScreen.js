@@ -5,11 +5,12 @@ On clicking login it will validate credentials and navigate to Dashboard page.*/
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View, } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
+
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -60,7 +61,6 @@ export default function LoginScreen() {
                     value={password}
                     onChangeText={setPassword}
                 />
-                
 
                 <LoginButton style={styles.button} onPress={()=>{navigation.navigate('Dashboard',{})}}/>
 
