@@ -4,14 +4,14 @@ import { Course } from '../data_models/Course';
 
 export default function CourseButton({course}) {
     const handlePress = () => {
-        if (course != null){
+        if (course.id != null){
             alert(course.id + ": "+course.name +"\n"+course.desc)
         }else{
             alert("No course data")
         }
     }
 
-    const buttonText = (course != null) ? course.id : "----";
+    const buttonText = (course.id != null) ? course.id : "----";
 
     return (
         <TouchableOpacity

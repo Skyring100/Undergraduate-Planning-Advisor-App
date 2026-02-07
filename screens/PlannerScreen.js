@@ -9,27 +9,72 @@ import { Course } from '../data_models/Course';
 
 
 export default function PlannerScreen() {
-    const semester1Courses = [
-        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []), 
-        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", [])
-    ];
-    const semester2Courses = [
-        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
-        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
-    ];
+
+    const courseData = [
+        {
+            yearNumber: 1,
+            semesters: [
+                {
+                    semesterNumber: 1,
+                    courses: [
+                        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
+                        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
+                    ]
+                },
+                {
+                    semesterNumber: 2,
+                    courses: [
+                        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
+                        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
+                    ]
+                }
+            ]
+        },
+        {
+            yearNumber: 2,
+            semesters: [
+                {
+                    semesterNumber: 1,
+                    courses: [
+                        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
+                        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
+                        new Course()
+                    ]
+                },
+                {
+                    semesterNumber: 2,
+                    courses: [
+                        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
+                        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
+                    ]
+                }
+            ]
+        }
+    ]
 
     return(
         <SafeAreaProvider>
             <SafeAreaView style={{flexDirection: 'column', padding: 10,flex: 1}}>
-                <YearSection yearNumber={1} sem1Courses={semester1Courses} sem2Courses={semester2Courses}></YearSection>
+                <View> 
+                    {
+                        courseData.map(y => (
+                            <View id={y.yearNumber}>
+                                <YearSection yearNumber={y.yearNumber} sem1Courses={y.semesters[0].courses} sem2Courses={y.semesters[1].courses}></YearSection>
+                            </View>
+                        ))
+                    }
+                </View>
             </SafeAreaView >
         </SafeAreaProvider>
     );
 }
 
-
+/**
+ *  Adds a UI section with year information in the planner
+ * @param {*} yearData Object with year data consisting of the year number and each semester courses
+ * @returns 
+ */
 function YearSection({yearNumber, sem1Courses, sem2Courses}) {
-
     return (
         <View>
             <Text style={styles.yearHeader}>Year {yearNumber}</Text>
@@ -51,7 +96,9 @@ function YearSection({yearNumber, sem1Courses, sem2Courses}) {
                     <ScrollView>
                         {
                             sem2Courses.map(c=>(
-                                <CourseButton course={c}></CourseButton>
+                                <View key={c.id}>
+                                    <CourseButton course={c}></CourseButton>
+                                </View>
                             ))
                         }
                     </ScrollView>
