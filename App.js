@@ -9,6 +9,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import { PlannerScreen } from './screens/PlannerScreen';
 
 
 
@@ -25,6 +26,7 @@ export default function App() {
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="Planner" component={PlannerScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
