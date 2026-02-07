@@ -6,9 +6,10 @@ import { StyleSheet, Image, View, Text, Button } from 'react-native';
 export default function AppHeader() {
     return (
         <View style={styles.header}>
+            <Button title='Help Icon' onPress={()=> {alert("congrats")}}/>
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5}} source={require('../assets/favicon.png')}/>
-            <Button title='Press me' onPress={()=> {alert("congrats")}}/>
+            <Button title='Settings' onPress={()=> {alert("congrats")}}/>
         </View>
         
     );
