@@ -62,9 +62,9 @@ export default function LoginScreen() {
                     onChangeText={setPassword}
                 />
 
-                <LoginButton style={styles.button} onPress={()=>{navigation.navigate('Dashboard',{})}}/>
+                <LoginButton />
 
-                <RegisterButton style={styles.button} onPress={()=>{navigation.navigate('Register',{})}}/>
+                <RegisterButton />
                 
             </SafeAreaView >
         </SafeAreaProvider>

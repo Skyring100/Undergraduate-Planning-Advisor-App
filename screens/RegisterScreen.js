@@ -13,6 +13,12 @@ import SubmitButton from '../components/SubmitButton';
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
 
+const alert = (title, message) => {
+    if (typeof window !== 'undefined' && window.alert) {
+        window.alert(`${title}: ${message}`);
+    }
+};
+
 export default function RegisterScreen() {
 
     const navigation = useNavigation();
@@ -20,7 +26,50 @@ export default function RegisterScreen() {
     const { setUser } = useUserStore();
     const [emailInput, setEmailInput] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmedPassword, setConfirmedPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
+
+    const handleSubmit = () => {
+        if (!emailInput || !password || !confirmedPassword || !firstName) {
+            alert('Error', 'Please fill in all fields');
+            return;
+        }
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput)) {
+            alert('Error', 'Please enter a valid email address');
+            return;
+        }
+        // Length validation: min 5, max 20 characters
+        if (emailInput.length < 5 || emailInput.length > 20) {
+            alert('Error', 'Email must be between 5 and 20 characters');
+            return;
+        }
+        if (password.length < 6 || password.length > 20) {
+            alert('Error', 'Password must be between 6 and 20 characters');
+            return;
+        }
+        if (password != confirmedPassword) {
+            alert('Error', 'Passwords dont match');
+            return;
+        }
+        
+        //Assume: Loging is successfull
+        alert('Success', `Account created`);
+        // Navigate to MainTabs (bottom tab navigator)
+        navigation.navigate('Login');
+        // Reset form
+        setEmailInput('');
+        setPassword('');
+        setConfirmedPassword('');
+        setFirstName('');
+        setLastName('');
+    };
+
+
+    
     return(
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -29,11 +78,25 @@ export default function RegisterScreen() {
                     <Text style={styles.title}>Register</Text>
                 </View>
 
-                
+                <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
 
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter your email"
+                    placeholder="Enter your first name"
+                    autoCapitalize="none"
+                    value={firstName}
+                    onChangeText={setFirstName}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your last name (optional)"
+                    autoCapitalize="none"
+                    value={lastName}
+                    onChangeText={setLastName}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your email address"
                     keyboardType="email-address"
                     autoCapitalize="none"
                     value={emailInput}
@@ -43,12 +106,21 @@ export default function RegisterScreen() {
                     style={styles.input}
                     placeholder="Enter your password"
                     secureTextEntry={true}
+                    autoCapitalize="none"
                     value={password}
                     onChangeText={setPassword}
                 />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Re-enter your password"
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    value={confirmedPassword}
+                    onChangeText={setConfirmedPassword}
+                />
                 
 
-                <SubmitButton onPress={()=>{navigation.navigate('Login',{})}}/>
+                <SubmitButton onPress={handleSubmit}/>
 
             </SafeAreaView >
         </SafeAreaProvider>
@@ -68,7 +140,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 30,
-        padding: 80
+        padding: 10
     },
     title: {
         fontSize: 28,

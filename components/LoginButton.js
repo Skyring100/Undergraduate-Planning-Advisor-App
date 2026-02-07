@@ -1,11 +1,16 @@
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 
-export default function LoginButton({ onPress }) {
-    const handlePress = () => onPress();
+export default function LoginButton() {
+    const navigation = useNavigation();
+    
+    const handlePress = () => {
+        navigation.navigate('Dashboard',{})
+    };
     
     return (
         <TouchableOpacity
