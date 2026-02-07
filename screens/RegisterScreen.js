@@ -7,7 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions } from "react-native"
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
-import RegisterButton from '../components/RegisterButton';
+import BackButton from '../components/BackButton';
+import SubmitButton from '../components/SubmitButton';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -22,10 +23,15 @@ export default function RegisterScreen() {
 
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{flexDirection: 'column', padding: 10, flex: 1}}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>Register</Text>
                 </View>
+
+                <View style={{alignContent:'flex-start'}}>
+                    <BackButton onPress={()=>{navigation.navigate('Login',{})}}/>
+                </View>
+
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your email"
@@ -42,13 +48,12 @@ export default function RegisterScreen() {
                     onChangeText={setPassword}
                 />
 
-                <RegisterButton style={styles.button} onPress={()=>{navigation.navigate('Login',{})}}/>
+                <SubmitButton onPress={()=>{navigation.navigate('Login',{})}}/>
 
             </SafeAreaView >
         </SafeAreaProvider>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
