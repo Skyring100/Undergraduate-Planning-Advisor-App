@@ -15,8 +15,8 @@ export default function HelpButton({ onPress }) {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Image source={require('../assets/gear.png')}
-                style={{width:40, height:40, backgroundColor: '#ffffff', borderRadius: 100}}/>
+            <Image source={require('../assets/help.png')}
+                style={{width:40, height:40, borderRadius: 100}}/>
         </TouchableOpacity>
     );
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 30,
-        left: 20
+        right: 20
     },
     buttonText: {
         color: '#fff',
