@@ -9,7 +9,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import { PlannerScreen } from './screens/PlannerScreen';
+import PlannerScreen from './screens/PlannerScreen';
 
 
 

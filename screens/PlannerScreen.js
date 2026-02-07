@@ -10,7 +10,7 @@ import { Course } from '../data_models/Course';
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.5; // 85% of screen
 
-export function PlannerScreen() {
+export default function PlannerScreen() {
 
     return(
         <SafeAreaProvider>
