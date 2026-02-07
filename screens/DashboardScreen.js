@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     buttonBack: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        backgroundColor: '#035642',
+        backgroundColor: '#3cceac',
         padding: 10,
         width: backWidth,
         height: backHeight*0.45,

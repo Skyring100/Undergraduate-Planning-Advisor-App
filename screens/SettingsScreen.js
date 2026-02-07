@@ -24,6 +24,7 @@ export default function SettingsScreen() {
                     <Text style={styles.title}>Settings</Text>
                 </View>
                 
+                
             </SafeAreaView >
         </SafeAreaProvider>
     );

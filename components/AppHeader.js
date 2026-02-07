@@ -15,7 +15,6 @@ export default function AppHeader() {
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5}} source={require('../assets/favicon.png')}/>
             <SettingsButton style={styles.button} onPress={()=>{navigation.navigate('Settings',{})}}/>
-            <Button title='Settings' onPress={()=> {alert("congrats")}}/>
         </View>
         
     );
@@ -33,6 +32,7 @@ const styles = StyleSheet.create ({
         color: '#fff',
         fontSize: 28,
         marginTop: 30,
+        marginLeft: 20,
         marginRight: 10,
     }
 });

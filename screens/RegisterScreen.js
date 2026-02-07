@@ -24,11 +24,12 @@ export default function RegisterScreen() {
     return(
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
+                <BackButton/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>Register</Text>
                 </View>
 
-                <BackButton/>
+                
 
                 <TextInput
                     style={styles.input}
@@ -45,6 +46,7 @@ export default function RegisterScreen() {
                     value={password}
                     onChangeText={setPassword}
                 />
+                
 
                 <SubmitButton onPress={()=>{navigation.navigate('Login',{})}}/>
 

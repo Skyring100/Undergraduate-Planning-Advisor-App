@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         width: buttonWidth,
         height: 45,
-        right: screenWidth*.25
+        right: screenWidth*.32
     },
     buttonText: {
         color: '#fff',
