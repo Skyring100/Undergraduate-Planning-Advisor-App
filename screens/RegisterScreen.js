@@ -28,9 +28,7 @@ export default function RegisterScreen() {
                     <Text style={styles.title}>Register</Text>
                 </View>
 
-                <View style={{alignContent:'flex-start'}}>
-                    <BackButton onPress={()=>{navigation.navigate('Login',{})}}/>
-                </View>
+                <BackButton/>
 
                 <TextInput
                     style={styles.input}

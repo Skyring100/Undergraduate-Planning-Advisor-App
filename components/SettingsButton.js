@@ -1,16 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 
-
 const screenWidth = Dimensions.get('window').width;
-const buttonWidth = screenWidth * 0.3; // 30% of screen
+const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 
-export default function BackButton() {
-    const navigation = useNavigation();
-    const handlePress = () => {
-        navigation.goBack();
-    };
+export default function SettingsButton({ onPress }) {
+    const handlePress = () => onPress();
     
     return (
         <TouchableOpacity
@@ -18,7 +13,7 @@ export default function BackButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}> &lt; Go Back</Text>
+            <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
     );
 }
@@ -32,7 +27,6 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         width: buttonWidth,
         height: 45,
-        right: screenWidth*.25
     },
     buttonText: {
         color: '#fff',
