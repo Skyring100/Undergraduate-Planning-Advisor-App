@@ -8,6 +8,7 @@ import { UserProvider } from './contexts/UserContext';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
+import { PlannerScreen } from './screens/PlannerScreen';
 
 
 
@@ -23,6 +24,7 @@ export default function App() {
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
+          <Stack.Screen name="Planner" component={PlannerScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
