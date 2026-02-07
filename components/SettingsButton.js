@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet, Dimensions, Image, ImageBackground } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Dimensions, Image } from 'react-native';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -15,9 +15,8 @@ export default function SettingsButton({ onPress }) {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <ImageBackground source={require('../assets/gear.png')}
-                style={{width:40, height:40}}>
-            </ImageBackground>
+            <Image source={require('../assets/gear.png')}
+                style={{width:40, height:40, backgroundColor: '#000000', borderRadius: 100}}/>
         </TouchableOpacity>
     );
 }
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
-        width: buttonWidth,
+        left: 20
     },
     buttonText: {
         color: '#fff',
