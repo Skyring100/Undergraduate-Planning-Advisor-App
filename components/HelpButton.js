@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions, Image } from 'react-native';
 
 
@@ -7,9 +6,8 @@ const buttonWidth = screenWidth * 0.2; // 20% of screen
 
 
 
-export default function SettingsButton() {
-    const navigation = useNavigation();
-    const handlePress = ()=>{navigation.navigate('Settings',{})};
+export default function HelpButton({ onPress }) {
+    const handlePress = () => onPress();
     
     return (
         <TouchableOpacity

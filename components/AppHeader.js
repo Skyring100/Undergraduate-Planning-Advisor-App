@@ -14,7 +14,7 @@ export default function AppHeader() {
             <Button title='Help Icon' onPress={()=> {alert("congrats")}}/>
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5}} source={require('../assets/favicon.png')}/>
-            <SettingsButton style={styles.button} onPress={()=>{navigation.navigate('Settings',{})}}/>
+            <SettingsButton />
         </View>
         
     );
