@@ -1,16 +1,23 @@
 import { Header } from '@react-navigation/elements';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 
+//<Header title='Gradian' style={styles.header}/>
 
 export default function AppHeader() {
     return (
-        <Header title='Gradian' style={styles.header}/>
+        <View style={styles.header}>
+            <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35}} source={require('../assets/favicon.png')}/>
+        </View>
+        
     );
 }
 
 const styles = StyleSheet.create ({
     header: {
-        color: '#035642',
+        backgroundColor: '#035642',
         tintColor: '#fff',
-    }
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });

@@ -1,5 +1,5 @@
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import { createStaticNavigation, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -18,7 +18,10 @@ export default function App() {
     <UserProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login" screenOptions={{
-            header: (props) => <AppHeader {...props}/>,
+            headerTitle: (props) => <AppHeader {...props}/>,
+            headerRight: () => (
+              <Button title="Button" onPress={() => alert('This is a button!')} />
+            ),
           }}>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
