@@ -10,7 +10,7 @@ import { Course } from '../data_models/Course';
 
 export default function PlannerScreen() {
 
-    const courseData = [
+    const degreePlanData = [
         {
             yearNumber: 1,
             semesters: [
@@ -46,6 +46,12 @@ export default function PlannerScreen() {
                         new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
                         new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
                     ]
+                },
+                {
+                    semesterNumber: 3,
+                    courses: [
+                        new Course("FUN101", "Intro to Funology", "Learn to have fun", [])
+                    ]
                 }
             ]
         }
@@ -56,9 +62,9 @@ export default function PlannerScreen() {
             <SafeAreaView style={{flexDirection: 'column', padding: 10,flex: 1}}>
                 <View> 
                     {
-                        courseData.map(y => (
+                        degreePlanData.map(y => (
                             <View id={y.yearNumber}>
-                                <YearSection yearNumber={y.yearNumber} sem1Courses={y.semesters[0].courses} sem2Courses={y.semesters[1].courses}></YearSection>
+                                <YearSection yearNumber={y.yearNumber} semesterData={y.semesters}></YearSection>
                             </View>
                         ))
                     }
@@ -73,41 +79,41 @@ export default function PlannerScreen() {
  * @param {*} yearData Object with year data consisting of the year number and each semester courses
  * @returns 
  */
-function YearSection({yearNumber, sem1Courses, sem2Courses, summerCourses}) {
+function YearSection({yearNumber, semesterData}) {
     
-    const semesterWidth = (summerCourses == null) ? '50%' : '33.333%'
+    const semesterWidth = (semesterData.length == 2) ? '50%' : '33.333%'
 
     return (
         <View>
             <Text style={styles.yearHeader}>Year {yearNumber}</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>
-                <View style={{width: semesterWidth}}>
-                    <Text style={styles.semesterHeader}>Semester 1</Text>
-                    <ScrollView>
-                        {
-                            sem1Courses.map(c=>(
-                                <View key={c.id}>
-                                    <CourseButton course={c}></CourseButton>
-                                </View>
-                            ))
-                        }
-                    </ScrollView>
-                </View>
-                <View style={{width: semesterWidth}}>
-                    <Text style={styles.semesterHeader}>Semester 2</Text>
-                    <ScrollView>
-                        {
-                            sem2Courses.map(c=>(
-                                <View key={c.id}>
-                                    <CourseButton course={c}></CourseButton>
-                                </View>
-                            ))
-                        }
-                    </ScrollView>
-                </View>
+                {
+                    semesterData.map(sem => (
+                        <View key={sem.semesterNumber} style={{width: semesterWidth}}>
+                            <Text style={styles.semesterHeader}>Semester {sem.semesterNumber}</Text>
+                            <SemesterCourses courses={sem.courses}></SemesterCourses>
+                        </View>
+                    ))
+                }
             </View>
         </View>
     )
+}
+
+function SemesterCourses({courses}){
+    return (
+        <View>
+            <ScrollView>
+                {
+                    courses.map(c=>(
+                        <View key={c.id}>
+                            <CourseButton course={c}></CourseButton>
+                        </View>
+                    ))
+                }
+            </ScrollView>
+        </View>
+    );
 }
 
 
