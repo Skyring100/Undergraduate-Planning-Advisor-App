@@ -38,7 +38,6 @@ export default function PlannerScreen() {
                     courses: [
                         new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
                         new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
-                        new Course()
                     ]
                 },
                 {
@@ -74,12 +73,15 @@ export default function PlannerScreen() {
  * @param {*} yearData Object with year data consisting of the year number and each semester courses
  * @returns 
  */
-function YearSection({yearNumber, sem1Courses, sem2Courses}) {
+function YearSection({yearNumber, sem1Courses, sem2Courses, summerCourses}) {
+    
+    const semesterWidth = (summerCourses == null) ? '50%' : '33.333%'
+
     return (
         <View>
             <Text style={styles.yearHeader}>Year {yearNumber}</Text>
-            <View style={styles.yearContent}>
-                <View>
+            <View style={{flexDirection: 'row', justifyContent: 'center',}}>
+                <View style={{width: semesterWidth}}>
                     <Text style={styles.semesterHeader}>Semester 1</Text>
                     <ScrollView>
                         {
@@ -91,7 +93,7 @@ function YearSection({yearNumber, sem1Courses, sem2Courses}) {
                         }
                     </ScrollView>
                 </View>
-                <View>
+                <View style={{width: semesterWidth}}>
                     <Text style={styles.semesterHeader}>Semester 2</Text>
                     <ScrollView>
                         {
@@ -111,19 +113,23 @@ function YearSection({yearNumber, sem1Courses, sem2Courses}) {
 
 const styles = StyleSheet.create({
     yearHeader:{
-        color: '#61dd0e',
-        backgroundColor: '#a16c30',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%'
-    },
-    yearContent:{
-        flexDirection: 'row'
+        color: '#060a03ff',
+        fontWeight: 'bold',
+        fontSize: 25,
+        backgroundColor: '#3cceac',
+        width: '100%',
+        textAlign: 'center'
     },
     semesterHeader:{
-        color: '#1100ff',
-        backgroundColor: '#c91a1a',
-        alignItems: 'center',
-        justifyContent: 'center',
+        color: '#ffffffff',
+        fontWeight: 'bold',
+        fontSize: 20,
+        backgroundColor: '#078d6e',
+        textAlign: 'center',
+        borderRightWidth: 1,
+        borderLeftWidth: 1
+    },
+    semesterSection: {
+        width: '50%'
     }
 });
