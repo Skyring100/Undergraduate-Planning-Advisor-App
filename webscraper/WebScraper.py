@@ -32,6 +32,19 @@ def get_course_information(driver: webdriver.Chrome, courseURL: str):
 
     print(f"Course Name: {title} Prereqs: {prereqs}\nDescription:\n{desc}")
 
+def get_degree_information(driver: webdriver.Chrome, degreeURL: str):
+    driver.get(degreeURL)
+    # Get the normal major for this degree page (ie. no honour nor joint major section)
+    degree_header = driver.find_element(By.CLASS_NAME, "field__item").find_element(By.TAG_NAME, "div").find_element(By.TAG_NAME, "h2")
+    print(degree_header.tag_name)
+    next_sibling = degree_header.find_elements(By.XPATH, "/following-sibling::*")
+    print(next_sibling)
+
+
+
+
+
 scraper = create_webdriver()
-get_course_information(scraper,'https://tools.unbc.ca/course-catalogue?subj=CPSC&crse=100')
+#get_course_information(scraper,'https://tools.unbc.ca/course-catalogue?subj=CPSC&crse=100')
+get_degree_information(scraper, 'https://www.unbc.ca/calendar/undergraduate/computer-science')
 scraper.quit()
