@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        backgroundColor: '#026d54',
+        backgroundColor: '#295F4E', //dark mode
+        //backgroundColor: '#3C7361', //light mode
         padding: 10,
         borderTopLeftRadius: 100,
         borderBottomLeftRadius: 100,
