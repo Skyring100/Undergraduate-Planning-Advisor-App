@@ -1,43 +1,41 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { thirdDark } from '../themes/DarkTheme';
-
-const screenWidth = Dimensions.get('window').width;
-const buttonWidth = screenWidth * 0.7;
+import { mainDark } from '../../contexts/ThemeContext';
 
 const screenHeight = Dimensions.get('window').height;
-const buttonHeight = screenHeight *0.5;
+const buttonHeight = screenHeight *0.29;
+const screenWidth = Dimensions.get('window').width;
+const buttonWidth = buttonHeight;//screenWidth * 0.60;
 
-
-export default function ScheduleButton() {
+export default function EvaluatorButton() {
     const navigation = useNavigation();
     
     const handlePress = () => {
-        navigation.navigate('Schedule',{})
+        navigation.navigate('Evaluator',{})
     };
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: thirdDark[0]}]}
+            style={[styles.button, {backgroundColor: mainDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Schedule</Text>
+            <Text style={styles.buttonText}>Evaluator</Text>
         </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({
     button: {
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        borderTopLeftRadius: 100,
-        borderBottomLeftRadius: 100,
+        borderRadius: 180,
         width: buttonWidth,
-        height: buttonHeight*0.75,
+        height: buttonHeight,
     },
     buttonText: {
         fontSize: 30,
         color: '#fff',
+        fontWeight: 'bold',
     },
 });

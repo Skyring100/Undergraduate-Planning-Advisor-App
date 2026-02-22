@@ -5,10 +5,10 @@ On clicking each button it will navigate to respective pages.*/
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, StyleSheet, Text, View, Dimensions } from "react-native"
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import CourseButton from '../components/CourseButton';
-import PlannerButton from '../components/PlannerButton';
-import ScheduleButton from '../components/ScheduleButton';
-import EvaluatorButton from '../components/EvaluatorButton';
+import CourseButton from '../components/Dashboard/CourseButton';
+import PlannerButton from '../components/Dashboard/PlannerButton';
+import ScheduleButton from '../components/Dashboard/ScheduleButton';
+import EvaluatorButton from '../components/Dashboard/EvaluatorButton';
 
 const backHeight = Dimensions.get('window').height;
 const middleHeight = backHeight*0.25;

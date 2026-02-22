@@ -1,40 +1,43 @@
-import { useNavigation } from '@react-navigation/native';
+import { DarkTheme, useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { mainDark } from '../themes/DarkTheme';
+import { secondDark } from '../../contexts/ThemeContext';
+
+const screenWidth = Dimensions.get('window').width;
+const buttonWidth = screenWidth;
 
 const screenHeight = Dimensions.get('window').height;
-const buttonHeight = screenHeight *0.29;
-const screenWidth = Dimensions.get('window').width;
-const buttonWidth = buttonHeight;//screenWidth * 0.60;
+const buttonHeight = screenHeight *0.45;
 
-export default function EvaluatorButton() {
+
+export default function CourseButton() {
     const navigation = useNavigation();
     
     const handlePress = () => {
-        navigation.navigate('Evaluator',{})
+        navigation.navigate('Courses',{})
     };
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: mainDark[0]}]}
+            style={[styles.button, {backgroundColor: secondDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Evaluator</Text>
+            <Text style={styles.buttonText}>Courses</Text>
         </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({
     button: {
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'center',
         padding: 10,
-        borderRadius: 180,
         width: buttonWidth,
         height: buttonHeight,
     },
     buttonText: {
+        marginBottom: buttonHeight*0.45,
         fontSize: 30,
         color: '#fff',
+        fontWeight: 'bold',
     },
 });
