@@ -1,6 +1,6 @@
 import { DarkTheme, useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { secondDark } from '../../contexts/ThemeContext';
+import { secondDark, secondLight, isDarkMode } from '../../contexts/ThemeContext';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth;
@@ -18,7 +18,7 @@ export default function CourseButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: secondDark[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? secondDark[0] : secondLight[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >

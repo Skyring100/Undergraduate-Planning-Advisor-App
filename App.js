@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PlannerScreen from './screens/PlannerScreen';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 
 
@@ -17,19 +18,21 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{
-            header: (props) => <AppHeader {...props}/>,
-          }}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Dashboard" component={DashboardScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} />
-          <Stack.Screen name="Planner" component={PlannerScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login" screenOptions={{
+              header: (props) => <AppHeader {...props}/>,
+            }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Dashboard" component={DashboardScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="Planner" component={PlannerScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserProvider>
+    </ThemeProvider>
   )
 }
 

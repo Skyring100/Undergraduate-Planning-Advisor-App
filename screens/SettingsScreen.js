@@ -6,6 +6,7 @@ import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
+import DarkLightButton from '../components/Settings/DarkLightButton';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -22,6 +23,9 @@ export default function SettingsScreen() {
                 <BackButton/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>Settings</Text>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center',}}>
+                    <DarkLightButton/>
                 </View>
                 
                 
