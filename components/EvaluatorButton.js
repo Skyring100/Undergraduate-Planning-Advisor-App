@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { mainDark } from '../themes/DarkTheme';
 
 const screenHeight = Dimensions.get('window').height;
 const buttonHeight = screenHeight *0.29;
@@ -15,7 +16,7 @@ export default function EvaluatorButton() {
     
     return (
         <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor: mainDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
@@ -27,7 +28,6 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#035642',
         padding: 10,
         borderRadius: 180,
         width: buttonWidth,

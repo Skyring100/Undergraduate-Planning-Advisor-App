@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { thirdDark } from '../themes/DarkTheme';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.7;
@@ -17,7 +18,7 @@ export default function ScheduleButton() {
     
     return (
         <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor: thirdDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
@@ -29,8 +30,6 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        backgroundColor: '#295F4E', //dark mode
-        //backgroundColor: '#3C7361', //light mode
         padding: 10,
         borderTopLeftRadius: 100,
         borderBottomLeftRadius: 100,

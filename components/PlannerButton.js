@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { fourthDark } from '../themes/DarkTheme';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth;
@@ -17,7 +18,7 @@ export default function PlannerButton() {
     
     return (
         <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {backgroundColor: fourthDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
@@ -29,8 +30,6 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        backgroundColor: '#366354', //dark mode?
-        //backgroundColor: '#528271', //light mode
         padding: 10,
         width: buttonWidth,
         height: buttonHeight,
