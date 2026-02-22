@@ -4,8 +4,8 @@ It will show the courses in a table format.*/
 
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import CourseButton from '../components/CourseButton';
 import { Course } from '../data_models/Course';
+import CourseListButton from '../components/CourseListButton';
 
 
 export default function PlannerScreen() {
@@ -107,7 +107,7 @@ function SemesterCourses({courses}){
                 {
                     courses.map(c=>(
                         <View key={c.id}>
-                            <CourseButton course={c}></CourseButton>
+                            <CourseListButton course={c}></CourseListButton>
                         </View>
                     ))
                 }
