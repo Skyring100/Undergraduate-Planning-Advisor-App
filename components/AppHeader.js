@@ -3,15 +3,18 @@ import { StyleSheet, Image, View, Text, Button } from 'react-native';
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation } from '@react-navigation/native';
+import { mainDark, mainLight, useThemeStore } from '../contexts/ThemeContext';
 
 //<Header title='Gradian' style={styles.header}/>
 
 export default function AppHeader() {
 
     const navigation = useNavigation();
+    const { isDarkMode } = useThemeStore();
+
 
     return (
-        <View style={styles.header}>
+        <View style={[styles.header, {backgroundColor: isDarkMode ? mainDark[0] : mainLight[0]}]}>
             <HelpButton onPress={()=> {alert("Make this button give info about current page")}}/>
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5}} source={require('../assets/favicon.png')}/>
