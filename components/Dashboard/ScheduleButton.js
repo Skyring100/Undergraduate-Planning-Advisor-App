@@ -18,7 +18,7 @@ export default function ScheduleButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? thirdDark[0] : thirdLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? thirdLight[0] : thirdDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >

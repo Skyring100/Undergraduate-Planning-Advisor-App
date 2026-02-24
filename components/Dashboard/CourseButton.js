@@ -18,7 +18,7 @@ export default function CourseButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? secondDark[0] : secondLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? secondLight[0] : secondDark[0]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >

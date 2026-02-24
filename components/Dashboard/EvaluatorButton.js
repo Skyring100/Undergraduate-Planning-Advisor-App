@@ -16,7 +16,7 @@ export default function EvaluatorButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[0] : mainLight[0]}]}
+            style={[styles.button, ]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderRadius: 180,
         width: buttonWidth,
         height: buttonHeight,
+        backgroundColor: isDarkMode ? mainLight[0] : mainDark[0],
     },
     buttonText: {
         fontSize: 30,

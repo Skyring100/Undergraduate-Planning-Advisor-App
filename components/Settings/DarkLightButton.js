@@ -7,7 +7,7 @@ const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 export default function DarkLightButton() {
     const { setTheme } = useThemeStore();
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
