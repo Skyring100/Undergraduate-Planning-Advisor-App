@@ -11,7 +11,7 @@ const buttonHeight = screenHeight *0.45;
 
 export default function CourseButton() {
     const navigation = useNavigation();
-    const { isDarkMode } = useThemeStore();
+    const { isDarkMode, indexColour } = useThemeStore();
     
     const handlePress = () => {
         navigation.navigate('Courses',{})
@@ -19,11 +19,11 @@ export default function CourseButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? secondDark[0] : secondLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? secondDark[indexColour] : secondLight[indexColour]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Courses</Text>
+            <Text style={[styles.buttonText, {color: isDarkMode ? '#fff' : '#303030'}]}>Courses</Text>
         </TouchableOpacity>
     );
 }

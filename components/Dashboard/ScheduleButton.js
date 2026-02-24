@@ -11,7 +11,7 @@ const buttonHeight = screenHeight *0.5;
 
 export default function ScheduleButton() {
     const navigation = useNavigation();
-    const { isDarkMode } = useThemeStore();
+    const { isDarkMode, indexColour } = useThemeStore();
     
     const handlePress = () => {
         navigation.navigate('Schedule',{})
@@ -19,11 +19,11 @@ export default function ScheduleButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? thirdDark[0] : thirdLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? thirdDark[indexColour] : thirdLight[indexColour]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Schedule</Text>
+            <Text style={[styles.buttonText, {color: isDarkMode ? '#fff' : '#303030'}]}>Schedule</Text>
         </TouchableOpacity>
     );
 }

@@ -9,7 +9,7 @@ const buttonWidth = buttonHeight;//screenWidth * 0.60;
 
 export default function EvaluatorButton() {
     const navigation = useNavigation();
-    const { isDarkMode } = useThemeStore();
+    const { isDarkMode, indexColour } = useThemeStore();
 
     const handlePress = () => {
         navigation.navigate('Evaluator',{})
@@ -17,11 +17,11 @@ export default function EvaluatorButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[0] : mainLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour]}]}
             onPress={handlePress}
             activeOpacity={1}
         >
-            <Text style={[styles.buttonText]}>Evaluator</Text>
+            <Text style={[styles.buttonText, {color: isDarkMode ? '#fff' : '#303030'}]}>Evaluator</Text>
         </TouchableOpacity>
     );
 }
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 30,
-        color: '#fff',
         fontWeight: 'bold',
     },
 });

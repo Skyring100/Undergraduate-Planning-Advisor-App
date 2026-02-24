@@ -10,11 +10,10 @@ import { mainDark, mainLight, useThemeStore } from '../contexts/ThemeContext';
 export default function AppHeader() {
 
     const navigation = useNavigation();
-    const { isDarkMode } = useThemeStore();
-
+    const { isDarkMode , indexColour} = useThemeStore();
 
     return (
-        <View style={[styles.header, {backgroundColor: isDarkMode ? mainDark[0] : mainLight[0]}]}>
+        <View style={[styles.header, {backgroundColor: mainDark[indexColour]}]}>
             <HelpButton onPress={()=> {alert("Make this button give info about current page")}}/>
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5}} source={require('../assets/favicon.png')}/>
@@ -26,7 +25,6 @@ export default function AppHeader() {
 
 const styles = StyleSheet.create ({
     header: {
-        backgroundColor: '#035642',
         tintColor: '#fff',
         flexDirection: 'row',
         justifyContent: 'center',

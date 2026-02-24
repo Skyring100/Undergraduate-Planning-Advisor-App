@@ -11,7 +11,7 @@ const buttonHeight = screenHeight *0.45;
 
 export default function PlannerButton() {
     const navigation = useNavigation();
-    const { isDarkMode } = useThemeStore();
+    const { isDarkMode, indexColour } = useThemeStore();
     
     const handlePress = () => {
         navigation.navigate('Planner',{})
@@ -19,11 +19,11 @@ export default function PlannerButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? fourthDark[0] : fourthLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? fourthDark[indexColour] : fourthLight[indexColour]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Planner</Text>
+            <Text style={[styles.buttonText, {color: isDarkMode ? '#fff' : '#303030'}]}>Planner</Text>
         </TouchableOpacity>
     );
 }

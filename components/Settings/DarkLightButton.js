@@ -7,7 +7,7 @@ const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 export default function DarkLightButton() {
-    const { isDarkMode, setIsDarkMode } = useThemeStore();
+    const { isDarkMode, setIsDarkMode, indexColour } = useThemeStore();
 
     const toggleTheme = () => {
         setIsDarkMode(prevTheme => !prevTheme);
@@ -15,7 +15,7 @@ export default function DarkLightButton() {
 
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[0] : mainLight[0]}]}
+            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour]}]}
             onPress={toggleTheme}
             activeOpacity={0.7}
         >
