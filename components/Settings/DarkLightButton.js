@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 import { useThemeStore, mainDark, mainLight} from '../../contexts/ThemeContext';
+import { useTheme } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 export default function DarkLightButton() {
-    const { setTheme } = useThemeStore();
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const { isDarkMode, setIsDarkMode } = useThemeStore();
 
     const toggleTheme = () => {
-        setIsDarkMode(!isDarkMode);
-        setTheme(prevTheme => ({
-            ...prevTheme,
-            isDarkMode: !prevTheme.isDarkMode
-        }));
+        setIsDarkMode(prevTheme => !prevTheme);
     };
 
     return (

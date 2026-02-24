@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, use, useContext, useState } from 'react';
 
 //green, red, blue, pink, purple, yellow, orange
 export const mainDark = ['#035642', '#560303', '#033556', '#560336', '#560336', '#565003', '#562D03'];
@@ -15,14 +15,18 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
 
-  const [theme, setTheme] = useState({
-    isDarkMode: true,
-    indexColour: 0,
-  });
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [indexColour, setIndex] = useState(0);
 
+  const contextValue = {
+    isDarkMode,
+    setIsDarkMode,
+    indexColour,
+    setIndex,
+  };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme}}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );
