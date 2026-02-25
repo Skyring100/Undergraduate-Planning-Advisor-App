@@ -4,15 +4,22 @@ const UserContext = createContext();
 
 export function UserProvider({ children }) {
 
-  const [user, setUser] = useState({
-    email: '',
-    username: '',
-    startDate: '',
-    degree: '',
-  });
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [startYear, setStartYear] = useState(0);
+  const [startSemester, setSemester] = useState('');
+  const [degree, setDegree] = useState('');
+
+  const contextValue = {
+    email, setEmail,
+    username, setUsername,
+    startYear, setStartYear,
+    startSemester, setSemester,
+    degree, setDegree
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser}}>
+    <UserContext.Provider value={contextValue}>
       {children}
     </UserContext.Provider>
   );
