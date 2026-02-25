@@ -7,6 +7,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import CourseButton from '../components/CourseListButton';
 import { Course } from '../data_models/Course';
 import CourseListButton from '../components/CourseListButton';
+import BackButton from '../components/BackButton';
 
 
 export default function PlannerScreen() {
@@ -61,7 +62,9 @@ export default function PlannerScreen() {
     return(
         <SafeAreaProvider>
             <SafeAreaView style={{flexDirection: 'column', padding: 10,flex: 1}}>
-                <View> 
+                
+                <View style={{alignItems: 'center', justifyContent: 'center', }}> 
+                    <BackButton/>
                     {
                         degreePlanData.map(y => (
                             <View id={y.yearNumber}>
