@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useThemeStore, mainDark, mainLight, fourthLight} from '../../contexts/ThemeContext';
+import { TouchableOpacity, Text, StyleSheet, Dimensions, View } from 'react-native';
+import { useThemeStore, mainDark, mainLight, fourthLight, borderColour} from '../../contexts/ThemeContext';
+import OutlinedText from '@kdn0325/react-native-outlined-text';
 
 const screenHeight = Dimensions.get('window').height;
 const buttonHeight = screenHeight *0.27;
@@ -17,11 +18,23 @@ export default function EvaluatorButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour], borderColor: isDarkMode ? mainLight[indexColour] : mainDark[indexColour]}]}
+            style={[styles.button, 
+                {backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour], 
+                    borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
             onPress={handlePress}
             activeOpacity={1}
         >
-            <Text style={[styles.buttonText, {color: isDarkMode ? fourthLight[indexColour] : mainDark[indexColour]}]}>Evaluator</Text>
+            <View pointerEvents="none">
+                <OutlinedText
+                    text={'Evaluator'}
+                    color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
+                    fontSize={30}
+                    fontWeight={'500'}
+                    outlineColor={'#000000'}
+                    shadowLine={3}
+                />
+            </View>
+            {/* <Text style={[styles.buttonText, {color: isDarkMode ? fourthLight[indexColour] : mainDark[indexColour]}]}>Evaluator</Text> */}  
         </TouchableOpacity>
     );
 }

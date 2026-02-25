@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { fourthLight, mainDark, mainLight, thirdDark, thirdLight, useThemeStore} from '../../contexts/ThemeContext';
+import { TouchableOpacity, Text, StyleSheet, Dimensions, View } from 'react-native';
+import { borderColour, fourthLight, mainDark, mainLight, thirdDark, thirdLight, useThemeStore} from '../../contexts/ThemeContext';
+import OutlinedText from '@kdn0325/react-native-outlined-text';
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.7;
@@ -19,11 +20,23 @@ export default function ScheduleButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, {backgroundColor: isDarkMode ? thirdDark[indexColour] : thirdLight[indexColour], borderColor: isDarkMode ? mainLight[indexColour] : mainDark[indexColour]}]}
+            style={[styles.button, 
+                {backgroundColor: isDarkMode ? thirdDark[indexColour] : thirdLight[indexColour], 
+                    borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={[styles.buttonText, {color: isDarkMode ? fourthLight[indexColour] : mainDark[indexColour]}]}>Schedule</Text>
+            <View pointerEvents="none">
+                <OutlinedText
+                    text={'Schedule'}
+                    color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
+                    fontSize={30}
+                    fontWeight={'500'}
+                    outlineColor={'#000000'}
+                    shadowLine={3}
+                />
+            </View>
+            {/* <Text style={[styles.buttonText, {color: isDarkMode ? fourthLight[indexColour] : mainDark[indexColour]}]}>Evaluator</Text> */}  
         </TouchableOpacity>
     );
 }
