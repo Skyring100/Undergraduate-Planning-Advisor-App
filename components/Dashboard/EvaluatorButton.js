@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
         marginTop: buttonHeight*0.08,
         width: buttonWidth,
         height: buttonHeight,
+        borderColor: "#000000",
+        borderWidth: 5,
     },
     buttonText: {
         fontSize: 30,

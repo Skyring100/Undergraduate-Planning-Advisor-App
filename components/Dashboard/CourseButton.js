@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
         padding: 10,
         width: buttonWidth,
         height: buttonHeight,
+        borderColor: "#000000",
+        borderWidth: 5,
     },
     buttonText: {
         marginBottom: buttonHeight*0.45,
