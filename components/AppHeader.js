@@ -16,7 +16,7 @@ export default function AppHeader() {
         <View style={[styles.header, {backgroundColor: mainDark[indexColour]}]}>
             <HelpButton onPress={()=> {alert("Make this button give info about current page")}}/>
             <Text style={styles.headerText}>Gradian</Text>
-            <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 80, height: 80}} source={require('../assets/main-logo.png')}/>
+            <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 61, height: 40}} source={require('../assets/white-main-logo.png')}/>
             <SettingsButton />
         </View>
         
