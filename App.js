@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PlannerScreen from './screens/PlannerScreen';
+import EvaluatorScreen from './screens/EvaluatorScreen';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 
@@ -29,6 +30,7 @@ export default function App() {
             <Stack.Screen name="Dashboard" component={DashboardScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="Planner" component={PlannerScreen} />
+            <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>
