@@ -26,7 +26,7 @@ export default function EvaluatorButton() {
         >
             <View pointerEvents="none">
                 <OutlinedText
-                    text={'Evaluator'}
+                    text={' Evaluator '}
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}
                     fontWeight={'500'}

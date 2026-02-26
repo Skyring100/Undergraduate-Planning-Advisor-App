@@ -9,6 +9,8 @@ export function UserProvider({ children }) {
   const [startYear, setStartYear] = useState(0);
   const [startSemester, setSemester] = useState('');
   const [degree, setDegree] = useState('');
+  const [currentCourses, setCurrentCourses] = useState([]);
+  const [pastCourses, setPastCourses] = useState([]);
 
   const contextValue = {
     email, setEmail,
