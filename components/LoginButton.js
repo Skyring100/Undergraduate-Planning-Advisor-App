@@ -8,9 +8,7 @@ const buttonWidth = screenWidth * 0.6; // 60% of screen
 export default function LoginButton() {
     const navigation = useNavigation();
     
-    const handlePress = () => {
-        navigation.navigate('Dashboard',{})
-    };
+    //const handlePress = () => onPress;           // make for lgoin logic
     
     return (
         <TouchableOpacity
