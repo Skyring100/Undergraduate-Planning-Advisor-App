@@ -17,7 +17,8 @@ export default function EvaluatorScreen() {
     const {setUser} = useUserStore();
 
     // TODO: make the user context supply these next few variables
-    const [percentage, setPercentage] = useState("0%");
+    const progressBarPercent = (completedCourses.length/possibleCourses.length)*100;
+    const [percentage, setPercentage] = useState(progressBarPercent+"%");
 
     // take all the courses the user has every prerequisite for completed
     const nextCourses = possibleCourses.filter(
@@ -26,7 +27,6 @@ export default function EvaluatorScreen() {
                                     )
                                 ).every(Boolean) && course.prereqs.length != 0
                             );
-
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
