@@ -1,3 +1,3 @@
 To Run Project:
-- npm install expo
+- npm install
 - npx expo start
