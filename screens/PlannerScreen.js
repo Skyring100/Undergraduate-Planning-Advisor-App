@@ -56,7 +56,31 @@ export default function PlannerScreen() {
                     ]
                 }
             ]
-        }
+        },
+        {
+            yearNumber: 3,
+            semesters: [
+                {
+                    semesterNumber: 1,
+                    courses: [
+                        new Course("GEOG204", "Intro to GIS", "Learn basics of GIS", []),
+                        new Course("MATH100", "Calculus 1", "Derivatives, integrals", []),
+                        new Course("CPSC200", "Algorithm analysis", "Runtime and storage complexity", ["CPSC101"])
+                    ]
+                }
+            ]
+        },
+        {
+            yearNumber: 4,
+            semesters: [
+                {
+                    semesterNumber: 2,
+                    courses: [
+                        new Course("CPSC444", "Computer Networks", "Protocols like TCP and UDP and also learning about OSI model", []),
+                    ]
+                }
+            ]
+        },
     ]
 
     return(
@@ -85,7 +109,19 @@ export default function PlannerScreen() {
  */
 function YearSection({yearNumber, semesterData}) {
     
-    const semesterWidth = (semesterData.length == 2) ? '50%' : '33.333%'
+    var semesterWidth;
+
+    switch(semesterData.length){
+        case 2:
+            semesterWidth = '50%'
+            break;
+        case 3:
+            semesterWidth = '33.333%'
+            break;
+        case 1:
+            semesterWidth = '100%'
+            break;
+    }
 
     return (
         <View>
