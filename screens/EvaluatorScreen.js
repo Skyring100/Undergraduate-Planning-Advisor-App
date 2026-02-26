@@ -17,7 +17,7 @@ export default function EvaluatorScreen() {
     const {setUser} = useUserStore();
 
     // TODO: make the user context supply these next few variables
-    const [percentage, setPercentage] = useState("67%");
+    const [percentage, setPercentage] = useState("0%");
     const possibleCourses = [
         new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
         new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
@@ -27,10 +27,15 @@ export default function EvaluatorScreen() {
     ]
 
     const completedCourses = [
-        possibleCourses[0],
-        possibleCourses[1],
     ]
 
+    // take all the courses the user has every prerequisite for completed
+    const nextCourses = possibleCourses.filter(
+                                course => course.prereqs.map(prereq => (
+                                    completedCourses.map(course => course.id).includes(prereq)
+                                    )
+                                ).every(Boolean) && course.prereqs.length != 0
+                            );
 
     return (
         <SafeAreaProvider>
@@ -46,23 +51,19 @@ export default function EvaluatorScreen() {
                     <Text style={styles.bigPercentage}>{percentage}</Text> 
                     <Text> of the way to your degree!</Text>
                 </View>
-                <Text style={{textAlign: "center"}}>Here are some courses you might want to look into tackling next:</Text>
+                <Text style={{textAlign: "center"}}>{
+                    nextCourses.length == 0 ? "Looks like none of your courses have a next step."
+                    : "Now try tackling these courses here:"
+                }</Text>
                 <View style={styles.listContainer}>
                         {
-                            // this behemoth of a list returns names for all the courses
-                            // you have every prerequisite for completed
-                            possibleCourses.filter(
-                                course => course.prereqs.map(prereq => (
-                                    completedCourses.map(course => course.id).includes(prereq)
-                                    )
-                                ).every(Boolean) && course.prereqs.length != 0
-                            ).map(course => (
-                                <>
+                            nextCourses.map(course => (
+                                <View key={course.id}>
                                 {/* edit this JSX to change how the courses are displayed */}
                                     <Text>
                                         &bull;  {course.name} ({course.id})
                                     </Text>
-                                </>
+                               </View>
                                 )
                             )
                         }

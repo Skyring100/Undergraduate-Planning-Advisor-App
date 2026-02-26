@@ -67,7 +67,7 @@ export default function PlannerScreen() {
                     <BackButton/>
                     {
                         degreePlanData.map(y => (
-                            <View id={y.yearNumber}>
+                            <View id={y.yearNumber} key={y.yearNumber}>
                                 <YearSection yearNumber={y.yearNumber} semesterData={y.semesters}></YearSection>
                             </View>
                         ))
