@@ -26,6 +26,7 @@ export default function EvaluatorScreen() {
                                     completedCourses.map(course => course.id).includes(prereq)
                                     )
                                 ).every(Boolean) && course.prereqs.length != 0
+                                && !completedCourses.map(other => other.id).includes(course.id)
                             );
     return (
         <SafeAreaProvider>
@@ -51,7 +52,7 @@ export default function EvaluatorScreen() {
                                 <View key={course.id}>
                                 {/* edit this JSX to change how the courses are displayed */}
                                     <Text>
-                                        &bull;  {course.name} ({course.id})
+                                        &bull;  {course.title} ({course.id})
                                     </Text>
                                </View>
                                 )
