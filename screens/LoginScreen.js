@@ -28,7 +28,18 @@ export default function LoginScreen() {
 
     const handleLogin = () => {
 
-
+        /*                                                      // Login logic
+        if (!emailInput || !password) {
+            alert('Error', 'Please fill in all fields');
+            return;
+        }
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput)) {
+            alert('Error', 'Please enter a valid email address');
+            return;
+        }
+            */
 
         
         setUser(user => ({

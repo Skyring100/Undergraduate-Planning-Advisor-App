@@ -8,6 +8,7 @@ const buttonWidth = screenWidth * 0.6; // 60% of screen
 export default function LoginButton() {
     const navigation = useNavigation();
     
+    //const handlePress = () => onPress;           // make for login logic
     const handlePress = () => {
         navigation.navigate('Dashboard',{})
     };
