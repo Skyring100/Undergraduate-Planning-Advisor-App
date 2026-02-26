@@ -2,9 +2,23 @@
 
 
 
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-export function EvaluatorScreen() {
-    return(
-        null
+
+export default function ScheduleScreen() {
+
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView>
+                <View>
+                  <Text>Evaluation</Text>
+                </View>
+            </SafeAreaView>
+        </SafeAreaProvider>
     );
 }
+
+const styles = StyleSheet.create({
+
+})
