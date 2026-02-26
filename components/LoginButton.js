@@ -9,6 +9,9 @@ export default function LoginButton() {
     const navigation = useNavigation();
     
     //const handlePress = () => onPress;           // make for login logic
+    const handlePress = () => {
+        navigation.navigate('Dashboard',{})
+    };
     
     return (
         <TouchableOpacity
