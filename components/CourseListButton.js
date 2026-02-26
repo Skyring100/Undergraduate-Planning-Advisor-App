@@ -1,5 +1,4 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Course } from '../data_models/Course';
 
 
 export default function CourseListButton({course}) {

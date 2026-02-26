@@ -1,0 +1,20 @@
+[
+    {
+        "id" :"CPSC100",
+        "title": "Computer Programming", 
+        "desc": "Learn basic programmin",
+        "prereqs":  []
+    },
+    {
+        "id": "CPSC141",
+        "title": "Discrete Mathematics",
+        "desc": "Comp sci math",
+        "prereqs": []
+    },
+    {
+        "id": "CPSC101",
+        "title": "Computer Programming 2",
+        "desc": "Learn object oriented stuff in Java",
+        "prereqs": ["CPSC100"]
+    }
+]
