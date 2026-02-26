@@ -14,7 +14,6 @@ import EvaluatorScreen from './screens/EvaluatorScreen';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ScheduleScreen from './screens/ScheduleScreen';
 import CourseListScreen from './screens/CourseListScreen';
-import EvaluatorScreen from './screens/EvaluatorScreen';
 
 
 
@@ -33,14 +32,10 @@ export default function App() {
             <Stack.Screen name="Dashboard" component={DashboardScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="Planner" component={PlannerScreen} />
-<<<<<<< HEAD
             <Stack.Screen name="Schedule" component={ScheduleScreen} />
             <Stack.Screen name="Courses" component={CourseListScreen} />
             <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
             
-=======
-            <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
->>>>>>> b42796b9833d74ff32e2b916f9310d9eefa0dcb2
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>

@@ -4,6 +4,7 @@ Users can click on each course to view more details about it or add times to the
 
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import {Calendar, CalendarList} from 'react-native-calendars';
 
 
 export default function ScheduleScreen() {
@@ -14,13 +15,21 @@ export default function ScheduleScreen() {
                 <View style={styles.scheduleHeader}>
                     <View>
                         <Text style={styles.days}>Day 1</Text>
-                        {/* Scroll View will be implemented here */}
                     </View>
                     <View>
-                        <Text style={styles.days}>Day 2</Text>
-                        {/* Scroll View will be implemented here */}
+                        <Text style={styles.days}>Day 2</Text>                     
                     </View>
                 </View>
+
+                <Calendar
+                    onDayPress={day => {setSelected(day.dateString);}}
+                    markedDates={
+                        {
+                            [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e"}
+                        }
+                    }
+                />
+
             </SafeAreaView>
         </SafeAreaProvider>
     );

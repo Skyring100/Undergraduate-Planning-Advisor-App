@@ -10,19 +10,8 @@ import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import ProgressBar from '../components/ProgressBar';
 
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
 
-export default function ScheduleScreen() {
-
-    return (
-        <SafeAreaProvider>
-            <SafeAreaView>
-                <View>
-                  <Text>Evaluation</Text>
-=======
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
 
@@ -79,7 +68,7 @@ export default function EvaluatorScreen() {
                                 )
                             )
                         }
->>>>>>> b42796b9833d74ff32e2b916f9310d9eefa0dcb2
+
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>
@@ -87,10 +76,6 @@ export default function EvaluatorScreen() {
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-
-})
-=======
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -135,4 +120,3 @@ const styles = StyleSheet.create({
         fontSize: 23,
     }
 });
->>>>>>> b42796b9833d74ff32e2b916f9310d9eefa0dcb2
