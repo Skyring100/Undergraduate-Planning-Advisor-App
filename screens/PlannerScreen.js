@@ -4,84 +4,12 @@ It will show the courses in a table format.*/
 
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import CourseButton from '../components/CourseListButton';
-import { Course } from '../data_models/Course';
 import CourseListButton from '../components/CourseListButton';
 import BackButton from '../components/BackButton';
+import degreePlanData from '../data/degree_plans.json'
 
 
 export default function PlannerScreen() {
-
-    const degreePlanData = [
-        {
-            yearNumber: 1,
-            semesters: [
-                {
-                    semesterNumber: 1,
-                    courses: [
-                        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
-                        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
-                    ]
-                },
-                {
-                    semesterNumber: 2,
-                    courses: [
-                        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
-                        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
-                    ]
-                }
-            ]
-        },
-        {
-            yearNumber: 2,
-            semesters: [
-                {
-                    semesterNumber: 1,
-                    courses: [
-                        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
-                        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
-                    ]
-                },
-                {
-                    semesterNumber: 2,
-                    courses: [
-                        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
-                        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"])
-                    ]
-                },
-                {
-                    semesterNumber: 3,
-                    courses: [
-                        new Course("FUN101", "Intro to Funology", "Learn to have fun", [])
-                    ]
-                }
-            ]
-        },
-        {
-            yearNumber: 3,
-            semesters: [
-                {
-                    semesterNumber: 1,
-                    courses: [
-                        new Course("GEOG204", "Intro to GIS", "Learn basics of GIS", []),
-                        new Course("MATH100", "Calculus 1", "Derivatives, integrals", []),
-                        new Course("CPSC200", "Algorithm analysis", "Runtime and storage complexity", ["CPSC101"])
-                    ]
-                }
-            ]
-        },
-        {
-            yearNumber: 4,
-            semesters: [
-                {
-                    semesterNumber: 2,
-                    courses: [
-                        new Course("CPSC444", "Computer Networks", "Protocols like TCP and UDP and also learning about OSI model", []),
-                    ]
-                }
-            ]
-        },
-    ]
 
     return(
         <SafeAreaProvider>

@@ -3,14 +3,13 @@
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Course } from '../data_models/Course';
 import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import ProgressBar from '../components/ProgressBar';
-
-
+import possibleCourses from '../data/possible_courses.json'
+import completedCourses from '../data/completed_courses.json'
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
@@ -19,16 +18,6 @@ export default function EvaluatorScreen() {
 
     // TODO: make the user context supply these next few variables
     const [percentage, setPercentage] = useState("0%");
-    const possibleCourses = [
-        new Course("CPSC100", "Computer Programming", "Learn basic programmin", []),
-        new Course("CPSC141", "Discrete Mathematics", "Comp sci math", []),
-        new Course("CPSC101", "Computer Programming 2", "Learn object oriented stuff in Java", ["CPSC100"]),
-        new Course("CPSC242", "Discrete Math 2", "Even more comp sci math", ["CPSC141"]),
-        new Course("FUN101", "Intro to Funology", "Learn to have fun", []),
-    ]
-
-    const completedCourses = [
-    ]
 
     // take all the courses the user has every prerequisite for completed
     const nextCourses = possibleCourses.filter(
@@ -68,7 +57,6 @@ export default function EvaluatorScreen() {
                                 )
                             )
                         }
-
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>

@@ -1,0 +1,135 @@
+[
+    {
+        "yearNumber": 1,
+        "semesters": [
+            {
+                "semesterNumber": 1,
+                "courses": [
+                    {
+                        "id" :"CPSC100",
+                        "title": "Computer Programming", 
+                        "desc": "Learn basic programmin",
+                        "prereqs":  []
+                    },
+                    {
+                        "id": "CPSC141",
+                        "title": "Discrete Mathematics",
+                        "desc": "Comp sci math",
+                        "prereqs": []
+                    }
+                ]
+            },
+            {
+                "semesterNumber": 2,
+                "courses": [
+                    {
+                        "id": "CPSC101",
+                        "title": "Computer Programming 2",
+                        "desc": "Learn object oriented stuff in Java",
+                        "prereqs": ["CPSC100"]
+                    },
+                    {
+                        "id": "CPSC242",
+                        "title": "Discrete Math 2",
+                        "desc": "Even more comp sci math",
+                        "prereqs": ["CPSC141"]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "yearNumber": 2,
+        "semesters": [
+            {
+                "semesterNumber": 1,
+                "courses": [
+                    {
+                        "id" :"CPSC100",
+                        "title": "Computer Programming",
+                        "desc": "Learn basic programmin",
+                        "prereqs": []
+                    },
+                    {
+                        "id" : "CPSC141",
+                        "title": "Discrete Mathematics",
+                        "desc": "Comp sci math",
+                        "prereqs": []
+                    }
+                ]
+            },
+            {
+                "semesterNumber": 2,
+                "courses": [
+                    {
+                        "id": "CPSC101",
+                        "title": "Computer Programming 2",
+                        "desc": "Learn object oriented stuff in Java",
+                        "prereqs": ["CPSC100"]
+                    },
+                    {
+                        "id": "CPSC242",
+                        "title": "Discrete Math 2",
+                        "desc": "Even more comp sci math",
+                        "prereqs": ["CPSC141"]
+                    }
+                ]
+            },
+            {
+                "semesterNumber": 3,
+                "courses": [
+                    {
+                        "id": "FUN101",
+                        "title": "Intro to Funology",
+                        "desc": "Learn to have fun",
+                        "prereqs": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "yearNumber": 3,
+        "semesters": [
+            {
+                "semesterNumber": 1,
+                "courses": [
+                    {
+                        "id": "GEOG204",
+                        "title": "Intro to GIS",
+                        "desc": "Learn basics of GIS",
+                        "prereqs": []
+                    },
+                    {
+                        "id": "MATH100",
+                        "title": "Calculus 1",
+                        "desc": "Derivatives, integrals",
+                        "prereqs": []
+                    },
+                    {
+                        "id": "CPSC200",
+                        "title": "Algorithm analysis",
+                        "desc": "Runtime and storage complexity",
+                        "prereqs": ["CPSC101"]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "yearNumber": 4,
+        "semesters": [
+            {
+                "semesterNumber": 2,
+                "courses": [
+                    {
+                        "id": "CPSC444",
+                        "title": "Computer Networks",
+                        "desc": "Protocols like TCP and UDP and also learning about OSI model",
+                        "prereqs": [] 
+                    }
+                ]
+            }
+        ]
+    }
+]

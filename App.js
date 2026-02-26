@@ -35,7 +35,6 @@ export default function App() {
             <Stack.Screen name="Schedule" component={ScheduleScreen} />
             <Stack.Screen name="Courses" component={CourseListScreen} />
             <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
-            
           </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>

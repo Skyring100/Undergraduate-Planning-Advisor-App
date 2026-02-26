@@ -1,13 +1,14 @@
 /*Schedule page will show the weekly schedule of the user.
 It will display the courses in a calendar format with time slots.
 Users can click on each course to view more details about it or add times to their selected courses.*/
-
+import {useState} from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {Calendar, CalendarList} from 'react-native-calendars';
 
 
 export default function ScheduleScreen() {
+    const [selected, setSelected] = useState('');
 
     return (
         <SafeAreaProvider>
