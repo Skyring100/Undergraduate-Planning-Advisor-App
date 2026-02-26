@@ -28,7 +28,8 @@ export default function CourseButton() {
         >
             <View pointerEvents="none" style={{marginBottom: buttonHeight*0.35}}>
                 <OutlinedText
-                    text={'Courses'}
+                    text={' Courses '}
+
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}
                     fontWeight={'500'}

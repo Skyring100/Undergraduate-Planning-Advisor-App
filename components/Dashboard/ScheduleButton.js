@@ -28,7 +28,7 @@ export default function ScheduleButton() {
         >
             <View pointerEvents="none">
                 <OutlinedText
-                    text={'Schedule'}
+                    text={' Schedule '}
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}
                     fontWeight={'500'}

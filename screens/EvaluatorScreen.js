@@ -4,6 +4,10 @@
 
 
 export function EvaluatorScreen() {
+    const navigation = useNavigation();
+
+    const {setUser} = useUserStore();
+
     return(
         null
     );

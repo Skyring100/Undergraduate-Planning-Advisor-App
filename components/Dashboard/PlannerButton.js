@@ -28,7 +28,7 @@ export default function PlannerButton() {
         >
            <View pointerEvents="none" style={{marginTop: buttonHeight*0.35}}>
                 <OutlinedText
-                    text={'Planner'}
+                    text={' Planner '}
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}
                     fontWeight={'500'}
