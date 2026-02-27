@@ -51,6 +51,17 @@ function YearSection({yearNumber, semesterData}) {
             break;
     }
 
+    function GetSemesterTitle(semNum){
+        switch(semNum){
+            case 1:
+                return "Fall"
+            case 2:
+                return "Winter"
+            case 3:
+                return "Summer"
+        }
+    }
+
     return (
         <View>
             <Text style={styles.yearHeader}>Year {yearNumber}</Text>
@@ -58,7 +69,7 @@ function YearSection({yearNumber, semesterData}) {
                 {
                     semesterData.map(sem => (
                         <View key={sem.semesterNumber} style={{width: semesterWidth}}>
-                            <Text style={styles.semesterHeader}>Semester {sem.semesterNumber}</Text>
+                            <Text style={styles.semesterHeader}>{GetSemesterTitle(sem.semesterNumber)}</Text>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
                         </View>
                     ))
