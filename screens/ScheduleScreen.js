@@ -5,6 +5,7 @@ import {useState} from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {Calendar, CalendarList} from 'react-native-calendars';
+import BackButton from '../components/BackButton';
 
 
 export default function ScheduleScreen() {
@@ -13,6 +14,11 @@ export default function ScheduleScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView>
+
+                <View style={{alignItems: 'center', justifyContent: 'center', }}>
+                        <BackButton/>
+                </View>
+
                 <View style={styles.scheduleHeader}>
                     <View>
                         <Text style={styles.days}>Day 1</Text>

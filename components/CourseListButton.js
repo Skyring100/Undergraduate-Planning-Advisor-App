@@ -4,7 +4,7 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 export default function CourseListButton({course}) {
     const handlePress = () => {
         if (course.id != null){
-            alert(course.id + ": "+course.name +"\n"+course.desc)
+            alert(course.id + ": "+course.title +"\n"+course.desc)
         }else{
             alert("No course data")
         }

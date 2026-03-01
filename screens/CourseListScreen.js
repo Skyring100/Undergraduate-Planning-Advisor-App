@@ -5,13 +5,15 @@ Each course will have an 'Add to Planner' button that allows users to add the co
 import { View, StyleSheet, FlatList, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
+import BackButton from '../components/BackButton';
 
 export default function CourseListScreen() {
 
     return (
         <SafeAreaProvider>
             <SafeAreaView>
-                <View>
+                <View style={{alignItems: 'center', justifyContent: 'center', }}>
+                    <BackButton/>
                     <Text>Course List Screen</Text>
                 </View>
             </SafeAreaView>
