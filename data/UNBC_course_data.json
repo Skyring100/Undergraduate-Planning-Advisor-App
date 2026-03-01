@@ -1,5 +1,480 @@
 {
     "all_courses": [
-
+        {
+            "id": "CPSC100",
+            "title": "Computer Science 100 - Computer Programming I",
+            "desc": "This course introduces the fundamental concepts of programming from and object-oriented perspective. Topics include fundamentals of programming style, syntax, data types, arithmetic and logical expressions, assignments, control structures, arrays, functions, file i/o, classes, inheritance, and dynamic storage allocation. The course emphasizes the development of problem solving and programming skills, including testing techniques and the use of debugging tools. Students must also register in a lab and a tutorial section. Credit will not be awarded for both CPSC 110-3 and CPSC 100-4. Refer to major for required course. Please note: You must register separately in lecture, tutorial, and lab components.",
+            "prereqs": [
+                "MATH115 minimum grade of C-",
+                "or PreCalculus 12"
+            ]
+        },
+        {
+            "id": "CPSC101",
+            "title": "Computer Science 101 - Computer Programming II",
+            "desc": "This course is a continuation of CPSC 100-4. Objects, classes, inheritance and polymorphism are discussed in depth. Other topics include object-orieted program design and development using principles of software engineering; modeling with UML; GUI components and graphics; dynamic storage allocation, the heap, and garbage collection; run-time support for program execution; and the use of standard libraries. Students work cooperatively to complete a medium-sized project. This course requires both tutorial and laboratory components. Please note: You must register separately in lecture lab, and tutorial components.",
+            "prereqs": [
+                "CPSC100 minimum grade of C-",
+                "and CPSC141 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC110",
+            "title": "Computer Science 110 - Introduction to Computer Systems and Programming",
+            "desc": "The course provides an introduction to computer systems and programing, concepts in computer architecture including the central processing unit, buses, memory units, input/output and communication devices. The introduction to operating systems emphasizes the file system and program development utilities. Programing concepts and techniques include problem analysis, program design, coding, and testing, as well as language elements such as data types, variables and assignment statements, expressions, mixed-mode arithmetic, input/output operations, basic data structures and control structures, procedures and abstract data types. Basic database management concepts will also be introduced. Students will develop small applications programs. CPSC 110-3 is a first course in computer science and computer programing. CPSC 110-3 cannot be counted as a computer science course by computer science majors. Credit will not be awarded for both CPSC 110-3 & CPSC 100-4. Refer to major for required course. Please note: You must register separately in lecture, lab, and tutorial components.",
+            "prereqs": [
+                "MATH115 minimum grade of C-",
+                "or PreCalculus 12"
+            ]
+        },
+        {
+            "id": "CPSC127",
+            "title": "Computer Science 127 - Introduction to Technology",
+            "desc": "This course introduces students to a current technological topic, defines technology, and explores the context of technology, prototyping, and testing. Students participate in a project involving remote or autonomous control and use project-based learning to analyze how competing social, ethical, and sustainability considerations influence the creation and development of technological solutions.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC141",
+            "title": "Computer Science 141 - Discrete Computational Mathematics",
+            "desc": "This course provides an introduction to set theory, elements of combinatorics and probability theory, logical and formal reasoning using predicate and propositional calculus, together with narrative proof techniques. Other topics include well ordered sets, recursive definitions and mathematical induction; introductory number theory including the division algorithm, Euclidean algorithm, prime numbers and the fundamental theorem of arithmetic; properties of functions and relations including bijections, projections, inverses, composition, and Cartesian products.",
+            "prereqs": [
+                "MATH115 minimum grade of C-",
+                "or PreCalculus 12"
+            ]
+        },
+        {
+            "id": "CPSC150",
+            "title": "Computer Science 150 - Computer Applications",
+            "desc": "Taught through the use of common applications, beginning with word processing, this course prepares students for future as well as present needs in computing literacy by reaching beyond examples to recognition of principles. Students gain a practical grasp of data formats, program behaviour, using documentation, and the role of hardware. Communications (including World Wide Web), and cross- platform transference of data, feature prominently, in addition to traditional office applications such as spreadsheets and databases. Students attend lectures and work from web-mounted lab material. Each student undertakes a personal project, which documents independent learning. May not be counted as a computer science course by computer science majors. Please note: You must register separately in lecture and lab components where applicable.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC199",
+            "title": "Computer Science 199 - Introductory Special Topics I",
+            "desc": "The intent of this course is to provide timely offering of courses that either reflect rapid change in Computer Science, provide supplementary material in specific concrete topics or skills, or expose non-majors to advances in Computer Science. Consequently, the topic and availability of this course varies. The course may be retaken any number of times, provided all topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC224",
+            "title": "Computer Science 224 - Introduction to Database Systems",
+            "desc": "This course focuses on core concepts of database systems, the relational database model, data modeling, and querying. Topics include the purpose and components of database systems, core DBMS functionalities, relational models and algebra, SQL, database design, and the entity-relationship model. Also discussed are best practices, such as the use of logical schema and normalization. An applied project using business requirements to answer complex business questions is provided. A relational DBMS is used to gain high competency with using SQL and other database-related tasks.",
+            "prereqs": [
+                "CPSC101 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC230",
+            "title": "Computer Science 230 - Introduction to Logic Design",
+            "desc": "Topics include Boolean algebra, basic switching functions and gate-level implementation, canonical forms, simplification methods, voltage assignments, combinatorial and sequential logic circuits, registers, counters, ALUs, CPUs, instruction sets, control units, and bus organization. Please note: You must register separately in lecture and lab components.",
+            "prereqs": [
+                "CPSC100 minimum grade of C-",
+                "and CPSC141 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC231",
+            "title": "Computer Science 231 - Computer Organization and Architecture",
+            "desc": "Topics include computer abstractions and technologies, computer architecture, instruction sets, processor data paths and control, pipelining, hyper-threading, memory systems, I/O systems, busses, multiprocessors, and parallel computers. Students perform a series of assembly level programming assignments. Please note: You must register separately in lecture and lab components.",
+            "prereqs": [
+                "CPSC230 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC250",
+            "title": "Computer Science 250 - Applied Business Computing",
+            "desc": "This course examines core computing knowledge and techniques as they apply to business applications. The course covers database design and information retrieval techniques with emphasis on web-database integration, advanced features of spreadsheets, recoding/analyzing basic business transactions using a variety of accounting software, and implementation of selected financial models. Presentational and interface design techniques are also covered. Students complete a term project that solves a typical business problem using the software and procedures of their choice. This course may not be counted as a computer science course by computer science majors.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC260",
+            "title": "Computer Science 260 - Ethics in Computing Science",
+            "desc": "This course focuses on codes of ethics of computing professional societies, technology and human values, costs and benefits of technology, the social context of work in computer science and engineering, copyright, patents, access, and other concepts.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC272",
+            "title": "Computer Science 272 - Web Application Development",
+            "desc": "This course introduces client-side and server-side mechanisms for creating dynamic web applications that are interactive, and data driven. Topics include browser-server interaction via HTTP, static web page creation using current markup and styling languages, client-side programming with modern scripting languages and the DOM, server-side programming with emerging web programming languages, and frameworks. This course provides a breadth of knowledge of many tools/technologies rather than deep knowledge of any specific tool or technology.",
+            "prereqs": [
+                "CPSC101 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC281",
+            "title": "Computer Science 281 - Data Structures I",
+            "desc": "This course introduces a variety of practical and important data structures and methods for analytical evaluation and experimental implementation using an object-oriented programming language. Structures include arrays and matrices; list related structures including stacks, queues, and skip lists; hashing; various tree structures, their traversals and their use in expressions and search trees; priority queues and heaps; graphs, and graph algorithms (such as shortest-path and minimum-cost spanning trees).",
+            "prereqs": [
+                "CPSC101 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC299",
+            "title": "Computer Science 299 - Introductory Special Topics II",
+            "desc": "The intent of this course is to provide timely offering of courses that either reflect rapid change in Computer Science, provide supplementary material in specific concrete topics or skills, or expose non-majors to advances in Computer Science. Consequently, the topic and availability of this course varies. The course may be retaken any number of times, provided all topics are distinct. This course normally supposes some first-year exposure to Computer Science.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC300",
+            "title": "Computer Science 300 - Software Engineering",
+            "desc": "Fundamental problem-solving concepts, the software development process, software requirements and specifications, software design and implementation, verification and validation, organization and management of programming teams, and documentation are discussed. Students work on a team project.",
+            "prereqs": [
+                "CPSC281 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC320",
+            "title": "Computer Science 320 - Programming Languages",
+            "desc": "This course is a general introduction to programming languages. Topics include an overview of programming languages and language design objectives, specification of syntax and semantics, virtual machines and language translation, program correctness and reasoning about programs, programming language constructs, declarations and types, abstraction mechanisms, and programming paradigms. Assignments include case studies and a team-based report on a particular language.",
+            "prereqs": [
+                "CPSC141 minimum grade of C-",
+                "and CPSC281 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC321",
+            "title": "Computer Science 321 - Operating Systems",
+            "desc": "This course introduces the fundamental concepts of operating systems. Topics include tasking and processes, process co-ordination and synchronization, scheduling and dispatch, physical and virtual memory organization, paging and segmentation, device management, file systems, and security and protection. Students study a simple operating system and have an opportunity to make modifications to it in laboratory exercises.",
+            "prereqs": [
+                "CPSC231 minimum grade of C-",
+                "and CPSC281 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC340",
+            "title": "Computer Science 340 - Theory of Computation",
+            "desc": "This course examines regular expressions, deterministic and non-deterministic finite automata, pushdown automata, Chomsky and Greibach normal forms. Chomsky hierarchy, pumping lemmas, Turing machines, undecidability, computability, recursive function theory, computational complexity. NP-hard and NP-complete problems and context-free and other grammars.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC344",
+            "title": "Computer Science 344 - Data Communications and Networking",
+            "desc": "This course provides an understanding of basic concepts underlying data communications and networking. Topics covered include data transmission and encoding, Internet and Internet2, Network Layer model, multiplexing, circuit switching, network protocols, and data communication hardware. Students also learn about protocols and topologies of Local Area Networks (LANs), Wireless LANs, Wide Area Networks (WANs), Metropolitan Area Networks (MANs), and Backbone Networks (BNs). The basic concepts of network design and implementation, network management, and network security are also introduced.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC345",
+            "title": "Computer Science 345 - Fundamentals of Cybersecurity",
+            "desc": "This course is a broad survey of fundamental topics in cybersecurity with the purpose of laying a practical foundation and cultivating an appropriate mindset for information security and privacy issues. Topics include information security, authentication, access controls, cryptography, communication security, malware, social aspects of security, and emerging industry trends. Legal and ethical considerations are included.",
+            "prereqs": [
+                "CPSC344 minimum grade of C-",
+                "or CPSC444 minimum grade of C-",
+                "or COMM353 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC351",
+            "title": "Computer Science 351 - Management Info Systems",
+            "desc": "This course emphasizes the strategic role of information systems in modern business. Topics include the technical foundations of information systems, the impact of information systems on business operations and decision- making, and the processes that are required for successful implementation of business information systems.",
+            "prereqs": [
+                "CPSC100 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC354",
+            "title": "Computer Science 354 - Introduction to Business Intelligence",
+            "desc": "This course provides students with an understanding of business intelligence which involves conversion of mass data into effectively communicated information through visual, interactive media that enables evidence-based strategic decision making. Course topics include: data extract-transform-load (ETL); data quality; MDM; data warehouse models; conformance; star or snowflake dimensional models; OLTP; OLAP; effective data visualization; governance; success or failure factors; and emerging trends. Students apply the concepts in a term project using leading technologies and business intelligence tools.",
+            "prereqs": [
+                "COMM351 minimum grade of C-",
+                "or CPSC224 minimum grade of C-",
+                "or CPSC351 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC357",
+            "title": "Computer Science 357 - Mobile Application Development",
+            "desc": "This course focuses on the fundamentals of mobile application development. Topics include the mobile development environment, user interface design with views and layouts, app lifecycle management, and event handling. Students learn about data management through intents, file systems, shared preferences, and databases. An introduction to networking, cloud integration, and best practices for building scalable, efficient mobile apps is provided. Development is conducted using an industry-standard IDE, with hands-on exercises that emphasize real-world mobile development and deployment.",
+            "prereqs": [
+                "CPSC101 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC370",
+            "title": "Computer Science 370 - Functional and Logic Programming",
+            "desc": "This course provides an introduction to programming in symbolic languages such as the functional language Scheme and the logic programming language PROLOG, with applications to systems programming, symbolic computation, artificial intelligence, and other areas.",
+            "prereqs": [
+                "CPSC141 minimum grade of C-",
+                "and CPSC281 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC371",
+            "title": "Computer Science 371 - Artificial Intelligence I",
+            "desc": "This course introduces foundational concepts, techniques, and applications of artificial intelligence (AI), blending classical approaches with recent advancements in the field. Students study traditional AI methods, including search algorithms and knowledge representation, alongside contemporary techniques such as modern machine learning and probabilistic modeling. This course emphasizes understanding algorithmic frameworks and the evolution of AI methods to solve complex problems.",
+            "prereqs": [
+                "CPSC281 minimum grade of C-",
+                "and MATH220 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC377",
+            "title": "Computer Science 377 - Introduction to Robotics",
+            "desc": "This course is an introduction to hardware architecture and control architecture of robotic and mechatronic devices. Topics include electronics, sensor capabilities, calibration of sensors, control of sensor I/O, motor and motion control through duty cycle and pulse width modulation. Laboratory topics include the development of interfaces between sensors, their control boards and digital circuitry including microprocessors. Microprocessor control of sensors and motors is developed, including the use of reasoning embedded in onboard microprocessor software for control of robotic actions.",
+            "prereqs": [
+                "PHYS100 minimum grade of C-",
+                "or PHYS110 minimum grade of C-",
+                "and CPSC231 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC400",
+            "title": "Computer Science 400 - Software Engineering Project",
+            "desc": "The course provides students, working in groups, with a significant project experience in which they can integrate much of the material they have learned in CPSC 300 Software Engineering, including matters relating to requirements, design, human factors, professionalism, and project management.",
+            "prereqs": [
+                "CPSC300 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC424",
+            "title": "Computer Science 424 - Advanced Database Systems",
+            "desc": "This course is an introduction to advanced concepts in database design and applications. Topics discussed include transaction management, concurrency control, query processing and optimization, recovery and security, data warehousing and data mining, handling of special data types such as multimedia, spatial data, and XML documents. An introduction to object-oriented and object-relational models, parallel and distributed databases, and special purpose databases is also provided. Support for complex applications, information retrieval and data analysis is examined.",
+            "prereqs": [
+                "CPSC321 minimum grade of C-",
+                "and CPSC324 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC430",
+            "title": "Computer Science 430 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of computer science. Students must have completed at least 90 credit hours and be computer science majors. This thesis may be taken in one or two semesters. CPSC 430 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course may be repeated for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC441",
+            "title": "Computer Science 441 - Distributed Systems",
+            "desc": "This course covers the fundamental principles and paradigms underlying the design of distributed computing systems. Coverage includes the definition and types of distributed systems, communication, processes, naming, synchronization, consistency and replication, fault tolerance, and security. Term projects focus on case studies of specific systems representing web-based, peer-to-peer, mobile, grid, and other modern paradigms.",
+            "prereqs": [
+                "CPSC321 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC442",
+            "title": "Computer Science 442 - Parallel Computing",
+            "desc": "This course introduces students to concepts in high performance computing. Topics include classification of parallel architectures, basic communications operations, interconnection networks, topologies of dynamic and static networks, performance issues and techniques for optimization, and dynamic programming. Parallel algorithm design for high-performance computing such as applications in computational biology, finite-element and finite-difference methods for numerical simulations., dense/sparse matrix algorithms, and multidimensional data structures is also discussed. Message passing (MPI and OpenMP) is used for implementation of algorithms on high performance cluster computers.",
+            "prereqs": [
+                "CPSC321 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC444",
+            "title": "Computer Science 444 - Computer Networks",
+            "desc": "This course explores essential topics in computer networks including TCP protocol, TCP reliable transport service, Internet protocol IP addresses, IP datagram and datagram forwarding, IPv6, network applications, real time interactive applications protocols (RTP, RTCP, SIP, H.323), security in computer networks, and network management. Network applications discussed include client-server interaction, naming and domain name system DNS, multimedia networking, VoIP, audio and video streaming.",
+            "prereqs": [
+                "CPSC321 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC450",
+            "title": "Computer Science 450 - Bioinformatics",
+            "desc": "This course introduces computational techniques for solving biological problems and presents an overview of the tools and the methods used to analyze large biological data sets. After introducing the background in molecular biology for computer scientists, the course explores pairwise and multiple sequence alignment, sequence database searches, pattern identification of genes, promoters, and transcription factor binding sites, as well as secondary and tertiary structure prediction for RNA and proteins. Markov models for gene prediction are introduced.",
+            "prereqs": [
+                "CPSC224 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC461",
+            "title": "Computer Science 461 - Applied Machine Learning",
+            "desc": "This course explores key areas of machine learning and data mining, focusing on the best ways to apply these concepts in actual systems. This course focuses on supervised machine learning methods, but it also touches on unsupervised learning. Key subjects include essential algorithms like linear and logistic regression, decision trees, support vector machines, and clustering, along with neural networks. Students also delve into important methods for choosing the right features in data, reducing data complexity, estimating errors, and practical testing of these methods.",
+            "prereqs": [
+                "CPSC371 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC472",
+            "title": "Computer Science 472 - Knowledge Based Systems",
+            "desc": "This course introduces students to Expert Systems. The two major topics addressed are Rule-based systems and Fuzzy Logic systems. Goal driven forward-chaining and ackward-chaining paradigms are introduced. Automatic theorem provers, inference engines and problems of knowledge representation and knowledge acquisition are discussed. Approaches to reasoning about uncertainty are covered including Bayesian probabilities, certainty factors, non-monotonic logics and reasoning with beliefs. A Fuzzy Logic system is implemented and an application is developed and tested.",
+            "prereqs": [
+                "CPSC370 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC473",
+            "title": "Computer Science 473 - Introduction to Data Mining",
+            "desc": "This course introduces algorithms and paradigms that allow computers to discover previously hidden patterns in databases or datasets. Main topics include discovery of frequent patterns, analysis of different types of data (static, dynamic, sequential, uncertain, etc.) clustering and classification. Other topics may include data visualization, social network mining, real-life applications, and parallel/distributed data mining. Students work on assignments, term tests and a course project.",
+            "prereqs": [
+                "CPSC281 minimum grade of C-",
+                "and CPSC340 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC475",
+            "title": "Computer Science 475 - Multiagent Systems",
+            "desc": "An introduction to the theoretical and practical aspects of intelligent agents and multiagent systems, this course is open to undergraduate students majoring in different areas and fosters creative multidisciplinary interaction. Coverage includes the basic concepts, agent architectures, decuctive and practical reasoning agents, reactive and hyrbrid agents, multiagent interactions, human-agent interactions, agreements, communication, and teamwork. Individual or team projects allow students to explore specific topics in their areas of interest through theorectical or laboratory work.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC476",
+            "title": "Computer Science 476 - Social Robotics",
+            "desc": "This course offers a comprehensive introduction to the field of social robotics, emphasizing a human-centered approach and real-world applications. It covers the fundamentals, principles, and theories involved in designing, developing, and deploying robots capable of fostering meaningful social interactions with humans across diverse contexts, such as robots as tools in education or robot-assisted therapy. Through a combination of lectures, discussions, and critical analyses of human-robot interaction, the course provides opportunities to engage with key methodologies, and practical applications, equipping students with a thorough understanding of this rapidly evolving discipline.",
+            "prereqs": [
+                "CPSC101 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC482",
+            "title": "Computer Science 482 - Data Structures II",
+            "desc": "This course considers the design and analysis of efficient data structures and algorithms including extensions of those studied in CPSC 200 and CPSC 281. Also considered are general techniques for building and analyzing algorithms (greedy, divide and conquer, dynamic programming) and topics from: amortized time estimates, complexity analysis, and NP completeness.",
+            "prereqs": [
+                "CPSC281 minimum grade of C-"
+            ]
+        },
+        {
+            "id": "CPSC495",
+            "title": "Computer Science 495 - Undergraduate Research Project",
+            "desc": "This course consists of a small research project undertaken by the student or by teams of students. Projects consist of the definition of a problem in computing and a literature survey of recent work in the field. Students are encouraged to define their own possible solutions and to prototype the solutions where appropriate. Regular review of progress is made in meetings. Students develop skills in the preparation of topic survey notes and in the development of arguments in support of or against published approaches to problems in computing. Students are expected to prepare and present their work. This course may be repeated provided all topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC499",
+            "title": "Computer Science 499 - Special Topics",
+            "desc": "The topics for this course vary, depending on student interest and faculty availability. This course may be retaken any number of times, provided all topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC600",
+            "title": "Computer Science 600 - Software Engineering Project",
+            "desc": "This course provides students, working in groups, with an opportunity to apply the principles of software engineering, learned in previous courses, in a controlled and yet realistic project environment. They gain a significant integral project experience involving various project phases, such as requirements elicitation, system design, and prototyping, as well as team organization, human factors, professionalism, and project management.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC624",
+            "title": "Computer Science 624 - Advanced Database Systems",
+            "desc": "This course introduces advanced concepts in database design and applications. Topics include transaction management, concurrency control, query processing and ptimization, recovery and security, data warehousing and data mining, handling of special data types such as multimedia, spatial data, and XML documents. An introduction to object-oriented and object-relational models, parallel and distributed databases, and special purpose databases is also provided. Support for complex applications, information retrieval and data analysis is examined.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC641",
+            "title": "Computer Science 641 - Distributed Systems",
+            "desc": "This course covers the fundamental principles and paradigms underlying the design of distributed computing systems. The coverage includes the definition and types of distributed systems, communication, processes, naming, synchronization, consistency and replication, fault tolerance, and security. Term projects focus on case studies of specific systems representing web-based, peer-to-peer, mobile, grid, and other modern paradigms.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC642",
+            "title": "Computer Science 642 - Parallel Computing",
+            "desc": "This course introduces students to concepts in high performance computing. Topics inlcude classification of parallel architectures, basic communications operations, interconnection networks, topologies of dynamic and static networks, performance issues and techniques for optimization, and dynamic programming. Parallel algorithm design for high-performance computing-such as applications in computational biology, finite-element and finite-difference methods for numerical simulations, dense/sparse matrix algorithms, and multidimensional data structures-is also discussed. Message passing (MPI and OpenMP) is used for implementation of algorithms on high performance cluster computers.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC644",
+            "title": "Computer Science 644 - Computer Networks",
+            "desc": "This course explores essential topics in computer networks including TCP protocol, TCP reliable transport service, Internet protocol IP addresses, IP datagram and datagram forwarding, IPv6, network applications, real time interactive applications protocols (RTP, RTCP, SIP, H.323), security in computer networks, and network management. Network applications discussed include client-server interaction, naming and domain name system DNS, multimedia networking, VoIP, audio and video streaming.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC650",
+            "title": "Computer Science 650 - Bioinformatics",
+            "desc": "This course introduces computational techniques for solving biological problems and presents an overview of the tools and methods used to analyze large biological data sets. After introducing molecular biology for computer scientists\u2014cells and organelles, chromosome, gene, DNA, RNA, proteins, transcription and translation\u2014the course explores pairwise and multiple sequence alignment, sequence database searches, pattern identification of genes, promoters and transcription factor binding sites, as well as secondary and tertiary structure prediction for RNA and proteins. Markov models for gene prediction are introduced.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC661",
+            "title": "Computer Science 661 - Applied Machine Learning",
+            "desc": "This advanced course explores key areas of machine learning and data mining, focusing on the best ways to apply these concepts in actual systems. This course focuses supervised machine learning methods, but it also touches on unsupervised learning. Key subjects include essential algorithms like linear and logistic regression, decision trees, support vector machines, and clustering, along with neural networks. Students also delve into important methods for choosing the right features in data, reducing data complexity, estimating errors, and practical testing of these methods.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC672",
+            "title": "Computer Science 672 - Knowledge Based Systems",
+            "desc": "This course introduces students to Expert Systems. The two major topics addressed are Rule-based systems and Fuzzy Logic systems. Goal-driven forward-chaining and backward-chaining paradigms are introduced. Automatic theorem provers, inference engines and problems of knowledge representation and knowledge acquisition are discussed. Approaches to reasoning about uncertainty, including Bayesian probabilities, certainty factors, non-monotonic logics and reasoning with beliefs, are covered. A Fuzzy Logic system is implemented and an application is developed and tested.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC673",
+            "title": "Computer Science 673 - Introduction to Data Mining",
+            "desc": "This course introduces algorithms and paradigms that allow computers to discover previously hidden patterns in databases or datasets. Main topics include discovery of frequent patterns, analysis of different types of data (static, dynamic, sequential, uncertain, etc.) clustering and classification. Other topics may include data visualization, social network mining, real-life applications, and parallel/distributed data mining. Students work on assignments, term tests and an individual course project.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC675",
+            "title": "Computer Science 675 - Multiagent Systems",
+            "desc": "An introduction to the theoretical and practical aspects of intelligent agents and multiagent systems, this course is open to graduate students in different areas and fosters creative multidisciplinary interaction. Coverage includes the basic concepts, agent architectures, deductive and practical reasoning agents, reactive and hybrid agents, multiagent interactions, human-agent interactions, agreeements, communication, and teamwork. Individual or team projects allow students to explore specific topics in their areas of interest through theoretical or laboratory work.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC676",
+            "title": "Computer Science 676 - Social Robotics",
+            "desc": "This advanced course offers a comprehensive introduction to the field of social robotics, emphasizing a human-centered approach and real-world applications. It covers the fundamentals, principles, and theories involved in designing, developing, and deploying robots capable of fostering meaningful social interactions with humans across diverse contexts, such as robots as tools in education or robot-assisted therapy. Through a combination of lectures, discussions, and critical analyses of human-robot interaction, the course provides opportunities to engage with key methodologies, and practical applications, equipping students with a thorough understanding of this rapidly evolving discipline.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC682",
+            "title": "Computer Science 682 - Data Structures II",
+            "desc": "External sorting and merging, best case, worst case, and average case estimates, time and space estimates for algorithms studied in CPSC 200-3 and CPSC 281-3.",
+            "prereqs": [
+                "CPSC340 minimum grade of D",
+                "and CPSC281 minimum grade of D"
+            ]
+        },
+        {
+            "id": "CPSC690",
+            "title": "Computer Science 690 - Computing Project I",
+            "desc": "This course consists of a large computing project undertaken by the student or by teams of students. Projects will be geared to industrial or research needs and designed to give the senior students first-hand experience in applying their knowledge and skills to the design and implementation of medium to large software systems. Students will employ standard software engineering practices. Regular project team meetings will be held to review project milestones.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC699",
+            "title": "Computer Science 699 - Special Topics",
+            "desc": "The topics for this course vary, depending on student interest and faculty availability. The course may be repeated any number of times, provided all topics are distinct from one another.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC704",
+            "title": "Computer Science 704 - Graduate Seminar in Computer Science",
+            "desc": "This course comprises weekly seminar sessions. Students will investigate and present ideas and results pertaining to current computer science research. The offerings may include presentations of current literature, research methodology, and topics related to students' own research or project work. Students will participate in discussions and critiques of the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. [All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.]",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC706",
+            "title": "Computer Science 706 - Topics in Computer Science Research and Methodology",
+            "desc": "This course is designed to expose graduate students to research methods, principles and design techniques in computer science, which may include: evolution of fundamental ideas in computer science, theoretical foundations, formal techniques in the areas of system specification, design, verification, validation and performance analysis. The course aims to offer methods and principles widely applicable in computer science. Specific applications studied will vary.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC720",
+            "title": "Computer Science 720 - Advanced Programming Languages",
+            "desc": "Topics for this course may include advanced study of general programming language design concepts, formal reasoning about programs and languages, pragmatic evaluation of language properties, and case studies of specfic languages. The course may be used to communicate programming language theory and practice specfic to students' project or thesis research needs.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC741",
+            "title": "Computer Science 741 - Advanced Topics in Distributed Computing",
+            "desc": "This course focuses on exploration of principles of distributed computing through a study of selected advanced topics of research interest to faculty and students.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC760",
+            "title": "Computer Science 760 - Modeling and Simulation",
+            "desc": "This course covers fundamental modeling and simulation concepts and discrete-event systems in particular. The course introduces systems modeling and simulation concepts, basic probability distributions and random numbers, queueing models, and an overview of relevant object oriented concepts. The fundamental concepts and practical simulation techniques for modeling different types of systems are covered. An in-depth study of modeling elements, simulation protocols, and their relationships including verification and validation are discussed. Various distributed systems are introduced as case studies and a significant part of the course and hands-on experience is through simulation projects. Understanding of distributed systems and object-oriented programming concepts and basic probability theory is required.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC790",
+            "title": "Computer Science 790 - Graduate Seminar",
+            "desc": "",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC791",
+            "title": "Computer Science 791 - Advanced Special Topics I",
+            "desc": "This course introduces selected advanced special topics in computer science. The content may vary.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC792",
+            "title": "Computer Science 792 - Advanced Special Topics II",
+            "desc": "This course introduces selected advanced special topics in computer science. The content may vary.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC793",
+            "title": "Computer Science 793 - Master of Science (Computer Science) Project",
+            "desc": "The MSc Project is an extended position paper, report, plan or program that makes a contribution to, or addresses, a major problem or issue in the field of computer science. The development of the project requires the application of original thought to the problem or issue under investigation. The project does not require the development of a research design or research methodology and need not involve the collection of original data. Successful completion of the project is required for graduation in the Master of Science (Computer Science stream) project option. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "CPSC794",
+            "title": "Computer Science 794 - Master of Science (Computer Science) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of computer science. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the computer science thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        }
     ]
 }

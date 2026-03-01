@@ -94,33 +94,51 @@ def scrape_course_codes(driver: webdriver.Chrome):
     course_code_file.close()
 
 def scrape_all_courses(driver: webdriver.Chrome, subject: str):
-    driver.get(f"https://tools.unbc.ca/course-catalogue?subj={subject}")
-    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
-
-    course_elements = driver.find_element(By.ID, "results").find_elements(By.XPATH, "//ul/li")
-    print(len(course_elements))
-
+    #Open course data file that we will write to
     file_path = os.path.abspath(os.pardir + "/data/UNBC_course_data.json")
     course_list_file = open(file_path, "r+")
     current_data = json.load(course_list_file)
-    for ele in course_elements:
-        title = ele.find_element(By.TAG_NAME, "header").text
-        id = subject + str([int(x) for x in filter(lambda title: title.isdigit(), title.split())][0])
-        subEle = ele.find_element(By.TAG_NAME, "div").find_elements(By.TAG_NAME, "article")
-        desc = subEle[0].text
-        prereqElements = subEle[1].find_elements(By.TAG_NAME, "span")
-        prereqs = []
-        for prereqEle in prereqElements:
-            prereqs.append(prereqEle.text)
-        course_json = {
-            'id': id,
-            'title': title,
-            'desc': desc,
-            'prereqs': prereqs
-        }
 
-        current_data["all_courses"].append(course_json)
-        course_list_file.seek(0)
+    driver.get(f"https://tools.unbc.ca/course-catalogue?subj={subject}")
+    #Get the 'results' section of the page
+    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
+    current_course_element = driver.find_element(By.ID, "results").find_element(By.XPATH, "//ul/*[1]")
+
+    #For every element in the course list, extract id, title description and prerequisites
+    i = 1
+    while current_course_element != None:
+        try:
+            #Extract the data
+            title = current_course_element.find_element(By.TAG_NAME, "header").text
+            id = subject + str([int(x) for x in filter(lambda title: title.isdigit(), title.split())][0])
+            subEle = current_course_element.find_element(By.TAG_NAME, "div").find_elements(By.TAG_NAME, "article")
+            desc = subEle[0].text
+            prereqElements = subEle[1].find_elements(By.TAG_NAME, "span")
+            prereqs = []
+            for prereqEle in prereqElements:
+                prereqs.append(prereqEle.text)
+
+            #Create a JSON object for the course data
+            course_json = {
+                'id': id,
+                'title': title,
+                'desc': desc,
+                'prereqs': prereqs
+            }
+
+            #Append the course data to the master JSON object
+            current_data["all_courses"].append(course_json)
+            course_list_file.seek(0)
+
+            #Try to get the next sibling option
+            try:
+                current_course_element = current_course_element.find_element(By.XPATH, "following-sibling::*[1]")
+            except NoSuchElementException:
+                current_course_element = None
+            i += 1
+        except StaleElementReferenceException:
+            #If web scraper times out, use driver to get our current working element again
+            current_course_element = driver.find_element(By.ID, "results").find_elements(By.XPATH, f"//ul/*[{i}]")
     # Write the updated data back to the file
     json.dump(current_data, course_list_file, indent=4)
     course_list_file.close()
@@ -133,8 +151,6 @@ def scrape_all_courses(driver: webdriver.Chrome, subject: str):
 
 
 scraper = create_webdriver()
-#get_course_information(scraper,'https://tools.unbc.ca/course-catalogue?subj=CPSC&crse=100')
-#get_degree_information(scraper, 'https://www.unbc.ca/calendar/undergraduate/computer-science')
-#scrape_all_courses(scraper, "CPSC")
-scrape_course_codes(scraper)
+scrape_all_courses(scraper, "CPSC")
+#scrape_course_codes(scraper)
 scraper.quit()
