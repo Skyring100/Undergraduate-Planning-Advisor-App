@@ -4,9 +4,12 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException
 import json
 import re
 import os
+import time
 
 class Course:
     def __init__(self, id, name, desc, prereqs):
@@ -64,12 +67,30 @@ def get_degree_information(driver: webdriver.Chrome, degreeURL: str):
 def scrape_course_codes(driver: webdriver.Chrome):
     driver.get("https://tools.unbc.ca/course-catalogue")
     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "panel")))
-    #Click dropdown menu
+    #Click dropdown menu to see all course code selections
     driver.find_element(By.CLASS_NAME, "panel").find_element(By.XPATH, "//span").click()
-    course_code_list = driver.find_element(By.ID, "filter-subject").find_elements(By.TAG_NAME, "options")
+
+    #For every option in the drop down menu, extract the course code
+    all_values_string = ""
+    current_option_element = driver.find_element(By.ID, "filter-subject").find_element(By.XPATH,".//*[1]")
+    i = 1
+    while current_option_element != None:
+        try:
+            #Get the value attribute in the 'option' element which has the course code
+            all_values_string += current_option_element.get_attribute("value")+"\n"
+            #Try to get the next sibling option
+            try:
+                current_option_element = current_option_element.find_element(By.XPATH, "following-sibling::*[1]")
+            except NoSuchElementException:
+                current_option_element = None
+            i += 1
+        except StaleElementReferenceException:
+            #If web scraper times out, use driver to get our current working element again
+            current_option_element = driver.find_element(By.ID, "filter-subject").find_element(By.XPATH,f".//*[{i}]")
+
+    #Write course codes to file
     course_code_file = open("course_codes.txt", "w")
-    for course_element in course_code_list:
-        course_code_file.write(course_element.get_attribute("value")+"\n")
+    course_code_file.write(all_values_string)
     course_code_file.close()
 
 def scrape_all_courses(driver: webdriver.Chrome, subject: str):
@@ -114,5 +135,6 @@ def scrape_all_courses(driver: webdriver.Chrome, subject: str):
 scraper = create_webdriver()
 #get_course_information(scraper,'https://tools.unbc.ca/course-catalogue?subj=CPSC&crse=100')
 #get_degree_information(scraper, 'https://www.unbc.ca/calendar/undergraduate/computer-science')
-scrape_all_courses(scraper, "CPSC")
+#scrape_all_courses(scraper, "CPSC")
+scrape_course_codes(scraper)
 scraper.quit()
