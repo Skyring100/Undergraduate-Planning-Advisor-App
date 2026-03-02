@@ -15,16 +15,18 @@ export default function AppHeader() {
 
     return (
         <View style={[styles.header, { backgroundColor: mainDark[indexColour] }]}>
-            <PopUp >
-                <View style={styles.explanation}>
-                    <Text>Courses: shows the list of all available courses, with a search function that can be filtered by name or code.</Text>
-                    <Text>Schedule: shows the weekly schedule.</Text>
-                    <Text>Evaluator: shows degree evaluation details.</Text>
-                    <Text>Planner: shows the degree planner details, that can be customized by the user.</Text>
-                </View>
-            </PopUp>
+            <View style = {styles.helpButton}>
+                <PopUp >
+                    <View style={styles.explanation}>
+                        <Text>Courses: shows the list of all available courses, with a search function that can be filtered by name or code.</Text>
+                        <Text>Schedule: shows the weekly schedule.</Text>
+                        <Text>Evaluator: shows degree evaluation details.</Text>
+                        <Text>Planner: shows the degree planner details, that can be customized by the user.</Text>
+                    </View>
+                </PopUp>
+            </View>
             <Text style={styles.headerText}>Gradian</Text>
-            <Image style={{ justifyContent: 'center', alignItems: 'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 61, height: 40 }} source={require('../assets/white-main-logo.png')} />
+            <Image style={styles.image} source={require('../assets/white-main-logo.png')} />
             <SettingsButton />
         </View>
 
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 28,
         marginTop: 30,
-        marginLeft: 10,
+        marginLeft: 65,
         marginRight: 10,
     },
     explanation: {
@@ -50,5 +52,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'end',
         width: '80%',
+    },
+    helpButton: {
+       position: 'absolute',
+       left: 40,
+    },
+    image: {
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginTop: 35, 
+        marginBottom: 5, 
+        marginRight: 25,
+        resizeMode: 'center', 
+        width: 61, 
+        height: 40 
     }
 });
