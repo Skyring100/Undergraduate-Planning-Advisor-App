@@ -24,7 +24,7 @@ export default function ScheduleButton() {
                 {backgroundColor: isDarkMode ? thirdDark[indexColour] : thirdLight[indexColour], 
                     borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
             onPress={handlePress}
-            activeOpacity={0.7}
+            activeOpacity={0.95}
         >
             <View pointerEvents="none">
                 <OutlinedText
