@@ -17,13 +17,12 @@ export default function AppHeader() {
         <View style={[styles.header, { backgroundColor: mainDark[indexColour] }]}>
             <PopUp >
                 <View style={styles.explanation}>
-                    <Text>Courses:</Text>
-                    <Text>Schedule:</Text>
-                    <Text>Evaluator:</Text>
-                    <Text>Planner:</Text>
+                    <Text>Courses: shows the list of all available courses, with a search function that can be filtered by name or code.</Text>
+                    <Text>Schedule: shows the weekly schedule.</Text>
+                    <Text>Evaluator: shows degree evaluation details.</Text>
+                    <Text>Planner: shows the degree planner details, that can be customized by the user.</Text>
                 </View>
             </PopUp>
-            {/* <HelpButton onPress={()=> {alert("Make this button give info about current page")}}/> */}
             <Text style={styles.headerText}>Gradian</Text>
             <Image style={{ justifyContent: 'center', alignItems: 'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 61, height: 40 }} source={require('../assets/white-main-logo.png')} />
             <SettingsButton />
@@ -43,12 +42,13 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 28,
         marginTop: 30,
-        marginLeft: 20,
+        marginLeft: 10,
         marginRight: 10,
     },
     explanation: {
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'end',
+        width: '80%',
     }
 });
