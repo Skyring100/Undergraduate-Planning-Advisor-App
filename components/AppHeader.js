@@ -11,21 +11,28 @@ import PopUp from './Dashboard/PopUp';
 export default function AppHeader() {
 
     const navigation = useNavigation();
-    const { isDarkMode , indexColour} = useThemeStore();
+    const { isDarkMode, indexColour } = useThemeStore();
 
     return (
-        <View style={[styles.header, {backgroundColor: mainDark[indexColour]}]}>
-            <PopUp>Help</PopUp>
+        <View style={[styles.header, { backgroundColor: mainDark[indexColour] }]}>
+            <PopUp >
+                <View style={styles.explanation}>
+                    <Text>Courses:</Text>
+                    <Text>Schedule:</Text>
+                    <Text>Evaluator:</Text>
+                    <Text>Planner:</Text>
+                </View>
+            </PopUp>
             {/* <HelpButton onPress={()=> {alert("Make this button give info about current page")}}/> */}
             <Text style={styles.headerText}>Gradian</Text>
-            <Image style={{justifyContent:'center', alignItems:'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 61, height: 40}} source={require('../assets/white-main-logo.png')}/>
+            <Image style={{ justifyContent: 'center', alignItems: 'center', marginTop: 35, marginBottom: 5, resizeMode: 'center', width: 61, height: 40 }} source={require('../assets/white-main-logo.png')} />
             <SettingsButton />
         </View>
-        
+
     );
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
     header: {
         tintColor: '#fff',
         flexDirection: 'row',
@@ -38,5 +45,10 @@ const styles = StyleSheet.create ({
         marginTop: 30,
         marginLeft: 20,
         marginRight: 10,
+    },
+    explanation: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
