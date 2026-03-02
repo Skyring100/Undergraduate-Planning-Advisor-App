@@ -7,6 +7,7 @@ import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import DarkLightButton from '../components/Settings/DarkLightButton';
+import ColourButton from '../components/Settings/ColourButton';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -27,7 +28,18 @@ export default function SettingsScreen() {
                 <View style={{alignItems: 'center', justifyContent: 'center',}}>
                     <DarkLightButton/>
                 </View>
-                
+                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+                    <ColourButton colour={'Green'} index={0}/>
+                    <ColourButton colour={'Red'} index={1}/>
+                    <ColourButton colour={'Blue'} index={2}/>
+                    <ColourButton colour={'Pink'} index={3}/>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+                    <ColourButton colour={'Purple'} index={4}/>
+                    <ColourButton colour={'Yellow'} index={5}/>
+                    <ColourButton colour={'Orange'} index={6}/>
+                    <ColourButton colour={'Grey'} index={7}/>
+                </View>
                 
             </SafeAreaView >
         </SafeAreaProvider>

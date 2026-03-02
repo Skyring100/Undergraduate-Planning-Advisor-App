@@ -1,15 +1,20 @@
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 import { useThemeStore, mainDark, mainLight} from '../../contexts/ThemeContext';
 
-
 const screenWidth = Dimensions.get('window').width;
-const buttonWidth = screenWidth * 0.6; // 60% of screen
+const buttonWidth = screenWidth * 0.2; // 20% of screen
 
-export default function ColourButton(colour, index) {
-    const { isDarkMode, setIndexColour } = useThemeStore();
+const params = {
+    colour: 'Green',
+    index: 0
+};
+
+export default function ColourButton(params) {
+    const { isDarkMode, setIndex } = useThemeStore();
+    const { colour, index } = params;
 
     const toggleTheme = () => {
-        setIndexColour(index);
+        setIndex(index);
     };
 
     return (
@@ -29,6 +34,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         marginTop: 10,
+        marginRight: 5,
         borderRadius: 18,
         width: buttonWidth,
         height: 45,
