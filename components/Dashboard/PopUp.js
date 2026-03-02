@@ -1,10 +1,12 @@
 /*Pop-up that will be used throughout the app to explain functionality or the layout.*/
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function PopUp() {
+
+export default function PopUp({children}){
     const [modalVisible, setModalVisible] = useState(false);
+    // const children = ({props: {}, children: null});
     return (
         <SafeAreaProvider>
             <SafeAreaView>
@@ -19,7 +21,9 @@ export default function PopUp() {
                 >
                     <View style={styles.centeredView}>
                         {/* The first thing is being able to do it, custom text will be the next step */}
-                        <Text>Explanation comes here!</Text>
+                        <Text>
+                            {children}
+                        </Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={() => setModalVisible(!modalVisible)}
@@ -44,23 +48,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'gray',
-
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
+        backgroundColor:  	'#dfdfdf',
+        opacity: 0.8,
     },
     button: {
         borderRadius: 20,
@@ -69,6 +58,7 @@ const styles = StyleSheet.create({
         elevation: 2,
         justifyContent: 'center',
         alignItems: 'center',
+        // opacity: 0.2,
     },
     buttonOpen: {
         backgroundColor: '#F194FF',
@@ -80,6 +70,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
+        // opacity: 0.2,
     },
     modalText: {
         marginBottom: 15,
