@@ -32,8 +32,6 @@ export default function RegisterScreen() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const themeText = useThemeText();
-    const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
 
     const handleSubmit = () => {
@@ -77,16 +75,16 @@ export default function RegisterScreen() {
     
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
+            <SafeAreaView style={[styles.container, {width: width}]}>
                 <BackButton/>
                 <View style={styles.titleContainer}>
-                    <Text style={[styles.title, themeText]}>Register</Text>
+                    <Text style={[styles.title]}>Register</Text>
                 </View>
 
-                <Text  style={{fontSize: 16, fontWeight: '600', ...themeText}}>Please fill out all boxes</Text>
+                <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
 
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your first name"
                     autoCapitalize="none"
@@ -94,7 +92,7 @@ export default function RegisterScreen() {
                     onChangeText={setFirstName}
                 />
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your last name (optional)"
                     autoCapitalize="none"
@@ -102,7 +100,7 @@ export default function RegisterScreen() {
                     onChangeText={setLastName}
                 />
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your email address"
                     keyboardType="email-address"
@@ -111,7 +109,7 @@ export default function RegisterScreen() {
                     onChangeText={setEmailInput}
                 />
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your password"
                     secureTextEntry={true}
@@ -120,7 +118,7 @@ export default function RegisterScreen() {
                     onChangeText={setPassword}
                 />
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Re-enter your password"
                     secureTextEntry={true}
