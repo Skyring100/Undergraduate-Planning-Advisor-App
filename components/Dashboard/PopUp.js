@@ -3,7 +3,7 @@ import React, { Component, useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
 
 
-export default function PopUp({children}){
+export default function PopUp({ children }) {
     const [modalVisible, setModalVisible] = useState(false);
     // const children = ({props: {}, children: null});
     return (
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:  '#dfdfdf',
+        backgroundColor: '#dfdfdf',
         opacity: 0.9,
     },
     button: {

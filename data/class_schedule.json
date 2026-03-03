@@ -1,0 +1,23 @@
+[
+    {
+        "start": "2026-03-23 09:00:00",
+        "duration": "00:50:00",
+        "note": "Computer Programming"
+    },
+    {
+        "start": "2026-03-15 09:00:00",
+        "duration": "00:50:00",
+        "note": "Discrete Mathematics"
+    },
+    {
+        "start": "2026-03-15 09:00:00",
+        "duration": "01:20:00",
+        "note": "Computer Programming 2"
+    },
+    {
+        
+        "start": "2026-03-15 09:00:00",
+        "duration": "01:20:00",
+        "note": "Discrete Math 2"
+    }
+]
