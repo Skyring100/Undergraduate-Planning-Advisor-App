@@ -7,15 +7,22 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {Calendar, CalendarList} from 'react-native-calendars';
 import BackButton from '../components/BackButton';
 
+import {useThemeText, useThemeBackground, useThemeStore} from "../contexts/ThemeContext";
+import {useWindowDimensions} from "react-native";
 
 export default function ScheduleScreen() {
     const [selected, setSelected] = useState('');
 
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {isDarkMode} = useThemeStore();
+    const {width, height} = useWindowDimensions();
+
     return (
         <SafeAreaProvider>
-            <SafeAreaView>
+            <SafeAreaView style={{...themeBg, minHeight: height}}>
 
-                <View style={{alignItems: 'center', justifyContent: 'center', }}>
+                <View style={{alignItems: 'center', justifyContent: 'center', ...themeBg, width: width}}>
                         <BackButton/>
                 </View>
 
@@ -29,12 +36,20 @@ export default function ScheduleScreen() {
                 </View>
 
                 <Calendar
+                    key={isDarkMode} // to allow it to rerender every time isDarkMode changes
                     onDayPress={day => {setSelected(day.dateString);}}
                     markedDates={
                         {
                             [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e"}
                         }
                     }
+                    theme={{
+                        calendarBackground: isDarkMode ? "#000" : "#fff",
+                        textSectionTitleColor: isDarkMode ? "#fff" : "#000",
+                        dayTextColor: "#777",
+                        monthTextColor: "#777",
+                        textDisabledColor: "#777",
+                    }}
                 />
 
             </SafeAreaView>

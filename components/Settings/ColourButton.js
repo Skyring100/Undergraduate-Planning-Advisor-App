@@ -23,7 +23,7 @@ export default function ColourButton(params) {
             onPress={toggleTheme}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>{colour}</Text>
+            <Text style={[styles.buttonText, {color: isDarkMode ? "#fff" : "#000"}]}>{colour}</Text>
         </TouchableOpacity>
     );
 }
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
         height: 45,
     },
     buttonText: {
-        color: '#fff',
         fontSize: 16,
         fontWeight: '600',
     },

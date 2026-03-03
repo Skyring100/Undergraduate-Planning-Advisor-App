@@ -10,11 +10,17 @@ import BackButton from '../components/BackButton';
 import ProgressBar from '../components/ProgressBar';
 import possibleCourses from '../data/possible_courses.json'
 import completedCourses from '../data/completed_courses.json'
+import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useWindowDimensions} from "react-native";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
 
     const {setUser} = useUserStore();
+
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {width} = useWindowDimensions();
 
     // TODO: make the user context supply these next few variables
     const progressBarPercent = (completedCourses.length/possibleCourses.length)*100;
@@ -30,19 +36,19 @@ export default function EvaluatorScreen() {
                             );
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
                 <BackButton/>
-                <Text style={styles.titleText}>
+                <Text style={[styles.titleText, themeText]}>
                     Let's see where you're at
                 </Text>
         
                 <ProgressBar full={percentage}/>
                 <View style={styles.variableSizeTextHolder}>
-                    <Text>You're </Text>
-                    <Text style={styles.bigPercentage}>{percentage}</Text> 
-                    <Text> of the way to your degree!</Text>
+                    <Text style={themeText}>You're </Text>
+                    <Text style={[styles.bigPercentage, themeText]}>{percentage}</Text> 
+                    <Text style={themeText}> of the way to your degree!</Text>
                 </View>
-                <Text style={{textAlign: "center"}}>{
+                <Text style={{...themeText, textAlign: "center"}}>{
                     nextCourses.length == 0 ? "Looks like none of your courses have a next step."
                     : "Now try tackling these courses here:"
                 }</Text>
@@ -51,7 +57,7 @@ export default function EvaluatorScreen() {
                             nextCourses.map(course => (
                                 <View key={course.id}>
                                 {/* edit this JSX to change how the courses are displayed */}
-                                    <Text>
+                                    <Text style={themeText}>
                                         &bull;  {course.title} ({course.id})
                                     </Text>
                                </View>
