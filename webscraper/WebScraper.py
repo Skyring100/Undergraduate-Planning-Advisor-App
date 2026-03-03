@@ -7,9 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import NoSuchElementException
 import json
-import re
 import os
-import time
 
 class Course:
     def __init__(self, id, name, desc, prereqs):
@@ -24,7 +22,7 @@ def create_webdriver() -> webdriver.Chrome:
     driver = webdriver.Chrome(options=driver_options)
     return driver
 
-
+'''
 def get_course_information(driver: webdriver.Chrome, courseURL: str):
     driver.get(courseURL)
     # Wait until dynamic course elements load
@@ -62,7 +60,7 @@ def get_degree_information(driver: webdriver.Chrome, degreeURL: str):
                 print(data_cell.text)
         next_sibling = next_sibling.find_element(By.XPATH, "following-sibling::*[1]")
     print(required_courses)
-    
+''' 
 
 def scrape_course_codes(driver: webdriver.Chrome):
     driver.get("https://tools.unbc.ca/course-catalogue")
@@ -93,7 +91,7 @@ def scrape_course_codes(driver: webdriver.Chrome):
     course_code_file.write(all_values_string)
     course_code_file.close()
 
-def scrape_all_courses(driver: webdriver.Chrome, subject: str):
+def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     #Open course data file that we will write to
     file_path = os.path.abspath(os.pardir + "/data/UNBC_course_data.json")
     course_list_file = open(file_path, "r+")
@@ -145,12 +143,17 @@ def scrape_all_courses(driver: webdriver.Chrome, subject: str):
         
         
     
+def scrape_all_courses(driver : webdriver.Chrome):
+    if not os.path.exists('course_codes.txt'):
+        scrape_course_codes(driver)
+    subject_code_file = open('course_codes.txt','r')
 
+    for line in subject_code_file:
+        scrape_all_subject_courses(driver, line)
 
 
 
 
 scraper = create_webdriver()
-scrape_all_courses(scraper, "CPSC")
-#scrape_course_codes(scraper)
+scrape_all_courses(scraper)
 scraper.quit()
