@@ -1,7 +1,6 @@
 /*Pop-up that will be used throughout the app to explain functionality or the layout.*/
 import React, { Component, useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 export default function PopUp({ children }) {
@@ -32,14 +31,13 @@ export default function PopUp({ children }) {
                 </View>
             </Modal>
             <Pressable
-                style={[styles.button,]}
+                style={[styles.button, ]}
                 onPress={() => setModalVisible(!modalVisible)}
             >
                 <Image source={require('../../assets/help.png')}
-                    style={{ width: 40, height: 40, borderRadius: 100 }} />
+                    style={{width:40, height:40, borderRadius: 100}}/>
             </Pressable>
         </View>
-
     );
 }
 
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
     button: {
         alignSelf: 'center',
         justifyContent: 'center',
-        marginBottom: 10,
+        marginTop: 30,
         right: 20
     },
     /*buttonOpen: {

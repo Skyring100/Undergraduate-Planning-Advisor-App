@@ -9,6 +9,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import SubmitButton from '../components/SubmitButton';
+import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useWindowDimensions} from "react-native";
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -30,6 +32,9 @@ export default function RegisterScreen() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {width} = useWindowDimensions();
 
     const handleSubmit = () => {
         if (!emailInput || !password || !confirmedPassword || !firstName) {
@@ -72,30 +77,33 @@ export default function RegisterScreen() {
     
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
                 <BackButton/>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Register</Text>
+                    <Text style={[styles.title, themeText]}>Register</Text>
                 </View>
 
-                <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
+                <Text  style={{fontSize: 16, fontWeight: '600', ...themeText}}>Please fill out all boxes</Text>
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themeBg]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your first name"
                     autoCapitalize="none"
                     value={firstName}
                     onChangeText={setFirstName}
                 />
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themeBg]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your last name (optional)"
                     autoCapitalize="none"
                     value={lastName}
                     onChangeText={setLastName}
                 />
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themeBg]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your email address"
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -103,7 +111,8 @@ export default function RegisterScreen() {
                     onChangeText={setEmailInput}
                 />
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themeBg]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your password"
                     secureTextEntry={true}
                     autoCapitalize="none"
@@ -111,7 +120,8 @@ export default function RegisterScreen() {
                     onChangeText={setPassword}
                 />
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themeBg]}
+                    placeholderTextColor="#777"
                     placeholder="Re-enter your password"
                     secureTextEntry={true}
                     autoCapitalize="none"

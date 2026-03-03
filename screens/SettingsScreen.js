@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
@@ -8,6 +8,7 @@ import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import DarkLightButton from '../components/Settings/DarkLightButton';
 import ColourButton from '../components/Settings/ColourButton';
+import { ThemeProvider, useThemeStore, useThemeText, useThemeBackground } from "../contexts/ThemeContext";
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -16,14 +17,15 @@ const inputWidth = screenWidth * 0.85; // 85% of screen
 
 export default function SettingsScreen() {
 
-
-
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {width} = useWindowDimensions();
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
                 <BackButton/>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Settings</Text>
+                    <Text style={[styles.title, themeText]}>Settings</Text>
                 </View>
                 <View style={{alignItems: 'center', justifyContent: 'center',}}>
                     <DarkLightButton/>
@@ -40,7 +42,6 @@ export default function SettingsScreen() {
                     <ColourButton colour={'Orange'} index={6}/>
                     <ColourButton colour={'Grey'} index={7}/>
                 </View>
-                
             </SafeAreaView >
         </SafeAreaProvider>
     );

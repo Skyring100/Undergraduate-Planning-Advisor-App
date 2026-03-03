@@ -7,13 +7,19 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import CourseListButton from '../components/CourseListButton';
 import BackButton from '../components/BackButton';
 import degreePlanData from '../data/degree_plans.json'
+import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useWindowDimensions} from "react-native";
 
 
 export default function PlannerScreen() {
 
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {width} = useWindowDimensions();
+
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{flexDirection: 'column', padding: 10,flex: 1}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1}}>
                 
                 <View style={{alignItems: 'center', justifyContent: 'center', }}> 
                     <BackButton/>
@@ -37,6 +43,7 @@ export default function PlannerScreen() {
  */
 function YearSection({yearNumber, semesterData}) {
     
+    const themeText = useThemeText();
     var semesterWidth;
 
     switch(semesterData.length){
@@ -69,7 +76,7 @@ function YearSection({yearNumber, semesterData}) {
                 {
                     semesterData.map(sem => (
                         <View key={sem.semesterNumber} style={{width: semesterWidth}}>
-                            <Text style={styles.semesterHeader}>{GetSemesterTitle(sem.semesterNumber)}</Text>
+                            <Text style={[styles.semesterHeader, themeText]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
                         </View>
                     ))

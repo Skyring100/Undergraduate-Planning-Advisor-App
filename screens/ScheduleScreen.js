@@ -10,6 +10,8 @@ import BackButton from '../components/BackButton';
 import completedCourse from '../data/UNBC_course_data.json';
 
 
+import {useThemeText, useThemeBackground, useThemeStore} from "../contexts/ThemeContext";
+import {useWindowDimensions} from "react-native";
 
 export default function ScheduleScreen() {
 
@@ -24,12 +26,17 @@ export default function ScheduleScreen() {
         { 'start': '2026-03-25 14:00:00', 'duration': '02:00:00', 'note': 'Meeting with client' }
     ]
 
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {isDarkMode} = useThemeStore();
+    const {width, height} = useWindowDimensions();
+
     return (
         <SafeAreaProvider>
-            <SafeAreaView>
+            <SafeAreaView style={{...themeBg, minHeight: height}}>
 
-                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
-                    <BackButton />
+                <View style={{alignItems: 'center', justifyContent: 'center', ...themeBg, width: width}}>
+                        <BackButton/>
                 </View>
 
                 <View style={styles.scheduleHeader}>
@@ -37,15 +44,20 @@ export default function ScheduleScreen() {
                 </View>
 
                 <Calendar
-                    onDayPress={day => {
-                        setSelected(day.dateString);
-                        setIsVisible(true);
-                    }}
+                    key={isDarkMode} // to allow it to rerender every time isDarkMode changes
+                    onDayPress={day => {setSelected(day.dateString);}}
                     markedDates={
                         {
                             [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e" }
                         }
                     }
+                    theme={{
+                        calendarBackground: isDarkMode ? "#000" : "#fff",
+                        textSectionTitleColor: isDarkMode ? "#fff" : "#000",
+                        dayTextColor: "#777",
+                        monthTextColor: "#777",
+                        textDisabledColor: "#777",
+                    }}
                 />
 
                 <DailyAgenda>

@@ -5,7 +5,7 @@ On clicking login it will validate credentials and navigate to Dashboard page.*/
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
@@ -21,6 +21,8 @@ export default function LoginScreen() {
 
     const navigation = useNavigation();
     
+    const {width} = useWindowDimensions();
+
     const { setUser } = useUserStore();
     const [emailInput, setEmailInput] = useState('');
     const [password, setPassword] = useState('');
@@ -53,12 +55,13 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={[styles.container, {width: width}]}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Login</Text>
+                    <Text style={[styles.title]}>Login</Text>
                 </View>
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your email"
                     keyboardType="email-address"
                     autoCapitalize="none"
@@ -66,7 +69,8 @@ export default function LoginScreen() {
                     onChangeText={setEmailInput}
                 />
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input]}
+                    placeholderTextColor="#777"
                     placeholder="Enter your password"
                     secureTextEntry={true}
                     value={password}

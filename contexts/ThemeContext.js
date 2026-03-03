@@ -17,7 +17,7 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
 
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [indexColour, setIndex] = useState(0);
 
   const contextValue = {
@@ -41,3 +41,16 @@ export const useThemeStore = () => {
   }
   return context;
 };
+
+export const useThemeText = () => {
+    const { isDarkMode } = useThemeStore();
+    return {
+        color: isDarkMode ? "#fff" : "#000",
+    };
+}
+export const useThemeBackground = () => {
+    const { isDarkMode } = useThemeStore();
+    return {
+        backgroundColor: isDarkMode ? "#292929" : "#fff",
+    };
+}
