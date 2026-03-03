@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 import json
 import os
 
@@ -99,7 +100,11 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
 
     driver.get(f"https://tools.unbc.ca/course-catalogue?subj={subject}")
     #Get the 'results' section of the page
-    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
+    try:
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
+    except TimeoutException:
+        print(f"Subject code {str} does not have any courses associated with it")
+        return
     current_course_element = driver.find_element(By.ID, "results").find_element(By.XPATH, "//ul/*[1]")
 
     #For every element in the course list, extract id, title description and prerequisites
@@ -149,6 +154,7 @@ def scrape_all_courses(driver : webdriver.Chrome):
     subject_code_file = open('course_codes.txt','r')
 
     for line in subject_code_file:
+        print(line)
         scrape_all_subject_courses(driver, line)
 
 
