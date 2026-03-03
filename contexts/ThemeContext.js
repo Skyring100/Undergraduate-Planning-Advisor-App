@@ -51,6 +51,6 @@ export const useThemeText = () => {
 export const useThemeBackground = () => {
     const { isDarkMode } = useThemeStore();
     return {
-        backgroundColor: isDarkMode ? "#000" : "#fff",
+        backgroundColor: isDarkMode ? "#292929" : "#fff",
     };
 }
