@@ -45,7 +45,10 @@ export default function ScheduleScreen() {
 
                 <Calendar
                     key={isDarkMode} // to allow it to rerender every time isDarkMode changes
-                    onDayPress={day => {setSelected(day.dateString);}}
+                    onDayPress={day => {
+                        setIsVisible(true);
+                        setSelected(day.dateString);
+                    }}
                     markedDates={
                         {
                             [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e" }
@@ -71,12 +74,6 @@ export default function ScheduleScreen() {
     function DailyAgenda() {
         if (isVisible) {
             return (
-                // <FlatList
-                //     data={completedCourse}
-                //     renderItem={sampleSchedule}
-                //     keyExtractor={item => item.id}
-                //     extraData={selectedId}
-                // />
                 <View style={styles.agenda}>
                     <Text >
                         {completedCourse.all_courses[0].id}
