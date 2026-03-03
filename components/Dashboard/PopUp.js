@@ -4,43 +4,42 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from 'react-na
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 
-export default function PopUp({children}){
+export default function PopUp({ children }) {
     const [modalVisible, setModalVisible] = useState(false);
     // const children = ({props: {}, children: null});
     return (
-        <SafeAreaProvider>
-            <SafeAreaView>
-                <Modal
-                    animationType='slide'
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed!');
-                        setModalVisible(!modalVisible);
-                    }}
-                >
-                    <View style={styles.centeredView}>
-                        {/* The first thing is being able to do it, custom text will be the next step */}
-                        <Text>
-                            {children}
-                        </Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>Close</Text>
-                        </Pressable>
-                    </View>
-                </Modal>
-                <Pressable
-                    style={[styles.button, ]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                >
-                    <Image source={require('../../assets/help.png')}
-                        style={{width:40, height:40, borderRadius: 100}}/>
-                </Pressable>
-            </SafeAreaView>
-        </SafeAreaProvider>
+        <View>
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed!');
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    {/* The first thing is being able to do it, custom text will be the next step */}
+                    <Text>
+                        {children}
+                    </Text>
+                    <Pressable
+                        style={[styles.button, styles.buttonClose]}
+                        onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <Text style={styles.textStyle}>Close</Text>
+                    </Pressable>
+                </View>
+            </Modal>
+            <Pressable
+                style={[styles.button,]}
+                onPress={() => setModalVisible(!modalVisible)}
+            >
+                <Image source={require('../../assets/help.png')}
+                    style={{ width: 40, height: 40, borderRadius: 100 }} />
+            </Pressable>
+        </View>
+
     );
 }
 
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:  '#dfdfdf',
+        backgroundColor: '#dfdfdf',
         opacity: 0.9,
     },
     button: {
