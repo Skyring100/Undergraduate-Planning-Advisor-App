@@ -44,14 +44,12 @@ export const useThemeStore = () => {
 
 export const useThemeText = () => {
     const { isDarkMode } = useThemeStore();
-    console.log(isDarkMode ? "text: dark mode on" : "text: dark mode off");
     return {
         color: isDarkMode ? "#fff" : "#000",
     };
 }
 export const useThemeBackground = () => {
     const { isDarkMode } = useThemeStore();
-    console.log(isDarkMode ? "bg: dark mode on" : "bg: dark mode off");
     return {
         backgroundColor: isDarkMode ? "#000" : "#fff",
     };
