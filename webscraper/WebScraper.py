@@ -10,12 +10,10 @@ from selenium.common.exceptions import TimeoutException
 import json
 import os
 
-class Course:
-    def __init__(self, id, name, desc, prereqs):
-        self.id = id
-        self.name = name;
-        self.desc = desc;
-        self.prereqs = prereqs
+COURSE_CODE_FILE = "course_codes.txt"
+#UNBC_COURSE_DATA_FILE = "/data/UNBC_course_data.json"
+#TEST JSON FILE, NOT THE FINAL FILE 
+UNBC_COURSE_DATA_FILE = "/data/test.json"
 
 def create_webdriver() -> webdriver.Chrome:
     driver_options = Options()
@@ -88,13 +86,13 @@ def scrape_course_codes(driver: webdriver.Chrome):
             current_option_element = driver.find_element(By.ID, "filter-subject").find_element(By.XPATH,f".//*[{i}]")
 
     #Write course codes to file
-    course_code_file = open("course_codes.txt", "w")
+    course_code_file = open(COURSE_CODE_FILE, "w")
     course_code_file.write(all_values_string)
     course_code_file.close()
 
 def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     #Open course data file that we will write to
-    file_path = os.path.abspath(os.pardir + "/data/UNBC_course_data.json")
+    file_path = os.path.abspath(os.pardir + UNBC_COURSE_DATA_FILE)
     course_list_file = open(file_path, "r+")
     current_data = json.load(course_list_file)
 
@@ -103,7 +101,7 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     try:
         WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
     except TimeoutException:
-        print(f"Subject code {str} does not have any courses associated with it")
+        print("Subject code "+str+" does not have any courses associated with it")
         return
     current_course_element = driver.find_element(By.ID, "results").find_element(By.XPATH, "//ul/*[1]")
 
@@ -116,10 +114,21 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             id = subject + str([int(x) for x in filter(lambda title: title.isdigit(), title.split())][0])
             subEle = current_course_element.find_element(By.TAG_NAME, "div").find_elements(By.TAG_NAME, "article")
             desc = subEle[0].text
-            prereqElements = subEle[1].find_elements(By.TAG_NAME, "span")
+            
+            #Get all prereq information about the course
             prereqs = []
-            for prereqEle in prereqElements:
-                prereqs.append(prereqEle.text)
+            try:
+                prereqText = subEle[1].find_element(By.TAG_NAME, "ul").text
+                print(prereqText)
+            except NoSuchElementException:
+                pass
+            
+            #TODO: Parse prereq text to correctly model prereq with JSON object
+            if len(prereqs) != 0:
+                #Temporary fix (do parsing here)
+                prereqs = [prereqText]
+
+            
 
             #Create a JSON object for the course data
             course_json = {
@@ -149,9 +158,9 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
         
     
 def scrape_all_courses(driver : webdriver.Chrome):
-    if not os.path.exists('course_codes.txt'):
+    if not os.path.exists(COURSE_CODE_FILE):
         scrape_course_codes(driver)
-    subject_code_file = open('course_codes.txt','r')
+    subject_code_file = open(COURSE_CODE_FILE,'r')
 
     for line in subject_code_file:
         print(line)
@@ -161,5 +170,6 @@ def scrape_all_courses(driver : webdriver.Chrome):
 
 
 scraper = create_webdriver()
-scrape_all_courses(scraper)
+#scrape_all_courses(scraper)
+scrape_all_subject_courses(scraper, "MATH")
 scraper.quit()
