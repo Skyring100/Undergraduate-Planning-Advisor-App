@@ -10,7 +10,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
-import { useThemeText, useThemeBackground } from "../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -22,8 +21,6 @@ export default function LoginScreen() {
 
     const navigation = useNavigation();
     
-    const themeText = useThemeText();
-    const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
 
     const { setUser } = useUserStore();
@@ -58,12 +55,12 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
+            <SafeAreaView style={[styles.container, {width: width}]}>
                 <View style={styles.titleContainer}>
-                    <Text style={[styles.title, themeText]}>Login</Text>
+                    <Text style={[styles.title]}>Login</Text>
                 </View>
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your email"
                     keyboardType="email-address"
@@ -72,7 +69,7 @@ export default function LoginScreen() {
                     onChangeText={setEmailInput}
                 />
                 <TextInput
-                    style={[styles.input, themeBg]}
+                    style={[styles.input]}
                     placeholderTextColor="#777"
                     placeholder="Enter your password"
                     secureTextEntry={true}

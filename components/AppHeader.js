@@ -2,7 +2,7 @@ import { Header } from '@react-navigation/elements';
 import { StyleSheet, Image, View, Text, Button } from 'react-native';
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused  } from '@react-navigation/native';
 import { mainDark, mainLight, useThemeStore } from '../contexts/ThemeContext';
 import PopUp from './Dashboard/PopUp';
 
@@ -11,7 +11,9 @@ import PopUp from './Dashboard/PopUp';
 export default function AppHeader() {
 
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
     const { isDarkMode, indexColour } = useThemeStore();
+
 
     return (
         <View style={[styles.header, { backgroundColor: mainDark[indexColour] }]}>
