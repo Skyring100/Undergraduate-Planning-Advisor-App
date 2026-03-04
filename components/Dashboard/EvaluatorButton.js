@@ -30,16 +30,16 @@ export default function EvaluatorButton() {
                 {backgroundColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour],
                     borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
             onPress={handlePress}
-            //activeOpacity={1}
+            activeOpacity={1}
         >   
                 <AnimatedCircularProgress
                     size={chartSize}
                     width={chartSize/2}
                     fill={pieChartPercent}
                     tintColor={isDarkMode ? mainDark[indexColour] : mainLight[indexColour]}
-                    onAnimationComplete={()=> console.log('onAnimationComplete')}
                     backgroundColor={isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}
                     rotation={0}
+                    duration={1500}
                 />
             <View pointerEvents="none" style = {{position: 'absolute'}}>
                 
