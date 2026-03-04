@@ -26,7 +26,11 @@ export default function CourseListButton({course}) {
                 }}>
                 <View style={styles.popupBackground}>
                     <View style={styles.mainContent}>
-                        <Text style={styles.modalText}>Hello World!</Text>
+                        <View>
+                            <Text style={styles.modalText}>{course.id}: {course.title}</Text>
+                            <Text style={styles.modalText}>{course.desc}</Text>
+                            <Text style={styles.modalText}>{course.prereq}</Text>
+                        </View>
                         <Pressable onPress={() => setModalVisible(!modalVisible)}>
                             <Text style={styles.textStyle}>Hide Modal</Text>
                         </Pressable>
@@ -73,7 +77,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     mainContent: {
-        backgroundColor: '#ffffffff',
-        opacity: 1.0
+        backgroundColor: '#ffffffff'
     }
 });
