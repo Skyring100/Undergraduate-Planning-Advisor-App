@@ -87,10 +87,11 @@ export default function ScheduleScreen() {
                 <View style={styles.agendaView}>
                     <ScrollView>
                         <View style={styles.agenda}>
-                            <Text style={styles.agendaText}>
+                            <Text style={{ ...themeText }}>
                                 {selectedDay}
                             </Text>
-                            <Text style={styles.agendaText}>
+                            <Text style={{ ...themeText }}>
+                                {/* {selectedDay} */}
                                 {classes}
                             </Text>
                         </View>
