@@ -87,13 +87,10 @@ export default function ScheduleScreen() {
                 <View style={styles.agendaView}>
                     <ScrollView>
                         <View style={styles.agenda}>
-                            <Text >
+                            <Text style={styles.agendaText}>
                                 {selectedDay}
-                                {/* {sampleSchedule.length} */}
-                                {/* {completedCourse.all_courses[0].id} */}
                             </Text>
-                            <Text>
-                                {/* {selectedDay} */}
+                            <Text style={styles.agendaText}>
                                 {classes}
                             </Text>
                         </View>
@@ -130,5 +127,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    agendaText: {
+        fontSize: '60%',
+        fontWeight: 'bold',
+        alignContent: 'space-around', 
+        borderWidth: 2,
+        borderColor: 'black',
     }
 })
