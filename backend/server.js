@@ -3,7 +3,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const pushRoutes = require('./controllers/pushNotificationController');
 const loggerMiddleware = require('./middleware/loggerMiddleware');
 
 dotenv.config();
@@ -23,7 +22,6 @@ app.use(loggerMiddleware);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/push', pushRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 

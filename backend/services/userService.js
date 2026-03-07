@@ -14,7 +14,6 @@
  */
 
 const userStorage = require('../utils/userStorage');  // Database operations
-const UserModel = require('../models/UserModel');     // User data structure
 
 class UserService {
   /**
