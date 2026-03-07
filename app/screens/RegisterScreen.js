@@ -11,6 +11,7 @@ import BackButton from '../components/BackButton';
 import SubmitButton from '../components/SubmitButton';
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
+import { registerUser } from '../../backend/controllers/authController';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -34,7 +35,7 @@ export default function RegisterScreen() {
 
     const {width} = useWindowDimensions();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!emailInput || !password || !confirmedPassword || !firstName) {
             alert('Error', 'Please fill in all fields');
             return;
@@ -59,16 +60,22 @@ export default function RegisterScreen() {
             return;
         }
         
-        //Assume: Loging is successfull
-        alert('Success', `Account created`);
-        // Navigate to MainTabs (bottom tab navigator)
-        navigation.navigate('Login');
-        // Reset form
-        setEmailInput('');
-        setPassword('');
-        setConfirmedPassword('');
-        setFirstName('');
-        setLastName('');
+        const result = await registerUser(email, password, name, phone);
+
+        if (result.success){
+            alert('Success', `Account created`);
+            // Navigate to MainTabs (bottom tab navigator)
+            navigation.navigate('Login');
+            // Reset form
+            setEmailInput('');
+            setPassword('');
+            setConfirmedPassword('');
+            setFirstName('');
+            setLastName('');
+        }else{
+            alert('Error', result.message);
+        }
+
     };
 
 
