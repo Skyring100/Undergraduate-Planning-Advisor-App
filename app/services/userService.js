@@ -1,125 +1,99 @@
-export const registerUser = async (email, password, name, phone) => {
-    try {
-        const url = `${API_BASE_URL}/auth/register`;
+import { API_BASE_URL } from './api';
 
+/**
+ * Get user profile using JWT token
+ * @param {string} token - JWT authentication token
+ * @returns {Promise<{success: boolean, data?: object, message?: string}>}
+ */
+export const getUserProfile = async (token) => {
+  try {
+    const url = `${API_BASE_URL}/users/profile`;
+    console.log('Get profile API URL:', url);
+    console.log('Starting profile request...');
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
 
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-                body: JSON.stringify({
-                email,
-                password,
-                name,
-                phone,
-            }),
-        });
+    console.log('Profile response status:', response.status);
+    const data = await response.json();
+    console.log('Profile response data:', data);
 
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-            return {
-                success: true,
-                data: data.data,
-                message: data.message,
-            };
-        } else {
-            return {
-                success: false,
-                message: data.message || 'Registration failed. Please try again.',
-            };
-        }
-    } catch (error) {
-        console.error('Register API error:', error);
-        return {
-            success: false,
-            message: 'Network error. Please check your connection and try again.',
-        };
+    if (response.ok && data.success) {
+      return {
+        success: true,
+        data: data.data,
+        message: data.message,
+      };
+    } else {
+      return {
+        success: false,
+        message: data.message || 'Failed to fetch profile. Please try again.',
+      };
     }
+  } catch (error) {
+    console.error('Get profile API error:', error);
+    console.error('Error details:', {
+      name: error.name,
+      message: error.message,
+    });
+    
+    let errorMessage = 'Network error. Please check your connection and try again.';
+    
+    if (error.message === 'Network request failed') {
+      errorMessage = 'Cannot connect to server. Please verify the server is running and accessible.';
+    }
+    
+    return {
+      success: false,
+      message: errorMessage,
+    };
+  }
 };
 
-export const loginUser = async (email, password) => {
-    try {
-    const url = `${API_BASE_URL}/auth/login`;
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
+/**
+ * Change user password
+ * @param {string} token - JWT authentication token
+ * @param {string} oldPassword - Current password
+ * @param {string} newPassword - New password
+ * @returns {Promise<{success: boolean, message?: string}>}
+ */
+export const changePassword = async (token, oldPassword, newPassword) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/users/password`, {
+      method: 'POST',
+      headers: {
         'Content-Type': 'application/json',
-        },
-            body: JSON.stringify({
-            email,
-            password,
-        })
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+      }),
     });
 
     const data = await response.json();
 
     if (response.ok && data.success) {
-        return {
-            success: true,
-            data: data.data,
-            message: data.message,
-        };
+      return {
+        success: true,
+        message: data.message,
+      };
     } else {
-        return {
-            success: false,
-            message: data.message || 'Login failed. Please try again.',
-        };
+      return {
+        success: false,
+        message: data.message || 'Failed to change password. Please try again.',
+      };
     }
-    } catch (error) {
-        console.error('Login API error:', error);
-        console.error('Error details:', {
-            name: error.name,
-            message: error.message,
-            stack: error.stack,
-        });
-        return {
-            success: false,
-            message: errorMessage,
-        };
-    }
-};
-
-export const getUserProfile = async (token) => {
-    try {
-        const url = `${API_BASE_URL}/users/profile`;
-        
-        //Send a GET request to the backend
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-        });
-
-        //Turn the response from the backend to JSON format
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-            return {
-                success: true,
-                data: data.data,
-                message: data.message,
-            };
-        } else {
-            return {
-                success: false,
-                message: data.message || 'Failed to fetch profile. Please try again.',
-            };
-        }
-    } catch (error) {
-        // If anything goes wrong during this app's communication with backend, safely log it instead of crashing
-        console.error('Get profile API error:', error);
-        console.error('Error details:', {
-            name: error.name,
-            message: error.message,
-        });
-        return {
-            success: false,
-            message: errorMessage,
-        };
-    }
+  } catch (error) {
+    console.error('Change password API error:', error);
+    return {
+      success: false,
+      message: 'Network error. Please check your connection and try again.',
+    };
+  }
 };

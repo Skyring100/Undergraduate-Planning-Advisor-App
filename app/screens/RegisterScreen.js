@@ -9,9 +9,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import SubmitButton from '../components/SubmitButton';
-import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
-import { registerUser } from '../../backend/controllers/authController';
+import {registerUser} from '../services/authService';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -60,7 +59,7 @@ export default function RegisterScreen() {
             return;
         }
         
-        const result = await registerUser(email, password, name, phone);
+        const result = await registerUser(emailInput, password, firstName, lastName);
 
         if (result.success){
             alert('Success', `Account created`);
