@@ -12,6 +12,7 @@ import possibleCourses from '../data/possible_courses.json'
 import completedCourses from '../data/completed_courses.json'
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
+import AddCourseButton from "../components/AddCourseButton.js";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
@@ -48,18 +49,54 @@ export default function EvaluatorScreen() {
                     <Text style={[styles.bigPercentage, themeText]}>{percentage}</Text> 
                     <Text style={themeText}> of the way to your degree!</Text>
                 </View>
-                <Text style={{...themeText, textAlign: "center"}}>{
+                <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{
                     nextCourses.length == 0 ? "Looks like none of your courses have a next step."
                     : "Now try tackling these courses here:"
                 }</Text>
                 <View style={styles.listContainer}>
                         {
                             nextCourses.map(course => (
-                                <View key={course.id}>
+                                <View key={course.id} style={{
+                                    width: width * 0.8,
+                                    alignItems: "left",
+                                    borderWidth: 1,
+                                    borderColor: "#777777",
+                                    padding: 5,
+                                    borderRadius: 10,
+                                }}>
                                 {/* edit this JSX to change how the courses are displayed */}
-                                    <Text style={themeText}>
-                                        &bull;  {course.title} ({course.id})
-                                    </Text>
+                                    <View style={{flexGrow: 1, alignItems: "center", justifyContent: "space-between",}}>
+                                        <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
+                                            {course.id}
+                                        </Text>
+                                        <Text style={[styles.courseTitle, themeText]}>
+                                            {course.title}
+                                        </Text>
+                                        <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
+                                            Because you took: {(() => {
+                                                // yet again another huge line of code that makes things pretty
+                                                // basically turns a list of prereq IDs into other stuff
+                                                // TODO: make this work with how prereqs are pulled from the database
+                                                // probably some functional shenanigans required
+                                                const name = course.prereqs.join(", ");
+                                                console.log(name);
+                                                const commas = name.match(",");
+                                                if (commas === null) return name;
+                                                if (commas.length == 1) {
+                                                    return name.replace(", ", " and ");
+                                                } else if (commas.length > 1) {
+                                                    const ind = name.lastIndexOf(", ");
+                                                    const before = name.slice(0, ind);
+                                                    const after = name.slice(ind + 2);
+                                                    return before + ", and " + after;
+                                                }
+                                            })()}
+                                        </Text>
+                                        <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
+                                            {course.desc}
+                                        </Text>
+                                        <AddCourseButton name={course.id + ": " + course.title} />
+                                    </View>
                                </View>
                                 )
                             )
@@ -113,5 +150,10 @@ const styles = StyleSheet.create({
     bigPercentage: {
         fontWeight: 300,
         fontSize: 23,
+    },
+    courseTitle: {
+        lineHeight: "15",
+        fontWeight: 300,
+        fontSize: 20,
     }
 });

@@ -1,30 +1,32 @@
-import { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useThemeStore, useFirstBackground} from '../../contexts/ThemeContext';
-import { useTheme } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { Alert, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { useFirstBackground } from "../contexts/ThemeContext";
+
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.6; // 60% of screen
 
-export default function DarkLightButton() {
-    const { isDarkMode, setIsDarkMode, indexColour } = useThemeStore();
+
+export default function AddCourseButton({ name }) {
+    const navigation = useNavigation();
     const firstBg = useFirstBackground();
-
-    const toggleTheme = () => {
-        setIsDarkMode(prevTheme => !prevTheme);
+        
+    const handlePress = () => {
+        // TODO: add "add course" logic here
+        Alert.alert(name, "Course added! (not really)");
     };
-
+        
+    
     return (
         <TouchableOpacity
             style={[styles.button, firstBg]}
-            onPress={toggleTheme}
+            onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>{isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</Text>
+            <Text style={styles.buttonText}>Add Course</Text>
         </TouchableOpacity>
     );
 }
-
 const styles = StyleSheet.create({
     button: {
         alignItems: 'center',

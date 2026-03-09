@@ -3,12 +3,18 @@
 
 import {View, StyleSheet, Text, ScrollView, useWindowDimensions } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { useThemeStore, mainDark, mainLight, fourthLight, borderColour, isDarkMode} from '../contexts/ThemeContext';
+import { useThemeStore, useThemeBackground, mainDark, mainLight, fourthLight, borderColour, isDarkMode} from '../contexts/ThemeContext';
 
 export default function ProgressBar({full}) {
+    const themeBg = useThemeBackground();
+    const {isDarkMode, indexColour} = useThemeStore();
     return (
-        <View style={styles.shell}>
-            <View style={[styles.filling, {width: full}]}>
+        <View style={{...styles.shell,
+            backgroundColor: isDarkMode ? "#000000" : "#FFFFFF",
+        }}>
+            <View style={[styles.filling, {width: full, 
+                backgroundColor: isDarkMode ? mainLight[indexColour] : mainDark[indexColour],
+            }]}>
                 <Text>
                     {/* unsure why this is what makes the height work but it does */}
                 </Text> 
@@ -19,7 +25,6 @@ export default function ProgressBar({full}) {
 
 const styles=StyleSheet.create({
     shell: {
-        backgroundColor: isDarkMode ? "#000000" : "#FFFFFF",
         marginTop: "10",
         marginBottom: "10",
         width: "350",
@@ -31,7 +36,6 @@ const styles=StyleSheet.create({
         flexShrink: 0,
     },
     filling: {
-        backgroundColor: mainDark[0],
         borderRadius: 99,
     },
 })
