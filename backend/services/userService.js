@@ -13,7 +13,7 @@
  * - Handle errors
  */
 
-const userStorage = require('../utils/userStorage');  // Database operations
+const userStorage = require('../db_manager/userStorage');  // Database operations
 
 class UserService {
   /**

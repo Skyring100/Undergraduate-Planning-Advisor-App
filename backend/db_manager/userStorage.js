@@ -11,7 +11,7 @@ const fs = require('fs').promises;  // File system operations (async)
 const path = require('path');       // Handle file paths
 
 // Path to the users JSON file (our "database table")
-const USERS_TABLE = path.join(__dirname, '../db/user.json');
+const USERS_TABLE = path.join(__dirname, '../db_manager/user.json');
 
 /**
  * Make sure the db folder exists before reading/writing
@@ -98,18 +98,6 @@ const findUserByEmail = async (email) => {
 };
 
 /**
- * Find a user by their ID
- * @param {string} id - User ID to search for
- * @returns {Object|null} User object or null if not found
- */
-const findUserById = async (id) => {
-  const users = await readUsers();
-  
-  // Search for user with matching ID
-  return users.find(user => user.id === id);
-};
-
-/**
  * Get all users (useful for testing or admin purposes)
  * @returns {Array} Array of all users
  */
@@ -180,7 +168,6 @@ const updateUserPassword = async (id, newPassword) => {
 module.exports = {
   saveUser,           // Save a new user
   findUserByEmail,    // Find user by email
-  findUserById,       // Find user by ID
   getAllUsers,        // Get all users
   updateUser,         // Update user information
   updateUserPassword  // Update user password

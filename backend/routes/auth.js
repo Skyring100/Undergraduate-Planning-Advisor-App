@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { saveUser, findUserByEmail } = require('../utils/userStorage');
+const { saveUser, findUserByEmail } = require('../db_manager/userStorage');
 
 const registerUser = async (req, res) => {
   try {
@@ -33,7 +33,7 @@ const registerUser = async (req, res) => {
     await saveUser(user);
 
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      {email: user.email },
       process.env.JWT_SECRET || 'your-secret-key-change-in-production',
       { expiresIn: '7d' }
     );
@@ -43,11 +43,9 @@ const registerUser = async (req, res) => {
       message: 'User registered successfully',
       data: {
         user: {
-          id: user.id,
           email: user.email,
-          name: user.name,
-          phone: user.phone,
-          avatar: user.avatar
+          firstName: user.firstName,
+          lastName: user.lastName,
         },
         token
       }
@@ -94,11 +92,9 @@ const loginUser = async (req, res) => {
       message: 'Login successful',
       data: {
         user: {
-          id: user.id,
           email: user.email,
-          name: user.name,
-          phone: user.phone || null,
-          avatar: user.avatar || null
+          firstName: user.firstName,
+          lastName: user.lastName,
         },
         token
       }
