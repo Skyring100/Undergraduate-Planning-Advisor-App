@@ -5,7 +5,7 @@ function createTables(){
     db.exec(`
         CREATE TABLE IF NOT EXISTS users (
             student_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
             first_name TEXT NOT NULL,
             last_name TEXT,
             password_hash TEXT

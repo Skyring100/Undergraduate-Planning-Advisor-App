@@ -1,5 +1,5 @@
-const sqlite3 = require('node:sqlite')
-const db = new sqlite3.DatabaseSync('../db/database.db');
+import { getDatabaseConnection } from "./databaseActions.js";
+const db = getDatabaseConnection();
 
 
 export function getCourseById(id) {

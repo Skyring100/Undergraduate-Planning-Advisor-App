@@ -20,7 +20,7 @@ const getCourseById = async (req, res) => {
         success: true, 
         message: 'Course found', 
         data: course
-      }
+      };
     }
     
     const statusCode = result.success ? 200 : 404;

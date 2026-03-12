@@ -10,6 +10,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
+import { loginUser } from '../services/authService';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -28,7 +29,7 @@ export default function LoginScreen() {
     const [password, setPassword] = useState('');
 
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
 
         /*                                                      // Login logic
         if (!emailInput || !password) {
@@ -43,11 +44,15 @@ export default function LoginScreen() {
         }
             */
 
+        const result = await loginUser(emailInput, password);
         
         setUser(user => ({
             ...user,
             email: emailInput,
         }));
+
+
+        navigation.navigate('Dashboard',{})
     }
 
 
@@ -77,7 +82,7 @@ export default function LoginScreen() {
                     onChangeText={setPassword}
                 />
 
-                <LoginButton />
+                <LoginButton handlePress={handleLogin} />
 
                 <RegisterButton />
                 
