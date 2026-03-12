@@ -11,7 +11,7 @@ const fs = require('fs').promises;  // File system operations (async)
 const path = require('path');       // Handle file paths
 
 // Path to the users JSON file (our "database table")
-const USERS_TABLE = path.join(__dirname, '../db_manager/user.json');
+const USERS_TABLE = path.join(__dirname, '../db/user.json');
 
 /**
  * Make sure the db folder exists before reading/writing

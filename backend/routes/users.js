@@ -3,7 +3,6 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const { authenticateToken } = require('../middleware/authMiddleware');
 
-const userService = require('../services/userService');
 /**
  * Update user information
  * Protected route - requires authentication
