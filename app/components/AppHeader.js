@@ -4,7 +4,7 @@ import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation, useIsFocused  } from '@react-navigation/native';
 import { mainDark, mainLight, useThemeStore } from '../contexts/ThemeContext';
-import PopUp from './Dashboard/PopUp';
+import PopUp from '../components/Dashboard/PopUp';
 
 //<Header title='Gradian' style={styles.header}/>
 
