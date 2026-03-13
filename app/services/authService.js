@@ -3,7 +3,6 @@ import { API_BASE_URL } from './api';
 export const loginUser = async (email, password) => {
   const url = `${API_BASE_URL}/auth/login`;
   console.log('Login API URL:', url);
-  console.log('Starting login request...');
   
   const response = await fetch(url, {
     method: 'POST',
@@ -15,8 +14,6 @@ export const loginUser = async (email, password) => {
       password,
     })
   });
-
-  console.log('Login response received, status:', response.status);
   
   const data = await response.json();
   console.log('Login response data:', data);
@@ -33,41 +30,33 @@ export const loginUser = async (email, password) => {
  * @returns {Promise<{success: boolean, data?: object, message?: string}>}
  */
 export const registerUser = async (email, password, firstName, lastName) => {
-  try {
-    const url = `${API_BASE_URL}/auth/register`;
-    console.log('Register API URL:', url);
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        firstName,
-        lastName
-      }),
-    });
+  const url = `${API_BASE_URL}/auth/register`;
+  console.log('Register API URL:', url);
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+      firstName,
+      lastName,
+    }),
+  });
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (response.ok && data.success) {
-      return {
-        success: true,
-        data: data.data,
-        message: data.message,
-      };
-    } else {
-      return {
-        success: false,
-        message: data.message || 'Registration failed. Please try again.',
-      };
-    }
-  } catch (error) {
-    console.error('Register API error:', error);
+  if (response.ok && data.success) {
+    return {
+      success: true,
+      data: data.data,
+      message: data.message,
+    };
+  } else {
     return {
       success: false,
-      message: 'Network error. Please check your connection and try again.',
+      message: data.message || 'Registration failed. Please try again.',
     };
   }
 };
