@@ -14,6 +14,7 @@ import EvaluatorScreen from './screens/EvaluatorScreen';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ScheduleScreen from './screens/ScheduleScreen';
 import CourseListScreen from './screens/CourseListScreen';
+import { AuthProvider } from './contexts/AuthContext';
 
 
 
@@ -22,22 +23,24 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <ThemeProvider>
-      <UserProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login" screenOptions={{
-              header: (props) => <AppHeader {...props}/>,
-            }}>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Dashboard" component={DashboardScreen} />
-            <Stack.Screen name="Settings" component={SettingsScreen} />
-            <Stack.Screen name="Planner" component={PlannerScreen} />
-            <Stack.Screen name="Schedule" component={ScheduleScreen} />
-            <Stack.Screen name="Courses" component={CourseListScreen} />
-            <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </UserProvider>
+      <AuthProvider>
+        <UserProvider>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login" screenOptions={{
+                header: (props) => <AppHeader {...props}/>,
+              }}>
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+              <Stack.Screen name="Dashboard" component={DashboardScreen} />
+              <Stack.Screen name="Settings" component={SettingsScreen} />
+              <Stack.Screen name="Planner" component={PlannerScreen} />
+              <Stack.Screen name="Schedule" component={ScheduleScreen} />
+              <Stack.Screen name="Courses" component={CourseListScreen} />
+              <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </UserProvider>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

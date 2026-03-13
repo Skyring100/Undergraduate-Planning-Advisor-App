@@ -95,5 +95,4 @@ router.post('/register', registerUser);
 
 router.post('/login', loginUser);
 
-// Export router so server.js can use it
 module.exports = router;
