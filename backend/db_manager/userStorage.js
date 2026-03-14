@@ -25,12 +25,6 @@ export function saveUser(user) {
     if (!result){
       return undefined;
     }
-    const response = {
-      student_id: result.student_id,
-      email: result.email,
-      first_name: result.first_name,
-      last_name: result.last_name,
-      password_hash: result.password_hash
-    };
-    return response;
+
+    return result;
 }

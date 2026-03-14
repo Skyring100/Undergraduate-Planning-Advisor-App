@@ -38,6 +38,23 @@ function createTables(){
         )
     `);
     
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS section (
+            crn INTEGER PRIMARY KEY,
+            course_id TEXT NOT NULL,
+            start_time TEXT,
+            end_time TEXT,
+            semester TEXT,
+            year INTEGER
+            building TEXT,
+            room_number INTEGER,
+            instructor_name TEXT,
+
+            CHECK(semester IN('Fall', 'Winter', 'Summer')),
+            CHECK (start_time GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' AND end_time GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' ),
+            FOREIGN KEY (course_id) REFERENCES course(course_id)
+        )
+    `);
 }
 
 export function getDatabaseConnection(){
