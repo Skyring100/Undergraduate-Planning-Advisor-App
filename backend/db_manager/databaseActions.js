@@ -1,6 +1,8 @@
 import { DatabaseSync } from "node:sqlite";
 const DATABASE_PATH = './db/database.db';
 const db = initalizeDatabase();
+//Temporary reset for database for testing purposes
+dropTables();
 createTables();
 
 function initalizeDatabase(){
@@ -44,17 +46,27 @@ function createTables(){
             course_id TEXT NOT NULL,
             start_time TEXT,
             end_time TEXT,
-            semester TEXT,
-            year INTEGER
+            start_date TEXT,
+            end_date TEXT,
             building TEXT,
             room_number INTEGER,
             instructor_name TEXT,
 
-            CHECK(semester IN('Fall', 'Winter', 'Summer')),
-            CHECK (start_time GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' AND end_time GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' ),
+            CHECK (start_time GLOB '[0-9][0-9]:[0-9][0-9]' AND end_time GLOB '[0-9][0-9]:[0-9][0-9]'),
+            CHECK (start_date GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' AND end_date GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' ),           
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         )
     `);
+}
+
+function dropTables(){
+    db.exec(`
+        DROP TABLE IF EXISTS user;
+        DROP TABLE IF EXISTS prereq;
+        DROP TABLE IF EXISTS course;
+        DROP TABLE IF EXISTS section;
+        `
+    );
 }
 
 export function getDatabaseConnection(){
