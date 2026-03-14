@@ -37,7 +37,7 @@ function createTables(){
             FOREIGN KEY (prereq_id) REFERENCES course(course_id)
         )
     `);
-
+    
 }
 
 export function getDatabaseConnection(){

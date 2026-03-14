@@ -46,9 +46,13 @@ export default function LoginScreen() {
         }
             */
 
-        const result = await loginUser(emailInput, password);
+        //Temporary disable login API call for development purposes
+        //const result = await loginUser(emailInput, password);
+        const result = {success: true, message:"Logged in"}
+        
         if(result.success){
-            login(result.data.user, result.data.token);
+            //Temporary disable login API call for development purposes
+            //login(result.data.user, result.data.token);
             alert("Success");
 
             /*
