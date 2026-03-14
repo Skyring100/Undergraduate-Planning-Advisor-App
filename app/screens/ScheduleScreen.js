@@ -13,11 +13,26 @@ import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Dashboard/PopUp';
 
 
+
 export default function ScheduleScreen() {
+    
+    // const classMap =  sampleSchedule.map(c => (<TouchableOpacity  key={c.id} onPress={classe(c.id)} ><Text style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
+
+    const classe = (id) => {
+       for(let i = 0; i< sampleSchedule.length; i++){
+            if (id === sampleSchedule[i].id){
+                return(
+                    alert(sampleSchedule[i].detail)
+                    // <PopUp><Text>{sampleSchedule[i].detail}</Text></PopUp>
+                )
+            }
+       }
+    }
 
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
+    // const [selectedClass, setSelectedClass] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
 
     const sampleSchedule = [
@@ -47,6 +62,7 @@ export default function ScheduleScreen() {
                 <Calendar
                     key={isDarkMode} // to allow it to rerender every time isDarkMode changes
                     onDayPress={day => {
+                        //if selected day is different from current date string, erase everything and set it again
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
@@ -82,29 +98,14 @@ export default function ScheduleScreen() {
                     <View style={styles.agenda}>
 
                         {
-                            sampleSchedule.map(c => (<TouchableOpacity style={{ ...themeText }} key={c.id} >{c.note}</TouchableOpacity>))
+                            sampleSchedule.map(c => (<TouchableOpacity onPress={() => classe(c.id)}  key={c.id}><Text  style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
                         }
-
 
                     </View>
 
                 </View>
             )
         }
-    }
-
-    //const anonymous function
-    function Class(id) {
-
-        return (
-            <View>
-                <TouchableOpacity onPress={ClassInfo()}>
-                    <Text>
-                        {name}
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        )
     }
 
 }
