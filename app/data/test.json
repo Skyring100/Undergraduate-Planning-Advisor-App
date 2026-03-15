@@ -1,1534 +1,612 @@
 {
     "all_courses": [
         {
-            "id": "MATH100",
-            "title": "Mathematics 100 - Calculus I",
-            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH101",
-            "title": "Mathematics 101 - Calculus II",
-            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH115",
-            "title": "Mathematics 115 - Precalculus",
-            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH150",
-            "title": "Mathematics 150 - Finite Math for Busn & Econ",
-            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH152",
-            "title": "Mathematics 152 - Calculus for Non-majors",
-            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH190",
-            "title": "Mathematics 190 - Math for Elementary Educators",
-            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH200",
-            "title": "Mathematics 200 - Calculus III",
-            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH202",
-            "title": "Mathematics 202 - Multivariable Calculus I",
-            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH204",
-            "title": "Mathematics 204 - Multivariable Calculus II",
-            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH220",
-            "title": "Mathematics 220 - Linear Algebra",
-            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH224",
-            "title": "Mathematics 224 - Foundations of Modern Math",
-            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH230",
-            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
-            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH301",
-            "title": "Mathematics 301 - Introduction to Complex Analysis",
-            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH302",
-            "title": "Mathematics 302 - Introductory Mathematical Analysis",
-            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH320",
-            "title": "Mathematics 320 - Survey of Algebra",
-            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH326",
-            "title": "Mathematics 326 - Advanced Linear Algebra",
-            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH335",
-            "title": "Mathematics 335 - Introduction to Numerical Methods",
-            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH336",
-            "title": "Mathematics 336 - Intermediate Differential Equations",
-            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH402",
-            "title": "Mathematics 402 - Functional Analysis",
-            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH403",
-            "title": "Mathematics 403 - Measure Theory & Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH405",
-            "title": "Mathematics 405 - Topology",
-            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH409",
-            "title": "Mathematics 409 - Mathematical Methods in Physics",
-            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH420",
-            "title": "Mathematics 420 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH421",
-            "title": "Mathematics 421 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH435",
-            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
-            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH436",
-            "title": "Mathematics 436 - Partial Differential Equations 1",
-            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH450",
-            "title": "Mathematics 450 - Combinatorics",
-            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH455",
-            "title": "Mathematics 455 - Graphs & Algorithms",
-            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH480",
-            "title": "Mathematics 480 - Number Theory",
-            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH481",
-            "title": "Mathematics 481 - Analytic Number Theory",
-            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH499",
-            "title": "Mathematics 499 - Special Topics in Mathematics",
-            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH530",
-            "title": "Mathematics 530 - Undergraduate Thesis",
-            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH602",
-            "title": "Mathematics 602 - Functional Analysis",
-            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH603",
-            "title": "Mathematics 603 - Measure Theory and Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
-            "prereqs": []
-        },
-        {
-            "id": "MATH620",
-            "title": "Mathematics 620 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH621",
-            "title": "Mathematics 621 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH635",
-            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
-            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH636",
-            "title": "Mathematics 636 - Partial Differential Equations 1",
-            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH650",
-            "title": "Mathematics 650 - Combinatorics",
-            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH655",
-            "title": "Mathematics 655 - Graphs and Algorithms",
-            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH681",
-            "title": "Mathematics 681 - Analytic Number Theory",
-            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH699",
-            "title": "Mathematics 699 - Special Topics in Mathematics",
-            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH700",
-            "title": "Mathematics 700 - Topics in Functional Analysis",
-            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH704",
-            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
-            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH705",
-            "title": "Mathematics 705 - Complex Analysis",
-            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH720",
-            "title": "Mathematics 720 - Topics in Algebra and Logic",
-            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH725",
-            "title": "Mathematics 725 - Topics in Topology",
-            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH731",
-            "title": "Mathematics 731 - Topics in Applied Mathematics",
-            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH740",
-            "title": "Mathematics 740 - Advanced Topics in Mathematics",
-            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH793",
-            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
-            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH794",
-            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
-            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH100",
-            "title": "Mathematics 100 - Calculus I",
-            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH101",
-            "title": "Mathematics 101 - Calculus II",
-            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH115",
-            "title": "Mathematics 115 - Precalculus",
-            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH150",
-            "title": "Mathematics 150 - Finite Math for Busn & Econ",
-            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH152",
-            "title": "Mathematics 152 - Calculus for Non-majors",
-            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH190",
-            "title": "Mathematics 190 - Math for Elementary Educators",
-            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH200",
-            "title": "Mathematics 200 - Calculus III",
-            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH202",
-            "title": "Mathematics 202 - Multivariable Calculus I",
-            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH204",
-            "title": "Mathematics 204 - Multivariable Calculus II",
-            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH220",
-            "title": "Mathematics 220 - Linear Algebra",
-            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH224",
-            "title": "Mathematics 224 - Foundations of Modern Math",
-            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH230",
-            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
-            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH301",
-            "title": "Mathematics 301 - Introduction to Complex Analysis",
-            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH302",
-            "title": "Mathematics 302 - Introductory Mathematical Analysis",
-            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH320",
-            "title": "Mathematics 320 - Survey of Algebra",
-            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH326",
-            "title": "Mathematics 326 - Advanced Linear Algebra",
-            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH335",
-            "title": "Mathematics 335 - Introduction to Numerical Methods",
-            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH336",
-            "title": "Mathematics 336 - Intermediate Differential Equations",
-            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH402",
-            "title": "Mathematics 402 - Functional Analysis",
-            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH403",
-            "title": "Mathematics 403 - Measure Theory & Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH405",
-            "title": "Mathematics 405 - Topology",
-            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH409",
-            "title": "Mathematics 409 - Mathematical Methods in Physics",
-            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH420",
-            "title": "Mathematics 420 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH421",
-            "title": "Mathematics 421 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH435",
-            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
-            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH436",
-            "title": "Mathematics 436 - Partial Differential Equations 1",
-            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH450",
-            "title": "Mathematics 450 - Combinatorics",
-            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH455",
-            "title": "Mathematics 455 - Graphs & Algorithms",
-            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH480",
-            "title": "Mathematics 480 - Number Theory",
-            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH481",
-            "title": "Mathematics 481 - Analytic Number Theory",
-            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH499",
-            "title": "Mathematics 499 - Special Topics in Mathematics",
-            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH530",
-            "title": "Mathematics 530 - Undergraduate Thesis",
-            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH602",
-            "title": "Mathematics 602 - Functional Analysis",
-            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH603",
-            "title": "Mathematics 603 - Measure Theory and Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
-            "prereqs": []
-        },
-        {
-            "id": "MATH620",
-            "title": "Mathematics 620 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH621",
-            "title": "Mathematics 621 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH635",
-            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
-            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH636",
-            "title": "Mathematics 636 - Partial Differential Equations 1",
-            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH650",
-            "title": "Mathematics 650 - Combinatorics",
-            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH655",
-            "title": "Mathematics 655 - Graphs and Algorithms",
-            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH681",
-            "title": "Mathematics 681 - Analytic Number Theory",
-            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH699",
-            "title": "Mathematics 699 - Special Topics in Mathematics",
-            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH700",
-            "title": "Mathematics 700 - Topics in Functional Analysis",
-            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH704",
-            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
-            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH705",
-            "title": "Mathematics 705 - Complex Analysis",
-            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH720",
-            "title": "Mathematics 720 - Topics in Algebra and Logic",
-            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH725",
-            "title": "Mathematics 725 - Topics in Topology",
-            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH731",
-            "title": "Mathematics 731 - Topics in Applied Mathematics",
-            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH740",
-            "title": "Mathematics 740 - Advanced Topics in Mathematics",
-            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH793",
-            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
-            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH794",
-            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
-            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH100",
-            "title": "Mathematics 100 - Calculus I",
-            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH101",
-            "title": "Mathematics 101 - Calculus II",
-            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH115",
-            "title": "Mathematics 115 - Precalculus",
-            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH150",
-            "title": "Mathematics 150 - Finite Math for Busn & Econ",
-            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH152",
-            "title": "Mathematics 152 - Calculus for Non-majors",
-            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH190",
-            "title": "Mathematics 190 - Math for Elementary Educators",
-            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH200",
-            "title": "Mathematics 200 - Calculus III",
-            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH202",
-            "title": "Mathematics 202 - Multivariable Calculus I",
-            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH204",
-            "title": "Mathematics 204 - Multivariable Calculus II",
-            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH220",
-            "title": "Mathematics 220 - Linear Algebra",
-            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH224",
-            "title": "Mathematics 224 - Foundations of Modern Math",
-            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH230",
-            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
-            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH301",
-            "title": "Mathematics 301 - Introduction to Complex Analysis",
-            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH302",
-            "title": "Mathematics 302 - Introductory Mathematical Analysis",
-            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH320",
-            "title": "Mathematics 320 - Survey of Algebra",
-            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH326",
-            "title": "Mathematics 326 - Advanced Linear Algebra",
-            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH335",
-            "title": "Mathematics 335 - Introduction to Numerical Methods",
-            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH336",
-            "title": "Mathematics 336 - Intermediate Differential Equations",
-            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH402",
-            "title": "Mathematics 402 - Functional Analysis",
-            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH403",
-            "title": "Mathematics 403 - Measure Theory & Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH405",
-            "title": "Mathematics 405 - Topology",
-            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH409",
-            "title": "Mathematics 409 - Mathematical Methods in Physics",
-            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH420",
-            "title": "Mathematics 420 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH421",
-            "title": "Mathematics 421 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH435",
-            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
-            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH436",
-            "title": "Mathematics 436 - Partial Differential Equations 1",
-            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH450",
-            "title": "Mathematics 450 - Combinatorics",
-            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH455",
-            "title": "Mathematics 455 - Graphs & Algorithms",
-            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH480",
-            "title": "Mathematics 480 - Number Theory",
-            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH481",
-            "title": "Mathematics 481 - Analytic Number Theory",
-            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH499",
-            "title": "Mathematics 499 - Special Topics in Mathematics",
-            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH530",
-            "title": "Mathematics 530 - Undergraduate Thesis",
-            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH602",
-            "title": "Mathematics 602 - Functional Analysis",
-            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH603",
-            "title": "Mathematics 603 - Measure Theory and Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
-            "prereqs": []
-        },
-        {
-            "id": "MATH620",
-            "title": "Mathematics 620 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH621",
-            "title": "Mathematics 621 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH635",
-            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
-            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH636",
-            "title": "Mathematics 636 - Partial Differential Equations 1",
-            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH650",
-            "title": "Mathematics 650 - Combinatorics",
-            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH655",
-            "title": "Mathematics 655 - Graphs and Algorithms",
-            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH681",
-            "title": "Mathematics 681 - Analytic Number Theory",
-            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH699",
-            "title": "Mathematics 699 - Special Topics in Mathematics",
-            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH700",
-            "title": "Mathematics 700 - Topics in Functional Analysis",
-            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH704",
-            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
-            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH705",
-            "title": "Mathematics 705 - Complex Analysis",
-            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH720",
-            "title": "Mathematics 720 - Topics in Algebra and Logic",
-            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH725",
-            "title": "Mathematics 725 - Topics in Topology",
-            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH731",
-            "title": "Mathematics 731 - Topics in Applied Mathematics",
-            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH740",
-            "title": "Mathematics 740 - Advanced Topics in Mathematics",
-            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH793",
-            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
-            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH794",
-            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
-            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH100",
-            "title": "Mathematics 100 - Calculus I",
-            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH101",
-            "title": "Mathematics 101 - Calculus II",
-            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH115",
-            "title": "Mathematics 115 - Precalculus",
-            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH150",
-            "title": "Mathematics 150 - Finite Math for Busn & Econ",
-            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH152",
-            "title": "Mathematics 152 - Calculus for Non-majors",
-            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH190",
-            "title": "Mathematics 190 - Math for Elementary Educators",
-            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH200",
-            "title": "Mathematics 200 - Calculus III",
-            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH202",
-            "title": "Mathematics 202 - Multivariable Calculus I",
-            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH204",
-            "title": "Mathematics 204 - Multivariable Calculus II",
-            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH220",
-            "title": "Mathematics 220 - Linear Algebra",
-            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH224",
-            "title": "Mathematics 224 - Foundations of Modern Math",
-            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH230",
-            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
-            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH301",
-            "title": "Mathematics 301 - Introduction to Complex Analysis",
-            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH302",
-            "title": "Mathematics 302 - Introductory Mathematical Analysis",
-            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH320",
-            "title": "Mathematics 320 - Survey of Algebra",
-            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH326",
-            "title": "Mathematics 326 - Advanced Linear Algebra",
-            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH335",
-            "title": "Mathematics 335 - Introduction to Numerical Methods",
-            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH336",
-            "title": "Mathematics 336 - Intermediate Differential Equations",
-            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH402",
-            "title": "Mathematics 402 - Functional Analysis",
-            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH403",
-            "title": "Mathematics 403 - Measure Theory & Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH405",
-            "title": "Mathematics 405 - Topology",
-            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH409",
-            "title": "Mathematics 409 - Mathematical Methods in Physics",
-            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH420",
-            "title": "Mathematics 420 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH421",
-            "title": "Mathematics 421 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH435",
-            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
-            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH436",
-            "title": "Mathematics 436 - Partial Differential Equations 1",
-            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH450",
-            "title": "Mathematics 450 - Combinatorics",
-            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH455",
-            "title": "Mathematics 455 - Graphs & Algorithms",
-            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH480",
-            "title": "Mathematics 480 - Number Theory",
-            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH481",
-            "title": "Mathematics 481 - Analytic Number Theory",
-            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH499",
-            "title": "Mathematics 499 - Special Topics in Mathematics",
-            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH530",
-            "title": "Mathematics 530 - Undergraduate Thesis",
-            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH602",
-            "title": "Mathematics 602 - Functional Analysis",
-            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH603",
-            "title": "Mathematics 603 - Measure Theory and Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
-            "prereqs": []
-        },
-        {
-            "id": "MATH620",
-            "title": "Mathematics 620 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
+            "id": "CPSC100",
+            "title": "Computer Science 100 - Computer Programming I",
+            "desc": "This course introduces the fundamental concepts of programming from and object-oriented perspective. Topics include fundamentals of programming style, syntax, data types, arithmetic and logical expressions, assignments, control structures, arrays, functions, file i/o, classes, inheritance, and dynamic storage allocation. The course emphasizes the development of problem solving and programming skills, including testing techniques and the use of debugging tools. Students must also register in a lab and a tutorial section. Credit will not be awarded for both CPSC 110-3 and CPSC 100-4. Refer to major for required course. Please note: You must register separately in lecture, tutorial, and lab components.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC101",
+            "title": "Computer Science 101 - Computer Programming II",
+            "desc": "This course is a continuation of CPSC 100-4. Objects, classes, inheritance and polymorphism are discussed in depth. Other topics include object-orieted program design and development using principles of software engineering; modeling with UML; GUI components and graphics; dynamic storage allocation, the heap, and garbage collection; run-time support for program execution; and the use of standard libraries. Students work cooperatively to complete a medium-sized project. This course requires both tutorial and laboratory components. Please note: You must register separately in lecture lab, and tutorial components.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC100 minimum grade of C-",
+                    "CPSC141 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC110",
+            "title": "Computer Science 110 - Introduction to Computer Systems and Programming",
+            "desc": "The course provides an introduction to computer systems and programing, concepts in computer architecture including the central processing unit, buses, memory units, input/output and communication devices. The introduction to operating systems emphasizes the file system and program development utilities. Programing concepts and techniques include problem analysis, program design, coding, and testing, as well as language elements such as data types, variables and assignment statements, expressions, mixed-mode arithmetic, input/output operations, basic data structures and control structures, procedures and abstract data types. Basic database management concepts will also be introduced. Students will develop small applications programs. CPSC 110-3 is a first course in computer science and computer programing. CPSC 110-3 cannot be counted as a computer science course by computer science majors. Credit will not be awarded for both CPSC 110-3 & CPSC 100-4. Refer to major for required course. Please note: You must register separately in lecture, lab, and tutorial components.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC127",
+            "title": "Computer Science 127 - Introduction to Technology",
+            "desc": "This course introduces students to a current technological topic, defines technology, and explores the context of technology, prototyping, and testing. Students participate in a project involving remote or autonomous control and use project-based learning to analyze how competing social, ethical, and sustainability considerations influence the creation and development of technological solutions.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC141",
+            "title": "Computer Science 141 - Discrete Computational Mathematics",
+            "desc": "This course provides an introduction to set theory, elements of combinatorics and probability theory, logical and formal reasoning using predicate and propositional calculus, together with narrative proof techniques. Other topics include well ordered sets, recursive definitions and mathematical induction; introductory number theory including the division algorithm, Euclidean algorithm, prime numbers and the fundamental theorem of arithmetic; properties of functions and relations including bijections, projections, inverses, composition, and Cartesian products.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC150",
+            "title": "Computer Science 150 - Computer Applications",
+            "desc": "Taught through the use of common applications, beginning with word processing, this course prepares students for future as well as present needs in computing literacy by reaching beyond examples to recognition of principles. Students gain a practical grasp of data formats, program behaviour, using documentation, and the role of hardware. Communications (including World Wide Web), and cross- platform transference of data, feature prominently, in addition to traditional office applications such as spreadsheets and databases. Students attend lectures and work from web-mounted lab material. Each student undertakes a personal project, which documents independent learning. May not be counted as a computer science course by computer science majors. Please note: You must register separately in lecture and lab components where applicable.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC199",
+            "title": "Computer Science 199 - Introductory Special Topics I",
+            "desc": "The intent of this course is to provide timely offering of courses that either reflect rapid change in Computer Science, provide supplementary material in specific concrete topics or skills, or expose non-majors to advances in Computer Science. Consequently, the topic and availability of this course varies. The course may be retaken any number of times, provided all topics are distinct.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "MATH115 minimum grade of C-",
+                    "PreCalculus 12"
+                ]
+            }
+        },
+        {
+            "id": "CPSC224",
+            "title": "Computer Science 224 - Introduction to Database Systems",
+            "desc": "This course focuses on core concepts of database systems, the relational database model, data modeling, and querying. Topics include the purpose and components of database systems, core DBMS functionalities, relational models and algebra, SQL, database design, and the entity-relationship model. Also discussed are best practices, such as the use of logical schema and normalization. An applied project using business requirements to answer complex business questions is provided. A relational DBMS is used to gain high competency with using SQL and other database-related tasks.",
+            "prereqs": "CPSC101 minimum grade of C-"
+        },
+        {
+            "id": "CPSC230",
+            "title": "Computer Science 230 - Introduction to Logic Design",
+            "desc": "Topics include Boolean algebra, basic switching functions and gate-level implementation, canonical forms, simplification methods, voltage assignments, combinatorial and sequential logic circuits, registers, counters, ALUs, CPUs, instruction sets, control units, and bus organization. Please note: You must register separately in lecture and lab components.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC100 minimum grade of C-",
+                    "CPSC141 minimum grade of C-"
+                ]
+            }
+        },
         {
-            "id": "MATH621",
-            "title": "Mathematics 621 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
+            "id": "CPSC231",
+            "title": "Computer Science 231 - Computer Organization and Architecture",
+            "desc": "Topics include computer abstractions and technologies, computer architecture, instruction sets, processor data paths and control, pipelining, hyper-threading, memory systems, I/O systems, busses, multiprocessors, and parallel computers. Students perform a series of assembly level programming assignments. Please note: You must register separately in lecture and lab components.",
+            "prereqs": "CPSC230 minimum grade of C-"
+        },
+        {
+            "id": "CPSC250",
+            "title": "Computer Science 250 - Applied Business Computing",
+            "desc": "This course examines core computing knowledge and techniques as they apply to business applications. The course covers database design and information retrieval techniques with emphasis on web-database integration, advanced features of spreadsheets, recoding/analyzing basic business transactions using a variety of accounting software, and implementation of selected financial models. Presentational and interface design techniques are also covered. Students complete a term project that solves a typical business problem using the software and procedures of their choice. This course may not be counted as a computer science course by computer science majors.",
+            "prereqs": "CPSC230 minimum grade of C-"
         },
-        {
-            "id": "MATH635",
-            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
-            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH636",
-            "title": "Mathematics 636 - Partial Differential Equations 1",
-            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH650",
-            "title": "Mathematics 650 - Combinatorics",
-            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH655",
-            "title": "Mathematics 655 - Graphs and Algorithms",
-            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH681",
-            "title": "Mathematics 681 - Analytic Number Theory",
-            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH699",
-            "title": "Mathematics 699 - Special Topics in Mathematics",
-            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH700",
-            "title": "Mathematics 700 - Topics in Functional Analysis",
-            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH704",
-            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
-            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH705",
-            "title": "Mathematics 705 - Complex Analysis",
-            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH720",
-            "title": "Mathematics 720 - Topics in Algebra and Logic",
-            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH725",
-            "title": "Mathematics 725 - Topics in Topology",
-            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH731",
-            "title": "Mathematics 731 - Topics in Applied Mathematics",
-            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH740",
-            "title": "Mathematics 740 - Advanced Topics in Mathematics",
-            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH793",
-            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
-            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH794",
-            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
-            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH100",
-            "title": "Mathematics 100 - Calculus I",
-            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH101",
-            "title": "Mathematics 101 - Calculus II",
-            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH115",
-            "title": "Mathematics 115 - Precalculus",
-            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH150",
-            "title": "Mathematics 150 - Finite Math for Busn & Econ",
-            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH152",
-            "title": "Mathematics 152 - Calculus for Non-majors",
-            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH190",
-            "title": "Mathematics 190 - Math for Elementary Educators",
-            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH200",
-            "title": "Mathematics 200 - Calculus III",
-            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH202",
-            "title": "Mathematics 202 - Multivariable Calculus I",
-            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH204",
-            "title": "Mathematics 204 - Multivariable Calculus II",
-            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH220",
-            "title": "Mathematics 220 - Linear Algebra",
-            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH224",
-            "title": "Mathematics 224 - Foundations of Modern Math",
-            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH230",
-            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
-            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH301",
-            "title": "Mathematics 301 - Introduction to Complex Analysis",
-            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH302",
-            "title": "Mathematics 302 - Introductory Mathematical Analysis",
-            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH320",
-            "title": "Mathematics 320 - Survey of Algebra",
-            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH326",
-            "title": "Mathematics 326 - Advanced Linear Algebra",
-            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH335",
-            "title": "Mathematics 335 - Introduction to Numerical Methods",
-            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH336",
-            "title": "Mathematics 336 - Intermediate Differential Equations",
-            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH402",
-            "title": "Mathematics 402 - Functional Analysis",
-            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH403",
-            "title": "Mathematics 403 - Measure Theory & Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH405",
-            "title": "Mathematics 405 - Topology",
-            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH409",
-            "title": "Mathematics 409 - Mathematical Methods in Physics",
-            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH420",
-            "title": "Mathematics 420 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH421",
-            "title": "Mathematics 421 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH435",
-            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
-            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH436",
-            "title": "Mathematics 436 - Partial Differential Equations 1",
-            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH450",
-            "title": "Mathematics 450 - Combinatorics",
-            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH455",
-            "title": "Mathematics 455 - Graphs & Algorithms",
-            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH480",
-            "title": "Mathematics 480 - Number Theory",
-            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH481",
-            "title": "Mathematics 481 - Analytic Number Theory",
-            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH499",
-            "title": "Mathematics 499 - Special Topics in Mathematics",
-            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH530",
-            "title": "Mathematics 530 - Undergraduate Thesis",
-            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
-            "prereqs": []
+        {
+            "id": "CPSC260",
+            "title": "Computer Science 260 - Ethics in Computing Science",
+            "desc": "This course focuses on codes of ethics of computing professional societies, technology and human values, costs and benefits of technology, the social context of work in computer science and engineering, copyright, patents, access, and other concepts.",
+            "prereqs": "CPSC230 minimum grade of C-"
+        },
+        {
+            "id": "CPSC272",
+            "title": "Computer Science 272 - Web Application Development",
+            "desc": "This course introduces client-side and server-side mechanisms for creating dynamic web applications that are interactive, and data driven. Topics include browser-server interaction via HTTP, static web page creation using current markup and styling languages, client-side programming with modern scripting languages and the DOM, server-side programming with emerging web programming languages, and frameworks. This course provides a breadth of knowledge of many tools/technologies rather than deep knowledge of any specific tool or technology.",
+            "prereqs": "CPSC101 minimum grade of C-"
+        },
+        {
+            "id": "CPSC281",
+            "title": "Computer Science 281 - Data Structures I",
+            "desc": "This course introduces a variety of practical and important data structures and methods for analytical evaluation and experimental implementation using an object-oriented programming language. Structures include arrays and matrices; list related structures including stacks, queues, and skip lists; hashing; various tree structures, their traversals and their use in expressions and search trees; priority queues and heaps; graphs, and graph algorithms (such as shortest-path and minimum-cost spanning trees).",
+            "prereqs": "CPSC101 minimum grade of C-"
+        },
+        {
+            "id": "CPSC299",
+            "title": "Computer Science 299 - Introductory Special Topics II",
+            "desc": "The intent of this course is to provide timely offering of courses that either reflect rapid change in Computer Science, provide supplementary material in specific concrete topics or skills, or expose non-majors to advances in Computer Science. Consequently, the topic and availability of this course varies. The course may be retaken any number of times, provided all topics are distinct. This course normally supposes some first-year exposure to Computer Science.",
+            "prereqs": "CPSC101 minimum grade of C-"
+        },
+        {
+            "id": "CPSC300",
+            "title": "Computer Science 300 - Software Engineering",
+            "desc": "Fundamental problem-solving concepts, the software development process, software requirements and specifications, software design and implementation, verification and validation, organization and management of programming teams, and documentation are discussed. Students work on a team project.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC320",
+            "title": "Computer Science 320 - Programming Languages",
+            "desc": "This course is a general introduction to programming languages. Topics include an overview of programming languages and language design objectives, specification of syntax and semantics, virtual machines and language translation, program correctness and reasoning about programs, programming language constructs, declarations and types, abstraction mechanisms, and programming paradigms. Assignments include case studies and a team-based report on a particular language.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC141 minimum grade of C-",
+                    "CPSC281 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC321",
+            "title": "Computer Science 321 - Operating Systems",
+            "desc": "This course introduces the fundamental concepts of operating systems. Topics include tasking and processes, process co-ordination and synchronization, scheduling and dispatch, physical and virtual memory organization, paging and segmentation, device management, file systems, and security and protection. Students study a simple operating system and have an opportunity to make modifications to it in laboratory exercises.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC231 minimum grade of C-",
+                    "CPSC281 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC340",
+            "title": "Computer Science 340 - Theory of Computation",
+            "desc": "This course examines regular expressions, deterministic and non-deterministic finite automata, pushdown automata, Chomsky and Greibach normal forms. Chomsky hierarchy, pumping lemmas, Turing machines, undecidability, computability, recursive function theory, computational complexity. NP-hard and NP-complete problems and context-free and other grammars.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC231 minimum grade of C-",
+                    "CPSC281 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC344",
+            "title": "Computer Science 344 - Data Communications and Networking",
+            "desc": "This course provides an understanding of basic concepts underlying data communications and networking. Topics covered include data transmission and encoding, Internet and Internet2, Network Layer model, multiplexing, circuit switching, network protocols, and data communication hardware. Students also learn about protocols and topologies of Local Area Networks (LANs), Wireless LANs, Wide Area Networks (WANs), Metropolitan Area Networks (MANs), and Backbone Networks (BNs). The basic concepts of network design and implementation, network management, and network security are also introduced.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC231 minimum grade of C-",
+                    "CPSC281 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC345",
+            "title": "Computer Science 345 - Fundamentals of Cybersecurity",
+            "desc": "This course is a broad survey of fundamental topics in cybersecurity with the purpose of laying a practical foundation and cultivating an appropriate mindset for information security and privacy issues. Topics include information security, authentication, access controls, cryptography, communication security, malware, social aspects of security, and emerging industry trends. Legal and ethical considerations are included.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "CPSC344 minimum grade of C-",
+                    "CPSC444 minimum grade of C-",
+                    "COMM353 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC351",
+            "title": "Computer Science 351 - Management Info Systems",
+            "desc": "This course emphasizes the strategic role of information systems in modern business. Topics include the technical foundations of information systems, the impact of information systems on business operations and decision- making, and the processes that are required for successful implementation of business information systems.",
+            "prereqs": "CPSC100 minimum grade of C-"
+        },
+        {
+            "id": "CPSC354",
+            "title": "Computer Science 354 - Introduction to Business Intelligence",
+            "desc": "This course provides students with an understanding of business intelligence which involves conversion of mass data into effectively communicated information through visual, interactive media that enables evidence-based strategic decision making. Course topics include: data extract-transform-load (ETL); data quality; MDM; data warehouse models; conformance; star or snowflake dimensional models; OLTP; OLAP; effective data visualization; governance; success or failure factors; and emerging trends. Students apply the concepts in a term project using leading technologies and business intelligence tools.",
+            "prereqs": {
+                "relation": "or",
+                "on": [
+                    "COMM351 minimum grade of C-",
+                    "CPSC224 minimum grade of C-",
+                    "CPSC351 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC357",
+            "title": "Computer Science 357 - Mobile Application Development",
+            "desc": "This course focuses on the fundamentals of mobile application development. Topics include the mobile development environment, user interface design with views and layouts, app lifecycle management, and event handling. Students learn about data management through intents, file systems, shared preferences, and databases. An introduction to networking, cloud integration, and best practices for building scalable, efficient mobile apps is provided. Development is conducted using an industry-standard IDE, with hands-on exercises that emphasize real-world mobile development and deployment.",
+            "prereqs": "CPSC101 minimum grade of C-"
+        },
+        {
+            "id": "CPSC370",
+            "title": "Computer Science 370 - Functional and Logic Programming",
+            "desc": "This course provides an introduction to programming in symbolic languages such as the functional language Scheme and the logic programming language PROLOG, with applications to systems programming, symbolic computation, artificial intelligence, and other areas.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC141 minimum grade of C-",
+                    "CPSC281 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC371",
+            "title": "Computer Science 371 - Artificial Intelligence I",
+            "desc": "This course introduces foundational concepts, techniques, and applications of artificial intelligence (AI), blending classical approaches with recent advancements in the field. Students study traditional AI methods, including search algorithms and knowledge representation, alongside contemporary techniques such as modern machine learning and probabilistic modeling. This course emphasizes understanding algorithmic frameworks and the evolution of AI methods to solve complex problems.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC281 minimum grade of C-",
+                    "MATH220 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC377",
+            "title": "Computer Science 377 - Introduction to Robotics",
+            "desc": "This course is an introduction to hardware architecture and control architecture of robotic and mechatronic devices. Topics include electronics, sensor capabilities, calibration of sensors, control of sensor I/O, motor and motion control through duty cycle and pulse width modulation. Laboratory topics include the development of interfaces between sensors, their control boards and digital circuitry including microprocessors. Microprocessor control of sensors and motors is developed, including the use of reasoning embedded in onboard microprocessor software for control of robotic actions.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    {
+                        "relation": "or",
+                        "on": [
+                            "PHYS100 minimum grade of C-",
+                            "PHYS110 minimum grade of C-"
+                        ]
+                    },
+                    "CPSC231 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC400",
+            "title": "Computer Science 400 - Software Engineering Project",
+            "desc": "The course provides students, working in groups, with a significant project experience in which they can integrate much of the material they have learned in CPSC 300 Software Engineering, including matters relating to requirements, design, human factors, professionalism, and project management.",
+            "prereqs": "CPSC300 minimum grade of C-"
+        },
+        {
+            "id": "CPSC424",
+            "title": "Computer Science 424 - Advanced Database Systems",
+            "desc": "This course is an introduction to advanced concepts in database design and applications. Topics discussed include transaction management, concurrency control, query processing and optimization, recovery and security, data warehousing and data mining, handling of special data types such as multimedia, spatial data, and XML documents. An introduction to object-oriented and object-relational models, parallel and distributed databases, and special purpose databases is also provided. Support for complex applications, information retrieval and data analysis is examined.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC321 minimum grade of C-",
+                    "CPSC324 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC430",
+            "title": "Computer Science 430 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of computer science. Students must have completed at least 90 credit hours and be computer science majors. This thesis may be taken in one or two semesters. CPSC 430 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course may be repeated for a total of 6 credit hours.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC321 minimum grade of C-",
+                    "CPSC324 minimum grade of C-"
+                ]
+            }
+        },
+        {
+            "id": "CPSC441",
+            "title": "Computer Science 441 - Distributed Systems",
+            "desc": "This course covers the fundamental principles and paradigms underlying the design of distributed computing systems. Coverage includes the definition and types of distributed systems, communication, processes, naming, synchronization, consistency and replication, fault tolerance, and security. Term projects focus on case studies of specific systems representing web-based, peer-to-peer, mobile, grid, and other modern paradigms.",
+            "prereqs": "CPSC321 minimum grade of C-"
+        },
+        {
+            "id": "CPSC442",
+            "title": "Computer Science 442 - Parallel Computing",
+            "desc": "This course introduces students to concepts in high performance computing. Topics include classification of parallel architectures, basic communications operations, interconnection networks, topologies of dynamic and static networks, performance issues and techniques for optimization, and dynamic programming. Parallel algorithm design for high-performance computing such as applications in computational biology, finite-element and finite-difference methods for numerical simulations., dense/sparse matrix algorithms, and multidimensional data structures is also discussed. Message passing (MPI and OpenMP) is used for implementation of algorithms on high performance cluster computers.",
+            "prereqs": "CPSC321 minimum grade of C-"
+        },
+        {
+            "id": "CPSC444",
+            "title": "Computer Science 444 - Computer Networks",
+            "desc": "This course explores essential topics in computer networks including TCP protocol, TCP reliable transport service, Internet protocol IP addresses, IP datagram and datagram forwarding, IPv6, network applications, real time interactive applications protocols (RTP, RTCP, SIP, H.323), security in computer networks, and network management. Network applications discussed include client-server interaction, naming and domain name system DNS, multimedia networking, VoIP, audio and video streaming.",
+            "prereqs": "CPSC321 minimum grade of C-"
+        },
+        {
+            "id": "CPSC450",
+            "title": "Computer Science 450 - Bioinformatics",
+            "desc": "This course introduces computational techniques for solving biological problems and presents an overview of the tools and the methods used to analyze large biological data sets. After introducing the background in molecular biology for computer scientists, the course explores pairwise and multiple sequence alignment, sequence database searches, pattern identification of genes, promoters, and transcription factor binding sites, as well as secondary and tertiary structure prediction for RNA and proteins. Markov models for gene prediction are introduced.",
+            "prereqs": "CPSC224 minimum grade of C-"
+        },
+        {
+            "id": "CPSC461",
+            "title": "Computer Science 461 - Applied Machine Learning",
+            "desc": "This course explores key areas of machine learning and data mining, focusing on the best ways to apply these concepts in actual systems. This course focuses on supervised machine learning methods, but it also touches on unsupervised learning. Key subjects include essential algorithms like linear and logistic regression, decision trees, support vector machines, and clustering, along with neural networks. Students also delve into important methods for choosing the right features in data, reducing data complexity, estimating errors, and practical testing of these methods.",
+            "prereqs": "CPSC371 minimum grade of C-"
+        },
+        {
+            "id": "CPSC472",
+            "title": "Computer Science 472 - Knowledge Based Systems",
+            "desc": "This course introduces students to Expert Systems. The two major topics addressed are Rule-based systems and Fuzzy Logic systems. Goal driven forward-chaining and ackward-chaining paradigms are introduced. Automatic theorem provers, inference engines and problems of knowledge representation and knowledge acquisition are discussed. Approaches to reasoning about uncertainty are covered including Bayesian probabilities, certainty factors, non-monotonic logics and reasoning with beliefs. A Fuzzy Logic system is implemented and an application is developed and tested.",
+            "prereqs": "CPSC370 minimum grade of C-"
         },
-        {
-            "id": "MATH602",
-            "title": "Mathematics 602 - Functional Analysis",
-            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH603",
-            "title": "Mathematics 603 - Measure Theory and Integration",
-            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
-            "prereqs": []
-        },
-        {
-            "id": "MATH620",
-            "title": "Mathematics 620 - Structure of Groups & Rings",
-            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH621",
-            "title": "Mathematics 621 - Field Theory",
-            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH635",
-            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
-            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
-            "prereqs": []
-        },
-        {
-            "id": "MATH636",
-            "title": "Mathematics 636 - Partial Differential Equations 1",
-            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH650",
-            "title": "Mathematics 650 - Combinatorics",
-            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH655",
-            "title": "Mathematics 655 - Graphs and Algorithms",
-            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH681",
-            "title": "Mathematics 681 - Analytic Number Theory",
-            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH699",
-            "title": "Mathematics 699 - Special Topics in Mathematics",
-            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH700",
-            "title": "Mathematics 700 - Topics in Functional Analysis",
-            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH704",
-            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
-            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH705",
-            "title": "Mathematics 705 - Complex Analysis",
-            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH720",
-            "title": "Mathematics 720 - Topics in Algebra and Logic",
-            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH725",
-            "title": "Mathematics 725 - Topics in Topology",
-            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
-            "prereqs": []
-        },
-        {
-            "id": "MATH731",
-            "title": "Mathematics 731 - Topics in Applied Mathematics",
-            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
-            "prereqs": []
+        {
+            "id": "CPSC473",
+            "title": "Computer Science 473 - Introduction to Data Mining",
+            "desc": "This course introduces algorithms and paradigms that allow computers to discover previously hidden patterns in databases or datasets. Main topics include discovery of frequent patterns, analysis of different types of data (static, dynamic, sequential, uncertain, etc.) clustering and classification. Other topics may include data visualization, social network mining, real-life applications, and parallel/distributed data mining. Students work on assignments, term tests and a course project.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC281 minimum grade of C-",
+                    "CPSC340 minimum grade of C-"
+                ]
+            }
         },
         {
-            "id": "MATH740",
-            "title": "Mathematics 740 - Advanced Topics in Mathematics",
-            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
-            "prereqs": []
+            "id": "CPSC475",
+            "title": "Computer Science 475 - Multiagent Systems",
+            "desc": "An introduction to the theoretical and practical aspects of intelligent agents and multiagent systems, this course is open to undergraduate students majoring in different areas and fosters creative multidisciplinary interaction. Coverage includes the basic concepts, agent architectures, decuctive and practical reasoning agents, reactive and hyrbrid agents, multiagent interactions, human-agent interactions, agreements, communication, and teamwork. Individual or team projects allow students to explore specific topics in their areas of interest through theorectical or laboratory work.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC281 minimum grade of C-",
+                    "CPSC340 minimum grade of C-"
+                ]
+            }
         },
-        {
-            "id": "MATH793",
-            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
-            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
-            "prereqs": []
+        {
+            "id": "CPSC476",
+            "title": "Computer Science 476 - Social Robotics",
+            "desc": "This course offers a comprehensive introduction to the field of social robotics, emphasizing a human-centered approach and real-world applications. It covers the fundamentals, principles, and theories involved in designing, developing, and deploying robots capable of fostering meaningful social interactions with humans across diverse contexts, such as robots as tools in education or robot-assisted therapy. Through a combination of lectures, discussions, and critical analyses of human-robot interaction, the course provides opportunities to engage with key methodologies, and practical applications, equipping students with a thorough understanding of this rapidly evolving discipline.",
+            "prereqs": "CPSC101 minimum grade of C-"
         },
         {
-            "id": "MATH794",
-            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
-            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
-            "prereqs": []
+            "id": "CPSC482",
+            "title": "Computer Science 482 - Data Structures II",
+            "desc": "This course considers the design and analysis of efficient data structures and algorithms including extensions of those studied in CPSC 200 and CPSC 281. Also considered are general techniques for building and analyzing algorithms (greedy, divide and conquer, dynamic programming) and topics from: amortized time estimates, complexity analysis, and NP completeness.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC495",
+            "title": "Computer Science 495 - Undergraduate Research Project",
+            "desc": "This course consists of a small research project undertaken by the student or by teams of students. Projects consist of the definition of a problem in computing and a literature survey of recent work in the field. Students are encouraged to define their own possible solutions and to prototype the solutions where appropriate. Regular review of progress is made in meetings. Students develop skills in the preparation of topic survey notes and in the development of arguments in support of or against published approaches to problems in computing. Students are expected to prepare and present their work. This course may be repeated provided all topics are distinct.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC499",
+            "title": "Computer Science 499 - Special Topics",
+            "desc": "The topics for this course vary, depending on student interest and faculty availability. This course may be retaken any number of times, provided all topics are distinct.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC600",
+            "title": "Computer Science 600 - Software Engineering Project",
+            "desc": "This course provides students, working in groups, with an opportunity to apply the principles of software engineering, learned in previous courses, in a controlled and yet realistic project environment. They gain a significant integral project experience involving various project phases, such as requirements elicitation, system design, and prototyping, as well as team organization, human factors, professionalism, and project management.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC624",
+            "title": "Computer Science 624 - Advanced Database Systems",
+            "desc": "This course introduces advanced concepts in database design and applications. Topics include transaction management, concurrency control, query processing and ptimization, recovery and security, data warehousing and data mining, handling of special data types such as multimedia, spatial data, and XML documents. An introduction to object-oriented and object-relational models, parallel and distributed databases, and special purpose databases is also provided. Support for complex applications, information retrieval and data analysis is examined.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC641",
+            "title": "Computer Science 641 - Distributed Systems",
+            "desc": "This course covers the fundamental principles and paradigms underlying the design of distributed computing systems. The coverage includes the definition and types of distributed systems, communication, processes, naming, synchronization, consistency and replication, fault tolerance, and security. Term projects focus on case studies of specific systems representing web-based, peer-to-peer, mobile, grid, and other modern paradigms.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC642",
+            "title": "Computer Science 642 - Parallel Computing",
+            "desc": "This course introduces students to concepts in high performance computing. Topics inlcude classification of parallel architectures, basic communications operations, interconnection networks, topologies of dynamic and static networks, performance issues and techniques for optimization, and dynamic programming. Parallel algorithm design for high-performance computing-such as applications in computational biology, finite-element and finite-difference methods for numerical simulations, dense/sparse matrix algorithms, and multidimensional data structures-is also discussed. Message passing (MPI and OpenMP) is used for implementation of algorithms on high performance cluster computers.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC644",
+            "title": "Computer Science 644 - Computer Networks",
+            "desc": "This course explores essential topics in computer networks including TCP protocol, TCP reliable transport service, Internet protocol IP addresses, IP datagram and datagram forwarding, IPv6, network applications, real time interactive applications protocols (RTP, RTCP, SIP, H.323), security in computer networks, and network management. Network applications discussed include client-server interaction, naming and domain name system DNS, multimedia networking, VoIP, audio and video streaming.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC650",
+            "title": "Computer Science 650 - Bioinformatics",
+            "desc": "This course introduces computational techniques for solving biological problems and presents an overview of the tools and methods used to analyze large biological data sets. After introducing molecular biology for computer scientists\u2014cells and organelles, chromosome, gene, DNA, RNA, proteins, transcription and translation\u2014the course explores pairwise and multiple sequence alignment, sequence database searches, pattern identification of genes, promoters and transcription factor binding sites, as well as secondary and tertiary structure prediction for RNA and proteins. Markov models for gene prediction are introduced.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC661",
+            "title": "Computer Science 661 - Applied Machine Learning",
+            "desc": "This advanced course explores key areas of machine learning and data mining, focusing on the best ways to apply these concepts in actual systems. This course focuses supervised machine learning methods, but it also touches on unsupervised learning. Key subjects include essential algorithms like linear and logistic regression, decision trees, support vector machines, and clustering, along with neural networks. Students also delve into important methods for choosing the right features in data, reducing data complexity, estimating errors, and practical testing of these methods.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC672",
+            "title": "Computer Science 672 - Knowledge Based Systems",
+            "desc": "This course introduces students to Expert Systems. The two major topics addressed are Rule-based systems and Fuzzy Logic systems. Goal-driven forward-chaining and backward-chaining paradigms are introduced. Automatic theorem provers, inference engines and problems of knowledge representation and knowledge acquisition are discussed. Approaches to reasoning about uncertainty, including Bayesian probabilities, certainty factors, non-monotonic logics and reasoning with beliefs, are covered. A Fuzzy Logic system is implemented and an application is developed and tested.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC673",
+            "title": "Computer Science 673 - Introduction to Data Mining",
+            "desc": "This course introduces algorithms and paradigms that allow computers to discover previously hidden patterns in databases or datasets. Main topics include discovery of frequent patterns, analysis of different types of data (static, dynamic, sequential, uncertain, etc.) clustering and classification. Other topics may include data visualization, social network mining, real-life applications, and parallel/distributed data mining. Students work on assignments, term tests and an individual course project.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC675",
+            "title": "Computer Science 675 - Multiagent Systems",
+            "desc": "An introduction to the theoretical and practical aspects of intelligent agents and multiagent systems, this course is open to graduate students in different areas and fosters creative multidisciplinary interaction. Coverage includes the basic concepts, agent architectures, deductive and practical reasoning agents, reactive and hybrid agents, multiagent interactions, human-agent interactions, agreeements, communication, and teamwork. Individual or team projects allow students to explore specific topics in their areas of interest through theoretical or laboratory work.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC676",
+            "title": "Computer Science 676 - Social Robotics",
+            "desc": "This advanced course offers a comprehensive introduction to the field of social robotics, emphasizing a human-centered approach and real-world applications. It covers the fundamentals, principles, and theories involved in designing, developing, and deploying robots capable of fostering meaningful social interactions with humans across diverse contexts, such as robots as tools in education or robot-assisted therapy. Through a combination of lectures, discussions, and critical analyses of human-robot interaction, the course provides opportunities to engage with key methodologies, and practical applications, equipping students with a thorough understanding of this rapidly evolving discipline.",
+            "prereqs": "CPSC281 minimum grade of C-"
+        },
+        {
+            "id": "CPSC682",
+            "title": "Computer Science 682 - Data Structures II",
+            "desc": "External sorting and merging, best case, worst case, and average case estimates, time and space estimates for algorithms studied in CPSC 200-3 and CPSC 281-3.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC690",
+            "title": "Computer Science 690 - Computing Project I",
+            "desc": "This course consists of a large computing project undertaken by the student or by teams of students. Projects will be geared to industrial or research needs and designed to give the senior students first-hand experience in applying their knowledge and skills to the design and implementation of medium to large software systems. Students will employ standard software engineering practices. Regular project team meetings will be held to review project milestones.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC699",
+            "title": "Computer Science 699 - Special Topics",
+            "desc": "The topics for this course vary, depending on student interest and faculty availability. The course may be repeated any number of times, provided all topics are distinct from one another.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC704",
+            "title": "Computer Science 704 - Graduate Seminar in Computer Science",
+            "desc": "This course comprises weekly seminar sessions. Students will investigate and present ideas and results pertaining to current computer science research. The offerings may include presentations of current literature, research methodology, and topics related to students' own research or project work. Students will participate in discussions and critiques of the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. [All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.]",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC706",
+            "title": "Computer Science 706 - Topics in Computer Science Research and Methodology",
+            "desc": "This course is designed to expose graduate students to research methods, principles and design techniques in computer science, which may include: evolution of fundamental ideas in computer science, theoretical foundations, formal techniques in the areas of system specification, design, verification, validation and performance analysis. The course aims to offer methods and principles widely applicable in computer science. Specific applications studied will vary.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC720",
+            "title": "Computer Science 720 - Advanced Programming Languages",
+            "desc": "Topics for this course may include advanced study of general programming language design concepts, formal reasoning about programs and languages, pragmatic evaluation of language properties, and case studies of specfic languages. The course may be used to communicate programming language theory and practice specfic to students' project or thesis research needs.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC741",
+            "title": "Computer Science 741 - Advanced Topics in Distributed Computing",
+            "desc": "This course focuses on exploration of principles of distributed computing through a study of selected advanced topics of research interest to faculty and students.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC760",
+            "title": "Computer Science 760 - Modeling and Simulation",
+            "desc": "This course covers fundamental modeling and simulation concepts and discrete-event systems in particular. The course introduces systems modeling and simulation concepts, basic probability distributions and random numbers, queueing models, and an overview of relevant object oriented concepts. The fundamental concepts and practical simulation techniques for modeling different types of systems are covered. An in-depth study of modeling elements, simulation protocols, and their relationships including verification and validation are discussed. Various distributed systems are introduced as case studies and a significant part of the course and hands-on experience is through simulation projects. Understanding of distributed systems and object-oriented programming concepts and basic probability theory is required.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC790",
+            "title": "Computer Science 790 - Graduate Seminar",
+            "desc": "",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC791",
+            "title": "Computer Science 791 - Advanced Special Topics I",
+            "desc": "This course introduces selected advanced special topics in computer science. The content may vary.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC792",
+            "title": "Computer Science 792 - Advanced Special Topics II",
+            "desc": "This course introduces selected advanced special topics in computer science. The content may vary.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC793",
+            "title": "Computer Science 793 - Master of Science (Computer Science) Project",
+            "desc": "The MSc Project is an extended position paper, report, plan or program that makes a contribution to, or addresses, a major problem or issue in the field of computer science. The development of the project requires the application of original thought to the problem or issue under investigation. The project does not require the development of a research design or research methodology and need not involve the collection of original data. Successful completion of the project is required for graduation in the Master of Science (Computer Science stream) project option. This is a PASS/FAIL course.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
+        },
+        {
+            "id": "CPSC794",
+            "title": "Computer Science 794 - Master of Science (Computer Science) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of computer science. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the computer science thesis stream. This is a PASS/FAIL course.",
+            "prereqs": {
+                "relation": "and",
+                "on": [
+                    "CPSC340 minimum grade of D",
+                    "CPSC281 minimum grade of D"
+                ]
+            }
         }
     ]
 }

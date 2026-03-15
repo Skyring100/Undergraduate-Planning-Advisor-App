@@ -118,19 +118,17 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             prereqs = []
             try:
                 prereqText = subEle[1].find_element(By.TAG_NAME, "ul").text
-                print(prereqText)
+                print("prereqs: " + prereqText)
             except NoSuchElementException:
                 pass
             
-            # just trust this function vro
-            prereq_dict = parse_prereqs(prereqText)
-            print(prereq_dict)
 
 
             #TODO: Parse prereq text to correctly model prereq with JSON object
-            if len(prereqs) != 0:
-                #Temporary fix (do parsing here)
-                prereqs = [prereqText]
+            if prereqText != "":
+                prereq_dict = parse_prereqs(prereqText)
+                print(prereq_dict)
+                prereqs = prereq_dict
                 
 
 
@@ -219,7 +217,10 @@ def parse_prereq_list(prereq_list: list) -> dict:
             except IndexError as e:
                 print(e)
     print("all brackets gone")
+
+    # handle other two cases
     while len(prereq_list) > 1:
+        mod_made = False
         print("parsing " + str(prereq_list))
         for i in range(len(prereq_list)):
             ele = prereq_list[i]
@@ -228,17 +229,37 @@ def parse_prereq_list(prereq_list: list) -> dict:
                 if ele == "and":
                     print("found an AND at " + str(i))
                     prereq_list[i-1:i+2] = [{"relation": "and", "on": [prereq_list[i-1], prereq_list[i+1]]}]
+                    mod_made = True
                     break
                 elif ele == "or":
                     print("found an OR at " + str(i))
                     prereq_list[i-1:i+2] = [{"relation": "or", "on": [prereq_list[i-1], prereq_list[i+1]]}]
+                    mod_made = True
                     break
             except IndexError as e:
                 print(e)
+        if mod_made == False:
+            time.sleep(1)
+
+    # flatten associativity spikes
+    # (an associativity spike is a deep dict in the form of (object or (object or (object or object))) etc
+    print("flattening associativity spikes in: " + str(prereq_list[0]))
+    ret = prereq_list[0]
+    mod_made = True  # arbitrarily large number
+    while mod_made:  # until we don't make any changes to associativity spikes
+        mod_made = False
+        if type(ret) == dict:
+            for j in ret["on"]:
+                if type(j) == dict and j["relation"] == ret["relation"]:
+                    print(f"spike detected: type {ret['relation']}, element {ret['on'].index(j)}")
+                    k = ret["on"].index(j)
+                    ret["on"][k:k+1] = j["on"]
+                    mod_made = True
+                    break
 
     return prereq_list[0]
 
 scraper = create_webdriver()
 #scrape_all_courses(scraper)
-scrape_all_subject_courses(scraper, "MATH")
+scrape_all_subject_courses(scraper, "CPSC")
 scraper.quit()
