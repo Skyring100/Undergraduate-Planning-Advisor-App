@@ -7,13 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
-import json
-import os
+import json, os, time
 
 COURSE_CODE_FILE = "course_codes.txt"
-#UNBC_COURSE_DATA_FILE = "/data/UNBC_course_data.json"
+#UNBC_COURSE_DATA_FILE = "/app/data/UNBC_course_data.json"
 #TEST JSON FILE, NOT THE FINAL FILE 
-UNBC_COURSE_DATA_FILE = "/data/test.json"
+UNBC_COURSE_DATA_FILE = "/app/data/test.json"
 
 def create_webdriver() -> webdriver.Chrome:
     driver_options = Options()
@@ -123,10 +122,17 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             except NoSuchElementException:
                 pass
             
+            # just trust this function vro
+            prereq_dict = parse_prereqs(prereqText)
+            print(prereq_dict)
+
+
             #TODO: Parse prereq text to correctly model prereq with JSON object
             if len(prereqs) != 0:
                 #Temporary fix (do parsing here)
                 prereqs = [prereqText]
+                
+
 
             
 
@@ -166,8 +172,71 @@ def scrape_all_courses(driver : webdriver.Chrome):
         print(line)
         scrape_all_subject_courses(driver, line)
 
+def parse_prereqs(prereqText: str) -> dict:
+    # returns a dict which can subsequently be converted to json
+    prereq_list = list(
+            filter(
+                (lambda x: x != ""), 
+                map(
+                    (lambda x: x.strip()), 
+                    prereqText
+                    .replace("\n", " ")
+                    .replace(" or ", "~or~")
+                    .replace(" and ", "~and~")
+                    .replace("(", "~(~")
+                    .replace(")","~)~")
+                    .split("~")
+                    )
+                )
+            )
+    return parse_prereq_list(prereq_list)
+    
+def parse_prereq_list(prereq_list: list) -> dict:
+    print("parsing " + str(prereq_list))
+    # handle all brackets first
+    while any(x in prereq_list for x in "()"):
+        print("debracketing " + str(prereq_list))
+        for i in range(len(prereq_list)):
+            ele = prereq_list[i]
+            try:
+                # recursive case handled here
+                if ele == "(":
+                    print("found a bracket at " + str(i))
+                    found = False
+                    # match bracket, accounting for nesting
+                    nest_level = 1
+                    for j in range(i + 1, len(prereq_list)):
+                        if prereq_list[j] == "(":
+                            nest_level += 1
+                        elif prereq_list[j] == ")":
+                            nest_level -= 1
+                            if nest_level == 0:
+                                prereq_list[i:j+1] = [parse_prereq_list(prereq_list[i+1:j])]
+                                print("found the bracket at " + str(i) + "'s match at " + str(j))
+                                found = True
+                                break
+                    if found: break
+            except IndexError as e:
+                print(e)
+    print("all brackets gone")
+    while len(prereq_list) > 1:
+        print("parsing " + str(prereq_list))
+        for i in range(len(prereq_list)):
+            ele = prereq_list[i]
+            try:
+                # recursive case handled here
+                if ele == "and":
+                    print("found an AND at " + str(i))
+                    prereq_list[i-1:i+2] = [{"relation": "and", "on": [prereq_list[i-1], prereq_list[i+1]]}]
+                    break
+                elif ele == "or":
+                    print("found an OR at " + str(i))
+                    prereq_list[i-1:i+2] = [{"relation": "or", "on": [prereq_list[i-1], prereq_list[i+1]]}]
+                    break
+            except IndexError as e:
+                print(e)
 
-
+    return prereq_list[0]
 
 scraper = create_webdriver()
 #scrape_all_courses(scraper)

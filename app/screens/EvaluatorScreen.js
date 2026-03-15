@@ -1,7 +1,7 @@
 /*Evaluator page will show the degree evaluation details.*/
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -13,6 +13,8 @@ import completedCourses from '../data/completed_courses.json'
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/AddCourseButton.js";
+import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
+import {ReText} from "react-native-redash";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
@@ -25,7 +27,16 @@ export default function EvaluatorScreen() {
 
     // TODO: make the user context supply these next few variables
     const progressBarPercent = (completedCourses.length/possibleCourses.length)*100;
-    const [percentage, setPercentage] = useState(progressBarPercent+"%");
+    const number = useSharedValue(0);
+    const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(2) + "%";});
+
+    useEffect(() => {
+        number.value = withTiming(progressBarPercent, {
+            duration: 2000,
+            easing: Easing.out(Easing.exp),
+        })
+    }, []);
+
 
     // take all the courses the user has every prerequisite for completed
     const nextCourses = possibleCourses.filter(
@@ -43,10 +54,10 @@ export default function EvaluatorScreen() {
                     Let's see where you're at
                 </Text>
         
-                <ProgressBar full={percentage}/>
+                <ProgressBar full={progressBarPercent}/>
                 <View style={styles.variableSizeTextHolder}>
                     <Text style={themeText}>You're </Text>
-                    <Text style={[styles.bigPercentage, themeText]}>{percentage}</Text> 
+                    <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />
                     <Text style={themeText}> of the way to your degree!</Text>
                 </View>
                 <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{
@@ -56,16 +67,24 @@ export default function EvaluatorScreen() {
                 <View style={styles.listContainer}>
                         {
                             nextCourses.map(course => (
-                                <View key={course.id} style={{
+                                <Animated.View key={course.id} style={{
                                     width: width * 0.8,
                                     alignItems: "left",
                                     borderWidth: 1,
                                     borderColor: "#777777",
                                     padding: 5,
                                     borderRadius: 10,
-                                }}>
+                                    }}
+                                    entering={SlideInDown.duration(1000).easing(Easing.out(Easing.exp)) }
+                                >
                                 {/* edit this JSX to change how the courses are displayed */}
-                                    <View style={{flexGrow: 1, alignItems: "center", justifyContent: "space-between",}}>
+                                    <Animated.View 
+                                        style={{
+                                            flexGrow: 1, 
+                                            alignItems: "center", 
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
                                         <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
                                             {course.id}
                                         </Text>
@@ -96,8 +115,8 @@ export default function EvaluatorScreen() {
                                             {course.desc}
                                         </Text>
                                         <AddCourseButton name={course.id + ": " + course.title} />
-                                    </View>
-                               </View>
+                                    </Animated.View>
+                               </Animated.View>
                                 )
                             )
                         }

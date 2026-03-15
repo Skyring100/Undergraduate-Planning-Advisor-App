@@ -4,6 +4,7 @@
 import {View, StyleSheet, Text, ScrollView, useWindowDimensions } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useThemeStore, useThemeBackground, mainDark, mainLight, fourthLight, borderColour, isDarkMode} from '../contexts/ThemeContext';
+import Animated, {SlideInLeft, Easing} from "react-native-reanimated";
 
 export default function ProgressBar({full}) {
     const themeBg = useThemeBackground();
@@ -12,13 +13,15 @@ export default function ProgressBar({full}) {
         <View style={{...styles.shell,
             backgroundColor: isDarkMode ? "#000000" : "#FFFFFF",
         }}>
-            <View style={[styles.filling, {width: full, 
+            <Animated.View style={[styles.filling, {width: full + "%", 
                 backgroundColor: isDarkMode ? mainLight[indexColour] : mainDark[indexColour],
-            }]}>
+            }]}
+            entering={SlideInLeft.duration(2000).easing(Easing.out(Easing.exp))}
+            >
                 <Text>
                     {/* unsure why this is what makes the height work but it does */}
                 </Text> 
-            </View>
+            </Animated.View>
         </View>
     );
 }

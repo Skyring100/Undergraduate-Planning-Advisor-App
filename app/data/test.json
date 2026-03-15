@@ -1,5 +1,1534 @@
 {
-    "all_courses":[
-        
+    "all_courses": [
+        {
+            "id": "MATH100",
+            "title": "Mathematics 100 - Calculus I",
+            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH101",
+            "title": "Mathematics 101 - Calculus II",
+            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH115",
+            "title": "Mathematics 115 - Precalculus",
+            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH150",
+            "title": "Mathematics 150 - Finite Math for Busn & Econ",
+            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH152",
+            "title": "Mathematics 152 - Calculus for Non-majors",
+            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH190",
+            "title": "Mathematics 190 - Math for Elementary Educators",
+            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH200",
+            "title": "Mathematics 200 - Calculus III",
+            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH202",
+            "title": "Mathematics 202 - Multivariable Calculus I",
+            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH204",
+            "title": "Mathematics 204 - Multivariable Calculus II",
+            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH220",
+            "title": "Mathematics 220 - Linear Algebra",
+            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH224",
+            "title": "Mathematics 224 - Foundations of Modern Math",
+            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH230",
+            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
+            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH301",
+            "title": "Mathematics 301 - Introduction to Complex Analysis",
+            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH302",
+            "title": "Mathematics 302 - Introductory Mathematical Analysis",
+            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH320",
+            "title": "Mathematics 320 - Survey of Algebra",
+            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH326",
+            "title": "Mathematics 326 - Advanced Linear Algebra",
+            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH335",
+            "title": "Mathematics 335 - Introduction to Numerical Methods",
+            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH336",
+            "title": "Mathematics 336 - Intermediate Differential Equations",
+            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH402",
+            "title": "Mathematics 402 - Functional Analysis",
+            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH403",
+            "title": "Mathematics 403 - Measure Theory & Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH405",
+            "title": "Mathematics 405 - Topology",
+            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH409",
+            "title": "Mathematics 409 - Mathematical Methods in Physics",
+            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH420",
+            "title": "Mathematics 420 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH421",
+            "title": "Mathematics 421 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH435",
+            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
+            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH436",
+            "title": "Mathematics 436 - Partial Differential Equations 1",
+            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH450",
+            "title": "Mathematics 450 - Combinatorics",
+            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH455",
+            "title": "Mathematics 455 - Graphs & Algorithms",
+            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH480",
+            "title": "Mathematics 480 - Number Theory",
+            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH481",
+            "title": "Mathematics 481 - Analytic Number Theory",
+            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH499",
+            "title": "Mathematics 499 - Special Topics in Mathematics",
+            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH530",
+            "title": "Mathematics 530 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH602",
+            "title": "Mathematics 602 - Functional Analysis",
+            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH603",
+            "title": "Mathematics 603 - Measure Theory and Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
+            "prereqs": []
+        },
+        {
+            "id": "MATH620",
+            "title": "Mathematics 620 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH621",
+            "title": "Mathematics 621 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH635",
+            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
+            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH636",
+            "title": "Mathematics 636 - Partial Differential Equations 1",
+            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH650",
+            "title": "Mathematics 650 - Combinatorics",
+            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH655",
+            "title": "Mathematics 655 - Graphs and Algorithms",
+            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH681",
+            "title": "Mathematics 681 - Analytic Number Theory",
+            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH699",
+            "title": "Mathematics 699 - Special Topics in Mathematics",
+            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH700",
+            "title": "Mathematics 700 - Topics in Functional Analysis",
+            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH704",
+            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
+            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH705",
+            "title": "Mathematics 705 - Complex Analysis",
+            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH720",
+            "title": "Mathematics 720 - Topics in Algebra and Logic",
+            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH725",
+            "title": "Mathematics 725 - Topics in Topology",
+            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH731",
+            "title": "Mathematics 731 - Topics in Applied Mathematics",
+            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH740",
+            "title": "Mathematics 740 - Advanced Topics in Mathematics",
+            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH793",
+            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
+            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH794",
+            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH100",
+            "title": "Mathematics 100 - Calculus I",
+            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH101",
+            "title": "Mathematics 101 - Calculus II",
+            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH115",
+            "title": "Mathematics 115 - Precalculus",
+            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH150",
+            "title": "Mathematics 150 - Finite Math for Busn & Econ",
+            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH152",
+            "title": "Mathematics 152 - Calculus for Non-majors",
+            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH190",
+            "title": "Mathematics 190 - Math for Elementary Educators",
+            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH200",
+            "title": "Mathematics 200 - Calculus III",
+            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH202",
+            "title": "Mathematics 202 - Multivariable Calculus I",
+            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH204",
+            "title": "Mathematics 204 - Multivariable Calculus II",
+            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH220",
+            "title": "Mathematics 220 - Linear Algebra",
+            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH224",
+            "title": "Mathematics 224 - Foundations of Modern Math",
+            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH230",
+            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
+            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH301",
+            "title": "Mathematics 301 - Introduction to Complex Analysis",
+            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH302",
+            "title": "Mathematics 302 - Introductory Mathematical Analysis",
+            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH320",
+            "title": "Mathematics 320 - Survey of Algebra",
+            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH326",
+            "title": "Mathematics 326 - Advanced Linear Algebra",
+            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH335",
+            "title": "Mathematics 335 - Introduction to Numerical Methods",
+            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH336",
+            "title": "Mathematics 336 - Intermediate Differential Equations",
+            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH402",
+            "title": "Mathematics 402 - Functional Analysis",
+            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH403",
+            "title": "Mathematics 403 - Measure Theory & Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH405",
+            "title": "Mathematics 405 - Topology",
+            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH409",
+            "title": "Mathematics 409 - Mathematical Methods in Physics",
+            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH420",
+            "title": "Mathematics 420 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH421",
+            "title": "Mathematics 421 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH435",
+            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
+            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH436",
+            "title": "Mathematics 436 - Partial Differential Equations 1",
+            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH450",
+            "title": "Mathematics 450 - Combinatorics",
+            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH455",
+            "title": "Mathematics 455 - Graphs & Algorithms",
+            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH480",
+            "title": "Mathematics 480 - Number Theory",
+            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH481",
+            "title": "Mathematics 481 - Analytic Number Theory",
+            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH499",
+            "title": "Mathematics 499 - Special Topics in Mathematics",
+            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH530",
+            "title": "Mathematics 530 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH602",
+            "title": "Mathematics 602 - Functional Analysis",
+            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH603",
+            "title": "Mathematics 603 - Measure Theory and Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
+            "prereqs": []
+        },
+        {
+            "id": "MATH620",
+            "title": "Mathematics 620 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH621",
+            "title": "Mathematics 621 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH635",
+            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
+            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH636",
+            "title": "Mathematics 636 - Partial Differential Equations 1",
+            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH650",
+            "title": "Mathematics 650 - Combinatorics",
+            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH655",
+            "title": "Mathematics 655 - Graphs and Algorithms",
+            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH681",
+            "title": "Mathematics 681 - Analytic Number Theory",
+            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH699",
+            "title": "Mathematics 699 - Special Topics in Mathematics",
+            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH700",
+            "title": "Mathematics 700 - Topics in Functional Analysis",
+            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH704",
+            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
+            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH705",
+            "title": "Mathematics 705 - Complex Analysis",
+            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH720",
+            "title": "Mathematics 720 - Topics in Algebra and Logic",
+            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH725",
+            "title": "Mathematics 725 - Topics in Topology",
+            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH731",
+            "title": "Mathematics 731 - Topics in Applied Mathematics",
+            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH740",
+            "title": "Mathematics 740 - Advanced Topics in Mathematics",
+            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH793",
+            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
+            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH794",
+            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH100",
+            "title": "Mathematics 100 - Calculus I",
+            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH101",
+            "title": "Mathematics 101 - Calculus II",
+            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH115",
+            "title": "Mathematics 115 - Precalculus",
+            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH150",
+            "title": "Mathematics 150 - Finite Math for Busn & Econ",
+            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH152",
+            "title": "Mathematics 152 - Calculus for Non-majors",
+            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH190",
+            "title": "Mathematics 190 - Math for Elementary Educators",
+            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH200",
+            "title": "Mathematics 200 - Calculus III",
+            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH202",
+            "title": "Mathematics 202 - Multivariable Calculus I",
+            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH204",
+            "title": "Mathematics 204 - Multivariable Calculus II",
+            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH220",
+            "title": "Mathematics 220 - Linear Algebra",
+            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH224",
+            "title": "Mathematics 224 - Foundations of Modern Math",
+            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH230",
+            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
+            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH301",
+            "title": "Mathematics 301 - Introduction to Complex Analysis",
+            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH302",
+            "title": "Mathematics 302 - Introductory Mathematical Analysis",
+            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH320",
+            "title": "Mathematics 320 - Survey of Algebra",
+            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH326",
+            "title": "Mathematics 326 - Advanced Linear Algebra",
+            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH335",
+            "title": "Mathematics 335 - Introduction to Numerical Methods",
+            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH336",
+            "title": "Mathematics 336 - Intermediate Differential Equations",
+            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH402",
+            "title": "Mathematics 402 - Functional Analysis",
+            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH403",
+            "title": "Mathematics 403 - Measure Theory & Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH405",
+            "title": "Mathematics 405 - Topology",
+            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH409",
+            "title": "Mathematics 409 - Mathematical Methods in Physics",
+            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH420",
+            "title": "Mathematics 420 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH421",
+            "title": "Mathematics 421 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH435",
+            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
+            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH436",
+            "title": "Mathematics 436 - Partial Differential Equations 1",
+            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH450",
+            "title": "Mathematics 450 - Combinatorics",
+            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH455",
+            "title": "Mathematics 455 - Graphs & Algorithms",
+            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH480",
+            "title": "Mathematics 480 - Number Theory",
+            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH481",
+            "title": "Mathematics 481 - Analytic Number Theory",
+            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH499",
+            "title": "Mathematics 499 - Special Topics in Mathematics",
+            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH530",
+            "title": "Mathematics 530 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH602",
+            "title": "Mathematics 602 - Functional Analysis",
+            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH603",
+            "title": "Mathematics 603 - Measure Theory and Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
+            "prereqs": []
+        },
+        {
+            "id": "MATH620",
+            "title": "Mathematics 620 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH621",
+            "title": "Mathematics 621 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH635",
+            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
+            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH636",
+            "title": "Mathematics 636 - Partial Differential Equations 1",
+            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH650",
+            "title": "Mathematics 650 - Combinatorics",
+            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH655",
+            "title": "Mathematics 655 - Graphs and Algorithms",
+            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH681",
+            "title": "Mathematics 681 - Analytic Number Theory",
+            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH699",
+            "title": "Mathematics 699 - Special Topics in Mathematics",
+            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH700",
+            "title": "Mathematics 700 - Topics in Functional Analysis",
+            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH704",
+            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
+            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH705",
+            "title": "Mathematics 705 - Complex Analysis",
+            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH720",
+            "title": "Mathematics 720 - Topics in Algebra and Logic",
+            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH725",
+            "title": "Mathematics 725 - Topics in Topology",
+            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH731",
+            "title": "Mathematics 731 - Topics in Applied Mathematics",
+            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH740",
+            "title": "Mathematics 740 - Advanced Topics in Mathematics",
+            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH793",
+            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
+            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH794",
+            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH100",
+            "title": "Mathematics 100 - Calculus I",
+            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH101",
+            "title": "Mathematics 101 - Calculus II",
+            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH115",
+            "title": "Mathematics 115 - Precalculus",
+            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH150",
+            "title": "Mathematics 150 - Finite Math for Busn & Econ",
+            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH152",
+            "title": "Mathematics 152 - Calculus for Non-majors",
+            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH190",
+            "title": "Mathematics 190 - Math for Elementary Educators",
+            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH200",
+            "title": "Mathematics 200 - Calculus III",
+            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH202",
+            "title": "Mathematics 202 - Multivariable Calculus I",
+            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH204",
+            "title": "Mathematics 204 - Multivariable Calculus II",
+            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH220",
+            "title": "Mathematics 220 - Linear Algebra",
+            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH224",
+            "title": "Mathematics 224 - Foundations of Modern Math",
+            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH230",
+            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
+            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH301",
+            "title": "Mathematics 301 - Introduction to Complex Analysis",
+            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH302",
+            "title": "Mathematics 302 - Introductory Mathematical Analysis",
+            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH320",
+            "title": "Mathematics 320 - Survey of Algebra",
+            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH326",
+            "title": "Mathematics 326 - Advanced Linear Algebra",
+            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH335",
+            "title": "Mathematics 335 - Introduction to Numerical Methods",
+            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH336",
+            "title": "Mathematics 336 - Intermediate Differential Equations",
+            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH402",
+            "title": "Mathematics 402 - Functional Analysis",
+            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH403",
+            "title": "Mathematics 403 - Measure Theory & Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH405",
+            "title": "Mathematics 405 - Topology",
+            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH409",
+            "title": "Mathematics 409 - Mathematical Methods in Physics",
+            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH420",
+            "title": "Mathematics 420 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH421",
+            "title": "Mathematics 421 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH435",
+            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
+            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH436",
+            "title": "Mathematics 436 - Partial Differential Equations 1",
+            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH450",
+            "title": "Mathematics 450 - Combinatorics",
+            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH455",
+            "title": "Mathematics 455 - Graphs & Algorithms",
+            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH480",
+            "title": "Mathematics 480 - Number Theory",
+            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH481",
+            "title": "Mathematics 481 - Analytic Number Theory",
+            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH499",
+            "title": "Mathematics 499 - Special Topics in Mathematics",
+            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH530",
+            "title": "Mathematics 530 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH602",
+            "title": "Mathematics 602 - Functional Analysis",
+            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH603",
+            "title": "Mathematics 603 - Measure Theory and Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
+            "prereqs": []
+        },
+        {
+            "id": "MATH620",
+            "title": "Mathematics 620 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH621",
+            "title": "Mathematics 621 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH635",
+            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
+            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH636",
+            "title": "Mathematics 636 - Partial Differential Equations 1",
+            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH650",
+            "title": "Mathematics 650 - Combinatorics",
+            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH655",
+            "title": "Mathematics 655 - Graphs and Algorithms",
+            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH681",
+            "title": "Mathematics 681 - Analytic Number Theory",
+            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH699",
+            "title": "Mathematics 699 - Special Topics in Mathematics",
+            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH700",
+            "title": "Mathematics 700 - Topics in Functional Analysis",
+            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH704",
+            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
+            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH705",
+            "title": "Mathematics 705 - Complex Analysis",
+            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH720",
+            "title": "Mathematics 720 - Topics in Algebra and Logic",
+            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH725",
+            "title": "Mathematics 725 - Topics in Topology",
+            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH731",
+            "title": "Mathematics 731 - Topics in Applied Mathematics",
+            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH740",
+            "title": "Mathematics 740 - Advanced Topics in Mathematics",
+            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH793",
+            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
+            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH794",
+            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH100",
+            "title": "Mathematics 100 - Calculus I",
+            "desc": "This course is an introduction to the calculus of one variable, primarily for majors and students in the sciences. Topics include functions of one variable; inverses; limits; continuity; the difference quotient and derivatives; rules for differentiation; differentiability; the mean value theorem; the differential; derivatives of trigonometric, logarithmic and exponential functions; l\u2019H\u00f4pital\u2019s rule; higher derivatives; extrema; curve sketching; Newton\u2019s method; antiderivatives; definite integrals; the fundamental theorem of calculus; integrals of elementary functions; area between curves; and applications of integration. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH101",
+            "title": "Mathematics 101 - Calculus II",
+            "desc": "This course focuses on integral calculus for a single variable. The course covers the definition of the natural logarithm as an integral and the exponential function as its inverse, integration by parts, techniques of integration, volumes by slicing and shell techniques, improper integrals, numerical integration, and applications of integration (e.g., computing arc lengths, surface areas, moments and centres of mass), calculus of parametric curves and polar curves with special emphasis on applications of integration in computing areas and arc lengths in polar coordinates. It also covers sequences, numerical series, power series, and Taylor\u2019s theorem. Please note: You must register separately in lecture and lab components.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH115",
+            "title": "Mathematics 115 - Precalculus",
+            "desc": "This course examines algebraic manipulation, solutions of algebraic equations, functions, inverses, graphing, and analytic geometry. This course includes a mandatory tutorial.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH150",
+            "title": "Mathematics 150 - Finite Math for Busn & Econ",
+            "desc": "This course is offered primarily for students in programs offered by the School of Business and the Department of Economics. The course covers functions and graphs, linear systems of equations, matrix notation and properties, matrix inversion, linear programming, sets, counting and probability, and an introduction to actuarial mathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH152",
+            "title": "Mathematics 152 - Calculus for Non-majors",
+            "desc": "This course covers limits, the derivative, techniques of differentiation, exponential functions and exponential growth, maxima and minima, introductory curve sketching, introduction to definite and indefinite integrals and their properties, integration by substitution, partial derivatives, and optimization of functions of several variables, with applications in the social and physical sciences. Applications may vary among sections, depending on students' disciplines. This course is not open to MATH or CPSC majors.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH190",
+            "title": "Mathematics 190 - Math for Elementary Educators",
+            "desc": "This course develops an understanding of mathematical concepts and relationships used in the elementary school curriculum. The content focus is on numbers and number systems, patterns and relationships, shapes and space, and statistics and probability. Problem solving and deductive reasoning are stressed throughout the course. Students who have taken MATH 100, MATH 105, MATH 152 or equivalent require permission of the Chair.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH200",
+            "title": "Mathematics 200 - Calculus III",
+            "desc": "This course emphasizes the calculus of vector-valued functions of several variables. Topics include: vectors in two- and three-dimensional space; dot and cross products; lines and planes in space; cylindrical and spherical co-ordinates; curves given parametrically; surfaces and curves in space, directional derivatives, the gradient, tangent vectors and tangent planes, the chain rule; the topology of Euclidean space; optimization problems for functions of several variables; vector fields; line integrals; surface integrals; the theorems of Green, Gauss, and Stokes; potential functions; and conservative fields.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH202",
+            "title": "Mathematics 202 - Multivariable Calculus I",
+            "desc": "This course focuses on functions of several variables, analytic geometry, and their utility. It starts with a review of area and arclength in polar coordinates, and lines and planes in space. The course covers cylindrical and spherical coordinates, quadric surfaces, vector-valued functions, and arclength and curvature of space curves. Topics in this course also include differentiation of functions of several variables, tangent planes and linear approximations, the chain rule, minima/maxima, and Lagrange multipliers. Lastly, the course covers double and triple integrals, applications, and change of variables in multiple integrals.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH204",
+            "title": "Mathematics 204 - Multivariable Calculus II",
+            "desc": "This course focuses on vector calculus and power series. The course consists of two major parts. The first part addresses Green\u2019s theorem, Stokes\u2019s formula and the divergence theorem (Gauss\u2019s formula), including vector fields, line integrals, conservative vector fields, divergence and curl, parametric surfaces, and surface integrals of vector or scalar fields. Applications include computing the mass flow rate, the surface area of a parametric surface and the volume of a three-dimensional body via Stokes\u2019s or Gauss\u2019s formula. The other part of the course deals with power series, their convergence, and their use in approximating functions via Taylor\u2019s theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH220",
+            "title": "Mathematics 220 - Linear Algebra",
+            "desc": "This course covers systems of linear equations, matrix algebra, determinants, vector geometry, vector spaces, eigenvalues and diagonalization.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH224",
+            "title": "Mathematics 224 - Foundations of Modern Math",
+            "desc": "This course develops the essential components of Zermelo-Fraenkel set theory and from these ideas constructs the standard number osystems. Topics include basic logic and methods of proof, axioms of set theory, mathematical induction, the natural numbers, the integers, and the rational, real, and complex number systems, epsilon-delta arguments, and rigourous development of the theorems of elementary calculus.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH230",
+            "title": "Mathematics 230 - Ordinary Differential Equations and Boundary Value Problems",
+            "desc": "This course introduces basic theory and application of ordinary differential equations and boundary value problems. Topics include: first order differential equations (separable, linear, homogeneous, Bernoulli and exact equations); linear second order and higher order equations (linear independent solutions, method of undetermined coefficients and variation of parameters); linear systems of ordinary differential equations; basic numerical methods (Euler and Runge-Kutta methods); and solutions to linear partial differential equations (heat, wave, Laplace\u2019s equation) using separation of variables and Fourier series.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH301",
+            "title": "Mathematics 301 - Introduction to Complex Analysis",
+            "desc": "This course in an introduction to complex analysis. Topics include complex numbers and topology of the complex plane, theory of analytic functions, precise definition of limit and continuity, harmonic functions, contour integration, Cauchy's integral theorem and integral formula, bounds for analytic functions and applications. Taylor and Laurent expansions of analytic functions, zeros and singularities of analytic functions, and residue theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH302",
+            "title": "Mathematics 302 - Introductory Mathematical Analysis",
+            "desc": "This course develops the essential components of metric space topology and the related ideas of convergence including convergence of sequences and series of functions. Topics include open, closed, bounded and compacted sets in a metric space, the Bozano-Weierstrass and Heine-Borel Theorems, continuous and uniformly continuous functions, and uniform convergence.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH320",
+            "title": "Mathematics 320 - Survey of Algebra",
+            "desc": "This course introduces the standard algebraic structures, their properties and applications. Topics include: equivalence relations, elementary group theory, finite groups, cyclic groups, permutation groups, group homomorphisms, group products, the fundamental theorem of finite Abelian groups, Sylow theorems, elementary ring theory, ring homomorphisms, ring products, and construction of new algebraic structures from known structures.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH326",
+            "title": "Mathematics 326 - Advanced Linear Algebra",
+            "desc": "Topics include abstract treatment of vector spaces, linear transformations, the Cayley-Hamilton theorem, inner product spaces, Gram-Schmidt orthogonalization, rational and Jordan canonical forms, and the spectral theorem.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH335",
+            "title": "Mathematics 335 - Introduction to Numerical Methods",
+            "desc": "This course introduces basic theory and application of numerical methods for solving fundamental computational problems in science and engineering. Topics include floating point numbers and error analysis; root finding; interpolation; numerical differentiation and integration; numerical methods for ordinary differential equations; and numerical methods for solving linear systems. This course involves programming and mathematical analysis of numerical methods.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH336",
+            "title": "Mathematics 336 - Intermediate Differential Equations",
+            "desc": "This course is a continuation of MATH 230-3 and is designed to increase the depth and breadth of students' knowledge pertaining to differential equations. Topics include existence and uniqueness theory for ordinary differential equations, series solutions of differential equations, linear system theory, phase plane analysis and stability, boundary value problems review of Fourier Series with additional applications to boundary value problems for the Heat Equation, Wave Equation and Laplace's Equation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH402",
+            "title": "Mathematics 402 - Functional Analysis",
+            "desc": "This course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH403",
+            "title": "Mathematics 403 - Measure Theory & Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH405",
+            "title": "Mathematics 405 - Topology",
+            "desc": "This course considers open and closed sets, Hausdorff and other topologies, bases and sub-bases, continuous functions connectivity, product and quotient spaces, the Tychonoff and Urysohn lemmas, metrization, and compact spaces.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH409",
+            "title": "Mathematics 409 - Mathematical Methods in Physics",
+            "desc": "This course surveys of the methods and techniques involved in the formulation and solutions of physics problems. Topics include matrix algebra and group theory, eigenvalue problems, differential equations, functions of a complex variable, Green's functions, Fourier series, integral equations, calculus of variations, and tensor analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH420",
+            "title": "Mathematics 420 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH421",
+            "title": "Mathematics 421 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH435",
+            "title": "Mathematics 435 - Numerical Methods for Partial Differential Equations",
+            "desc": "This course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH436",
+            "title": "Mathematics 436 - Partial Differential Equations 1",
+            "desc": "This is an introductory course on partial differential equations (PDE). The main focus is on PDE models of first and second order equations arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH450",
+            "title": "Mathematics 450 - Combinatorics",
+            "desc": "This course is an introduction to combinatorics. Topics include counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and applications.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH455",
+            "title": "Mathematics 455 - Graphs & Algorithms",
+            "desc": "This course is an introduction to graphs and algorithms. Topics include: basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH480",
+            "title": "Mathematics 480 - Number Theory",
+            "desc": "This course is an introduction to Number Theory. Topics include: the integers, divisibility, Euclidean algorithm, primes, unique factorization, congruences, systems of linear congruences, Euler-Fermat Theorem, multiplicative functions, quadratic residues and reciprocity, nonlinear Diophantine equations.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH481",
+            "title": "Mathematics 481 - Analytic Number Theory",
+            "desc": "This is a first course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH499",
+            "title": "Mathematics 499 - Special Topics in Mathematics",
+            "desc": "The topic for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH530",
+            "title": "Mathematics 530 - Undergraduate Thesis",
+            "desc": "This undergraduate thesis allows students to examine and research a topic in the field of mathematics. Students must have completed at least 90 credit hours and be a Mathematics major. This thesis may be taken in one or two semesters. MATH 530 is normally taken over two semesters and requires that a student find an Undergraduate Thesis research supervisor. Therefore, students are encouraged to apply to potential supervisors well in advance of completing 90 credit hours. This course is taken for a total of 6 credit hours.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH602",
+            "title": "Mathematics 602 - Functional Analysis",
+            "desc": "This advanced course deals with analysis on structures varying from metric spaces to normed and Hilbert spaces. Topics include the contraction mapping principle, applications of fixed-point theorems to differential equations, bounded linear operators between normed vector spaces, Banach spaces, duality, Riesz representation theorem, and compact linear maps and their spectra. The course also covers the Fourier transform and shows some of its applications in thermodynamics and diffusion.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH603",
+            "title": "Mathematics 603 - Measure Theory and Integration",
+            "desc": "This course focuses on the development and properties of Lebesgue measure and the Lebesgue integral, with generalization to integration in abstract measurable spaces. Topics include outer measure, measurable sets and Lebesgue measure, measurable functions, differentiation of integrals, and the extension of these concepts to more general settings",
+            "prereqs": []
+        },
+        {
+            "id": "MATH620",
+            "title": "Mathematics 620 - Structure of Groups & Rings",
+            "desc": "Advanced course in group theory and ring theory. Homomorphism theorems for groups, rings and R-modules, Sylow theorems, short exact sequences, chain conditions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH621",
+            "title": "Mathematics 621 - Field Theory",
+            "desc": "Topics discussed will include: fields, field extensions, splitting fields, automorphism group, Galois Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH635",
+            "title": "Mathematics 635 - Numerical Methods for Partial Differential Equations",
+            "desc": "This advanced course introduces the theory and application of numerical methods for partial differential equations for science and engineering. Programming and mathematical analysis of numerical methods are emphasized. Topics include methods for solving linear and nonlinear systems (direct and iterative methods), initial value problems, and boundary value problems (finite difference, spectral, finite volume, and finite element methods).",
+            "prereqs": []
+        },
+        {
+            "id": "MATH636",
+            "title": "Mathematics 636 - Partial Differential Equations 1",
+            "desc": "This is an advanced course in deterministic studies of partial differential equations (PDE). The main focus is on linear PDE models of first and second order arising from various disciplines. The course introduces analytic techniques related to three classical types of PDE: elliptic, parabolic and hyperbolic. Topics include: method of characteristics; Sobolev spaces; distributional derivatives; variational methods; maximum principle; Harnack inequalities; and qualitative properties of solutions to certain models.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH650",
+            "title": "Mathematics 650 - Combinatorics",
+            "desc": "This course is an introduction to Combinatorics. Topics include: counting principles, principle of inclusion and exclusion, generating functions, graph theory and applications, combinatorial structures, combinatorial optimization and application.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH655",
+            "title": "Mathematics 655 - Graphs and Algorithms",
+            "desc": "Topics are chosen from basic graph concepts, flows and connectivity, trees, matchings and factors, graph colouring, scheduling, planar graphs, and algorithms.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH681",
+            "title": "Mathematics 681 - Analytic Number Theory",
+            "desc": "This is an advanced course in analytic number theory. This course covers the following topics, with other topics as time permits: arithmetic functions and their average orders; prime counting functions; elementary theorems on the distribution of prime numbers; Dirichlet characters; Dirichlet theorem on primes in arithmetic progressions; Dirichlet series and Euler products; analytic properties of the Riemann zeta function and Dirichlet L-functions; the prime number theorem; and the prime number theorem in arithmetic progressions.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH699",
+            "title": "Mathematics 699 - Special Topics in Mathematics",
+            "desc": "The topics for this course will vary, depending on student interest and faculty availability.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH700",
+            "title": "Mathematics 700 - Topics in Functional Analysis",
+            "desc": "Topics may include operators on Hilbert spaces, Banach space theory, operator analysis.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH704",
+            "title": "Mathematics 704 - Graduate Seminar in Mathematics",
+            "desc": "This course is comprised of weekly seminar sessions. Students will investigate and present ideas and results pertaining to current research in mathematics. The offerings may include presentations of current literature, research methodology, and topics related to students\u2019 own research or project work. Students will participate in discussions and critique the work presented. MSc students are required to attend and participate in all seminar sessions to obtain credit for the course. This is a PASS/FAIL course. All MSc students must register in a seminar course twice during their program of studies. It is expected that all MSc students will attend the seminar each semester they are available.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH705",
+            "title": "Mathematics 705 - Complex Analysis",
+            "desc": "Analytic functions, Cauchy-Riemann equations, power series, Liouville theorem, maximum modulus principle, Cauchy's theorem, winding number, calculus of residues, meromorphic functions, conformal mappings, Riemann mapping theorem, analytic continuation.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH720",
+            "title": "Mathematics 720 - Topics in Algebra and Logic",
+            "desc": "Topics may include Universal Algebra, Recursion Theory, Model Theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH725",
+            "title": "Mathematics 725 - Topics in Topology",
+            "desc": "Topics are chosen from topological spaces, Tychonoff Theorem, Tietze extension theorems, Urysohn lemma, compactification, homotopy theory, fundamental group, uniform spaces, and knot theory.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH731",
+            "title": "Mathematics 731 - Topics in Applied Mathematics",
+            "desc": "Topics may include Operations Research, Discrete modelling, Biomathematics.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH740",
+            "title": "Mathematics 740 - Advanced Topics in Mathematics",
+            "desc": "This course permits specialized instruction in the discipline of Mathematics. Topics are chosen depending upon student interest and faculty availability, and topic headings vary from year to year and from section to section. With permission of the Chair, this course may be taken any number of times provided all the topics are distinct.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH793",
+            "title": "Mathematics 793 - Master of Science (Mathematics) Project",
+            "desc": "The MSc project requires the completion of an extended position paper, report, plan or program making a contribution to, or addressing a major issue in, a scientific field. The development of the project requires the application of original thought to the problem or issue under investigation. The non thesis project does not require the development of a research design or research methodology, and need not involve the collection or generation of an original data. This is a PASS/FAIL course.",
+            "prereqs": []
+        },
+        {
+            "id": "MATH794",
+            "title": "Mathematics 794 - Master of Science (Mathematics) Thesis",
+            "desc": "The MSc thesis documents a scientific contribution to the field of Mathematics. Students are expected to conduct original research involving a literature review, development of a research design and methodology, testing and analysis of data, and development of conclusions. Successful defence of the thesis is required for graduation in the Master of Science (Mathematics) thesis stream. This is a PASS/FAIL course.",
+            "prereqs": []
+        }
     ]
 }
