@@ -4,7 +4,6 @@ export const getUserProfile = async (token) => {
   try {
     const url = `${API_BASE_URL}/users/profile`;
     console.log('Get profile API URL:', url);
-    console.log('Starting profile request...');
     
     const response = await fetch(url, {
       method: 'GET',

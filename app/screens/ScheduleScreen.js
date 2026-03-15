@@ -1,7 +1,7 @@
 /*Schedule page will show the weekly schedule of the user.
 It will display the courses in a calendar format with time slots.
 Users can click on each course to view more details about it or add times to their selected courses.*/
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar, CalendarList, WeekCalendar } from 'react-native-calendars';
@@ -11,6 +11,9 @@ import completedCourse from '../data/UNBC_course_data.json';
 import { useThemeText, useThemeBackground, useThemeStore } from "../contexts/ThemeContext";
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Dashboard/PopUp';
+
+import { getSectionsForCourse } from '../services/sectionService';
+
 
 
 
@@ -35,12 +38,19 @@ export default function ScheduleScreen() {
     // const [selectedClass, setSelectedClass] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
 
+    /*
     const sampleSchedule = [
         { 'id': '1', 'start': '2026-03-05', 'time': '01:00', 'duration': '00:20:00', 'note': 'CPSC 100', 'detail': 'First CPSC' },
         { 'id': '2', 'start': '2026-03-05', 'time': '10:30', 'duration': '01:00:00', 'note': 'Math 100', 'detail': 'First Math' },
         { 'id': '3', 'start': '2026-03-05', 'time': '2:40', 'duration': '00:30:00', 'note': 'Anth 100', 'detail': 'First Anth' },
         { 'id': '4', 'start': '2026-03-08', 'time': '3:20', 'duration': '02:00:00', 'note': 'Pysch 100', 'detail': 'First Pysch' }
     ]
+    */
+   var sampleSchedule;
+    useEffect(() => {
+        sampleSchedule = getSectionsForCourse("CPSC100");
+    }, []);
+
 
     const themeText = useThemeText();
     const themeBg = useThemeBackground();

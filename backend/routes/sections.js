@@ -3,9 +3,11 @@ const router = express.Router();
 const sectionStorage = require('../db_manager/sectionStorage')
 
 const getSectionsForCourse = async (req, res) => {
-  const courseID = req.user.courseID;
+  const { courseID } = req.params;
 
-  console.log(`[API] ${new Date().toISOString()} - GET /api/users/profile - User: ${userId}`);
+  console.log(courseID);
+
+  console.log('/:courseID');
 
   const sections = await sectionStorage.getSectionsForCourse(courseID);
 
@@ -30,8 +32,7 @@ const getSectionsForCourse = async (req, res) => {
 
 const getSectionByCRN = async (req, res) => {
   const crn = req.user.crn;
-
-  console.log(`[API] ${new Date().toISOString()} - GET /api/users/profile - User: ${userId}`);
+  console.log('/:crn');
 
   const section = await sectionStorage.getSectionByCRN(crn);
 
@@ -54,6 +55,6 @@ const getSectionByCRN = async (req, res) => {
 };
 
 router.get('/:courseID', getSectionsForCourse);
-router.get('/:crn', getSectionsForCourse);
+router.get('/:crn', getSectionByCRN);
 
 module.exports = router;
