@@ -5,9 +5,7 @@ const sectionStorage = require('../db_manager/sectionStorage')
 const getSectionsForCourse = async (req, res) => {
   const { courseID } = req.params;
 
-  console.log(courseID);
-
-  console.log('/:courseID');
+  console.log(req.url);
 
   const sections = await sectionStorage.getSectionsForCourse(courseID);
 
@@ -27,6 +25,7 @@ const getSectionsForCourse = async (req, res) => {
 
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
+  console.log(result);
 };
 
 

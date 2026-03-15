@@ -15,22 +15,22 @@ import PopUp from '../components/Dashboard/PopUp';
 import { getSectionsForCourse } from '../services/sectionService';
 
 
-
-
 export default function ScheduleScreen() {
-    
-    // const classMap =  sampleSchedule.map(c => (<TouchableOpacity  key={c.id} onPress={classe(c.id)} ><Text style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
+    const [schedule, setSchedule] = useState(null);
+    // const classMap =  schedule.map(c => (<TouchableOpacity  key={c.id} onPress={classe(c.id)} ><Text style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
 
+    /*
     const classe = (id) => {
-       for(let i = 0; i< sampleSchedule.length; i++){
-            if (id === sampleSchedule[i].id){
+       for(let i = 0; i< schedule.length; i++){
+            if (id === schedule[i].id){
                 return(
-                    alert(sampleSchedule[i].detail)
-                    // <PopUp><Text>{sampleSchedule[i].detail}</Text></PopUp>
+                    alert(schedule[i].detail)
+                    // <PopUp><Text>{schedule[i].detail}</Text></PopUp>
                 )
             }
        }
     }
+    */
 
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
@@ -46,12 +46,18 @@ export default function ScheduleScreen() {
         { 'id': '4', 'start': '2026-03-08', 'time': '3:20', 'duration': '02:00:00', 'note': 'Pysch 100', 'detail': 'First Pysch' }
     ]
     */
-   var sampleSchedule;
     useEffect(() => {
-        sampleSchedule = getSectionsForCourse("CPSC100");
+        getSectionsForCourse("CPSC100").then((apiResult) => {
+            if (apiResult.success){
+                setSchedule(apiResult.data);
+            }else{
+                alert("API call was unsuccessful");
+                setSchedule([]);
+            }
+        });
+
     }, []);
-
-
+    
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const { isDarkMode } = useThemeStore();
@@ -108,7 +114,7 @@ export default function ScheduleScreen() {
                     <View style={styles.agenda}>
 
                         {
-                            sampleSchedule.map(c => (<TouchableOpacity onPress={() => classe(c.id)}  key={c.id}><Text  style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
+                            schedule.map(c => (<TouchableOpacity key={c.crn} onPress={() => alert(c.start_time+" - "+c.end_time)}  ><Text  style={{ ...themeText }}>{c.course_id}</Text></TouchableOpacity>))
                         }
 
                     </View>

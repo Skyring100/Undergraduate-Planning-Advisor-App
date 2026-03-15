@@ -4,6 +4,7 @@ const db = initalizeDatabase();
 //Temporary reset for database for testing purposes
 dropTables();
 createTables();
+dummyData();
 
 function initalizeDatabase(){
     return new DatabaseSync(DATABASE_PATH);
@@ -53,7 +54,7 @@ function createTables(){
             instructor_name TEXT,
 
             CHECK (start_time GLOB '[0-9][0-9]:[0-9][0-9]' AND end_time GLOB '[0-9][0-9]:[0-9][0-9]'),
-            CHECK (start_date GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' AND end_date GLOB '[0-9][0-9][0-9][0-9]:[0-9][0-9]:[0-9][0-9]' ),           
+            CHECK (start_date GLOB '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]' AND end_date GLOB '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]' ),           
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         )
     `);
@@ -61,12 +62,20 @@ function createTables(){
 
 function dropTables(){
     db.exec(`
-        DROP TABLE IF EXISTS user;
+        DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
         DROP TABLE IF EXISTS course;
-        DROP TABLE IF EXISTS section;
-        `
-    );
+        DROP TABLE IF EXISTS user;
+    `);
+}
+
+function dummyData(){
+    db.exec(`
+        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java')
+    `);
+    db.exec(`
+        INSERT INTO section(crn, course_id, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', '09:30', '10:50', '2026/03/16', '2026/05/27')
+    `);
 }
 
 export function getDatabaseConnection(){
