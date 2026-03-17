@@ -25,7 +25,7 @@ function createTables(){
             course_id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             credits INTEGER,
-            description TEXT
+            description TEXT,
         )
     `);
 

@@ -190,6 +190,7 @@ def parse_prereqs(prereqText: str) -> dict:
     return parse_prereq_list(prereq_list)
     
 def parse_prereq_list(prereq_list: list) -> dict:
+    print()
     print("parsing " + str(prereq_list))
     # handle all brackets first
     while any(x in prereq_list for x in "()"):
@@ -217,6 +218,7 @@ def parse_prereq_list(prereq_list: list) -> dict:
             except IndexError as e:
                 print(e)
     print("all brackets gone")
+    print()
 
     # handle other two cases
     while len(prereq_list) > 1:
@@ -243,6 +245,7 @@ def parse_prereq_list(prereq_list: list) -> dict:
 
     # flatten associativity spikes
     # (an associativity spike is a deep dict in the form of (object or (object or (object or object))) etc
+    print()
     print("flattening associativity spikes in: " + str(prereq_list[0]))
     ret = prereq_list[0]
     mod_made = True  # arbitrarily large number
@@ -257,7 +260,38 @@ def parse_prereq_list(prereq_list: list) -> dict:
                     mod_made = True
                     break
 
-    return prereq_list[0]
+    # finally, wrap course IDs in objects
+    # this will also be used to split the course's minimum grade off of courses that have one
+    def wrapCourses(current: dict | str) -> dict:
+        if type(current) == dict:
+            if current["relation"] == "single": return current
+            # recurse
+            # wrap the course's children
+            print("Recurring on " + str(current))
+            return {
+                    "relation": current["relation"],
+                    "on": list(map(wrapCourses, current["on"])),
+                    "name": None,
+                }
+        elif type(current) == str:
+            print("Wrapping in single: " + current)
+
+            course_partition = current.split(" minimum grade of ")
+            min_grade = course_partition[1] if len(course_partition) > 1 else "P"
+            # wrap
+            return {
+                    "relation": "single",
+                    "on": None,
+                    "name": course_partition[0],
+                    "min_grade": min_grade,
+                }
+
+    newRet = wrapCourses(ret)
+    print()
+    print("Final prereq list: " + str(newRet))
+    print()
+    print()
+    return newRet
 
 scraper = create_webdriver()
 #scrape_all_courses(scraper)
