@@ -7,12 +7,12 @@ import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
-import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/Evaluator/ProgressBar';
 import possibleCourses from '../data/possible_courses.json'
 import completedCourses from '../data/completed_courses.json'
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
-import AddCourseButton from "../components/AddCourseButton.js";
+import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
 import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
 

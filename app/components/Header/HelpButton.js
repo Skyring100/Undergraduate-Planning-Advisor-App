@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions, Image } from 'react-native';
 
 
@@ -7,9 +6,8 @@ const buttonWidth = screenWidth * 0.2; // 20% of screen
 
 
 
-export default function SettingsButton() {
-    const navigation = useNavigation();
-    const handlePress = ()=>{navigation.navigate('Settings',{})};
+export default function HelpButton({ onPress }) {
+    const handlePress = () => onPress();
     
     return (
         <TouchableOpacity
@@ -17,8 +15,8 @@ export default function SettingsButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Image source={require('../assets/gear.png')}
-                style={{width:40, height:40, backgroundColor: '#ffffff', borderRadius: 100}}/>
+            <Image source={require('../../assets/help.png')}
+                style={{width:40, height:40, borderRadius: 100}}/>
         </TouchableOpacity>
     );
 }
@@ -27,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 30,
-        left: 20
+        right: 20
     },
     buttonText: {
         color: '#fff',

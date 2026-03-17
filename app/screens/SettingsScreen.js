@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import LoginButton from '../components/LoginButton';
-import RegisterButton from '../components/RegisterButton';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import DarkLightButton from '../components/Settings/DarkLightButton';

@@ -3,8 +3,8 @@ import { StyleSheet, Image, View, Text, Button } from 'react-native';
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation, useIsFocused  } from '@react-navigation/native';
-import { mainDark, mainLight, useThemeStore } from '../contexts/ThemeContext';
-import PopUp from '../components/Dashboard/PopUp';
+import { mainDark, mainLight, useThemeStore } from '../../contexts/ThemeContext';
+import PopUp from './PopUp';
 
 //<Header title='Gradian' style={styles.header}/>
 
@@ -28,7 +28,7 @@ export default function AppHeader() {
                 </PopUp>
             </View>
             <Text style={styles.headerText}>Gradian</Text>
-            <Image style={styles.image} source={require('../assets/white-main-logo.png')} />
+            <Image style={styles.image} source={require('../../assets/white-main-logo.png')} />
             <SettingsButton />
         </View>
 

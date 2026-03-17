@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useFirstBackground } from "../contexts/ThemeContext";
+import { useFirstBackground } from "../../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
