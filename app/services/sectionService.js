@@ -16,7 +16,7 @@ export const getSectionsForCourse = async (courseID) => {
 };
 
 export const getSectionsOnDayOfWeek = async (dow) => {
-    const url = `${API_BASE_URL}/section/dow/${dow}`;
+    const url = `${API_BASE_URL}/sections/dow/${dow}`;
     console.log(url)
     const response = await fetch(url, {
         method: 'GET',
