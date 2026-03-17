@@ -1,29 +1,26 @@
 import { useNavigation } from '@react-navigation/native';
-import { Alert, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useFirstBackground } from "../contexts/ThemeContext";
+import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import {mainDark, mainLight, useThemeStore, useFirstBackground} from "../../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
-const buttonWidth = screenWidth * 0.6; // 60% of screen
+const buttonWidth = screenWidth * 0.3; // 30% of screen
 
 
-export default function AddCourseButton({ name }) {
+export default function BackButton() {
     const navigation = useNavigation();
-    const firstBg = useFirstBackground();
-        
     const handlePress = () => {
-        // TODO: add "add course" logic here
-        Alert.alert(name, "Course added! (not really)");
+        navigation.navigate('CourseList',{});
     };
-        
+    const firstBg = useFirstBackground();
     
     return (
         <TouchableOpacity
-            style={[styles.button, firstBg]}
+            style={[firstBg, styles.button]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Add Course</Text>
+            <Text style={styles.buttonText}>Courses</Text>
         </TouchableOpacity>
     );
 }
@@ -31,12 +28,12 @@ const styles = StyleSheet.create({
     button: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#035642',
         padding: 10,
         marginTop: 10,
         borderRadius: 18,
         width: buttonWidth,
         height: 45,
+        left: screenWidth * 0.03,
     },
     buttonText: {
         color: '#fff',

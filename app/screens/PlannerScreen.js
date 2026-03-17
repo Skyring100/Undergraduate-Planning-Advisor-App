@@ -4,7 +4,7 @@ It will show the courses in a table format.*/
 
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import CourseListButton from '../components/CourseListButton';
+import CourseListButton from '../components/Planner/CourseListButton';
 import BackButton from '../components/BackButton';
 import degreePlanData from '../data/degree_plans.json'
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";

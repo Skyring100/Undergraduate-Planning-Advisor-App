@@ -8,7 +8,7 @@ import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions } from 
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
-import SubmitButton from '../components/SubmitButton';
+import SubmitButton from '../components/LoginRegister/SubmitButton';
 import {useWindowDimensions} from "react-native";
 import {registerUser} from '../services/authService';
 

@@ -10,7 +10,7 @@ import BackButton from '../components/BackButton';
 import completedCourse from '../data/UNBC_course_data.json';
 import { useThemeText, useThemeBackground, useThemeStore } from "../contexts/ThemeContext";
 import { useWindowDimensions } from "react-native";
-import PopUp from '../components/Dashboard/PopUp';
+import PopUp from '../components/Header/PopUp';
 
 import { getSectionsForCourse } from '../services/sectionService';
 

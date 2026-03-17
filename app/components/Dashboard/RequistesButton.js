@@ -10,12 +10,12 @@ const screenHeight = Dimensions.get('window').height;
 const buttonHeight = screenHeight *0.45;
 
 
-export default function CourseButton() {
+export default function RequistesButton() {
     const navigation = useNavigation();
     const { isDarkMode, indexColour } = useThemeStore();
     
     const handlePress = () => {
-        navigation.navigate('Courses',{})
+        navigation.navigate('Requisites',{})
     };
     
     return (
@@ -28,7 +28,7 @@ export default function CourseButton() {
         >
             <View pointerEvents="none" style={{marginBottom: buttonHeight*0.35}}>
                 <OutlinedText
-                    text={' Courses '}
+                    text={' Requisites '}
 
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}
