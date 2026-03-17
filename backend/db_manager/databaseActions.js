@@ -40,11 +40,12 @@ function createTables(){
             FOREIGN KEY (prereq_id) REFERENCES course(course_id)
         )
     `);
-    
+    // days_of_week example: 'MWF' for Monday, Wednesday, Friday or 'TR' for Tuesday, Thursday
     db.exec(`
         CREATE TABLE IF NOT EXISTS section (
             crn INTEGER PRIMARY KEY,
             course_id TEXT NOT NULL,
+            days_of_week TEXT,
             start_time TEXT,
             end_time TEXT,
             start_date TEXT,
@@ -55,6 +56,7 @@ function createTables(){
 
             CHECK (start_time GLOB '[0-9][0-9]:[0-9][0-9]' AND end_time GLOB '[0-9][0-9]:[0-9][0-9]'),
             CHECK (start_date GLOB '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]' AND end_date GLOB '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]' ),           
+            
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         )
     `);
@@ -74,7 +76,7 @@ function dummyData(){
         INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java')
     `);
     db.exec(`
-        INSERT INTO section(crn, course_id, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', '09:30', '10:50', '2026/03/16', '2026/05/27')
+        INSERT INTO section(crn, course_id, days_of_week, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100','MWF', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', 'TR', '09:30', '10:50', '2026/03/16', '2026/05/27')
     `);
 }
 
