@@ -12,7 +12,7 @@ import { useThemeText, useThemeBackground, useThemeStore } from "../contexts/The
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
-import { getSectionsForCourse } from '../services/sectionService';
+import { getSectionsOnDayOfWeek } from '../services/sectionService';
 
 
 export default function ScheduleScreen() {
@@ -47,7 +47,7 @@ export default function ScheduleScreen() {
     ]
     */
     useEffect(() => {
-        getSectionsForCourse("CPSC100").then((apiResult) => {
+        getSectionsOnDayOfWeek("W").then((apiResult) => {
             if (apiResult.success){
                 setSchedule(apiResult.data);
             }else{
@@ -114,7 +114,7 @@ export default function ScheduleScreen() {
                     <View style={styles.agenda}>
 
                         {
-                            schedule.map(c => (<TouchableOpacity key={c.crn} onPress={() => alert(c.start_time+" - "+c.end_time)}  ><Text  style={{ ...themeText }}>{c.course_id}</Text></TouchableOpacity>))
+                            //schedule.map(c => (<TouchableOpacity key={c.crn} onPress={() => alert(c.start_time+" - "+c.end_time)}  ><Text  style={{ ...themeText }}>{c.course_id}</Text></TouchableOpacity>))
                         }
 
                     </View>

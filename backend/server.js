@@ -25,7 +25,7 @@ app.use(loggerMiddleware);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
-app.use('/api/section', sectionRoutes)
+app.use('/api/section', sectionRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 
