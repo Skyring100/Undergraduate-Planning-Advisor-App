@@ -60,6 +60,29 @@ function createTables(){
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         )
     `);
+    
+    //Degree requirement related tables
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree (
+            degree_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+        );
+        CREATE TABLE IF NOT EXISTS degree_course_requirement (
+            degree_id INTEGER,
+            course_id TEXT,
+            PRIMARY KEY (degree_id, course_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id)
+        );
+        CREATE TABLE IF NOT EXISTS degree_credit_requirement (
+            degree_id INTEGER,
+            credit_requirement_id INTEGER AUTOINCREMENT,
+            description TEXT,
+            num_credits INTEGER,
+            PRIMARY KEY (degree_id, credit_requirement_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        ); 
+    `);
 }
 
 function dropTables(){
