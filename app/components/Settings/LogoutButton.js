@@ -6,10 +6,11 @@ import {mainDark, mainLight, useThemeStore, useFirstBackground} from "../../cont
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.3; // 30% of screen
 
-
+// TODO: make this affect the user context
 export default function LogoutButton() {
     const navigation = useNavigation();
     const handlePress = () => {
+        
         navigation.navigate('Login',{})
     };
     const firstBg = useFirstBackground();
