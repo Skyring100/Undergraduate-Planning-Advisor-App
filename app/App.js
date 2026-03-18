@@ -1,5 +1,5 @@
-
-import { StyleSheet, Button, Text } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, Button, Text, BackHandler, Alert } from 'react-native';
 import { createStaticNavigation, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -26,6 +26,31 @@ import CourseListScreen from './screens/CourseListScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  useEffect(() => {
+
+    const onBackPress = () => {
+
+      Alert.alert('Exit App', 'Do you want to exit?', [
+        { text: 'Cancel', onPress: () => null, style: 'cancel' },
+        { text: 'YES', onPress: () => BackHandler.exitApp() },
+      ]);
+
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress
+    );
+
+    // Clean up the event listener when the component unmounts
+    return () => backHandler.remove();
+  }, []);
+
+
+
+
   return (
     <ThemeProvider>
       <AuthProvider>

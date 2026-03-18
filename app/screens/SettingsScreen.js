@@ -7,6 +7,7 @@ import BackButton from '../components/BackButton';
 import DarkLightButton from '../components/Settings/DarkLightButton';
 import ColourButton from '../components/Settings/ColourButton';
 import { ThemeProvider, useThemeStore, useThemeText, useThemeBackground } from "../contexts/ThemeContext";
+import LogoutButton from '../components/Settings/LogoutButton';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -39,6 +40,9 @@ export default function SettingsScreen() {
                     <ColourButton colour={'Yellow'} index={5}/>
                     <ColourButton colour={'Orange'} index={6}/>
                     <ColourButton colour={'Grey'} index={7}/>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center', flex:1}}>
+                    <LogoutButton/>
                 </View>
             </SafeAreaView >
         </SafeAreaProvider>

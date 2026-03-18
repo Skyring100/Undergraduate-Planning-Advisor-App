@@ -20,7 +20,7 @@ export default function BackButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}> &lt; Go Back</Text>
+            <Text style={styles.buttonText}> ◀ Go Back</Text>
         </TouchableOpacity>
     );
 }
