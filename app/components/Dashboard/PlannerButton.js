@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions, View } from 'react-native';
-import { fourthDark, useThemeStore, fourthLight, mainDark, mainLight, borderColour} from '../../contexts/ThemeContext';
+import { useFourthColour, useThemeStore, mainDark, borderColour, fourthLight} from '../../contexts/ThemeContext';
 import OutlinedText from '@kdn0325/react-native-outlined-text';
 
 const screenWidth = Dimensions.get('window').width;
@@ -13,6 +13,7 @@ export const buttonHeight = screenHeight *0.45;
 export default function PlannerButton() {
     const navigation = useNavigation();
     const { isDarkMode, indexColour } = useThemeStore();
+    const colour = useFourthColour();
     
     const handlePress = () => {
         navigation.navigate('Planner',{})
@@ -20,9 +21,8 @@ export default function PlannerButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, 
-                {backgroundColor: isDarkMode ? fourthDark[indexColour] : fourthLight[indexColour], 
-                    borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
+            style={[styles.button, colour,
+                {borderColor: isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}]}
             onPress={handlePress}
             activeOpacity={0.7}
         >

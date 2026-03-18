@@ -178,12 +178,18 @@ def parse_prereqs(prereqText: str) -> dict:
                 map(
                     (lambda x: x.strip()), 
                     prereqText
-                    .replace("\n", " ")
-                    .replace(" or ", "~or~")
-                    .replace(" and ", "~and~")
-                    .replace("(", "~(~")
+                    .replace("    ", "")        # quad spaces appear strangely often in prereqs
+                                                # for no reason at all
+                    .replace("\nor", "~or~")    # so chemistry prerequisites and their
+                    .replace("\nand", "~and~")  # these three cases need to exist
+                    .replace("\n", "~and~")     # weird formatting can be created
+
+                    .replace(" or ", "~or~")    # handle basic booleans
+                    .replace(" and ", "~and~") 
+
+                    .replace("(", "~(~")        # finally handle parentheses
                     .replace(")","~)~")
-                    .split("~")
+                    .split("~")                 # and tokenize
                     )
                 )
             )
@@ -241,7 +247,8 @@ def parse_prereq_list(prereq_list: list) -> dict:
             except IndexError as e:
                 print(e)
         if mod_made == False:
-            time.sleep(1)
+            time.sleep(1)  # error handling,
+                           # this should never happen
 
     # flatten associativity spikes
     # (an associativity spike is a deep dict in the form of (object or (object or (object or object))) etc
@@ -271,7 +278,6 @@ def parse_prereq_list(prereq_list: list) -> dict:
             return {
                     "relation": current["relation"],
                     "on": list(map(wrapCourses, current["on"])),
-                    "name": None,
                 }
         elif type(current) == str:
             print("Wrapping in single: " + current)
@@ -281,7 +287,6 @@ def parse_prereq_list(prereq_list: list) -> dict:
             # wrap
             return {
                     "relation": "single",
-                    "on": None,
                     "name": course_partition[0],
                     "min_grade": min_grade,
                 }
@@ -293,7 +298,34 @@ def parse_prereq_list(prereq_list: list) -> dict:
     print()
     return newRet
 
+def makeCompressedNotation(root: dict, nesting: int = 0) -> list[tuple[str, str, int]]:
+    # converts a nested JSON dictionary to a tuple of cIDs, minimum grades, and nesting levels
+    # nesting levels are explained in about_nesting.md
+
+    out = []
+    # process the basic dictionary
+    # this is done recursively
+    match root["relation"]:
+        case "single":
+            out.append((root["name"], root["min_grade"], nesting))
+        case "and":
+            for ele in root["on"]:
+                # use an odd number for nesting
+                newNesting = nesting + 1 if nesting % 2 == 0 else nesting + 2
+                out.extend(makeCompressedNotation(ele, newNesting))
+                # close any brackets the recursion opened
+                out[-1] = (out[-1][0], out[-1][1], nesting)
+        case "or":
+            for ele in root["on"]:
+                # use an even number for nesting
+                newNesting = nesting + 2 if nesting % 2 == 0 else nesting + 1
+                out.extend(makeCompressedNotation(ele, newNesting))
+                # close any brackets the recursion opened
+                out[-1] = (out[-1][0], out[-1][1], nesting)
+
+    return out;
+
 scraper = create_webdriver()
 #scrape_all_courses(scraper)
-scrape_all_subject_courses(scraper, "CPSC")
+scrape_all_subject_courses(scraper, "CHEM")
 scraper.quit()
