@@ -34,7 +34,9 @@ export default function ScheduleScreen() {
     }
 
     useEffect(() => {
-        getSectionsOnDayOfWeek("W").then((apiResult) => {
+        getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
+            alert("API call was good");
+
             if (apiResult.success){
                 setSchedule(apiResult.data);
             }else{
@@ -101,7 +103,7 @@ export default function ScheduleScreen() {
 
                     <View style={styles.agenda}>
 
-                      <Text>{getWeekDays(selectedDay)}</Text>
+                      <Text>{schedule}</Text>
 
                     </View>
 
