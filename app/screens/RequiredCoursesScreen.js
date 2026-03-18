@@ -87,9 +87,9 @@ const newDegree = {
 
 export default function RequiredCoursesScreen() {
     // when this is added, use these as style components for text colour instead of #fff and #000
-    const [requirements, setRequirements] = useState(null);
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const firstColour = useFirstColour();
     const {width, height} = useWindowDimensions();
 
     useEffect(() => {
@@ -103,10 +103,7 @@ export default function RequiredCoursesScreen() {
         });
 
     }, []);
-        const themeText = useThemeText();
-        const themeBg = useThemeBackground();
-        const firstColour = useFirstColour();
-        const {width, height} = useWindowDimensions();
+        
     
         return (
             <SafeAreaProvider>
