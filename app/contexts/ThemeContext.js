@@ -55,6 +55,12 @@ export const useThemeBackground = () => {
         backgroundColor: isDarkMode ? "#292929" : "#fff",
     };
 }
+export const useFirstColour = () => {
+    const { isDarkMode, indexColour } = useThemeStore();
+    return {
+        backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour],
+    };
+}
 export const useSecondColour = () => {
     const { isDarkMode, indexColour } = useThemeStore();
     return {
