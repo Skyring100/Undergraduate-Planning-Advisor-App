@@ -20,7 +20,7 @@ export default function BackButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Courses</Text>
+            <Text style={styles.buttonText}>All Courses</Text>
         </TouchableOpacity>
     );
 }
