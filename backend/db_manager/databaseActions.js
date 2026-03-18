@@ -25,7 +25,7 @@ function createTables(){
             course_id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             credits INTEGER,
-            description TEXT,
+            description TEXT
         )
     `);
 
@@ -65,11 +65,12 @@ function createTables(){
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree (
             degree_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
+            name TEXT
         );
         CREATE TABLE IF NOT EXISTS degree_course_requirement (
             degree_id INTEGER,
             course_id TEXT,
+            level INTEGER,
             PRIMARY KEY (degree_id, course_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
@@ -91,6 +92,10 @@ function dropTables(){
         DROP TABLE IF EXISTS prereq;
         DROP TABLE IF EXISTS course;
         DROP TABLE IF EXISTS user;
+        DROP TABLE IF EXISTS section;
+        DROP TABLE IF EXISTS degree;
+        DROP TABLE IF EXISTS degree_course_requirement;
+        DROP TABLE IF EXISTS degree_credit_requirement;
     `);
 }
 
