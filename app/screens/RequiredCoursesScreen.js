@@ -2,7 +2,7 @@
 It will also show what electives they have chosen for each degree planner.
 It will have a dropdown to select different degree planners and view the courses accordingly.
 There will be a button that will navigate to the CourseList page.*/ 
-
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
@@ -10,6 +10,8 @@ import BackButton from '../components/BackButton';
 import { useThemeText, useThemeBackground } from "../contexts/ThemeContext";
 import AllCoursesButton from '../components/Requistes/AllCoursesButton';
 import CourseListButton from '../components/Planner/CourseListButton';
+import { createDegree } from '../services/degreeService';
+
 
 const DummyData = [
     {
@@ -73,32 +75,54 @@ const DummyData = [
         ]
     },]
 
+const newDegree = {
+    name: 'Computer Science',
+    is_minor: false,
+    course_reqs: [
+        "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231"
+    ],
+    credit_reqs : []
+}
+
 export default function RequiredCoursesScreen() {
     // when this is added, use these as style components for text colour instead of #fff and #000
-        const themeText = useThemeText();
-        const themeBg = useThemeBackground();
-        const {width, height} = useWindowDimensions();
+    const [requirements, setRequirements] = useState(null);
+    const themeText = useThemeText();
+    const themeBg = useThemeBackground();
+    const {width, height} = useWindowDimensions();
+
+    useEffect(() => {
+        createDegree(newDegree).then((apiResult) => {
+            if (apiResult.success){
+                setRequirements(apiResult.data);
+            }else{
+                alert("API call was unsuccessful");
+                setSchedule([]);
+            }
+        });
+
+    }, []);
     
-        return (
-            <SafeAreaProvider>
-                <SafeAreaView style={[{width: width, height: height}, themeBg]}>
-                    <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
-                        <BackButton/>
-                        <AllCoursesButton/>
-                    </View>
-                    <FlatList
-                        data={DummyData}
-                        ListHeaderComponent={<Text style={[styles.header, themeText]}>Required Courses</Text>}
-                        renderItem={({item: l}) => (
-                            <View key={l.levelNumber}>
-                                <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
-                            </View>
-                        )}
-                        keyExtractor={(l) => l.levelNumber.toString()}
-                    />
-                </SafeAreaView>
-            </SafeAreaProvider>
-        )
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView style={[{width: width, height: height}, themeBg]}>
+                <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
+                    <BackButton/>
+                    <AllCoursesButton/>
+                </View>
+                <FlatList
+                    data={DummyData}
+                    ListHeaderComponent={<Text style={[styles.header, themeText]}>Required Courses</Text>}
+                    renderItem={({item: l}) => (
+                        <View key={l.levelNumber}>
+                            <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
+                        </View>
+                    )}
+                    keyExtractor={(l) => l.levelNumber.toString()}
+                />
+            </SafeAreaView>
+        </SafeAreaProvider>
+    )
 }
 
 function LevelSection({levelNumber, courseData}) {
