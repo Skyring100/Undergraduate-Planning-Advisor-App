@@ -5,7 +5,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const courseRoutes = require('./routes/courses')
 const sectionRoutes = require('./routes/sections');
-const loggerMiddleware = require('./middleware/loggerMiddleware');
+const degreeRoutes = require('./routes/degrees');
 
 dotenv.config();
 
@@ -19,13 +19,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Log all API requests
-app.use(loggerMiddleware);
-
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/sections', sectionRoutes);
+app.use('/api/degrees', degreeRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 

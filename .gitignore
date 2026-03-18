@@ -43,3 +43,6 @@ yarn-error.*
 # vim swap files because elijah is working on this project
 */.*.swp
 .*.swp
+
+# environment
+.env

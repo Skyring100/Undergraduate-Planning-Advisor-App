@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import {mainDark, mainLight, useThemeStore, useFirstBackground} from "../contexts/ThemeContext";
+import {mainDark, mainLight, useThemeStore, useFirstColour} from "../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -12,7 +12,7 @@ export default function BackButton() {
     const handlePress = () => {
         navigation.goBack();
     };
-    const firstBg = useFirstBackground();
+    const firstBg = useFirstColour();
     
     return (
         <TouchableOpacity

@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
 
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const { saveUser, getUserByEmail } = require('../db_manager/userStorage');
 
 const registerUser = async (req, res) => {
-  console.log(`[API] ${new Date().toISOString()} - POST /api/auth/register - Email: ${req.body.email}`);
+  console.log(req.url);
   const { email, password, firstName, lastName } = req.body;
 
   const existingUser = await getUserByEmail(email);
@@ -31,12 +29,6 @@ const registerUser = async (req, res) => {
 
   await saveUser(user);
 
-  const token = jwt.sign(
-    {email: user.email },
-    process.env.JWT_SECRET || 'your-secret-key-change-in-production',
-    { expiresIn: '7d' }
-  );
-
   res.status(201).json({
     success: true,
     message: 'User registered successfully',
@@ -45,8 +37,7 @@ const registerUser = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-      },
-      token
+      }
     }
   });
 };
@@ -71,12 +62,6 @@ const loginUser = async (req, res) => {
     });
   }
 
-  const token = jwt.sign(
-    { userId: user.id, email: user.email },
-    process.env.JWT_SECRET || 'your-secret-key-change-in-production',
-    { expiresIn: '7d' }
-  );
-
   res.json({
     success: true,
     message: 'Login successful',
@@ -85,8 +70,7 @@ const loginUser = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-      },
-      token
+      }
     }
   });
 };

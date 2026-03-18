@@ -48,15 +48,34 @@ export const useThemeText = () => {
         color: isDarkMode ? "#fff" : "#000",
     };
 }
-export const useFirstBackground = () => {
+
+export const useThemeBackground = () => {
+    const { isDarkMode } = useThemeStore();
+    return {
+        backgroundColor: isDarkMode ? "#292929" : "#fff",
+    };
+}
+export const useFirstColour = () => {
     const { isDarkMode, indexColour } = useThemeStore();
     return {
         backgroundColor: isDarkMode ? mainDark[indexColour] : mainLight[indexColour],
     };
 }
-export const useThemeBackground = () => {
-    const { isDarkMode } = useThemeStore();
+export const useSecondColour = () => {
+    const { isDarkMode, indexColour } = useThemeStore();
     return {
-        backgroundColor: isDarkMode ? "#292929" : "#fff",
+        backgroundColor: isDarkMode ? secondDark[indexColour] : secondLight[indexColour],
+    };
+}
+export const useThirdColour = () => {
+    const { isDarkMode, indexColour } = useThemeStore();
+    return {
+        backgroundColor: isDarkMode ? thirdDark[indexColour] : thirdLight[indexColour],
+    };
+}
+export const useFourthColour = () => {
+    const { isDarkMode, indexColour } = useThemeStore();
+    return {
+        backgroundColor: isDarkMode ? fourthDark[indexColour] : fourthLight[indexColour],
     };
 }

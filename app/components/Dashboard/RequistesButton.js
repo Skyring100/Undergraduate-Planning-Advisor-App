@@ -28,7 +28,7 @@ export default function RequistesButton() {
         >
             <View pointerEvents="none" style={{marginBottom: buttonHeight*0.35}}>
                 <OutlinedText
-                    text={' Requisites '}
+                    text={' Requirements '}
 
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
                     fontSize={30}

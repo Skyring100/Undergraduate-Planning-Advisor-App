@@ -1,18 +1,18 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import {mainDark, mainLight, useThemeStore, useFirstBackground} from "../../contexts/ThemeContext";
+import {mainDark, mainLight, useThemeStore, useFirstColour} from "../../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.3; // 30% of screen
 
 
-export default function BackButton() {
+export default function AllCoursesButton() {
     const navigation = useNavigation();
     const handlePress = () => {
         navigation.navigate('CourseList',{});
     };
-    const firstBg = useFirstBackground();
+    const firstBg = useFirstColour();
     
     return (
         <TouchableOpacity
@@ -20,7 +20,7 @@ export default function BackButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>Courses</Text>
+            <Text style={styles.buttonText}>All Courses</Text>
         </TouchableOpacity>
     );
 }

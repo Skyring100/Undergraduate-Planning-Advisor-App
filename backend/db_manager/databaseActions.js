@@ -25,7 +25,7 @@ function createTables(){
             course_id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             credits INTEGER,
-            description TEXT,
+            description TEXT
         )
     `);
 
@@ -66,17 +66,20 @@ function createTables(){
         CREATE TABLE IF NOT EXISTS degree (
             degree_id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
+            is_minor INTEGER,
+            CHECK (is_minor == 1 OR is_minor == 0)
         );
         CREATE TABLE IF NOT EXISTS degree_course_requirement (
             degree_id INTEGER,
             course_id TEXT,
+            level INTEGER,
             PRIMARY KEY (degree_id, course_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
         CREATE TABLE IF NOT EXISTS degree_credit_requirement (
             degree_id INTEGER,
-            credit_requirement_id INTEGER AUTOINCREMENT,
+            credit_requirement_id INTEGER,
             description TEXT,
             num_credits INTEGER,
             PRIMARY KEY (degree_id, credit_requirement_id),
@@ -86,7 +89,11 @@ function createTables(){
 }
 
 function dropTables(){
+    console.log("Dropping tables");
     db.exec(`
+        DROP TABLE IF EXISTS degree_course_requirement;
+        DROP TABLE IF EXISTS degree_credit_requirement;
+        DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
         DROP TABLE IF EXISTS course;
@@ -96,7 +103,7 @@ function dropTables(){
 
 function dummyData(){
     db.exec(`
-        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java')
+        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff')
     `);
     db.exec(`
         INSERT INTO section(crn, course_id, days_of_week, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100','MWF', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', 'TR', '09:30', '10:50', '2026/03/16', '2026/05/27')
