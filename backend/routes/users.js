@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
-const { authenticateToken } = require('../middleware/authMiddleware');
 const userStorage = require('../db_manager/userStorage')
 
 const getCurrentUser = async (req, res) => {
   const userId = req.user.userId;
 
-  console.log(`[API] ${new Date().toISOString()} - GET /api/users/profile - User: ${userId}`);
+  console.log(req.url);
 
   const user = await userStorage.getUserById(userId);
 
