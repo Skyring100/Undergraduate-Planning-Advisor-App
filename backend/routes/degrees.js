@@ -29,11 +29,11 @@ const getDegreeByID = async (req, res) => {
 };
 
 const createDegree = async (req, res) => {
-  const { degree } = req.params;
+  const { name, is_minor, course_reqs, credit_reqs } = req.body;
 
-  console.log(req.url);
+  console.log(req.url + `${name}, ${is_minor}, ${course_reqs}, ${credit_reqs}`);
 
-  const creationSuccess = await degreeStorage.createDegree(degree);
+  const creationSuccess = await degreeStorage.createDegree(name, is_minor, course_reqs, credit_reqs);
 
   var result;
   if (!creationSuccess) {
@@ -57,6 +57,6 @@ const createDegree = async (req, res) => {
 
 
 router.get('/:degree_id', getDegreeByID);
-router.put('/create', createDegree);
+router.post('/create', createDegree);
 
 module.exports = router;
