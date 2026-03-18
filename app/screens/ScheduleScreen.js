@@ -17,39 +17,28 @@ import { getSectionsOnDayOfWeek } from '../services/sectionService';
 
 export default function ScheduleScreen() {
     const [schedule, setSchedule] = useState(null);
-    // const classMap =  schedule.map(c => (<TouchableOpacity  key={c.id} onPress={classe(c.id)} ><Text style={{ ...themeText }}>{c.note}</Text></TouchableOpacity>))
-
-    /*
-    const classe = (id) => {
-       for(let i = 0; i< schedule.length; i++){
-            if (id === schedule[i].id){
-                return(
-                    alert(schedule[i].detail)
-                    // <PopUp><Text>{schedule[i].detail}</Text></PopUp>
-                )
-            }
-       }
-    }
-    */
+ 
 
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
-    // const [selectedClass, setSelectedClass] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
+    const [selectedWeekDay, setSelectedWeekDay] = useState('');
 
-    /*
-    const sampleSchedule = [
-        { 'id': '1', 'start': '2026-03-05', 'time': '01:00', 'duration': '00:20:00', 'note': 'CPSC 100', 'detail': 'First CPSC' },
-        { 'id': '2', 'start': '2026-03-05', 'time': '10:30', 'duration': '01:00:00', 'note': 'Math 100', 'detail': 'First Math' },
-        { 'id': '3', 'start': '2026-03-05', 'time': '2:40', 'duration': '00:30:00', 'note': 'Anth 100', 'detail': 'First Anth' },
-        { 'id': '4', 'start': '2026-03-08', 'time': '3:20', 'duration': '02:00:00', 'note': 'Pysch 100', 'detail': 'First Pysch' }
-    ]
-    */
+    const getWeekDays = (day) => {
+        const date = new Date(day)
+        const days = ['M', 'T', 'W', 'R', 'F', 'S', 'Y'];
+        const dayIndex = date.getDay();
+        const weekDay = days[dayIndex];
+        return weekDay;
+    }
+
     useEffect(() => {
-        getSectionsOnDayOfWeek("W").then((apiResult) => {
+        getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
+            // alert("API call was good");
             if (apiResult.success){
-                setSchedule(apiResult.data);
+                alert(getWeekDays(selectedDay));
+                setSchedule(apiResult.data.course_id);
             }else{
                 alert("API call was unsuccessful");
                 setSchedule([]);
@@ -82,6 +71,8 @@ export default function ScheduleScreen() {
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
+                        setSelectedWeekDay();
+                        getSectionsOnDayOfWeek();
                     }}
                     markedDates={
                         {
@@ -113,9 +104,7 @@ export default function ScheduleScreen() {
 
                     <View style={styles.agenda}>
 
-                        {
-                            //schedule.map(c => (<TouchableOpacity key={c.crn} onPress={() => alert(c.start_time+" - "+c.end_time)}  ><Text  style={{ ...themeText }}>{c.course_id}</Text></TouchableOpacity>))
-                        }
+                      <Text>{schedule}</Text>
 
                     </View>
 
