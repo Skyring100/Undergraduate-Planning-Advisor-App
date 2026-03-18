@@ -35,10 +35,10 @@ export default function ScheduleScreen() {
 
     useEffect(() => {
         getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
-            alert("API call was good");
-
+            // alert("API call was good");
             if (apiResult.success){
-                setSchedule(apiResult.data);
+                alert(getWeekDays(selectedDay));
+                setSchedule(apiResult.data.course_id);
             }else{
                 alert("API call was unsuccessful");
                 setSchedule([]);
@@ -72,6 +72,7 @@ export default function ScheduleScreen() {
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
                         setSelectedWeekDay();
+                        getSectionsOnDayOfWeek();
                     }}
                     markedDates={
                         {
