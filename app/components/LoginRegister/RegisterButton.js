@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useFirstBackground } from "../../contexts/ThemeContext";
+
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -9,7 +9,6 @@ const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 export default function RegisterButton({ onPress }) {
     const navigation = useNavigation();
-    const firstBg = useFirstBackground();
         
     const handlePress = () => {
         navigation.navigate('Register',{})
@@ -18,7 +17,7 @@ export default function RegisterButton({ onPress }) {
     
     return (
         <TouchableOpacity
-            style={[styles.button, firstBg]}
+            style={[styles.button]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
