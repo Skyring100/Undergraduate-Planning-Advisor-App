@@ -77,7 +77,7 @@ function createTables(){
         );
         CREATE TABLE IF NOT EXISTS degree_credit_requirement (
             degree_id INTEGER,
-            credit_requirement_id INTEGER AUTOINCREMENT,
+            credit_requirement_id INTEGER,
             description TEXT,
             num_credits INTEGER,
             PRIMARY KEY (degree_id, credit_requirement_id),

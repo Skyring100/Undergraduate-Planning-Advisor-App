@@ -8,7 +8,7 @@ To run backend:
 - npm install
 - npm run dev
 
-Note: In order for app to communicate with backend, the API URL in /app/services/api.js must have the backend's IP address
+Note: In order for app to communicate with backend, the API URL in /app/.env must have the backend's IP address assigned to API
 - If running both app and backend on same machine, simply user your local IP address
 - This can be found by opening command prompt and running 'ipconfig' and using the address associated with 'IPv4 Address'
 
