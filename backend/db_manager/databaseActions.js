@@ -65,7 +65,9 @@ function createTables(){
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree (
             degree_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT
+            name TEXT,
+            is_minor INTEGER,
+            CHECK (is_minor == 1 OR is_minor == 0)
         );
         CREATE TABLE IF NOT EXISTS degree_course_requirement (
             degree_id INTEGER,
@@ -87,21 +89,21 @@ function createTables(){
 }
 
 function dropTables(){
+    console.log("Dropping tables");
     db.exec(`
+        DROP TABLE IF EXISTS degree_course_requirement;
+        DROP TABLE IF EXISTS degree_credit_requirement;
+        DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
         DROP TABLE IF EXISTS course;
         DROP TABLE IF EXISTS user;
-        DROP TABLE IF EXISTS section;
-        DROP TABLE IF EXISTS degree;
-        DROP TABLE IF EXISTS degree_course_requirement;
-        DROP TABLE IF EXISTS degree_credit_requirement;
     `);
 }
 
 function dummyData(){
     db.exec(`
-        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java')
+        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff')
     `);
     db.exec(`
         INSERT INTO section(crn, course_id, days_of_week, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100','MWF', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', 'TR', '09:30', '10:50', '2026/03/16', '2026/05/27')
