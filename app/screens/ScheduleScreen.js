@@ -8,7 +8,7 @@ import { Calendar, CalendarList, WeekCalendar } from 'react-native-calendars';
 // import { CalendarBody, CalendarContainer, CalendarHeader } from '@howljs/calendar-kit';
 import BackButton from '../components/BackButton';
 import completedCourse from '../data/UNBC_course_data.json';
-import { useThemeText, useThemeBackground, useThemeStore } from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from "../contexts/ThemeContext";
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
@@ -17,11 +17,13 @@ import { getSectionsOnDayOfWeek } from '../services/sectionService';
 
 export default function ScheduleScreen() {
     const [schedule, setSchedule] = useState([]);
+    const [classInfo, setClassInfo] = useState([]);
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
+    const [isInfoVisible, setIsInfoVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
-    const [selectedClasses, setSelectedClasses] = useState([]);
     const [selectedWeekDay, setSelectedWeekDay] = useState('');
+    const firstColour = useFirstColour();
 
     const getWeekDays = (day) => {
         const date = new Date(day)
@@ -39,11 +41,12 @@ export default function ScheduleScreen() {
         try {
             await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
                 console.log(classData);
-        
+
                 if (classData != null) {
-                    
+
                     for (let i = 0; i < classData.data[0].course_id.length; i++) {
-                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " "+ classData.data[i].start_time + " "+classData.data[i].end_time);
+                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " " + classData.data[i].start_time + " " + classData.data[i].end_time);
+                        setClassInfo(classData.data[i].building + " " + classData.data[i].instructor_name + " " + " " + classData.data[i].start_date + " " + classData.data[i].end_date);
                     }
 
                 } else {
@@ -102,27 +105,43 @@ export default function ScheduleScreen() {
 
                 </DailyAgenda>
 
+                <ClassInfo></ClassInfo>
+
             </SafeAreaView>
         </SafeAreaProvider>
     );
+
+    function ClassInfo() {
+        // alert(classInfo)
+        if (isInfoVisible) {
+            // alert(classInfo)
+            return (
+
+                <View>
+                    <Text>{classInfo}</Text>
+                </View>
+
+            )
+        }
+    }
 
     function DailyAgenda() {
 
         if (isVisible) {
             return (
                 <View style={styles.agendaView}>
+                    <TouchableOpacity onPress={() => alert(classInfo)}>
+                        <View style={[styles.agenda, { borderColor: firstColour.backgroundColor }]}>
+                            <Text style={[themeText, styles.agendaText]}>{selectedWeekDay}</Text>
+                            <Text style={[themeText, styles.agendaText]}>{schedule}</Text>
+                        </View>
+                    </TouchableOpacity>
 
-                    <View style={[styles.agenda]}>
-
-                        <Text style={[themeText]}>{selectedWeekDay}</Text>
-                        <Text style={[themeText]}>{schedule}</Text>
-
-                    </View>
-
-                </View>
+                </View >
             )
         }
     }
+
 
 }
 
@@ -147,19 +166,23 @@ const styles = StyleSheet.create({
     },
     agendaView: {
         flex: 1,
+        paddingTop: 10,
     },
     agenda: {
         flexDirection: 'column',
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 20,
+        alignItems: 'center',
 
+        borderWidth: 5,
     },
     agendaText: {
-        fontSize: '60%',
+        // fontSize: '60%',
         fontWeight: 'bold',
-        alignContent: 'space-around',
-        borderWidth: 2,
-        borderColor: 'black',
+        // justifyContent: 'space-around',
+        // alignItems: 'center',
+        // borderWidth: 2,
+        // borderColor: 'black',
+        fontSize: 20,
     }
 })

@@ -20,15 +20,15 @@ const DummyData = [
         levelNumber: 100,
         courselist: [
             {
-                id: "CPSC\n100",
+                id: "CPSC 100",
                 title: "Introduction to Computer Science"
             },
             {
-                id: "CPSC\n101",
+                id: "CPSC 101",
                 title: "Introduction to Computer Science"
             },
             {
-                id: "CPSC\n141",
+                id: "CPSC 141",
                 title: "Computational Mathematics"
             },
         ]
@@ -37,15 +37,15 @@ const DummyData = [
         levelNumber: 200,
         courselist: [
             {
-                id: "CPSC\n230",
+                id: "CPSC 230",
                 title: "XXXX"
             },
             {
-                id: "CPSC\n231",
+                id: "CPSC 231",
                 title: "XXXX"
             },
             {
-                id: "ENGL\n270",
+                id: "ENGL 270",
                 title: "XXXX"
             },
         ]
@@ -54,15 +54,15 @@ const DummyData = [
         levelNumber: 300,
         courselist: [
             {
-                id: "CPSC\n300",
+                id: "CPSC 300",
                 title: "XXXX"
             },
             {
-                id: "CPSC\n320",
+                id: "CPSC 320",
                 title: "XXXX"
             },
             {
-                id: "CPSC\n321",
+                id: "CPSC 321",
                 title: "XXXX"
             },
         ]
@@ -71,7 +71,7 @@ const DummyData = [
         levelNumber: 400,
         courselist: [
             {
-                id: "CPSC\n444",
+                id: "CPSC 444",
                 title: "XXXX"
             }
         ]
@@ -82,11 +82,11 @@ const DummyElectives = [
         levelNumber: 100,
         courselist: [
             {
-                id: "Fun\n100",
+                id: "Fun 100",
                 title: "Introduction to Computer Science"
             },
             {
-                id: "COMM\n100",
+                id: "COMM 100",
                 title: "Introduction to Computer Science"
             },
         ]
@@ -95,15 +95,15 @@ const DummyElectives = [
         levelNumber: 200,
         courselist: [
             {
-                id: "ANTH\n203",
+                id: "ANTH 203",
                 title: "XXXX"
             },
             {
-                id: "ANTH\n213",
+                id: "ANTH 213",
                 title: "XXXX"
             },
             {
-                id: "NURS\n205",
+                id: "NURS 205",
                 title: "XXXX"
             },
         ]
@@ -112,7 +112,7 @@ const DummyElectives = [
         levelNumber: 300,
         courselist: [
             {
-                id: "WMST\n303",
+                id: "WMST 303",
                 title: "XXXX"
             },
             
@@ -122,15 +122,15 @@ const DummyElectives = [
         levelNumber: 400,
         courselist: [
             {
-                id: "CPSC\n450",
+                id: "CPSC 450",
                 title: "XXXX"
             },
             {
-                id: "CPSC\n475",
+                id: "CPSC 475",
                 title: "XXXX"
             },
             {
-                id: "CPSC\n499",
+                id: "CPSC 499",
                 title: "XXXX"
             }
         ]
@@ -139,7 +139,7 @@ const newDegree = {
     name: 'Computer Science',
     is_minor: false,
     course_reqs: [
-        "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231"
+        "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231", "ENGL270", "CPSC300", "CPSC320", "CPSC321", "CPSC444"
     ],
     credit_reqs : []
 }
@@ -248,7 +248,7 @@ function LevelSection({levelNumber, courseData}) {
 function groupByLevel(courseList){
     const groups = {};
     courseList.forEach(course => {
-        const level = Math.floor(parseInt(course.id.replace(/\D/g, '')) / 100) * 100;
+        const level = Math.floor(parseInt(course.id) / 100) * 100;
         if (!groups[level]) {
             groups[level] = [];
         }
