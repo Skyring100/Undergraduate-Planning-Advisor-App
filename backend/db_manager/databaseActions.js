@@ -105,7 +105,7 @@ function dropTables(){
 
 function dummyData(){
     db.exec(`
-        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff')
+        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff'), ('ENGL270', 'English 2', 3, 'Basic English'), ('CPSC300', 'Programming 3', 3, 'Advanced Java'), ('CPSC320', 'Databases 1', 3, 'Introduction to Databases'), ('CPSC321', 'Databases 2', 3, 'More Databases'), ('CPSC444', 'Computer Arch 4', 3, 'More assembly stuff')
     `);
     db.exec(`
         INSERT INTO section(crn, course_id, days_of_week, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100','MWF', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', 'TR', '09:30', '10:50', '2026/03/16', '2026/05/27')

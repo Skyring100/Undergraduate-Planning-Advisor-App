@@ -10,7 +10,7 @@ export default function CoursePopUPButton({course}) {
     }
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
-    const buttonText = (course.id != null) ? course.id.replace(/\n/g, ' ') : "----";
+    const buttonText = (course.id != null) ? course.id : "----";
 
     return (
         <TouchableOpacity
