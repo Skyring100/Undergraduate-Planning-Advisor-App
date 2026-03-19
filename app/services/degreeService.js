@@ -26,3 +26,23 @@ export const createDegree = async (degree) => {
         }
     };
 
+export const getDegreeByID = async (degreeID) => {
+    try{
+        const url = `${API_BASE_URL}/degrees/${degreeID}`;
+            console.log(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            const data = await response.json();
+            console.log(data);
+
+            return {success: true, data};
+        } catch (error) {
+            console.error('Error creating degree:', error);
+            return {success: false, data: null};
+        }
+    };
+

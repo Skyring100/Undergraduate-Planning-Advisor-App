@@ -11,7 +11,7 @@ import { useThemeText, useThemeBackground,
 import AllCoursesButton from '../components/Requistes/AllCoursesButton';
 import CourseListButton from '../components/Planner/CourseListButton';
 import CoursePopUp from '../components/Requistes/CoursePopUp';
-import { createDegree } from '../services/degreeService';
+import { createDegree, getDegreeByID } from '../services/degreeService';
 import all_courses from '../data/UNBC_course_data.json';
 import CourseCompletedButton from '../components/Requistes/CourseCompletedButton';
 
@@ -139,7 +139,7 @@ const newDegree = {
     name: 'Computer Science',
     is_minor: false,
     course_reqs: [
-        "CPSC\n100", "CPSC\n101", "CPSC\n141", "CPSC\n230", "CPSC\n231"
+        "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231"
     ],
     credit_reqs : []
 }
@@ -152,7 +152,8 @@ export default function RequiredCoursesScreen() {
     const {width, height} = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
 
-    {/*useEffect(() => {
+    /*
+    useEffect(() => {
         createDegree(newDegree).then((apiResult) => {
             if (apiResult.success){
                 const reqs = newDegree.course_reqs;
@@ -166,8 +167,19 @@ export default function RequiredCoursesScreen() {
         });
 
     }, []);
-        
-    */}
+    
+    useEffect(() => {
+        getDegreeByID(1).then((apiResult) => {
+            if (apiResult.success){
+                console.log(apiResult.data);
+            }else{
+                alert("API call was unsuccessful");
+                setRequirements([]);
+            }
+        });
+
+    }, []);
+    */
     
     
         return (
