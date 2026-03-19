@@ -103,17 +103,23 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     try:
         WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//section[@id='results']/ul/li")))
     except TimeoutException:
-        print("Subject code "+str+" does not have any courses associated with it")
+        print("Subject code "+subject+" does not have any courses associated with it")
         return
     current_course_element = driver.find_element(By.ID, "results").find_element(By.XPATH, "//ul/*[1]")
 
     #For every element in the course list, extract id, title description and prerequisites
     i = 1
+
+    # get the last element in the prereqs
+    # doesnt necessarily need to be ordered like 1, 2, 3, 4 but should still be a total order
+    cur.execute("SELECT MAX(ordering) FROM prereq;")
+    k = cur.fetchall()[-1][0]
+    if k is None: k = 1
     while current_course_element != None:
         try:
             #Extract the data
             title = current_course_element.find_element(By.TAG_NAME, "header").text
-            id = subject + str([int(x) for x in filter(lambda title: title.isdigit(), title.split())][0])
+            id = (subject + str([int(x) for x in filter(lambda title: title.isdigit(), title.split())][0])).replace("\n", "")
             subEle = current_course_element.find_element(By.TAG_NAME, "div").find_elements(By.TAG_NAME, "article")
             desc = subEle[0].text
             
@@ -123,6 +129,7 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
                 prereqText = subEle[1].find_element(By.TAG_NAME, "ul").text
                 print("prereqs: " + prereqText)
             except NoSuchElementException:
+                prereqText = ""
                 pass
             if prereqText != "":
                 prereq_dict = parse_prereqs(prereqText)
@@ -154,16 +161,18 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             """
             cur.execute(query, (id, title, desc))
 
-            for j in fit_list_to_db(id, make_compressed_notation(prereqs)):
-                # TODO: scrape course corequisite status
-                print("\tPREREQ : " + j[1])
-                print(f"\tpushing {j}")
-                query = """
-                INSERT OR REPLACE INTO prereq
-                    (course_id, prereq_id, is_coreq, min_grade, nesting) 
-                    VALUES (?, ?, ?, ?, ?);
-                """
-                cur.execute(query, j)
+            if (type(prereqs) == dict):
+                for j in fit_list_to_db(id, make_compressed_notation(prereqs)):
+                    # TODO: scrape course corequisite status
+                    print("\tPREREQ : " + j[1])
+                    print(f"\tpushing {(*j, k)}")
+                    query = """
+                    INSERT OR REPLACE INTO prereq
+                        (course_id, prereq_id, is_coreq, min_grade, nesting, ordering) 
+                        VALUES (?, ?, ?, ?, ?, ?);
+                    """
+                    cur.execute(query, (*j, k))
+                    k += 1
 
                 
 
@@ -377,19 +386,19 @@ def make_compressed_notation(root: dict, nesting: int = 0) -> list[tuple[str, st
             print(i)
     return out;
 
-def fit_list_to_db(course_id: str, unpadded: list[tuple[str, str, int]]) -> list[tuple[str, str, int, str, int]]:
+def fit_list_to_db(course_id: str, unpadded: list[tuple[str, str, int]]) -> list[tuple[str, str, int, str, int, int]]:
     print("fitting list:")
     for i in unpadded:
         print(f"\t{i}")
     ret = []
     for i in unpadded:
-        ret.append((course_id, i[0], None, i[1], i[2]))
+        ret.append((course_id, i[0], None, i[1], i[2]));
     return ret
 
 def main():
     scraper = create_webdriver()
-    #scrape_all_courses(scraper)
-    scrape_all_subject_courses(scraper, "CHEM")
+    scrape_all_courses(scraper)
+    #scrape_all_subject_courses(scraper, "CHEM")
     scraper.quit()
 
 if __name__ == "__main__":
