@@ -40,7 +40,7 @@ export default function CourseListScreen() {
 
             if (apiResult.success){
                 setCourses(apiResult.data);
-                setFilteredCourseTypes([...new Set(courses.map(course => course.id.slice(0)))].sort());
+                setFilteredCourseTypes([...new Set(courses.map(course => course.course_id.slice(0,4)))].sort());
                 
             }else{
                 alert("API call was unsuccessful");
@@ -54,7 +54,7 @@ export default function CourseListScreen() {
 
     const filteredCourses = activeType === "All"
         ? courses
-        : courses.filter(course => course.id.trim().startsWith(activeType));
+        : courses.filter(course => course.course_id.trim().startsWith(activeType));
         
         
     
@@ -90,12 +90,12 @@ export default function CourseListScreen() {
                     renderItem={({item}) => (
                         <View style={styles.contentBackground}>
                             <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
-                            <Text style={styles.courseTitle}>{item.id}</Text>
+                            <Text style={styles.courseTitle}>{item.course_id}</Text>
                             <Text style={styles.courseText}>{item.title}</Text>
                             <Text style={styles.courseText}>{item.prereq}</Text>
                         </View>
                     )}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.course_id}
                     ListFooterComponent={
                         <SafeAreaView style={{marginBottom: 310}}>
                         </SafeAreaView>
