@@ -6,7 +6,6 @@ const userRoutes = require('./routes/users');
 const courseRoutes = require('./routes/courses')
 const sectionRoutes = require('./routes/sections');
 const degreeRoutes = require('./routes/degrees');
-const loggerMiddleware = require('./middleware/loggerMiddleware');
 
 dotenv.config();
 
@@ -19,9 +18,6 @@ app.set('trust proxy', true);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Log all API requests
-app.use(loggerMiddleware);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

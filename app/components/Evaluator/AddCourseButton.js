@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { Alert, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useFirstBackground } from "../../contexts/ThemeContext";
+import { useFirstColour } from "../../contexts/ThemeContext";
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -9,7 +9,7 @@ const buttonWidth = screenWidth * 0.6; // 60% of screen
 
 export default function AddCourseButton({ name }) {
     const navigation = useNavigation();
-    const firstBg = useFirstBackground();
+    const firstBg = useFirstColour();
         
     const handlePress = () => {
         // TODO: add "add course" logic here

@@ -5,29 +5,31 @@ There will be a button that will navigate to the CourseList page.*/
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import degreePlanData from '../data/degree_plans.json'
 import BackButton from '../components/BackButton';
-import { useThemeText, useThemeBackground } from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground,
+    useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import AllCoursesButton from '../components/Requistes/AllCoursesButton';
 import CourseListButton from '../components/Planner/CourseListButton';
+import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree } from '../services/degreeService';
-
+import all_courses from '../data/UNBC_course_data.json';
+import CourseCompletedButton from '../components/Requistes/CourseCompletedButton';
 
 const DummyData = [
     {
         levelNumber: 100,
         courselist: [
             {
-                courseCode: "CPSC 100",
-                courseName: "Introduction to Computer Science"
+                id: "CPSC\n100",
+                title: "Introduction to Computer Science"
             },
             {
-                courseCode: "CPSC 101",
-                courseName: "Introduction to Computer Science"
+                id: "CPSC\n101",
+                title: "Introduction to Computer Science"
             },
             {
-                courseCode: "CPSC 141",
-                courseName: "Computational Mathematics"
+                id: "CPSC\n141",
+                title: "Computational Mathematics"
             },
         ]
     },
@@ -35,16 +37,16 @@ const DummyData = [
         levelNumber: 200,
         courselist: [
             {
-                courseCode: "CPSC 230",
-                courseName: "XXXX"
+                id: "CPSC\n230",
+                title: "XXXX"
             },
             {
-                courseCode: "CPSC 231",
-                courseName: "XXXX"
+                id: "CPSC\n231",
+                title: "XXXX"
             },
             {
-                courseCode: "ENGL 270",
-                courseName: "XXXX"
+                id: "ENGL\n270",
+                title: "XXXX"
             },
         ]
     },
@@ -52,16 +54,16 @@ const DummyData = [
         levelNumber: 300,
         courselist: [
             {
-                courseCode: "CPSC 300",
-                courseName: "XXXX"
+                id: "CPSC\n300",
+                title: "XXXX"
             },
             {
-                courseCode: "CPSC 320",
-                courseName: "XXXX"
+                id: "CPSC\n320",
+                title: "XXXX"
             },
             {
-                courseCode: "CPSC 321",
-                courseName: "XXXX"
+                id: "CPSC\n321",
+                title: "XXXX"
             },
         ]
     },
@@ -69,76 +71,160 @@ const DummyData = [
         levelNumber: 400,
         courselist: [
             {
-                courseCode: "CPSC 444",
-                courseName: "XXXX"
+                id: "CPSC\n444",
+                title: "XXXX"
             }
         ]
     },]
 
+const DummyElectives = [
+    {
+        levelNumber: 100,
+        courselist: [
+            {
+                id: "Fun\n100",
+                title: "Introduction to Computer Science"
+            },
+            {
+                id: "COMM\n100",
+                title: "Introduction to Computer Science"
+            },
+        ]
+    },
+    {
+        levelNumber: 200,
+        courselist: [
+            {
+                id: "ANTH\n203",
+                title: "XXXX"
+            },
+            {
+                id: "ANTH\n213",
+                title: "XXXX"
+            },
+            {
+                id: "NURS\n205",
+                title: "XXXX"
+            },
+        ]
+    },
+    {
+        levelNumber: 300,
+        courselist: [
+            {
+                id: "WMST\n303",
+                title: "XXXX"
+            },
+            
+        ]
+    },
+    {
+        levelNumber: 400,
+        courselist: [
+            {
+                id: "CPSC\n450",
+                title: "XXXX"
+            },
+            {
+                id: "CPSC\n475",
+                title: "XXXX"
+            },
+            {
+                id: "CPSC\n499",
+                title: "XXXX"
+            }
+        ]
+    },]
 const newDegree = {
     name: 'Computer Science',
     is_minor: false,
     course_reqs: [
-        "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231"
+        "CPSC\n100", "CPSC\n101", "CPSC\n141", "CPSC\n230", "CPSC\n231"
     ],
     credit_reqs : []
 }
 
 export default function RequiredCoursesScreen() {
     // when this is added, use these as style components for text colour instead of #fff and #000
-    const [requirements, setRequirements] = useState(null);
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const firstColour = useFirstColour();
     const {width, height} = useWindowDimensions();
+    const [requirements, setRequirements] = useState([]);
 
-    useEffect(() => {
+    {/*useEffect(() => {
         createDegree(newDegree).then((apiResult) => {
             if (apiResult.success){
-                setRequirements(apiResult.data);
+                const reqs = newDegree.course_reqs;
+                const matchedCourses = all_courses.all_courses.filter(course => reqs.includes(course.id));
+                const grouped = groupByLevel(matchedCourses);
+                setRequirements(grouped);
             }else{
                 alert("API call was unsuccessful");
-                setSchedule([]);
+                setRequirements([]);
             }
         });
 
     }, []);
+        
+    */}
     
-    return (
-        <SafeAreaProvider>
-            <SafeAreaView style={[{width: width, height: height}, themeBg]}>
-                <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
-                    <BackButton/>
-                    <AllCoursesButton/>
-                </View>
-                <FlatList
-                    data={DummyData}
-                    ListHeaderComponent={<Text style={[styles.header, themeText]}>Required Courses</Text>}
-                    renderItem={({item: l}) => (
-                        <View key={l.levelNumber}>
-                            <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
-                        </View>
-                    )}
-                    keyExtractor={(l) => l.levelNumber.toString()}
-                />
-            </SafeAreaView>
-        </SafeAreaProvider>
-    )
+    
+        return (
+            <SafeAreaProvider>
+                <SafeAreaView style={[{width: width, height: height}, themeBg]}>
+                    <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
+                        <BackButton/>
+                        <AllCoursesButton/>
+                    </View>
+                    <FlatList
+                        data={DummyData}
+                        ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
+                        renderItem={({item: l}) => (
+                            <View key={l.levelNumber}>
+                                <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
+                            </View>
+                        )}
+                        keyExtractor={(l) => l.levelNumber.toString()}
+                        ListFooterComponent={
+                            <SafeAreaView style={{marginBottom: 50}}>
+                                <Text style={[styles.header, themeText, firstColour]}>Electives</Text>
+                                {DummyElectives.map(l => (
+                                    <View key={l.levelNumber}>
+                                        <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
+                                    </View>
+                                ))}
+                            </SafeAreaView>
+
+                        }
+                    />
+                </SafeAreaView>
+            </SafeAreaProvider>
+        )
 }
 
 function LevelSection({levelNumber, courseData}) {
     const themeText = useThemeText();
+    const secondColour = useSecondColour();
+    const thirdColour = useThirdColour();
+
     
+
     return (
         <View>
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>
-                <Text style={styles.levelHeader}>Level {levelNumber}</Text>
-                <Text style={styles.done}>Done</Text>
+                <Text style={[styles.levelHeader, secondColour, themeText]}>Level {levelNumber}</Text>
+                <Text style={[styles.done, secondColour, themeText]}>Done</Text>
             </View>
             <View style={{flexDirection: 'column', justifyContent: 'center',}}>
                 {
                     courseData.map(course => (
-                        <View key={course.courseCode} style={{flexDirection: 'row', justifyContent: 'center',}}>
-                            <Text style={[styles.courseHeader, themeText]}>{course.courseCode}</Text>
+                        
+                        <View key={course.id} style={{flexDirection: 'row', justifyContent: 'center',}}>
+                            {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
+}
+                            <CoursePopUp course={course}></CoursePopUp>
+                            <CourseCompletedButton/>
                         </View>
                     ))
                 }
@@ -147,22 +233,32 @@ function LevelSection({levelNumber, courseData}) {
     )
 }
 
-
+function groupByLevel(courseList){
+    const groups = {};
+    courseList.forEach(course => {
+        const level = Math.floor(parseInt(course.id.replace(/\D/g, '')) / 100) * 100;
+        if (!groups[level]) {
+            groups[level] = [];
+        }
+        groups[level].push(course);
+    });
+    return Object.entries(groups).map(([level, courses]) => ({
+        levelNumber: parseInt(level),
+        courselist: courses
+    }));
+}
 
 const styles = StyleSheet.create({
     header: {
-        color: '#060a03ff',
         fontWeight: 'bold',
         fontSize: 25,
-        backgroundColor: '#3cceac',
         width: '100%',
-        textAlign: 'center'
+        padding: 10,
+        textAlign: 'center',
     },
     levelHeader:{
-        color: '#060a03ff',
         fontWeight: 'bold',
         fontSize: 25,
-        backgroundColor: '#3cceac',
         width: '70%',
         textAlign: 'center'
     },
@@ -172,7 +268,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         backgroundColor: '#078d6e',
         textAlign: 'center',
-        width: '100%',
+        width: '70%',
     },
     done: {
         color: '#060a03ff',

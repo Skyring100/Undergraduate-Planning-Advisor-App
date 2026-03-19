@@ -8,6 +8,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 import json, os, time
+import sqlite3
 
 COURSE_CODE_FILE = "course_codes.txt"
 #UNBC_COURSE_DATA_FILE = "/app/data/UNBC_course_data.json"
@@ -94,6 +95,8 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     file_path = os.path.abspath(os.pardir + UNBC_COURSE_DATA_FILE)
     course_list_file = open(file_path, "r+")
     current_data = json.load(course_list_file)
+    conn = sqlite3.connect("../backend/db/database.db")
+    cur = conn.cursor()
 
     driver.get(f"https://tools.unbc.ca/course-catalogue?subj={subject}")
     #Get the 'results' section of the page
@@ -121,19 +124,10 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
                 print("prereqs: " + prereqText)
             except NoSuchElementException:
                 pass
-            
-
-
-            #TODO: Parse prereq text to correctly model prereq with JSON object
             if prereqText != "":
                 prereq_dict = parse_prereqs(prereqText)
                 print(prereq_dict)
                 prereqs = prereq_dict
-                
-
-
-            
-
             #Create a JSON object for the course data
             course_json = {
                 'id': id,
@@ -145,6 +139,33 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             #Append the course data to the master JSON object
             current_data["all_courses"].append(course_json)
             course_list_file.seek(0)
+
+            # add it to the SQL file (you dont have to keep this one in)
+            # TODO: port this to javascript so it is better
+            # TODO: scrape course credit value
+            
+
+            print("COURSE: " + id)
+            print(f"pushing {(id, title, desc)}")
+            query = """
+            INSERT OR REPLACE INTO course
+                (course_id, title, description) 
+                VALUES (?, ?, ?);
+            """
+            cur.execute(query, (id, title, desc))
+
+            for j in fit_list_to_db(id, make_compressed_notation(prereqs)):
+                # TODO: scrape course corequisite status
+                print("\tPREREQ : " + j[1])
+                print(f"\tpushing {j}")
+                query = """
+                INSERT OR REPLACE INTO prereq
+                    (course_id, prereq_id, is_coreq, min_grade, nesting) 
+                    VALUES (?, ?, ?, ?, ?);
+                """
+                cur.execute(query, j)
+
+                
 
             #Try to get the next sibling option
             try:
@@ -158,6 +179,8 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
     # Write the updated data back to the file
     json.dump(current_data, course_list_file, indent=4)
     course_list_file.close()
+    conn.commit()
+    conn.close()
         
         
     
@@ -178,12 +201,18 @@ def parse_prereqs(prereqText: str) -> dict:
                 map(
                     (lambda x: x.strip()), 
                     prereqText
-                    .replace("\n", " ")
-                    .replace(" or ", "~or~")
-                    .replace(" and ", "~and~")
-                    .replace("(", "~(~")
+                    .replace("    ", "")        # quad spaces appear strangely often in prereqs
+                                                # for no reason at all
+                    .replace("\nor", "~or~")    # these three cases need to exist
+                    .replace("\nand", "~and~")  # so multi-line prereqs are handled discretely
+                    .replace("\n", "~andLast~") # bare newline is AND, but handled later
+
+                    .replace(" or ", "~or~")    # handle basic booleans
+                    .replace(" and ", "~and~") 
+
+                    .replace("(", "~(~")        # finally handle parentheses
                     .replace(")","~)~")
-                    .split("~")
+                    .split("~")                 # and tokenize
                     )
                 )
             )
@@ -210,8 +239,8 @@ def parse_prereq_list(prereq_list: list) -> dict:
                         elif prereq_list[j] == ")":
                             nest_level -= 1
                             if nest_level == 0:
-                                prereq_list[i:j+1] = [parse_prereq_list(prereq_list[i+1:j])]
                                 print("found the bracket at " + str(i) + "'s match at " + str(j))
+                                prereq_list[i:j+1] = [parse_prereq_list(prereq_list[i+1:j])]
                                 found = True
                                 break
                     if found: break
@@ -241,7 +270,28 @@ def parse_prereq_list(prereq_list: list) -> dict:
             except IndexError as e:
                 print(e)
         if mod_made == False:
-            time.sleep(1)
+            # start handling and_lasts if you can't make another mod
+            if "andLast" in prereq_list:
+                break
+
+    while len(prereq_list) > 1:
+        mod_made = False
+        print("parsing " + str(prereq_list))
+        for i in range(len(prereq_list)):
+            ele = prereq_list[i]
+            try:
+                # recursive case handled here
+                if ele == "andLast":
+                    print("found an AND at " + str(i))
+                    prereq_list[i-1:i+2] = [{"relation": "and", "on": [prereq_list[i-1], prereq_list[i+1]]}]
+                    mod_made = True
+                    break
+            except IndexError as e:
+                print(e)
+        if mod_made == False:
+            # start handling and_lasts if you can't make another mod
+            raise ValueError("list couldn't be parsed down; might be malformed")
+                           
 
     # flatten associativity spikes
     # (an associativity spike is a deep dict in the form of (object or (object or (object or object))) etc
@@ -262,7 +312,7 @@ def parse_prereq_list(prereq_list: list) -> dict:
 
     # finally, wrap course IDs in objects
     # this will also be used to split the course's minimum grade off of courses that have one
-    def wrapCourses(current: dict | str) -> dict:
+    def wrap_courses(current: dict | str) -> dict:
         if type(current) == dict:
             if current["relation"] == "single": return current
             # recurse
@@ -270,8 +320,7 @@ def parse_prereq_list(prereq_list: list) -> dict:
             print("Recurring on " + str(current))
             return {
                     "relation": current["relation"],
-                    "on": list(map(wrapCourses, current["on"])),
-                    "name": None,
+                    "on": list(map(wrap_courses, current["on"])),
                 }
         elif type(current) == str:
             print("Wrapping in single: " + current)
@@ -281,19 +330,67 @@ def parse_prereq_list(prereq_list: list) -> dict:
             # wrap
             return {
                     "relation": "single",
-                    "on": None,
                     "name": course_partition[0],
                     "min_grade": min_grade,
                 }
 
-    newRet = wrapCourses(ret)
+    new_ret = wrap_courses(ret)
     print()
-    print("Final prereq list: " + str(newRet))
+    print("Final prereq list: " + str(new_ret))
     print()
     print()
-    return newRet
+    return new_ret
 
-scraper = create_webdriver()
-#scrape_all_courses(scraper)
-scrape_all_subject_courses(scraper, "CPSC")
-scraper.quit()
+def make_compressed_notation(root: dict, nesting: int = 0) -> list[tuple[str, str, int]]:
+    # converts a nested JSON dictionary to a tuple of c_iDs, minimum grades, and nesting levels
+    # nesting levels are explained in about_nesting.md
+    if nesting == 0:
+        print("compressing dict:")
+        print(f"\t{root}")
+    out = []
+    # process the basic dictionary
+    # this is done recursively
+    match root["relation"]:
+        case "single":
+            print(f"{'  ' * nesting}processing {root['name']} as single, nesting {nesting}")
+            out.append((root["name"], root["min_grade"], nesting))
+        case "and":
+            new_nesting = nesting + 1 if nesting % 2 == 0 else nesting + 2
+            print(f"{'  ' * nesting}processing AND at nesting {nesting} with nesting {new_nesting} for children")
+            for ele in root["on"]:
+                # use an odd number for nesting
+                out.extend(make_compressed_notation(ele, new_nesting))
+            # close any brackets the recursion opened
+            out[-1] = (out[-1][0], out[-1][1], nesting)
+        case "or":
+            new_nesting = nesting + 2 if nesting % 2 == 0 else nesting + 1
+            print(f"{'  ' * nesting}processing OR at nesting {nesting} with nesting {new_nesting} for children")
+            for ele in root["on"]:
+                # use an even number for nesting
+                out.extend(make_compressed_notation(ele, new_nesting))
+            # close any brackets the recursion opened
+            out[-1] = (out[-1][0], out[-1][1], nesting)
+
+    if nesting == 0:
+        print("final return:")
+        for i in out:
+            print(i)
+    return out;
+
+def fit_list_to_db(course_id: str, unpadded: list[tuple[str, str, int]]) -> list[tuple[str, str, int, str, int]]:
+    print("fitting list:")
+    for i in unpadded:
+        print(f"\t{i}")
+    ret = []
+    for i in unpadded:
+        ret.append((course_id, i[0], None, i[1], i[2]))
+    return ret
+
+def main():
+    scraper = create_webdriver()
+    #scrape_all_courses(scraper)
+    scrape_all_subject_courses(scraper, "CHEM")
+    scraper.quit()
+
+if __name__ == "__main__":
+    main()

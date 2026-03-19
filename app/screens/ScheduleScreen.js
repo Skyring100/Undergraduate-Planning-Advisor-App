@@ -16,8 +16,8 @@ import { getSectionsOnDayOfWeek } from '../services/sectionService';
 
 
 export default function ScheduleScreen() {
-    const [schedule, setSchedule] = useState(null);
- 
+    const [schedule, setSchedule] = useState('');
+
 
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
@@ -33,20 +33,45 @@ export default function ScheduleScreen() {
         return weekDay;
     }
 
-    useEffect(() => {
-        getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
-            alert("API call was good");
+    async function getDayOfWeek() {
+        // alert(selectedWeekDay);
+        try {
+            //await getSectionsOnDayOfWeek(selectedWeekDay);
+            await getSectionsOnDayOfWeek(selectedWeekDay).then((classData) => {
+                console.log(classData);
+                alert(classData.data[0].course_id);
+                //use context
 
-            if (apiResult.success){
-                setSchedule(apiResult.data);
-            }else{
-                alert("API call was unsuccessful");
-                setSchedule([]);
-            }
-        });
+                if (classData != null) {
+                    // alert(getWeekDays(selectedDay));
+                    setSchedule(classData.course_id);
+                    
+                } else {
+                    alert("API call was unsuccessful");
+                    setSchedule([]);
+                }
+            })
 
-    }, []);
-    
+        } catch (e) {
+            alert(e);
+        }
+
+    }
+
+    // useEffect(() => {
+    //     getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
+    //         // alert("API call was good");
+    //         if (apiResult.success) {
+    //             alert(getWeekDays(selectedDay));
+    //             setSchedule(apiResult.data.course_id);
+    //         } else {
+    //             alert("API call was unsuccessful");
+    //             setSchedule([]);
+    //         }
+    //     });
+
+    // }, []);
+
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const { isDarkMode } = useThemeStore();
@@ -66,12 +91,13 @@ export default function ScheduleScreen() {
 
                 <Calendar
                     key={isDarkMode} // to allow it to rerender every time isDarkMode changes
-                    onDayPress={day => {
+                    onDayPress={async (day) => {
                         //if selected day is different from current date string, erase everything and set it again
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
-                        setSelectedWeekDay();
+                        setSelectedWeekDay(getWeekDays(day.dateString));
+                        await getDayOfWeek();
                     }}
                     markedDates={
                         {
@@ -103,7 +129,8 @@ export default function ScheduleScreen() {
 
                     <View style={styles.agenda}>
 
-                      <Text>{schedule}</Text>
+                        <Text>{selectedWeekDay}</Text>
+                        <Text>{schedule}</Text>
 
                     </View>
 
