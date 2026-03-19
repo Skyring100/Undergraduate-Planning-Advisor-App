@@ -17,8 +17,7 @@ import CoursePopUp from '../components/Requistes/CoursePopUp';
 import all_courses from '../data/UNBC_course_data.json'
 
 
-const filtered_course_types = [...new Set(all_courses.all_courses.map(course => course.id.trim().split(/\n/)[0]))].sort();
-const course_type = ["All"].concat(filtered_course_types);
+
 
 export default function CourseListScreen() {
 
@@ -29,20 +28,20 @@ export default function CourseListScreen() {
     const {width, height} = useWindowDimensions();
 
     const [courses, setCourses] = useState(null);
+    const [filteredCourseTypes, setFilteredCourseTypes] = useState([]);
     const [activeType, setActiveType] = useState("All");
 
-    const filteredCourses = activeType === "All"
-        ? all_courses.all_courses
-        : all_courses.all_courses.filter(course => course.id.trim().startsWith(activeType));
-        
-    {/*
-        
+    
+
+
     useEffect(() => {
         getCourses().then((apiResult) => {
             alert("API call was good");
 
             if (apiResult.success){
                 setCourses(apiResult.data);
+                setFilteredCourseTypes([...new Set(courses.map(course => course.id.slice(0)))].sort());
+                
             }else{
                 alert("API call was unsuccessful");
                 setCourses([]);
@@ -51,7 +50,14 @@ export default function CourseListScreen() {
 
     }, []);
 
-    */}
+    const course_type = ["All"].concat(filteredCourseTypes);
+
+    const filteredCourses = activeType === "All"
+        ? courses
+        : courses.filter(course => course.id.trim().startsWith(activeType));
+        
+        
+    
 
     return (
         <SafeAreaProvider>
@@ -84,14 +90,14 @@ export default function CourseListScreen() {
                     renderItem={({item}) => (
                         <View style={styles.contentBackground}>
                             <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
-                            <Text style={styles.courseTitle}>{item.id.replace(/\n/g, ' ')}</Text>
+                            <Text style={styles.courseTitle}>{item.id}</Text>
                             <Text style={styles.courseText}>{item.title}</Text>
                             <Text style={styles.courseText}>{item.prereq}</Text>
                         </View>
                     )}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.id}
                     ListFooterComponent={
-                        <SafeAreaView style={{marginBottom: 220}}>
+                        <SafeAreaView style={{marginBottom: 310}}>
                         </SafeAreaView>
 
                     }
