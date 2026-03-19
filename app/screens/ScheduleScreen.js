@@ -16,13 +16,11 @@ import { getSectionsOnDayOfWeek } from '../services/sectionService';
 
 
 export default function ScheduleScreen() {
-    const [schedule, setSchedule] = useState('');
-
-
+    const [schedule, setSchedule] = useState([]);
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
-    const [selectedClass, setSelectedClass] = useState('');
+    const [selectedClasses, setSelectedClasses] = useState([]);
     const [selectedWeekDay, setSelectedWeekDay] = useState('');
 
     const getWeekDays = (day) => {
@@ -33,19 +31,21 @@ export default function ScheduleScreen() {
         return weekDay;
     }
 
-    async function getDayOfWeek() {
-        // alert(selectedWeekDay);
-        try {
-            //await getSectionsOnDayOfWeek(selectedWeekDay);
-            await getSectionsOnDayOfWeek(selectedWeekDay).then((classData) => {
-                console.log(classData);
-                alert(classData.data[0].course_id);
-                //use context
+    // const themeText = useThemeText();
 
+    async function getDayOfWeek(selectedWeekD) {
+        // if selectedWeekDay == y OR s, set schedule to nothing, else:
+        const days = [];
+        try {
+            await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
+                console.log(classData);
+        
                 if (classData != null) {
-                    // alert(getWeekDays(selectedDay));
-                    setSchedule(classData.course_id);
                     
+                    for (let i = 0; i < classData.data[0].course_id.length; i++) {
+                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " "+ classData.data[i].start_time + " "+classData.data[i].end_time);
+                    }
+
                 } else {
                     alert("API call was unsuccessful");
                     setSchedule([]);
@@ -53,24 +53,9 @@ export default function ScheduleScreen() {
             })
 
         } catch (e) {
-            alert(e);
+            // alert(e);
         }
-
     }
-
-    // useEffect(() => {
-    //     getSectionsOnDayOfWeek(getWeekDays(selectedDay)).then((apiResult) => {
-    //         // alert("API call was good");
-    //         if (apiResult.success) {
-    //             alert(getWeekDays(selectedDay));
-    //             setSchedule(apiResult.data.course_id);
-    //         } else {
-    //             alert("API call was unsuccessful");
-    //             setSchedule([]);
-    //         }
-    //     });
-
-    // }, []);
 
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
@@ -96,8 +81,8 @@ export default function ScheduleScreen() {
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
-                        setSelectedWeekDay(getWeekDays(day.dateString));
-                        await getDayOfWeek();
+                        // setSelectedWeekDay(getWeekDays(day.dateString));
+                        await getDayOfWeek(getWeekDays(day.dateString));
                     }}
                     markedDates={
                         {
@@ -127,10 +112,10 @@ export default function ScheduleScreen() {
             return (
                 <View style={styles.agendaView}>
 
-                    <View style={styles.agenda}>
+                    <View style={[styles.agenda]}>
 
-                        <Text>{selectedWeekDay}</Text>
-                        <Text>{schedule}</Text>
+                        <Text style={[themeText]}>{selectedWeekDay}</Text>
+                        <Text style={[themeText]}>{schedule}</Text>
 
                     </View>
 
@@ -167,6 +152,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        fontSize: 20,
+
     },
     agendaText: {
         fontSize: '60%',
