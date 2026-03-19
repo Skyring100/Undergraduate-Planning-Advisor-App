@@ -33,11 +33,12 @@ export default function ScheduleScreen() {
 
     // const themeText = useThemeText();
 
-    async function getDayOfWeek() {
-        // alert(selectedWeekDay);
+    async function getDayOfWeek(selectedWeekD) {
+        // if selectedWeekDay == y OR s, set schedule to nothing, else:
+        const days = [];
         try {
             //await getSectionsOnDayOfWeek(selectedWeekDay);
-            await getSectionsOnDayOfWeek(selectedWeekDay).then((classData) => {
+            await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
                 console.log(classData);
                     // alert(classData.data[0].course_id.length);
         
@@ -45,6 +46,7 @@ export default function ScheduleScreen() {
                     // alert(classData.data[0].course_id.length);
                     for (let i = 0; i < classData.data[0].course_id.length; i++) {
                         setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week);
+                        days.push(classData.data[i].course_id + " " + classData.data[i].days_of_week)
                     }
 
                 } else {
@@ -57,6 +59,7 @@ export default function ScheduleScreen() {
             // alert(e);
         }
 
+        return days;
     }
 
     const themeText = useThemeText();
@@ -83,8 +86,8 @@ export default function ScheduleScreen() {
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
-                        setSelectedWeekDay(getWeekDays(day.dateString));
-                        await getDayOfWeek();
+                        // setSelectedWeekDay(getWeekDays(day.dateString));
+                        await getDayOfWeek(getWeekDays(day.dateString));
                     }}
                     markedDates={
                         {
