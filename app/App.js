@@ -44,7 +44,6 @@ export default function App() {
       onBackPress
     );
 
-    // Clean up the event listener when the component unmounts
     return () => backHandler.remove();
   }, []);
 
