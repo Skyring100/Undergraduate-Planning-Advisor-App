@@ -37,16 +37,13 @@ export default function ScheduleScreen() {
         // if selectedWeekDay == y OR s, set schedule to nothing, else:
         const days = [];
         try {
-            //await getSectionsOnDayOfWeek(selectedWeekDay);
             await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
                 console.log(classData);
-                    // alert(classData.data[0].course_id.length);
         
                 if (classData != null) {
-                    // alert(classData.data[0].course_id.length);
+                    
                     for (let i = 0; i < classData.data[0].course_id.length; i++) {
-                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week);
-                        days.push(classData.data[i].course_id + " " + classData.data[i].days_of_week)
+                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " "+ classData.data[i].start_time + " "+classData.data[i].end_time);
                     }
 
                 } else {
@@ -58,8 +55,6 @@ export default function ScheduleScreen() {
         } catch (e) {
             // alert(e);
         }
-
-        return days;
     }
 
     const themeText = useThemeText();
