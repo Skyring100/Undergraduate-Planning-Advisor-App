@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 
-import {mainDark, mainLight, useThemeStore, useFirstBackground} from "../../contexts/ThemeContext";
+import {mainDark, mainLight, useThemeStore, useFirstColour} from "../../contexts/ThemeContext";
 
 
 
@@ -15,7 +15,7 @@ export default function LogoutButton() {
 
         navigation.navigate('Login',{})
     };
-    const firstBg = useFirstBackground();
+    const firstBg = useFirstColour();
     
     return (
         <TouchableOpacity

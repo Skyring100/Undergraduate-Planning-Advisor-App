@@ -14,7 +14,7 @@ export default function CollapsibleView({ title, children })
         </View>}
 
       <TouchableOpacity style={styles.header} onPress={() => setOpen(!open)}>
-        <Text>{title} {open ? "▲" : "▼"}</Text>
+        <Text style= {{color: '#a7a7a7'}}>{title} {open ? "close ▲ filter" : "open ▼ filter"}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -22,26 +22,27 @@ export default function CollapsibleView({ title, children })
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#0000009e",
-    marginBottom: 8,
-    overflow: "hidden",
-    width: "90%",
-    alignSelf: "center",
+    backgroundColor: '#fff',
+    borderWidth: 1.5,
+    borderColor: '#6f6f6f',
+    backgroundColor: '#4b4b4b',
+    marginTop: 5,
+    overflow: 'hidden',
+    width: '100%',
+    alignSelf: 'center',
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingVertical: 12,
-    borderTopWidth: 2,
-    borderColor: "#0000009e",
+    borderTopWidth: 1.5,
+    borderColor: '#6f6f6f',
+    backgroundColor: '#2b2b2b',
   },
   body: {
     borderTopWidth: 0.5,
-    borderTopColor: "#000000)",
+    borderTopColor: '6f6f6f',
     paddingHorizontal: 14,
     paddingVertical: 10,
     gap: 6,
