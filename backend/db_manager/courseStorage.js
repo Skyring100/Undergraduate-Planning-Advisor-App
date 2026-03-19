@@ -8,3 +8,11 @@ export function getCourseById(id) {
 
     return response;
 }
+
+// added this to get all courses
+export function getAllCourses()
+{
+    const courses = db.prepare('SELECT * FROM course JOIN prereqs ON course.course_id = prereqs.course_id').all();
+
+    return response;
+}
