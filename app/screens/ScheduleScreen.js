@@ -46,7 +46,7 @@ export default function ScheduleScreen() {
 
                     for (let i = 0; i < classData.data[0].course_id.length; i++) {
                         setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " " + classData.data[i].start_time + " " + classData.data[i].end_time);
-                        setClassInfo(classData.data[i].building + " " + classData.data[i].instructor_name + " " + " " + classData.data[i].start_date + " " + classData.data[i].end_date);
+                        setClassInfo(classData.data[i].start_date + " " + classData.data[i].end_date);
                     }
 
                 } else {
