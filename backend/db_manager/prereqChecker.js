@@ -1,23 +1,4 @@
-import { getDatabaseConnection } from "./databaseActions.js";
-const db = getDatabaseConnection();
-
-
-export function getCourseById(id) {
-
-    const course = db.prepare('SELECT * FROM course JOIN prereqs ON course.course_id = prereqs.course_id WHERE course.id=? ').get(id);
-
-    return course;
-}
-
-// added this to get all courses
-export function getAllCourses()
-{
-    const courses = db.prepare('SELECT * FROM course').all();
-
-    return courses;
-}
-
-export function checkIfPrereqsMatchCourse(completed, target)
+function checkIfPrereqsMatchCourse(completed, target)
 {
     /**
      * Checks if a course can be registered for with the courses in prereqs.
@@ -32,15 +13,15 @@ export function checkIfPrereqsMatchCourse(completed, target)
     // turn prereqList into an object
     // first, get highest precedence operator
     let highest = 0;
-    for (int i=0; i<prereqList.length; i++) {
-        if (/^[0-9]+$/.test(prereqList[i])) && parseInt(prereqList[i]) > highest)
+    for (let i=0; i<prereqList.length; i++) {
+        if (/^[0-9]+$/.test(prereqList[i]) && parseInt(prereqList[i]) > highest)
             highest = parseInt(prereqList[i]);
     }
 
     //now pair on precedence
     while (prereqList.length > 1) {
-        for (int p=highest; p>0; p--) {
-            for (int i=0; i<prereqList.length; i++) {
+        for (let p=highest; p>0; p--) {
+            for (let i=0; i<prereqList.length; i++) {
                 if (+prereqList[i] == p) {
                     relation = p % 2 == 0 ? "or" : "and"; // only even if it's OR
                     prereqList.splice(i-1, 3, {relation: relation, on: [prereqList[i-1], prereqList[i + 1]]});

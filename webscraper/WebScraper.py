@@ -386,7 +386,7 @@ def make_compressed_notation(root: dict, nesting: int = 0) -> list[tuple[str, st
             print(i)
     return out;
 
-def fit_list_to_db(course_id: str, unpadded: list[tuple[str, str, int]]) -> list[tuple[str, str, int, str, int, int]]:
+def fit_list_to_db(course_id: str, unpadded: list[tuple[str, str, int]]) -> list[tuple[str, str, int, str, int]]:
     print("fitting list:")
     for i in unpadded:
         print(f"\t{i}")
