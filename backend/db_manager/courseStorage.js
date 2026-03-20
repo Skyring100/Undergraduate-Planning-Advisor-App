@@ -15,6 +15,7 @@ export function getAllCourses()
     const courses = db.prepare('SELECT * FROM course').all();
 
     return courses;
+<<<<<<< HEAD
 }
 
 export function checkIfPrereqsMatchCourse(completed, target)
@@ -102,3 +103,6 @@ function recursivePrereqCheck(completed, root) {
             return root.on.some(obj => recursivePrereqCheck(completed, obj));
     }
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master
