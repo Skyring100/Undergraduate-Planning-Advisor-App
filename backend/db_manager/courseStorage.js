@@ -15,7 +15,6 @@ export function getAllCourses()
     const courses = db.prepare('SELECT * FROM course').all();
 
     return courses;
-<<<<<<< HEAD
 }
 
 export function checkIfPrereqsMatchCourse(completed, target)
@@ -26,10 +25,13 @@ export function checkIfPrereqsMatchCourse(completed, target)
      * @param target The course ID the student wants to register for.
      */
 
-    const prereqs = db.prepare('SELECT prereq_id, nesting FROM prereq WHERE course_id="'+target+'" ORDER BY ordering;').all();
+    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=\''+target+'\' ORDER BY ordering;').all();
     const prereqList = prereqs.map(obj => {
-        return obj.prereq_id + " minimum grade of " + obj.min_grade + "|" + obj.nesting + "|"
+        return obj.prereq_id + " minimum grade of " + obj.min_grade + "|" + obj.nesting
     }, prereqs).join("|").split("|");
+    prereqList.pop(); // the last one will be zero, we dont want that
+    console.log("here's the list:")
+    console.log(JSON.stringify(prereqList))
     // turn prereqList into an object
     // first, get highest precedence operator
     let highest = 0;
@@ -39,17 +41,19 @@ export function checkIfPrereqsMatchCourse(completed, target)
     }
 
     //now pair on precedence
+    console.log("pairing on precedence");
     while (prereqList.length > 1) {
         for (let p=highest; p>0; p--) {
             for (let i=0; i<prereqList.length; i++) {
                 if (+prereqList[i] == p) {
-                    relation = p % 2 == 0 ? "or" : "and"; // only even if it's OR
-                    prereqList.splice(i-1, 3, {relation: relation, on: [prereqList[i-1], prereqList[i + 1]]});
+                    let reln = p % 2 == 0 ? "or" : "and"; // only even if it's OR
+                    prereqList.splice(i-1, 3, {relation: reln, on: [prereqList[i-1], prereqList[i + 1]]});
                     i = -1 // start from the beginning
                 }
             }
         }
     }
+    console.log("flattening spikes");
     // flatten associativity spikes
     let ret = prereqList[0];
     let modMade = true;
@@ -66,6 +70,7 @@ export function checkIfPrereqsMatchCourse(completed, target)
             }
         }
     }
+    console.log("wrapping courses");
 
     // wrap singles recursively
     function wrapCourses(current) {
@@ -84,8 +89,9 @@ export function checkIfPrereqsMatchCourse(completed, target)
             }
         }
     }
+    ret = wrapCourses(ret);
 
-    return recursivePrereqCheck(completed, prereq);
+    return recursivePrereqCheck(completed, ret);
 }
 
 function recursivePrereqCheck(completed, root) {
@@ -96,13 +102,13 @@ function recursivePrereqCheck(completed, root) {
      */
     switch (root.relation) {
         case "single":
+            console.log("found a single course: " + root.name)
             return completed.includes(root.name);
         case "and":
+            console.log("found an AND")
             return root.on.every(obj => recursivePrereqCheck(completed, obj));
         case "or":
+            console.log("found an OR")
             return root.on.some(obj => recursivePrereqCheck(completed, obj));
     }
 }
-=======
-}
->>>>>>> refs/remotes/origin/master
