@@ -13,15 +13,6 @@ function initalizeDatabase(){
 function createTables(){
     console.log("Creating tables");
     db.exec(`
-        CREATE TABLE IF NOT EXISTS user (
-            student_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT UNIQUE NOT NULL,
-            first_name TEXT NOT NULL,
-            last_name TEXT,
-            password_hash TEXT
-        )
-    `);
-    db.exec(`
         CREATE TABLE IF NOT EXISTS course (
             course_id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
@@ -87,6 +78,32 @@ function createTables(){
             PRIMARY KEY (degree_id, credit_requirement_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         ); 
+    `);
+
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS user (
+            student_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            first_name TEXT NOT NULL,
+            last_name TEXT,
+            password_hash TEXT,
+            gpa REAL
+        );
+        CREATE TABLE IF NOT EXISTS user_taking_degree(
+            student_id INTEGER,
+            degree_id INTEGER,
+            PRIMARY KEY (student_id, degree_id),
+            FOREIGN KEY (student_id) REFERENCES user(student_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        );
+        CREATE TABLE IF NOT EXISTS user_completed_course(
+            student_id INTEGER,
+            course_id INTEGER,
+            in_progress BOOLEAN,
+            PRIMARY KEY (student_id, course_id),
+            FOREIGN KEY (student_id) REFERENCES user(student_id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id)
+        );
     `);
 }
 
