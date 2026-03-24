@@ -25,7 +25,7 @@ export function checkIfPrereqsMatchCourse(completed, target)
      * @param target The course ID the student wants to register for.
      */
 
-    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=\''+target+'\' ORDER BY ordering;').all();
+    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=? ORDER BY ordering;').all(target);
     const prereqList = prereqs.map(obj => {
         return obj.prereq_id + " minimum grade of " + obj.min_grade + "|" + obj.nesting
     }, prereqs).join("|").split("|");
