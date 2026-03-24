@@ -4,30 +4,50 @@ const db = getDatabaseConnection();
 
 export function getUserByEmail(email) {
   const q = `SELECT * FROM user
-    JOIN user_taking_degree ON user.student_id = user_taking_degree.student_id
-    JOIN user_completed_courses ON user.student_id = user_completed_courses.student_id
+    LEFT JOIN user_taking_degree ON user.student_id = user_taking_degree.student_id
+    LEFT JOIN user_completed_course ON user.student_id = user_completed_course.student_id
     WHERE user.email=?`
   const user = db.prepare(q).get(email);
   if (!user){
     return undefined;
   }
-  const response = {
-    student_id: user.student_id,
-    emai: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    password_hash: user.password_hash
-  };
-  return response;
+  return user;
 }
 
 
 export function saveUser(user) {
+  const userResult = db.prepare('INSERT INTO user(email, first_name, last_name, password_hash) VALUES (?, ?, ?, ?)').get(user.email, user.firstName, user.lastName, user.password);
+  
+  if (!userResult){
+    return undefined;
+  }
 
-    const result = db.prepare('INSERT INTO user(email, first_name, last_name, password_hash) VALUES (?, ?, ?, ?)').get(user.email, user.firstName, user.lastName, user.password);
-    if (!result){
-      return undefined;
-    }
+  return userResult;
+}
 
-    return result;
+export function addCompletedCourses(studentID, courses){
+  //Ensure we are not readding courses the user already took
+  const currentCoursesQuery = db.prepare('SELECT course_id FROM user_completed_course WHERE user_completed_course.student_id = ?').all(studentID);
+
+  const currentCourses = []
+  currentCoursesQuery.forEach((obj) => {
+      currentCourses.push(obj.course_id.toString());
+  });
+  const newCourses = courses.filter((c) => !currentCourses.includes(c));
+  console.log(currentCourses);
+  console.log(courses);
+  console.log(newCourses);
+  if (newCourses.length == 0){
+    return {changes: 0};
+  }
+  const insert = db.prepare('INSERT INTO user_completed_course(student_id, course_id) VALUES (?, ?)');
+  newCourses.forEach(course_id => {
+    insert.run(studentID, course_id);
+  });
+  return {changes: newCourses.length};
+}
+
+export function addTakenDegree(student_id, degree_id){
+  const result = db.prepare('INSERT INTO user_taking_degree(student_id, degree_id) VALUES (?, ?)').run(student_id, degree_id);
+  return result;
 }

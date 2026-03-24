@@ -1,6 +1,6 @@
 import { API_BASE_URL } from './api';
 
-export const getUserProfile = async (token) => {
+export const getUserProfile = async () => {
   try {
     const url = `${API_BASE_URL}/users/profile`;
     console.log('Get profile API URL:', url);
@@ -9,7 +9,6 @@ export const getUserProfile = async (token) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       },
     });
 
@@ -47,5 +46,27 @@ export const getUserProfile = async (token) => {
       message: errorMessage,
     };
   }
+};
+
+
+export const addCompletedCourses = async (student_id, courses) => {
+  try{
+      const url = `${API_BASE_URL}/users/courses/${student_id}`;
+          console.log(url);
+          const response = await fetch(url, {
+              method: 'PUT',
+              headers: {
+              'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({courses})
+          });
+          const data = await response.json();
+          console.log(data);
+
+          return {success: true, data};
+      } catch (error) {
+          console.error('Error adding completed course to user:', error);
+          return {success: false, data: null};
+      }
 };
 

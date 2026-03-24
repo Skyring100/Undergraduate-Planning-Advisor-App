@@ -27,6 +27,32 @@ const getCurrentUser = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
+const addCompletedCourses = async (req, res) => {
+  const {student_id} = req.params;
+  const courses = req.body.courses;
+
+  console.log(req.url);
+
+  const insertRes = await userStorage.addCompletedCourses(student_id, courses);
+
+  var result;
+  if (!insertRes) {
+    result = { 
+      success: false, 
+      message: 'Failed to add courses to user' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Added courses to user', 
+      data: insertRes
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
+
 router.get('/profile', getCurrentUser);
+router.put('/courses/:student_id', addCompletedCourses);
 
 module.exports = router;
