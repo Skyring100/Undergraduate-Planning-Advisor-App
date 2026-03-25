@@ -1,5 +1,5 @@
 /*
-Run with 'node testBackend.js
+Run with ' node --env-file=.env .\testBackend.js'
 */
 
 
@@ -52,7 +52,7 @@ const testDegree = {
     ],
     credit_reqs: [
         {
-            desc: "400 Level courses",
+            description: "400 Level courses",
             num_credits: 12
         }
     ]
@@ -90,6 +90,7 @@ async function newDegreeTestCase(){
 
 
 // SECTIONS
+
 
 await newUserTestCase();
 await newDegreeTestCase();
