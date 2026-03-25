@@ -6,7 +6,8 @@ const { saveUser, getUserByEmail } = require('../db_manager/userStorage');
 
 const registerUser = async (req, res) => {
   console.log(req.url);
-  const { email, password, firstName, lastName } = req.body;
+  console.log(req.body);
+  const { email, password, first_name, last_name } = req.body;
 
   const existingUser = await getUserByEmail(email);
   if (existingUser) {
@@ -19,31 +20,22 @@ const registerUser = async (req, res) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  const user = {
-    email,
-    firstName,
-    lastName,
-    password: hashedPassword,
-    createdAt: new Date().toISOString()
-  };
+  await saveUser(email, first_name, last_name, hashedPassword);
 
-  await saveUser(user);
-
+  const newUser = await getUserByEmail(email);
+  console.log("------------------------------------------------------------------------")
+  console.log(newUser);
   res.status(201).json({
     success: true,
     message: 'User registered successfully',
-    data: {
-      user: {
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      }
-    }
+    data: newUser
   });
 };
 
 const loginUser = async (req, res) => {
-  console.log(`[API] ${new Date().toISOString()} - POST /api/auth/login - Email: ${req.body.email}`);
+  
+  console.log(req.url);
+  console.log(req.body);
   const { email, password } = req.body;
 
   const user = await getUserByEmail(email);
@@ -65,13 +57,7 @@ const loginUser = async (req, res) => {
   res.json({
     success: true,
     message: 'Login successful',
-    data: {
-      user: {
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      }
-    }
+    data: user
   });
 };
 

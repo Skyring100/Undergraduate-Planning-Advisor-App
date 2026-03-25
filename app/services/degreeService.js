@@ -1,6 +1,6 @@
-import { API_BASE_URL } from './api';
+import { API_BASE_URL } from './api.js';
 
-export const createDegree = async (degree) => {
+export const createDegree = async (name, isMinor, courseReqs, creditReqs) => {
     try{
         const url = `${API_BASE_URL}/degrees/create`;
             console.log(url)
@@ -10,10 +10,10 @@ export const createDegree = async (degree) => {
                 'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name : degree.name,
-                    is_minor : degree.is_minor,
-                    course_reqs : degree.course_reqs,
-                    credit_reqs : degree.credit_reqs
+                    name : name,
+                    is_minor : isMinor,
+                    course_reqs : courseReqs,
+                    credit_reqs : creditReqs
             }),
             });
             const data = await response.json();

@@ -31,7 +31,8 @@ const getDegreeByID = async (req, res) => {
 const createDegree = async (req, res) => {
   const { name, is_minor, course_reqs, credit_reqs } = req.body;
 
-  console.log(req.url + `${name}, ${is_minor}, ${course_reqs}, ${credit_reqs}`);
+  console.log(req.url);
+  console.log(req.body);
 
   const creationSuccess = await degreeStorage.createDegree(name, is_minor, course_reqs, credit_reqs);
 

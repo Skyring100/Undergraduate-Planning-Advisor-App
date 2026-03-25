@@ -28,10 +28,11 @@ const getCurrentUser = async (req, res) => {
 };
 
 const addCompletedCourses = async (req, res) => {
+  console.log(req.url);
+  console.log(req.params);
+  console.log(req.body);
   const {student_id} = req.params;
   const courses = req.body.courses;
-
-  console.log(req.url);
 
   const insertRes = await userStorage.addCompletedCourses(student_id, courses);
 

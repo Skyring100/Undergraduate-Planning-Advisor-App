@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './api';
+import { API_BASE_URL } from './api.js';
 
 export const getCourses = async () => {
     const url = `${API_BASE_URL}/courses/all`;

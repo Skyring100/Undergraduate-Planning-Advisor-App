@@ -2,7 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 const DATABASE_PATH = './db/database.db';
 const db = initalizeDatabase();
 //Temporary reset for database for testing purposes
-//dropTables();
+dropTables();
 createTables();
 // dummyData();
 
@@ -62,10 +62,13 @@ function createTables(){
             is_minor INTEGER,
             CHECK (is_minor == 1 OR is_minor == 0)
         );
+    `);
+
+    db.exec(`
         CREATE TABLE IF NOT EXISTS degree_course_requirement (
             degree_id INTEGER,
             course_id TEXT,
-            level INTEGER,
+            min_grade TEXT,
             PRIMARY KEY (degree_id, course_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
@@ -89,6 +92,8 @@ function createTables(){
             password_hash TEXT,
             gpa REAL
         );
+    `);
+    db.exec(`
         CREATE TABLE IF NOT EXISTS user_taking_degree(
             student_id INTEGER,
             degree_id INTEGER,
@@ -109,13 +114,15 @@ function createTables(){
 
 function dropTables(){
     console.log("Dropping tables");
+    // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        DROP TABLE IF EXISTS user_taking_degree;
+        DROP TABLE IF EXISTS user_completed_course;
         DROP TABLE IF EXISTS degree_course_requirement;
         DROP TABLE IF EXISTS degree_credit_requirement;
         DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
-        DROP TABLE IF EXISTS course;
         DROP TABLE IF EXISTS user;
     `);
 }

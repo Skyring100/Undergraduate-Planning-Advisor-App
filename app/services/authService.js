@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './api';
+import { API_BASE_URL } from './api.js';
 
 export const loginUser = async (email, password) => {
   const url = `${API_BASE_URL}/auth/login`;
@@ -29,7 +29,7 @@ export const loginUser = async (email, password) => {
  * @param {string} phone - User phone number
  * @returns {Promise<{success: boolean, data?: object, message?: string}>}
  */
-export const registerUser = async (email, password, firstName, lastName) => {
+export const registerUser = async (email, password, first_name, last_name) => {
   const url = `${API_BASE_URL}/auth/register`;
   console.log(url)
   const response = await fetch(url, {
@@ -40,12 +40,13 @@ export const registerUser = async (email, password, firstName, lastName) => {
     body: JSON.stringify({
       email,
       password,
-      firstName,
-      lastName,
+      first_name,
+      last_name,
     }),
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (response.ok && data.success) {
     return {

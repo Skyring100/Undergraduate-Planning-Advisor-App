@@ -13,9 +13,11 @@ export function createDegree(name, is_minor, course_reqs, credit_reqs) {
     const degreeInfo = db.prepare("INSERT INTO degree(name, is_minor) VALUES (?, ?)").run(name, ((is_minor) ? 1 : 0) );
     const courseReqs =  course_reqs;
     for (let i = 0; i < courseReqs.length; i++) {
-        const course = courseReqs[i];
-        const level = Number(course.slice(-3));
-        db.prepare("INSERT INTO degree_course_requirement(degree_id, course_id, level) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, course, Number(course.slice(-3)));   
+        const course = courseReqs[i].course_id;
+        const minGrade = courseReqs[i].min_grade;
+        console.log(course);
+        console.log(minGrade);
+        db.prepare("INSERT INTO degree_course_requirement(degree_id, course_id, min_grade) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, course, minGrade);   
     }
     const creditReqs = credit_reqs
     for (let i = 0; i < creditReqs.length; i++) {

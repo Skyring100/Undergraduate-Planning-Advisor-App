@@ -15,8 +15,9 @@ export function getUserByEmail(email) {
 }
 
 
-export function saveUser(user) {
-  const userResult = db.prepare('INSERT INTO user(email, first_name, last_name, password_hash) VALUES (?, ?, ?, ?)').get(user.email, user.firstName, user.lastName, user.password);
+export function saveUser(email, firstName, lastName, password) {
+  console.log(`${email}, ${firstName}, ${lastName}, ${password}`);
+  const userResult = db.prepare('INSERT INTO user(email, first_name, last_name, password_hash) VALUES (?, ?, ?, ?)').run(email, firstName, lastName, password);
   
   if (!userResult){
     return undefined;
@@ -34,12 +35,8 @@ export function addCompletedCourses(studentID, courses){
       currentCourses.push(obj.course_id.toString());
   });
   const newCourses = courses.filter((c) => !currentCourses.includes(c));
-  console.log(currentCourses);
   console.log(courses);
   console.log(newCourses);
-  if (newCourses.length == 0){
-    return {changes: 0};
-  }
   const insert = db.prepare('INSERT INTO user_completed_course(student_id, course_id) VALUES (?, ?)');
   newCourses.forEach(course_id => {
     insert.run(studentID, course_id);
