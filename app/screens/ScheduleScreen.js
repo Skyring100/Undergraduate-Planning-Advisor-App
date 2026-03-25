@@ -13,6 +13,8 @@ import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
+import AddSectionButton from '../components/Dashboard/AddSectionButton';
+
 
 
 export default function ScheduleScreen() {
@@ -69,9 +71,12 @@ export default function ScheduleScreen() {
         <SafeAreaProvider>
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
 
-                <View style={{ alignItems: 'center', justifyContent: 'center', ...themeBg, width: width }}>
+
+                <View style={{ flexDirection:'row', alignItems: 'center', justifyContent: 'flex-end',...themeBg, width: width }}>
                     <BackButton />
+                    <AddSectionButton/>                    
                 </View>
+
 
                 <View style={styles.scheduleHeader}>
 
@@ -84,7 +89,6 @@ export default function ScheduleScreen() {
                         setIsVisible(true);
                         setSelected(day.dateString);
                         setSelectedDay(day.dateString);
-                        // setSelectedWeekDay(getWeekDays(day.dateString));
                         await getDayOfWeek(getWeekDays(day.dateString));
                     }}
                     markedDates={
@@ -173,16 +177,10 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-
         borderWidth: 5,
     },
     agendaText: {
-        // fontSize: '60%',
         fontWeight: 'bold',
-        // justifyContent: 'space-around',
-        // alignItems: 'center',
-        // borderWidth: 2,
-        // borderColor: 'black',
         fontSize: 20,
     }
 })

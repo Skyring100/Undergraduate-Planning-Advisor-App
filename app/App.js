@@ -19,6 +19,7 @@ import EvaluatorScreen from './screens/EvaluatorScreen';
 import ScheduleScreen from './screens/ScheduleScreen';
 import RequiredCoursesScreen from './screens/RequiredCoursesScreen';
 import CourseListScreen from './screens/CourseListScreen';
+import AddSectionScreen from './screens/AddSectionScreen';
 
 
 
@@ -67,6 +68,7 @@ export default function App() {
               <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
               <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
               <Stack.Screen name="CourseList" component={CourseListScreen} />
+              <Stack.Screen name="AddSection" component={AddSectionScreen}/>
             </Stack.Navigator>
           </NavigationContainer>
         </UserProvider>
