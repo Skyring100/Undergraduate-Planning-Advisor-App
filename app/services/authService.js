@@ -21,14 +21,6 @@ export const loginUser = async (email, password) => {
   return data;
 };
 
-/**
- * Register a new user
- * @param {string} email - User email
- * @param {string} password - User password
- * @param {string} name - User full name
- * @param {string} phone - User phone number
- * @returns {Promise<{success: boolean, data?: object, message?: string}>}
- */
 export const registerUser = async (email, password, first_name, last_name) => {
   const url = `${API_BASE_URL}/auth/register`;
   console.log(url)
@@ -48,17 +40,6 @@ export const registerUser = async (email, password, first_name, last_name) => {
   const data = await response.json();
   console.log(data);
 
-  if (response.ok && data.success) {
-    return {
-      success: true,
-      data: data.data,
-      message: data.message,
-    };
-  } else {
-    return {
-      success: false,
-      message: data.message || 'Registration failed. Please try again.',
-    };
-  }
+  return data;
 };
 

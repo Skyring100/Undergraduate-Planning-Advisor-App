@@ -1,6 +1,6 @@
 import { API_BASE_URL } from './api.js';
 
-export const getCourses = async () => {
+export const getAllCourses = async () => {
     const url = `${API_BASE_URL}/courses/all`;
     console.log(url)
     const response = await fetch(url, {
