@@ -6,6 +6,7 @@ import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from 
 import TimeInput from '@tighten/react-native-time-input';
 import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
+import { Button } from 'react-native';
 
 
 
@@ -22,23 +23,26 @@ export default function AddSectionScreen() {
     const { width, height } = useWindowDimensions();
 
     const [showPicker, setShowPicker] = useState(false);
+    const themeTxt = useThemeText();
 
-    const handleTimeChange = (time, validTime) => {
-        if (!validTime) return;
-
-        setTime(time);
+    function SubmitInfo() {
+        if (sectionName == '' || sectionDays == '' || sectionDuration == '') {
+            alert.alert("Empty information, try again.")
+        } else {
+            console.log(sectionName);
+        }
     }
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{ ...themeBg, minHeight: height}}>
+            <SafeAreaView style={{ ...themeBg, minHeight: height }}>
                 <View >
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', ...themeBg }}>
                         < BackButton />
                     </View>
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionName}
                         value={sectionName}
                         placeholder='Section Name'
@@ -46,7 +50,7 @@ export default function AddSectionScreen() {
                     </TextInput>
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionDuration}
                         value={sectionDuration}
                         placeholder='Section Time'
@@ -62,7 +66,7 @@ export default function AddSectionScreen() {
                     </TextInput> */}
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionStartTime}
                         value={sectionStartTime}
                         placeholder='Section Start Time'
@@ -71,7 +75,7 @@ export default function AddSectionScreen() {
 
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionEndTime}
                         value={sectionEndTime}
                         placeholder='Section End Time'
@@ -80,7 +84,7 @@ export default function AddSectionScreen() {
 
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionProfessor}
                         value={sectionProfessor}
                         placeholder='Instructor'
@@ -89,7 +93,7 @@ export default function AddSectionScreen() {
 
 
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, themeTxt]}
                         onChangeText={setSectionRoom}
                         value={sectionRoom}
                         placeholder='Section Room'
@@ -98,6 +102,7 @@ export default function AddSectionScreen() {
 
                     <Text>Select Days:</Text>
                     <Picker
+                        style={themeTxt}
                         selectedValue={sectionDays}
                         onValueChange={(itemValue, itemIndex) =>
                             setSectionDays(itemValue)
@@ -113,6 +118,12 @@ export default function AddSectionScreen() {
                         <Picker.Item label='Monday|Wednesday' value='MW' />
                         <Picker.Item label='Wednesday|Friday' value='WF' />
                     </Picker>
+
+                    <Button
+                        style={{ ...themeBg }}
+                        onPress={SubmitInfo}
+                        title="Submit"
+                    ></Button>
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>
@@ -128,6 +139,6 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        
+
     }
 });
