@@ -110,12 +110,65 @@ function createTables(){
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
     `);
+
+    //User Degree table
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS user_degree(
+            student_id INTEGER,
+            degree_id INTEGER,
+
+            PRIMARY KEY (student_id, degree_id)
+            FOREIGN KEY (student_id) REFERENCES user(student_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        );
+    `);
+
+    //Degree planner related tables
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan (
+            degree_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id INTEGER,
+            name TEXT,
+            
+            FOREIGN KEY (student_id) REFERENCES user(student_id)
+        );
+    `);
+
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan_degree (
+            degree_plan_id INTEGER PRIMARY KEY,
+            degree_id INTEGER,
+
+            FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
+            FOREIGN KEY (degree_id) REFERENCE degree(degree_id)
+        );
+    `);
+
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan_course (
+            degree_plan_id INTEGER,
+            year_num INTEGER,
+            semester_id INTEGER,
+            course_id INTEGER,
+
+            PRIMARY KEY (degree_plan_id, year_num, semester_name, course_id),
+            FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id)
+
+            CONSTRAINT check_only_valid_semesters CHECK (
+                semester_id IN (09, 01, 05)),
+        );
+    `);
 }
 
 function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        DROP TABLE IF EXISTS degree_plan_course;
+        DROP TABLE IF EXISTS degree_plan_degree;
+        DROP TABLE IF EXISTS degree_plan;
+        DROP TABLE IF EXISTS user_degree;
         DROP TABLE IF EXISTS user_taking_degree;
         DROP TABLE IF EXISTS user_completed_course;
         DROP TABLE IF EXISTS degree_course_requirement;
