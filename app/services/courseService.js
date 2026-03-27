@@ -10,7 +10,36 @@ export const getAllCourses = async () => {
         },
     });
     const data = await response.json();
-    //console.log(data);
+    console.log("data");
 
     return data;
 };
+
+export const checkPrereqs = async (completed, target) => {
+    const completedString = completed.join(",");
+    const url = `${API_BASE_URL}/courses/check/${completedString}/${target}`;
+    console.log(url);
+    const matches = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        },
+    }
+    ).then(response => response.json()).data;
+    return matches;
+}
+
+export const getPrereqsOf = async (target) => {
+    const url = `${API_BASE_URL}/courses/allprereqs/${target}`;
+    console.log(url);
+    const all = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    }
+    ).then(response => response.json());
+    const ret = all.data;
+    console.log(ret);
+    return ret;
+}

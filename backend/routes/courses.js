@@ -49,6 +49,57 @@ const getAllCourses = async (req, res) => {
 
 };
 
+const prereqCheck = async (req, res) => {
+  const { completed, target } = req.params;
+  const courses = completed.split(",");
+  const matches = courseStorage.checkIfPrereqsMatchCourse(courses, target);
+  
+  console.log(req.url);
+  var result;
+  if (!target) {
+    result = { 
+      success: false, 
+      message: 'No target specified or malformed URL'
+    };
+  } else {
+    result = {
+      success: true, 
+      message: 'Prereqs ' + (matches ? 'match' : 'do not match') + "the course ",
+      data: matches,
+    };
+  }
+
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+
+};
+
+const prereqList = async (req, res) => {
+  const { target } = req.params;
+  const prereqs = courseStorage.getPrereqsOf(target);
+  
+  console.log(req.url);
+  var result;
+  if (!target) {
+    result = { 
+      success: false, 
+      message: 'No target specified or malformed URL'
+    };
+  } else {
+    result = {
+      success: true, 
+      message: "Got prereqs",
+      data: prereqs,
+    };
+  }
+
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+
+};
+
 router.get('/all', getAllCourses)
 router.get('/:id', getCourseById)
+router.get('/allprereqs/:target', prereqList)
+router.get('/check/:completed/:target', prereqCheck)
 module.exports = router;
