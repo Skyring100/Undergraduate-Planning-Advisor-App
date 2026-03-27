@@ -18,6 +18,10 @@ export default function AddSectionScreen() {
     const [sectionEndTime, setSectionEndTime] = useState('');
     const [sectionProfessor, setSectionProfessor] = useState('');
     const [sectionRoom, setSectionRoom] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [sectionBuilding, setSectionBuilding] = useState('');
+
     const themeBg = useThemeBackground();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
@@ -57,14 +61,6 @@ export default function AddSectionScreen() {
                     >
                     </TextInput>
 
-                    {/* <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionDays}
-                        value={sectionDays}
-                        placeholder='Section Days'
-                    >
-                    </TextInput> */}
-
                     <TextInput
                         style={[styles.input, themeTxt]}
                         onChangeText={setSectionStartTime}
@@ -96,6 +92,31 @@ export default function AddSectionScreen() {
                         style={[styles.input, themeTxt]}
                         onChangeText={setSectionRoom}
                         value={sectionRoom}
+                        placeholder='Section Room'
+                    >
+                    </TextInput>
+
+
+                    <TextInput
+                        style={[styles.input, themeTxt]}
+                        onChangeText={setStartDate}
+                        value={startDate}
+                        placeholder='Section Room'
+                    >
+                    </TextInput>
+
+                    <TextInput
+                        style={[styles.input, themeTxt]}
+                        onChangeText={setEndDate}
+                        value={endDate}
+                        placeholder='Section Room'
+                    >
+                    </TextInput>
+
+                    <TextInput
+                        style={[styles.input, themeTxt]}
+                        onChangeText={setSectionBuilding}
+                        value={sectionBuilding}
                         placeholder='Section Room'
                     >
                     </TextInput>
