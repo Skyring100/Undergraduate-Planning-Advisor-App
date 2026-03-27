@@ -1,6 +1,7 @@
+import 'react-native-get-random-values';
 import { useEffect } from 'react';
-import { StyleSheet, Button, Text, BackHandler, Alert } from 'react-native';
-import { createStaticNavigation, NavigationContainer } from '@react-navigation/native';
+import { BackHandler, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AppHeader from './components/Header/AppHeader';
@@ -76,15 +77,3 @@ export default function App() {
     </ThemeProvider>
   )
 }
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

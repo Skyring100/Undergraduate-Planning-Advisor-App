@@ -1,3 +1,5 @@
+firebase_admin.json
+
 # Dependencies
 node_modules/
 package-lock.json
