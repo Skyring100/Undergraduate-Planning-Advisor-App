@@ -113,7 +113,7 @@ function createTables(){
 
     //User Degree table
     db.exec(`
-        CREATE TABLE IF NOT EXISTS user_degree (
+        CREATE TABLE IF NOT EXISTS user_degree(
             student_id INTEGER,
             degree_id INTEGER,
             PRIMARY KEY (student_id, degree_id)
@@ -137,6 +137,8 @@ function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        DROP TABLE IF EXISTS degree_plan;
+        DROP TABLE IF EXISTS user_degree;
         DROP TABLE IF EXISTS user_taking_degree;
         DROP TABLE IF EXISTS user_completed_course;
         DROP TABLE IF EXISTS degree_course_requirement;
