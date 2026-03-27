@@ -19,9 +19,9 @@ export default function PlannerScreen() {
     const {width} = useWindowDimensions();
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1, gap: 10}}>
                 
-                <View style={{alignItems: 'center', justifyContent: 'center' }}> 
+                <View style={{alignItems: 'center', justifyContent: 'center'}}> 
                     <BackButton/>
                     <View style={{height: 10}}></View>
                     <DropdownList/>
