@@ -1,5 +1,5 @@
 /*
-Run with 'node testBackend.js
+Run this test script with with ' node --env-file=.env .\testBackend.js'
 */
 
 
@@ -7,7 +7,8 @@ import { loginUser, registerUser } from "./services/authService.js";
 import { createDegree } from "./services/degreeService.js";
 import { addCompletedCourses } from "./services/userService.js";
 
-//NOTE: this JSON may not reflect the structure RETURNED from the backend
+// The following JSON variables are examples of CREATING the object in the backend
+//NOTE: this JSON may not reflect the structure RETURNED from the backend (ie. might have more fields, different structure)
 const testUser = {
     email: "test@test.com",
     password: "test123",
@@ -52,8 +53,62 @@ const testDegree = {
     ],
     credit_reqs: [
         {
-            desc: "400 Level courses",
+            description: "400 Level courses",
             num_credits: 12
+        }
+    ]
+}
+
+const testDegreePlan = {
+    degree_ids: [1],
+    years:[
+        {
+            "year_number": 1,
+            "semesters": [
+                {
+                    "semester_number": 1,
+                    "courses": [ "CPSC100", "CPSC101"]
+                },
+                {
+                    "semester_number": 2,
+                    "courses": [ "CPSC141", "CSPC242"]
+                }
+            ]
+        },
+        {
+            "year_number": 2,
+            "semesters": [
+                {
+                    "semester_number": 1,
+                    "courses": [ "CPSC100", "CPSC101"]
+                },
+                {
+                    "semester_number": 2,
+                    "courses": []
+                },
+                {
+                    "semester_number": 3,
+                    "courses": [ "FUN101" ]
+                }
+            ]
+        },
+        {
+            "year_number": 3,
+            "semesters": [
+                {
+                    "semester_number": 1,
+                    "courses": [ "GEOG204", "MATH100", "CPSC200"]
+                }
+            ]
+        },
+        {
+            "year_number": 4,
+            "semesters": [
+                {
+                    "semester_number": 2,
+                    "courses": [ "CPSC444" ]
+                }
+            ]
         }
     ]
 }
@@ -62,13 +117,16 @@ const testDegree = {
 async function newUserTestCase(){
     console.log("\nRegister User");
     await registerUser(testUser.email, testUser.password, testUser.first_name, testUser.last_name);
+    console.log("Register User Complete\n")
 
     console.log("\nLog In User");
     const loggedInData = await loginUser(testUser.email, testUser.password);
-    
+    console.log("Log In User Complete\n");
 
     console.log("\nAdd completed courses to user");
     await addCompletedCourses(loggedInData.data.student_id, testUser.completed_courses)
+    console.log("Add completed courses to user complete\n");
+
 
     //console.log("Add degree to user");
     
@@ -81,7 +139,7 @@ async function newUserTestCase(){
 async function newDegreeTestCase(){
     console.log("\nCreate degree");
     await createDegree(testDegree.name, testDegree.is_minor, testDegree.course_reqs, testDegree.credit_reqs);
-
+    console.log("Create degree complete\n");
     //console.log("Get degree");
 
 }
@@ -90,6 +148,7 @@ async function newDegreeTestCase(){
 
 
 // SECTIONS
+
 
 await newUserTestCase();
 await newDegreeTestCase();

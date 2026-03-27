@@ -15,11 +15,17 @@ export function createDegree(name, is_minor, course_reqs, credit_reqs) {
     for (let i = 0; i < courseReqs.length; i++) {
         const course = courseReqs[i].course_id;
         const minGrade = courseReqs[i].min_grade;
-        console.log(course);
-        console.log(minGrade);
-        db.prepare("INSERT INTO degree_course_requirement(degree_id, course_id, min_grade) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, course, minGrade);   
+        try{
+            db.prepare("INSERT INTO degree_course_requirement(degree_id, course_id, min_grade) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, course, minGrade);   
+        }catch(error){
+            if(error.errcode == 787){
+                console.log(`Course ${course} does not exist in database!`);
+            }else{
+                throw error;
+            }
+        }
     }
-    const creditReqs = credit_reqs
+    const creditReqs = credit_reqs;
     for (let i = 0; i < creditReqs.length; i++) {
         const credReq = creditReqs[i];
         db.prepare("INSERT INTO degree_credit_requirement(degree_id, description, num_credits) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, credReq.description, credReq.num_credits);   

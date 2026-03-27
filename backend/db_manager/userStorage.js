@@ -3,14 +3,16 @@ const db = getDatabaseConnection();
 
 
 export function getUserByEmail(email) {
-  const q = `SELECT * FROM user
-    LEFT JOIN user_taking_degree ON user.student_id = user_taking_degree.student_id
-    LEFT JOIN user_completed_course ON user.student_id = user_completed_course.student_id
-    WHERE user.email=?`
-  const user = db.prepare(q).get(email);
+  const user = db.prepare('SELECT * FROM user WHERE user.email=?').get(email);
   if (!user){
     return undefined;
   }
+  const completed_courses = db.prepare('SELECT course_id, in_progress FROM user_completed_course WHERE user_completed_course.student_id=?').get(user.student_id);
+  const degrees = db.prepare(`SELECT degree.name FROM user_taking_degree 
+    LEFT JOIN degree ON user_taking_degree.degree_id = degree.degree_id
+    WHERE user_taking_degree.student_id=?`).get(user.student_id);
+  user.completed_courses = completed_courses;
+  user.degrees = degrees;
   return user;
 }
 
