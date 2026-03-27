@@ -7,8 +7,9 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import CourseListButton from '../components/Planner/CourseListButton';
 import BackButton from '../components/BackButton';
 import degreePlanData from '../data/degree_plans.json'
-import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useThemeText, useThemeBackground, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
+import DropdownList from '../components/Planner/DropdownList';
 
 
 export default function PlannerScreen() {
@@ -16,13 +17,16 @@ export default function PlannerScreen() {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
-
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1, gap: 10}}>
                 
-                <View style={{alignItems: 'center', justifyContent: 'center', }}> 
+                <View style={{alignItems: 'center', justifyContent: 'center'}}> 
                     <BackButton/>
+                    <View style={{height: 10}}></View>
+                    <DropdownList/>
+                </View>
+                <View style={{flex: 1, width: width*0.9, alignSelf: 'center', marginTop: 10}}>
                     {
                         degreePlanData.map(y => (
                             <View key={y.yearNumber}>
@@ -44,6 +48,8 @@ export default function PlannerScreen() {
 function YearSection({yearNumber, semesterData}) {
     
     const themeText = useThemeText();
+    const secondColour = useSecondColour();
+    const thirdColour = useThirdColour();
     var semesterWidth;
 
     switch(semesterData.length){
@@ -71,12 +77,12 @@ function YearSection({yearNumber, semesterData}) {
 
     return (
         <View>
-            <Text style={styles.yearHeader}>Year {yearNumber}</Text>
+            <Text style={[styles.yearHeader, secondColour, themeText]}>Year {yearNumber}</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>
                 {
                     semesterData.map(sem => (
                         <View key={sem.semesterNumber} style={{width: semesterWidth}}>
-                            <Text style={[styles.semesterHeader, themeText]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
+                            <Text style={[styles.semesterHeader, themeText, thirdColour]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
                         </View>
                     ))
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
         color: '#060a03ff',
         fontWeight: 'bold',
         fontSize: 25,
-        backgroundColor: '#3cceac',
         width: '100%',
         textAlign: 'center'
     },
@@ -116,7 +121,6 @@ const styles = StyleSheet.create({
         color: '#ffffffff',
         fontWeight: 'bold',
         fontSize: 20,
-        backgroundColor: '#078d6e',
         textAlign: 'center',
         borderRightWidth: 1,
         borderLeftWidth: 1
