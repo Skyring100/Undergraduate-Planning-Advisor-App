@@ -110,6 +110,27 @@ function createTables(){
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
     `);
+
+    //User Degree table
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS user_degree (
+            student_id INTEGER,
+            degree_id INTEGER,
+            PRIMARY KEY (student_id, degree_id)
+            FOREIGN KEY (student_id) REFERENCES user(student_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        );
+    `);
+
+    //Degree planner related tables
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan (
+            degree_plan_id PRIMARY KEY AUTOINCREMENT,
+            student_id INTEGER,
+            name TEXT,
+            FOREIGN KEY (student_id) REFERENCES user(student_id)
+        );
+    `);
 }
 
 function dropTables(){
