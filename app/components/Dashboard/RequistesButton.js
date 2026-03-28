@@ -26,7 +26,7 @@ export default function RequistesButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <View pointerEvents="none" style={{marginBottom: buttonHeight*0.35}}>
+            <View pointerEvents="none" style={{marginBottom: buttonHeight*0.50}}>
                 <OutlinedText
                     text={' Requirements '}
 

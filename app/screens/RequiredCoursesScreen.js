@@ -8,7 +8,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
 import { useThemeText, useThemeBackground,
     useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
-import AllCoursesButton from '../components/Requistes/AllCoursesButton';
 import CourseListButton from '../components/Planner/CourseListButton';
 import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree, getDegreeByID } from '../services/degreeService';
@@ -187,7 +186,6 @@ export default function RequiredCoursesScreen() {
                 <SafeAreaView style={[{width: width, height: height}, themeBg]}>
                     <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
                         <BackButton/>
-                        <AllCoursesButton/>
                     </View>
                     <FlatList
                         data={DummyData}

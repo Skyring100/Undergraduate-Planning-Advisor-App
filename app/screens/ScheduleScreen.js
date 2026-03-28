@@ -13,7 +13,7 @@ import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
-import AddSectionButton from '../components/Dashboard/AddSectionButton';
+import AddSectionButton from '../components/Schedule/AddSectionButton';
 
 
 
