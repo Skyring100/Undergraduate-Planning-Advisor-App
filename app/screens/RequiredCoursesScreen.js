@@ -200,7 +200,7 @@ export default function RequiredCoursesScreen() {
                         keyExtractor={(l) => l.levelNumber.toString()}
                         ListFooterComponent={
                             <SafeAreaView style={{marginBottom: 50}}>
-                                <Text style={[styles.header, themeText, firstColour]}>Electives</Text>
+                                <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
                                 {DummyElectives.map(l => (
                                     <View key={l.levelNumber}>
                                         <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
