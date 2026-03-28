@@ -7,7 +7,7 @@ const getSectionsForCourse = async (req, res) => {
 
   console.log(req.url);
 
-  const sections = await sectionStorage.getSectionsForCourse(courseID);
+  const sections = sectionStorage.getSectionsForCourse(courseID);
 
   var result;
   if (!sections) {
@@ -33,7 +33,7 @@ const getSectionByCRN = async (req, res) => {
   const { crn } = req.params;
   console.log(req.url);
 
-  const section = await sectionStorage.getSectionByCRN(crn);
+  const section = sectionStorage.getSectionByCRN(crn);
 
   var result;
   if (!section) {
@@ -57,7 +57,7 @@ const getSectionsOnDayOfWeek = async (req, res) => {
   const { dow } = req.params;
   console.log(req.url);
 
-  const sections = await sectionStorage.getSectionsOnDayOfWeek(dow);
+  const sections = sectionStorage.getSectionsOnDayOfWeek(dow);
 
   var result;
   if (!sections) {
@@ -77,11 +77,11 @@ const getSectionsOnDayOfWeek = async (req, res) => {
   res.status(statusCode).json(result);
 }
 
-const setSection = async (req, res) => {
+const addSection = async (req, res) => {
   const { crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
   console.log(req.url);
 
-  const section = await sectionStorage.setSection(crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  const section = sectionStorage.setSection(crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
 
   var result;
   if (!section) {
@@ -103,6 +103,6 @@ const setSection = async (req, res) => {
 router.get('/course/:courseID', getSectionsForCourse);
 router.get('/:crn', getSectionByCRN);
 router.get('/dow/:dow', getSectionsOnDayOfWeek);
-router.set('/course', setSection);
+router.post('/course', addSection);
 
 module.exports = router;

@@ -9,13 +9,19 @@ const firebaseConfig = require('../firebase_config.json');
 const app = getApps().length === 0
   ? initializeApp(firebaseConfig)
   : getApps()[0];
-  
-const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage),
-});
-console.log('Auth Object')
-console.log(auth);
 
+
+const auth = initAuth()
+
+function initAuth(){
+  try{
+    return initializeAuth(app, {
+      persistence: getReactNativePersistence(AsyncStorage),
+    });
+  }catch{
+    console.log("Auth object is trying to be reinitalized, ignoring reinitalization");
+  }
+}
 
 export const loginUser = async (email, password) => {
   const url = `${API_BASE_URL}/auth/login`;

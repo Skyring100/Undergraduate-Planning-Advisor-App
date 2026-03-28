@@ -30,11 +30,11 @@ export const getSectionsOnDayOfWeek = async (dow) => {
     return data;
 };
 
-export const setSections = async (section) => {
+export const addSections = async (section) => {
     const url = `${API_BASE_URL}/sections/${section}`;
     console.log(section)
     const response = await fetch(url, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },

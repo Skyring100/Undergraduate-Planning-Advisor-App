@@ -149,6 +149,5 @@ async function newDegreeTestCase(){
 
 // SECTIONS
 
-
 await newUserTestCase();
 await newDegreeTestCase();
