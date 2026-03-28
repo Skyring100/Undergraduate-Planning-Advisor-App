@@ -85,10 +85,11 @@ function createTables(){
 
     db.exec(`
         CREATE TABLE IF NOT EXISTS user (
-            student_id TEXT PRIMARY KEY,
+            student_id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
             first_name TEXT NOT NULL,
             last_name TEXT,
+            password_hash TEXT,
             gpa REAL
         );
     `);
@@ -122,7 +123,6 @@ function createTables(){
         );
     `);
 
-    /*
     //Degree planner related tables
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree_plan (
@@ -151,15 +151,14 @@ function createTables(){
             semester_id INTEGER,
             course_id INTEGER,
 
-            PRIMARY KEY (degree_plan_id, year_num, semester_name, course_id),
+            PRIMARY KEY (degree_plan_id, year_num, semester_id, course_id),
             FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
-            FOREIGN KEY (course_id) REFERENCES course(course_id)
+            FOREIGN KEY (course_id) REFERENCES course(course_id),
 
             CONSTRAINT check_only_valid_semesters CHECK (
-                semester_id IN (09, 01, 05)),
+                semester_id IN (09, 01, 05))
         );
     `);
-    */
 }
 
 function dropTables(){
