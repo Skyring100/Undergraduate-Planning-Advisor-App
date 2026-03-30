@@ -1,7 +1,6 @@
 import { View, Text, Pressable, Animated } from 'react-native';
 import BackButton from '../components/BackButton';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import PlannerTabs from '../components/Planner/TabBar';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -91,10 +90,9 @@ export default function AddCourseScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <PlannerTabs/>
-                <BackButton/>
-                <Text>Add Course Screen</Text>
+            <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+                <Tabs />
+
             </SafeAreaView>
         </SafeAreaProvider>
     );
