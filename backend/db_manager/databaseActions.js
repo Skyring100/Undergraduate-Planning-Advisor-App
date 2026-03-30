@@ -134,6 +134,7 @@ function createTables(){
         );
     `);
 
+    /* Maybe in the future, we can have degree plans that are for degrees the student isn't enrolled in
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree_plan_degree (
             degree_plan_id INTEGER PRIMARY KEY,
@@ -143,6 +144,7 @@ function createTables(){
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         );
     `);
+    */
 
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree_plan_course (
