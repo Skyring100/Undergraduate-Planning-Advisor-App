@@ -1,5 +1,4 @@
 import { API_BASE_URL } from './api.js';
-<<<<<<< HEAD
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const getDegreePlan = async () => {
@@ -18,11 +17,10 @@ export const getDegreePlan = async () => {
 
     return data;
 };
-=======
 
 export const createDegreePlan = async (degreePlanName, studentID) => {
     try{
-        const url = `${API_BASE_URL}/degrees/create`;
+        const url = `${API_BASE_URL}/degreePlans/create`;
             console.log(url)
             const response = await fetch(url, {
                 method: 'POST',
@@ -64,4 +62,3 @@ export const getDegreePlanByID = async (studentID) => {
         }
     };
 
->>>>>>> 789787a83c3f9a058436c419a3910b09ed5b562f

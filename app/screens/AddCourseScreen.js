@@ -1,9 +1,7 @@
 import { View, Text, Pressable, Animated } from 'react-native';
 import BackButton from '../components/BackButton';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-<<<<<<< HEAD
 import PlannerTabs from '../components/Planner/TabBar';
-=======
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -11,7 +9,6 @@ import RequiredCoursesScreen from './RequiredCoursesScreen';
 import CourseListScreen from './CourseListScreen';
 import { useLinkBuilder } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
->>>>>>> 789787a83c3f9a058436c419a3910b09ed5b562f
 
 
 function TabBar({ state, descriptors, navigation, position }) {
@@ -94,16 +91,10 @@ export default function AddCourseScreen() {
 
     return (
         <SafeAreaProvider>
-<<<<<<< HEAD
             <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <PlannerTabs/>
                 <BackButton/>
                 <Text>Add Course Screen</Text>
-=======
-            <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-                <Tabs />
-
->>>>>>> 789787a83c3f9a058436c419a3910b09ed5b562f
             </SafeAreaView>
         </SafeAreaProvider>
     );

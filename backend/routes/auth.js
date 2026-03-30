@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
   console.log(req.user);
   saveUser(req.user.uid, email, first_name, last_name);
 
-  const newUser = await getUserByEmail(email);
+  const newUser = getUserByEmail(email);
   res.status(201).json({
     success: true,
     message: 'User registered successfully',
