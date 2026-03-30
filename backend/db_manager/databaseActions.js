@@ -128,7 +128,7 @@ function createTables(){
         CREATE TABLE IF NOT EXISTS degree_plan (
             degree_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
             student_id INTEGER,
-            name TEXT,
+            degree_plan_name TEXT,
             
             FOREIGN KEY (student_id) REFERENCES user(student_id)
         );

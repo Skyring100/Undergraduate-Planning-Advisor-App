@@ -5,19 +5,19 @@ Each course will have an 'Add to Planner' button that allows users to add the co
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
-import BackButton from '../components/BackButton';
+import BackButton from './BackButton';
 import { useThemeText, useThemeBackground,
     useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
-import CollapsibleView from '../components/CollapsibleView';
+import CollapsibleView from './CollapsibleView';
 import { getAllCourses } from '../services/courseService';
-import CoursePopUp from '../components/Requistes/CoursePopUp';
+import CoursePopUp from './Requistes/CoursePopUp';
 
 
 
 
-export default function CourseListScreen() {
+export default function CourseListView({ filterList , button }) {
 
     // when this is added, use these as style components for text colour instead of #fff and #000
     const themeText = useThemeText();
@@ -35,7 +35,6 @@ export default function CourseListScreen() {
     useEffect(() => {
         getAllCourses().then((apiResult) => {
             alert("API call was good");
-            
 
             if (apiResult.success){
                 setCourses(apiResult.data);

@@ -1,25 +1,15 @@
 import React, { createContext, use, useContext, useState } from 'react';
 
 const guideContext = createContext();
+//I think I'll do it in a way that I get the current screen
+const AppProvider = ({ children }) => {
+  const [guide, setGuide] = useState('');
 
-export function guideProvider() {
-    const [screen, setScreen] = useState('');
-    const [index, setIndex] = useState(0);
+  return (
+    <AppContext.Provider value={{ guide, setGuide }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
 
-    const contextValue = {
-        screen,
-        setScreen,
-        index,
-        setIndex,
-    };
-
-    return (
-        <ThemeContext.Provider>
-            {children}
-        </ThemeContext.Provider>
-    );
-}
-
-export const AgendaGuide = () =>{
-    
-}
+export default AppProvider;
