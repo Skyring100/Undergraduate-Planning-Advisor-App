@@ -2,7 +2,7 @@
 It will have a drop down for selecting which one the user wants to view.
 It will show the courses in a table format.*/
 
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import CourseListButton from '../components/Planner/CourseListButton';
 import BackButton from '../components/BackButton';
@@ -12,13 +12,30 @@ import {useWindowDimensions} from "react-native";
 import DropdownList from '../components/Planner/DropdownList';
 import AddButton from '../components/Planner/AddButton';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 
 export default function PlannerScreen() {
+    const [degreePlan, setDegreePlan] = useState(degreePlanData);
+    const addYear = () => {
+        setDegreePlan(prev => [...prev, {yearNumber: prev.length + 1, semesters: []}]);
+    }
+    const addSemester = (yearIndex) => {
+        setDegreePlan(prev => prev.map((year, index) => {
+            if(index !== yearIndex) return year;
+
+            const newSemesterNumber = year.semesters.length > 0 
+                ? Math.max(...year.semesters.map(s => s.semesterNumber)) + 1
+                : 1;
+            return {...year, semesters: [...year.semesters, {semesterNumber: newSemesterNumber, courses: []}]};
+
+        }));
+    }
 
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
+
     return(
         <SafeAreaProvider>
             <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1, gap: 10}}>
@@ -28,18 +45,19 @@ export default function PlannerScreen() {
                     <View style={{height: 10}}></View>
                     <DropdownList/>
                 </View>
-                <ScrollView style={{flex: 1, width: width*0.95, alignSelf: 'center'}}>
-                    {
-                        degreePlanData.map(y => (
-                            <View key={y.yearNumber}>
-                                <YearSection yearNumber={y.yearNumber} semesterData={y.semesters}></YearSection>
-                            </View>
-                        ))
-                    }
-                    <View style={{height: 10}}></View>
-                    <AddButton onPress={() => {degreePlanData.push({yearNumber: degreePlanData.length + 1, semesters: []})}} 
-                                height={50} width={'100%'} title="Add Year"></AddButton>
-                </ScrollView>
+                <FlatList style={{flex: 1, width: width*0.95, alignSelf: 'center'}}
+                    data={degreePlan}
+                    extraData={degreePlan}
+                    keyExtractor={item => item.yearNumber.toString()}
+                    renderItem={({item}) => 
+                        <YearSection yearNumber={item.yearNumber} 
+                                    semesterData={item.semesters}
+                                    onAddSemester={addSemester}>
+                                    </YearSection>}
+                    ListFooterComponent={() => (
+                        <AddButton onPress={() => addYear()} 
+                                    height={50} width={'100%'} title="Add Year"></AddButton>
+                    )}/>
             </SafeAreaView >
         </SafeAreaProvider>
     );
@@ -50,7 +68,7 @@ export default function PlannerScreen() {
  * @param {*} yearData Object with year data consisting of the year number and each semester courses
  * @returns 
  */
-function YearSection({yearNumber, semesterData}) {
+function YearSection({yearNumber, semesterData, onAddSemester}) {
     
     const themeText = useThemeText();
     const secondColour = useSecondColour();
@@ -86,7 +104,7 @@ function YearSection({yearNumber, semesterData}) {
         <View>
             <View style={[styles.yearHeader, secondColour]}>
                 <Text style={[styles.yearText, themeText]}>Year {yearNumber}</Text>
-                <AddButton onPress={() => {degreePlanData[yearNumber-1].semesters.push({semesterNumber: degreePlanData[yearNumber-1].semesters.length + 1, courses: []})}} 
+                <AddButton onPress={() => onAddSemester(yearNumber-1)} 
                             height={40} width={40} title=" + "></AddButton>
             </View>
             

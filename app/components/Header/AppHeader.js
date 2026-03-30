@@ -54,23 +54,7 @@ export default function AppHeader() {
 
             </CustomHeader>
         </View>
-        // <View style={[styles.header]}>
-        //     <View style={styles.helpButton}>
-        //         <PopUp >
-        //             <View style={styles.explanation}>
-        //                 {/* <Text>Courses: shows the list of all available courses, with a search function that can be filtered by name or code.</Text>
-        //                 <Text>Schedule: shows the weekly schedule.</Text>
-        //                 <Text>Evaluator: shows degree evaluation details.</Text>
-        //                 <Text>Planner: shows the degree planner details, that can be customized by the user.</Text> */}
-
-        //             </View>
-        //         </PopUp>
-        //     </View>
-        //     <Text style={styles.headerText}>Gradian</Text>
-        //     <Image style={styles.image} source={require('../../assets/white-main-logo.png')} />
-        //     <SettingsButton />
-
-
+    
     );
 }
 
