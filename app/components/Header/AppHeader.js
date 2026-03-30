@@ -34,9 +34,26 @@ export default function AppHeader() {
                             <Text>Calendar: shows your daily schedule once you click on a day.</Text>
                             <Text>Add section: add new section to your calendar.</Text>
 
+                        </View> : <View><Text></Text></View>}
+
+                        {routeName === 'Login' ? <View style={styles.explanation}>
+                            <Text>Login with your email and password or please create an account.</Text>
 
                         </View> : <View><Text></Text></View>}
 
+
+                        {routeName === 'Planner' ? <View style={styles.explanation}>
+                            <Text>Use the Default Planner in case you just want a template to what to follow for your degree.</Text>
+                            <Text>Or add courses in a specific year/semester to customize your plan.</Text>
+                        </View> : <View><Text></Text></View>}
+
+                        {routeName === 'Requisites' ? <View style={styles.explanation}>
+                            <Text>See all the required courses for your degree + Breadth requirements.</Text>
+                        </View> : <View><Text></Text></View>}
+
+                        {routeName === 'Evaluator' ? <View style={styles.explanation}>
+                            <Text>Check your progress and how you have been doing for your degree.</Text>
+                        </View> : <View><Text></Text></View>}
 
                     </PopUp>
                 </View>
@@ -54,7 +71,7 @@ export default function AppHeader() {
 
             </CustomHeader>
         </View>
-    
+
     );
 }
 
