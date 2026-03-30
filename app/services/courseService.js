@@ -8,8 +8,7 @@ export const getAllCourses = async () => {
     const response = await fetch(url, {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
         },
     });
     const data = await response.json();

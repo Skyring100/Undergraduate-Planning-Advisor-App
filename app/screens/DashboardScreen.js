@@ -10,10 +10,12 @@ import PlannerButton from '../components/Dashboard/PlannerButton';
 import ScheduleButton from '../components/Dashboard/ScheduleButton';
 import EvaluatorButton from '../components/Dashboard/EvaluatorButton';
 import RequistesButton from '../components/Dashboard/RequistesButton';
+import AllCoursesButton from '../components/Dashboard/AllCoursesButton';
 
 const backHeight = Dimensions.get('window').height;
-const middleHeight = backHeight*0.25;
+const middleHeight = backHeight*0.22;
 const topHeight = backHeight*0.29;
+const screenWidth = Dimensions.get('window').width;
 
 export default function DashboardScreen (){
 
@@ -27,6 +29,7 @@ export default function DashboardScreen (){
                     <PlannerButton/>
                 </View>
                 <View style={styles.middleView}>
+                    <AllCoursesButton/>
                     <ScheduleButton/>
                 </View>
                 <View style={styles.topView}>
@@ -50,8 +53,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         flex: 1,
         zIndex: 1,
-        alignSelf: 'flex-end',
-        marginTop: middleHeight
+        marginTop: middleHeight,
+        paddingLeft: screenWidth * 0.30,
     },
     topView: {
         position: 'absolute',

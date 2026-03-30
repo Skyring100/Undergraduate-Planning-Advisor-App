@@ -10,6 +10,8 @@ import degreePlanData from '../data/degree_plans.json'
 import {useThemeText, useThemeBackground, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
 import DropdownList from '../components/Planner/DropdownList';
+import AddButton from '../components/Planner/AddButton';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function PlannerScreen() {
@@ -26,7 +28,7 @@ export default function PlannerScreen() {
                     <View style={{height: 10}}></View>
                     <DropdownList/>
                 </View>
-                <View style={{flex: 1, width: width*0.9, alignSelf: 'center', marginTop: 10}}>
+                <ScrollView style={{flex: 1, width: width*0.95, alignSelf: 'center'}}>
                     {
                         degreePlanData.map(y => (
                             <View key={y.yearNumber}>
@@ -34,7 +36,10 @@ export default function PlannerScreen() {
                             </View>
                         ))
                     }
-                </View>
+                    <View style={{height: 10}}></View>
+                    <AddButton onPress={() => {degreePlanData.push({yearNumber: degreePlanData.length + 1, semesters: []})}} 
+                                height={50} width={'100%'} title="Add Year"></AddButton>
+                </ScrollView>
             </SafeAreaView >
         </SafeAreaProvider>
     );
@@ -50,6 +55,8 @@ function YearSection({yearNumber, semesterData}) {
     const themeText = useThemeText();
     const secondColour = useSecondColour();
     const thirdColour = useThirdColour();
+    const navigation = useNavigation();
+
     var semesterWidth;
 
     switch(semesterData.length){
@@ -77,13 +84,19 @@ function YearSection({yearNumber, semesterData}) {
 
     return (
         <View>
-            <Text style={[styles.yearHeader, secondColour, themeText]}>Year {yearNumber}</Text>
+            <View style={[styles.yearHeader, secondColour]}>
+                <Text style={[styles.yearText, themeText]}>Year {yearNumber}</Text>
+                <AddButton onPress={() => {degreePlanData[yearNumber-1].semesters.push({semesterNumber: degreePlanData[yearNumber-1].semesters.length + 1, courses: []})}} 
+                            height={40} width={40} title=" + "></AddButton>
+            </View>
+            
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>
                 {
                     semesterData.map(sem => (
                         <View key={sem.semesterNumber} style={{width: semesterWidth}}>
                             <Text style={[styles.semesterHeader, themeText, thirdColour]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
+                            <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1})}} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton>
                         </View>
                     ))
                 }
@@ -95,7 +108,7 @@ function YearSection({yearNumber, semesterData}) {
 function SemesterCourses({courses}){
     return (
         <View>
-            <ScrollView>
+            <View>
                 {
                     courses.map(c=>(
                         <View key={c.id}>
@@ -103,7 +116,7 @@ function SemesterCourses({courses}){
                         </View>
                     ))
                 }
-            </ScrollView>
+            </View>
         </View>
     );
 }
@@ -111,10 +124,16 @@ function SemesterCourses({courses}){
 
 const styles = StyleSheet.create({
     yearHeader:{
-        color: '#060a03ff',
+        padding: 5,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderWidth: 1,
+    },
+    yearText: {
         fontWeight: 'bold',
         fontSize: 25,
-        width: '100%',
         textAlign: 'center'
     },
     semesterHeader:{
@@ -122,8 +141,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         textAlign: 'center',
-        borderRightWidth: 1,
-        borderLeftWidth: 1
+        borderWidth: 1,
+        height: 40,
+        padding: 8,
     },
     semesterSection: {
         width: '50%'

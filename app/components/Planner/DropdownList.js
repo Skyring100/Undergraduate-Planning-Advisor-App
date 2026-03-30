@@ -1,8 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Modal, TouchableWithoutFeedback } from "react-native";
 import React, { useCallback, useRef, useState} from "react";
 import { useThemeText, useFirstColour, useThemeBackground } from "../../contexts/ThemeContext";
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function DropdownList(){
+    const navigation = useNavigation();
     const [isOpen, setIsOpen] = useState(false);
     const themeText = useThemeText();
     const firstColour = useFirstColour();
@@ -21,6 +24,12 @@ export default function DropdownList(){
     const onSelect = useCallback((item) =>{
         setValue(item);
         setIsOpen(false);
+        if(item === 'Create New Planner'){
+            //navigate to create planner screen
+            navigation.navigate('CreatePlanner',{})
+        } else {
+            //grab data from database for specific planner and update planner screen
+        }
     }, [])
     return (
         <View ref={dropdownRef}>

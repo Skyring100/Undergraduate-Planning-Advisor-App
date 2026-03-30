@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View } from 'react-native';
 import {useState} from 'react';
+import { useThemeBackground, useThemeText } from '../../contexts/ThemeContext';
 
 
 export default function CourseListButton({course}) {
@@ -9,14 +10,16 @@ export default function CourseListButton({course}) {
     }
 
     const buttonText = (course.id != null) ? course.id : "----";
+    const bgColour = useThemeBackground();
+    const textColour = useThemeText();
 
     return (
         <TouchableOpacity
-            style={styles.courseButton}
+            style={[styles.courseButton, bgColour]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}>{buttonText}</Text>
+            <Text style={[styles.buttonText, textColour]}>{buttonText}</Text>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -45,9 +48,9 @@ const styles = StyleSheet.create({
     courseButton: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#035642',
         borderWidth: 1,
-        borderBlockColor: '#00000'
+        borderBlockColor: '#00000',
+        height: 40,
     },
     buttonText: {
         color: '#fff',

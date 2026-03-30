@@ -26,7 +26,7 @@ export default function PlannerButton() {
             onPress={handlePress}
             activeOpacity={0.7}
         >
-           <View pointerEvents="none" style={{marginTop: buttonHeight*0.35}}>
+           <View pointerEvents="none" style={{marginTop: buttonHeight*0.45}}>
                 <OutlinedText
                     text={' Planner '}
                     color={isDarkMode ? fourthLight[indexColour] : '#ffffff'}
