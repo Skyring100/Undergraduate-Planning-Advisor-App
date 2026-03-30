@@ -122,11 +122,8 @@ export function getDegreePlanByID(studentID) {
 
 export function createDegreePlan(degreePlanName, studentID) {
 
-    const degreeInfo = db.prepare("INSERT INTO degree_plan(,student_id, degree_plan_name) VALUES (?, ?)").run(studentID, degreePlanName );
-    for (let i = 0; i < creditReqs.length; i++) {
-        const credReq = creditReqs[i];
-        db.prepare("INSERT INTO degree_credit_requirement(degree_id, description, num_credits) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, credReq.description, credReq.num_credits);   
-    }
+    const degreePlan = db.prepare("INSERT INTO degree_plan(student_id, degree_plan_name) VALUES (?, ?)").run(studentID, degreePlanName );
+    
     return true;
 }
 >>>>>>> 789787a83c3f9a058436c419a3910b09ed5b562f

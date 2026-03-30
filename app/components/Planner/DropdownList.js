@@ -1,11 +1,10 @@
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Modal, TouchableWithoutFeedback } from "react-native";
+import { View, TextInput, Pressable, Text, TouchableOpacity, StyleSheet, FlatList, Modal, TouchableWithoutFeedback } from "react-native";
 import React, { useCallback, useRef, useState} from "react";
 import { useThemeText, useFirstColour, useThemeBackground } from "../../contexts/ThemeContext";
-import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function DropdownList(){
-    const navigation = useNavigation();
     const [isOpen, setIsOpen] = useState(false);
     const themeText = useThemeText();
     const firstColour = useFirstColour();
@@ -21,16 +20,18 @@ export default function DropdownList(){
         });
     };
     const [value, setValue] = useState('');
+    const [visible, setVisible] = useState(false);
+
     const onSelect = useCallback((item) =>{
         setValue(item);
         setIsOpen(false);
         if(item === 'Create New Planner'){
-            //navigate to create planner screen
-            navigation.navigate('CreatePlanner',{})
+            setVisible(true);
         } else {
             //grab data from database for specific planner and update planner screen
         }
-    }, [])
+    }, [visible])
+
     return (
         <View ref={dropdownRef}>
             <TouchableOpacity 
@@ -41,6 +42,21 @@ export default function DropdownList(){
                 <Text style={[styles.text, themeText]}>{value || "Default Planner 1"}</Text>
                 <Text style={[styles.text, themeText]}>{isOpen ? " ▲ " : " ▼ "}</Text>
             </TouchableOpacity>
+            <Modal 
+                visible={visible} 
+                transparent={true} 
+                animationType="slide">
+                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <View style={[styles.modalView, themeBg]}>
+                        <TextInput 
+                            placeholder="Planner Name" 
+                            style={[styles.textInput, themeText]}/>
+                        <Pressable onPress={() => setVisible(!visible)} style={[{padding: 10, borderRadius: 5}, firstColour]}>
+                            <Text style={themeText}>Create</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
             {isOpen?(
                 <Modal visible={isOpen} transparent animationType="fade">
                     <TouchableWithoutFeedback onPress={() => setIsOpen(false)}>
@@ -101,5 +117,28 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+    },
+    modalView: {
+        margin: 20,
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        width: '80%',
+    },
+    textInput: {
+        borderWidth: 1,
+        borderColor: "#ccc",
+        padding: 10,
+        marginBottom: 20,
+        width: "100%",
+        borderRadius: 5,
     },
 });
