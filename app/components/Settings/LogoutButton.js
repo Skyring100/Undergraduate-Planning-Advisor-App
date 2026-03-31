@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {mainDark, mainLight, useThemeStore, useFirstColour} from "../../contexts/ThemeContext";
 
 
@@ -11,9 +11,10 @@ const buttonWidth = screenWidth * 0.3; // 30% of screen
 // TODO: make this affect the user context
 export default function LogoutButton() {
     const navigation = useNavigation();
-    const handlePress = () => {
-
-        navigation.navigate('Login',{})
+    const handlePress = async () => {
+        await AsyncStorage.setItem('authToken', '');
+        console.log("Token reset", await AsyncStorage.getItem('authToken'));
+        navigation.navigate('Login',{});
     };
     const firstBg = useFirstColour();
     
