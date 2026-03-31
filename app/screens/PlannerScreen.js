@@ -2,16 +2,35 @@
 It will have a drop down for selecting which one the user wants to view.
 It will show the courses in a table format.*/
 
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import CourseListButton from '../components/Planner/CourseListButton';
 import BackButton from '../components/BackButton';
 import degreePlanData from '../data/degree_plans.json'
-import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useThemeText, useThemeBackground, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
+import DropdownList from '../components/Planner/DropdownList';
+import AddButton from '../components/Planner/AddButton';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 
 export default function PlannerScreen() {
+    const [degreePlan, setDegreePlan] = useState(degreePlanData);
+    const addYear = () => {
+        setDegreePlan(prev => [...prev, {yearNumber: prev.length + 1, semesters: []}]);
+    }
+    const addSemester = (yearIndex) => {
+        setDegreePlan(prev => prev.map((year, index) => {
+            if(index !== yearIndex) return year;
+
+            const newSemesterNumber = year.semesters.length > 0 
+                ? Math.max(...year.semesters.map(s => s.semesterNumber)) + 1
+                : 1;
+            return {...year, semesters: [...year.semesters, {semesterNumber: newSemesterNumber, courses: []}]};
+
+        }));
+    }
 
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
@@ -19,18 +38,26 @@ export default function PlannerScreen() {
 
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1, gap: 10}}>
                 
-                <View style={{alignItems: 'center', justifyContent: 'center', }}> 
+                <View style={{alignItems: 'center', justifyContent: 'center'}}> 
                     <BackButton/>
-                    {
-                        degreePlanData.map(y => (
-                            <View key={y.yearNumber}>
-                                <YearSection yearNumber={y.yearNumber} semesterData={y.semesters}></YearSection>
-                            </View>
-                        ))
-                    }
+                    <View style={{height: 10}}></View>
+                    <DropdownList/>
                 </View>
+                <FlatList style={{flex: 1, width: width*0.95, alignSelf: 'center'}}
+                    data={degreePlan}
+                    extraData={degreePlan}
+                    keyExtractor={item => item.yearNumber.toString()}
+                    renderItem={({item}) => 
+                        <YearSection yearNumber={item.yearNumber} 
+                                    semesterData={item.semesters}
+                                    onAddSemester={addSemester}>
+                                    </YearSection>}
+                    ListFooterComponent={() => (
+                        <AddButton onPress={() => addYear()} 
+                                    height={50} width={'100%'} title="Add Year"></AddButton>
+                    )}/>
             </SafeAreaView >
         </SafeAreaProvider>
     );
@@ -41,9 +68,13 @@ export default function PlannerScreen() {
  * @param {*} yearData Object with year data consisting of the year number and each semester courses
  * @returns 
  */
-function YearSection({yearNumber, semesterData}) {
+function YearSection({yearNumber, semesterData, onAddSemester}) {
     
     const themeText = useThemeText();
+    const secondColour = useSecondColour();
+    const thirdColour = useThirdColour();
+    const navigation = useNavigation();
+
     var semesterWidth;
 
     switch(semesterData.length){
@@ -71,13 +102,19 @@ function YearSection({yearNumber, semesterData}) {
 
     return (
         <View>
-            <Text style={styles.yearHeader}>Year {yearNumber}</Text>
+            <View style={[styles.yearHeader, secondColour]}>
+                <Text style={[styles.yearText, themeText]}>Year {yearNumber}</Text>
+                <AddButton onPress={() => onAddSemester(yearNumber-1)} 
+                            height={40} width={40} title=" + "></AddButton>
+            </View>
+            
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>
                 {
                     semesterData.map(sem => (
                         <View key={sem.semesterNumber} style={{width: semesterWidth}}>
-                            <Text style={[styles.semesterHeader, themeText]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
+                            <Text style={[styles.semesterHeader, themeText, thirdColour]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
+                            <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1})}} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton>
                         </View>
                     ))
                 }
@@ -89,7 +126,7 @@ function YearSection({yearNumber, semesterData}) {
 function SemesterCourses({courses}){
     return (
         <View>
-            <ScrollView>
+            <View>
                 {
                     courses.map(c=>(
                         <View key={c.id}>
@@ -97,7 +134,7 @@ function SemesterCourses({courses}){
                         </View>
                     ))
                 }
-            </ScrollView>
+            </View>
         </View>
     );
 }
@@ -105,21 +142,26 @@ function SemesterCourses({courses}){
 
 const styles = StyleSheet.create({
     yearHeader:{
-        color: '#060a03ff',
+        padding: 5,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderWidth: 1,
+    },
+    yearText: {
         fontWeight: 'bold',
         fontSize: 25,
-        backgroundColor: '#3cceac',
-        width: '100%',
         textAlign: 'center'
     },
     semesterHeader:{
         color: '#ffffffff',
         fontWeight: 'bold',
         fontSize: 20,
-        backgroundColor: '#078d6e',
         textAlign: 'center',
-        borderRightWidth: 1,
-        borderLeftWidth: 1
+        borderWidth: 1,
+        height: 40,
+        padding: 8,
     },
     semesterSection: {
         width: '50%'

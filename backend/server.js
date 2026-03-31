@@ -3,9 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const courseRoutes = require('./routes/courses')
+const courseRoutes = require('./routes/courses');
 const sectionRoutes = require('./routes/sections');
 const degreeRoutes = require('./routes/degrees');
+const degreePlanRoutes = require('./routes/degreePlans');
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/sections', sectionRoutes);
 app.use('/api/degrees', degreeRoutes);
+app.use('/api/degreePlans', degreePlanRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 

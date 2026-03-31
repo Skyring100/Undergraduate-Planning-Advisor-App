@@ -13,7 +13,7 @@ import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
-import AddSectionButton from '../components/Dashboard/AddSectionButton';
+import AddSectionButton from '../components/Schedule/AddSectionButton';
 
 
 
@@ -39,27 +39,31 @@ export default function ScheduleScreen() {
 
     async function getDayOfWeek(selectedWeekD) {
         // if selectedWeekDay == y OR s, set schedule to nothing, else:
-        const days = [];
-        try {
-            await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
-                console.log(classData);
+        // if (selectedWeekDay === "y") {
+        //     setSchedule("")
+        // } else {
+            const days = [];
+            try {
+                await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
+                    console.log(classData);
 
-                if (classData != null) {
+                    if (classData != null) {
 
-                    for (let i = 0; i < classData.data[0].course_id.length; i++) {
-                        setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " " + classData.data[i].start_time + " " + classData.data[i].end_time);
-                        setClassInfo(classData.data[i].start_date + " " + classData.data[i].end_date);
+                        for (let i = 0; i < classData.data[0].course_id.length; i++) {
+                            setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " " + classData.data[i].start_time + " " + classData.data[i].end_time);
+                            setClassInfo(classData.data[i].start_date + " " + classData.data[i].end_date);
+                        }
+
+                    } else {
+                        alert("API call was unsuccessful");
+                        setSchedule([]);
                     }
+                })
 
-                } else {
-                    alert("API call was unsuccessful");
-                    setSchedule([]);
-                }
-            })
-
-        } catch (e) {
-            // alert(e);
-        }
+            } catch (e) {
+                // alert(e);
+            }
+        // }
     }
 
     const themeText = useThemeText();
@@ -72,9 +76,9 @@ export default function ScheduleScreen() {
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
 
 
-                <View style={{ flexDirection:'row', alignItems: 'center', justifyContent: 'center',...themeBg, width: 500 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...themeBg, width: 500 }}>
                     <BackButton />
-                    <AddSectionButton/>                    
+                    <AddSectionButton />
                 </View>
 
 

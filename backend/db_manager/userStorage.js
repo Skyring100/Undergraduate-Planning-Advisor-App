@@ -8,6 +8,20 @@ export function getUserByEmail(email) {
     return undefined;
   }
   const completed_courses = db.prepare('SELECT course_id, in_progress FROM user_completed_course WHERE user_completed_course.student_id=?').get(user.student_id);
+  const degrees = db.prepare(`SELECT degree.degree_name FROM user_taking_degree 
+    LEFT JOIN degree ON user_taking_degree.degree_id = degree.degree_id
+    WHERE user_taking_degree.student_id=?`).get(user.student_id);
+  user.completed_courses = completed_courses;
+  user.degrees = degrees;
+  return user;
+}
+
+export function getUserByStudentID(id){
+  const user = db.prepare('SELECT * FROM user WHERE user.student_id=?').get(id);
+  if (!user){
+    return undefined;
+  }
+  const completed_courses = db.prepare('SELECT course_id, in_progress FROM user_completed_course WHERE user_completed_course.student_id=?').get(user.student_id);
   const degrees = db.prepare(`SELECT degree.name FROM user_taking_degree 
     LEFT JOIN degree ON user_taking_degree.degree_id = degree.degree_id
     WHERE user_taking_degree.student_id=?`).get(user.student_id);
@@ -17,9 +31,9 @@ export function getUserByEmail(email) {
 }
 
 
-export function saveUser(email, firstName, lastName, password) {
-  console.log(`${email}, ${firstName}, ${lastName}, ${password}`);
-  const userResult = db.prepare('INSERT INTO user(email, first_name, last_name, password_hash) VALUES (?, ?, ?, ?)').run(email, firstName, lastName, password);
+export function saveUser(studentID, email, firstName, lastName) {
+  console.log(`${studentID}, ${email}, ${firstName}, ${lastName}`);
+  const userResult = db.prepare('INSERT INTO user(student_id, email, first_name, last_name, created_at) VALUES (?, ?, ?, ?, datetime(?))').run(studentID, email, firstName, lastName, 'now');
   
   if (!userResult){
     return undefined;

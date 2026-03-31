@@ -1,6 +1,7 @@
+import 'react-native-get-random-values';
 import { useEffect } from 'react';
-import { StyleSheet, Button, Text, BackHandler, Alert } from 'react-native';
-import { createStaticNavigation, NavigationContainer } from '@react-navigation/native';
+import { BackHandler, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AppHeader from './components/Header/AppHeader';
@@ -20,6 +21,7 @@ import ScheduleScreen from './screens/ScheduleScreen';
 import RequiredCoursesScreen from './screens/RequiredCoursesScreen';
 import CourseListScreen from './screens/CourseListScreen';
 import AddSectionScreen from './screens/AddSectionScreen';
+import AddCourseScreen from './screens/AddCourseScreen';
 
 
 
@@ -69,6 +71,7 @@ export default function App() {
               <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
               <Stack.Screen name="CourseList" component={CourseListScreen} />
               <Stack.Screen name="AddSection" component={AddSectionScreen}/>
+              <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
             </Stack.Navigator>
           </NavigationContainer>
         </UserProvider>
@@ -76,15 +79,3 @@ export default function App() {
     </ThemeProvider>
   )
 }
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

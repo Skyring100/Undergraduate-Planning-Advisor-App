@@ -17,3 +17,6 @@ Backend Flow:
 - server.js -> directs API request to a route in routes/xxx.js depending on resource (ex. /sections, /users)
 - routes/xxx.js -> offers various functions for resource xxx and returns a response object with both data and success codes
 - db_manager/xxxStorage -> calls SQL queries to return JSON representation of the query. Used by routes/xxx.js
+
+Overall Flow:
+app/services/xxxService.js -> backend/server.js -> -> backend/routes/xxx.js -> backend/db_manager/xxxStorage

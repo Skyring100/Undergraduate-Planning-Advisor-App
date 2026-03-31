@@ -1,9 +1,7 @@
 /*
-Run this test script with with ' node --env-file=.env .\testBackend.js'
+Run this test script with with 'node --env-file=.env .\testBackend.js'
 */
-
-
-import { loginUser, registerUser } from "./services/authService.js";
+import { createDegreePlan, getDegreePlanByID } from "./services/degreePlannerService.js";
 import { createDegree } from "./services/degreeService.js";
 import { addCompletedCourses } from "./services/userService.js";
 
@@ -115,16 +113,9 @@ const testDegreePlan = {
 
 // USERS
 async function newUserTestCase(){
-    console.log("\nRegister User");
-    await registerUser(testUser.email, testUser.password, testUser.first_name, testUser.last_name);
-    console.log("Register User Complete\n")
-
-    console.log("\nLog In User");
-    const loggedInData = await loginUser(testUser.email, testUser.password);
-    console.log("Log In User Complete\n");
 
     console.log("\nAdd completed courses to user");
-    await addCompletedCourses(loggedInData.data.student_id, testUser.completed_courses)
+    await addCompletedCourses("H8RSahsD9sRKayfDPGV6pnBxU6n1", testUser.completed_courses)
     console.log("Add completed courses to user complete\n");
 
 
@@ -145,10 +136,16 @@ async function newDegreeTestCase(){
 }
 
 //DEGREE PLANS
-
+async function newDegreePlanTest(){
+    // The test@test.com user has student id = H8RSahsD9sRKayfDPGV6pnBxU6n1
+    console.log("\nCreate plan");
+    await createDegreePlan("My Comp Sci plan 1", "H8RSahsD9sRKayfDPGV6pnBxU6n1");
+    console.log("\n Get degree plans by sutdent ID");
+    await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+}
 
 // SECTIONS
 
-
 await newUserTestCase();
 await newDegreeTestCase();
+await newDegreePlanTest();

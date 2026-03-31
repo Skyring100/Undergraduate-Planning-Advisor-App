@@ -136533,6 +136533,7 @@
             "title": "Women's Studies 499 - Independent Study",
             "desc": "This course enables students to read in depth in an area of women's studies not normally covered by established principal or ancillary courses in the Women's Studies program.",
             "prereqs": []
+<<<<<<< HEAD
         },
         {
             "id": "ANTH102",
@@ -174485,6 +174486,8 @@
             "title": " Independent Study",
             "desc": "This course enables students to read in depth in an area of women's studies not normally covered by established principal or ancillary courses in the Women's Studies program.",
             "prereqs": []
+=======
+>>>>>>> refs/remotes/origin/master
         }
     ]
 }

@@ -7,18 +7,18 @@ const getSectionsForCourse = async (req, res) => {
 
   console.log(req.url);
 
-  const sections = await sectionStorage.getSectionsForCourse(courseID);
+  const sections = sectionStorage.getSectionsForCourse(courseID);
 
   var result;
   if (!sections) {
-    result = { 
-      success: false, 
-      message: 'No sections found' 
-    };
-  } else{
     result = {
-      success: true, 
-      message: 'Sections found', 
+      success: false,
+      message: 'No sections found'
+    };
+  } else {
+    result = {
+      success: true,
+      message: 'Sections found',
       data: sections
     };
   }
@@ -33,18 +33,18 @@ const getSectionByCRN = async (req, res) => {
   const { crn } = req.params;
   console.log(req.url);
 
-  const section = await sectionStorage.getSectionByCRN(crn);
+  const section = sectionStorage.getSectionByCRN(crn);
 
   var result;
   if (!section) {
-    result = { 
-      success: false, 
-      message: 'No section found' 
-    };
-  } else{
     result = {
-      success: true, 
-      message: 'Section found', 
+      success: false,
+      message: 'No section found'
+    };
+  } else {
+    result = {
+      success: true,
+      message: 'Section found',
       data: section
     };
   }
@@ -57,18 +57,18 @@ const getSectionsOnDayOfWeek = async (req, res) => {
   const { dow } = req.params;
   console.log(req.url);
 
-  const sections = await sectionStorage.getSectionsOnDayOfWeek(dow);
+  const sections = sectionStorage.getSectionsOnDayOfWeek(dow);
 
   var result;
   if (!sections) {
-    result = { 
-      success: false, 
-      message: 'No section found' 
-    };
-  } else{
     result = {
-      success: true, 
-      message: 'Section found', 
+      success: false,
+      message: 'No section found'
+    };
+  } else {
+    result = {
+      success: true,
+      message: 'Section found',
       data: sections
     };
   }
@@ -77,10 +77,33 @@ const getSectionsOnDayOfWeek = async (req, res) => {
   res.status(statusCode).json(result);
 }
 
+const addSection = async (req, res) => {
+  const { c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
+  console.log(req.url);
+
+  const section = sectionStorage.setSection(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  console.log("section is "+  section  );
+
+  var result;
+  if (!section) {
+    result = {
+      success: false,
+      message: 'No section found'
+    };
+  }
+  else {
+      result = {
+      success: true,
+      message: 'Section created',
+      data: section
+    };
+  }
+}
 
 
 router.get('/course/:courseID', getSectionsForCourse);
 router.get('/:crn', getSectionByCRN);
 router.get('/dow/:dow', getSectionsOnDayOfWeek);
+router.post('/course', addSection);
 
 module.exports = router;

@@ -17,7 +17,8 @@ function createTables(){
             course_id TEXT PRIMARY KEY,
             title TEXT NOT NULL,
             credits INTEGER,
-            description TEXT
+            description TEXT,
+            department TEXT
         )
     `);
 
@@ -25,7 +26,7 @@ function createTables(){
         CREATE TABLE IF NOT EXISTS prereq (
             course_id TEXT,
             prereq_id TEXT,
-            is_coreq INTEGER,
+            is_coreq BOOLEAN,
             min_grade TEXT,
             nesting INTEGER,
             ordering INTEGER,
@@ -58,9 +59,8 @@ function createTables(){
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree (
             degree_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            is_minor INTEGER,
-            CHECK (is_minor == 1 OR is_minor == 0)
+            degree_name TEXT,
+            is_minor BOOLEAN
         );
     `);
 
@@ -85,12 +85,12 @@ function createTables(){
 
     db.exec(`
         CREATE TABLE IF NOT EXISTS user (
-            student_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id TEXT PRIMARY KEY,
             email TEXT UNIQUE NOT NULL,
             first_name TEXT NOT NULL,
             last_name TEXT,
-            password_hash TEXT,
-            gpa REAL
+            gpa REAL,
+            created_at TEXT
         );
     `);
     db.exec(`
@@ -110,12 +110,54 @@ function createTables(){
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
     `);
+
+    //Degree planner related tables
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan (
+            degree_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id TEXT NOT NULL,
+            degree_plan_name TEXT,
+            created_at TEXT,
+            
+            FOREIGN KEY (student_id) REFERENCES user(student_id)
+        );
+    `);
+
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan_degree (
+            degree_plan_id INTEGER PRIMARY KEY,
+            degree_id INTEGER,
+
+            FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        );
+    `);
+
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS degree_plan_course (
+            degree_plan_id INTEGER,
+            year_num INTEGER,
+            semester_id INTEGER,
+            course_id TEXT,
+
+            PRIMARY KEY (degree_plan_id, year_num, semester_id, course_id),
+            FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id),
+
+            CONSTRAINT check_only_valid_semesters CHECK (
+                semester_id IN (09, 01, 05))
+        );
+    `);
 }
 
 function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        DROP TABLE IF EXISTS degree_plan_course;
+        DROP TABLE IF EXISTS degree_plan_degree;
+        DROP TABLE IF EXISTS degree_plan;
+        DROP TABLE IF EXISTS user_degree;
         DROP TABLE IF EXISTS user_taking_degree;
         DROP TABLE IF EXISTS user_completed_course;
         DROP TABLE IF EXISTS degree_course_requirement;
@@ -123,7 +165,6 @@ function dropTables(){
         DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
-        DROP TABLE IF EXISTS user;
     `);
 }
 

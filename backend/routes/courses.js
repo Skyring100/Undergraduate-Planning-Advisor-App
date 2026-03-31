@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const courseStorage = require('../db_manager/courseStorage')
+const courseStorage = require('../db_manager/courseStorage');
+const {authenticate} = require('../firebaseTokenHandler');
 
 const getCourseById = async (req, res) => {
   const { id } = req.params;
@@ -28,8 +29,8 @@ const getCourseById = async (req, res) => {
 };
 
 const getAllCourses = async (req, res) => {
-  const courses = courseStorage.getAllCourses();
   console.log(req.url);
+  const courses = courseStorage.getAllCourses();
   var result;
   if (!courses) {
     result = { 
@@ -98,7 +99,7 @@ const prereqList = async (req, res) => {
 
 };
 
-router.get('/all', getAllCourses)
+router.get('/all', authenticate, getAllCourses)
 router.get('/:id', getCourseById)
 router.get('/allprereqs/:target', prereqList)
 router.get('/check/:completed/:target', prereqCheck)

@@ -6,6 +6,9 @@ import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from 
 import TimeInput from '@tighten/react-native-time-input';
 import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
+import { Button } from 'react-native';
+
+import { addSections } from '../services/sectionService';
 
 
 
@@ -17,102 +20,149 @@ export default function AddSectionScreen() {
     const [sectionEndTime, setSectionEndTime] = useState('');
     const [sectionProfessor, setSectionProfessor] = useState('');
     const [sectionRoom, setSectionRoom] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [sectionBuilding, setSectionBuilding] = useState('');
+    const [sectionID, setSectionID] = useState('');
+
+
     const themeBg = useThemeBackground();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
     const [showPicker, setShowPicker] = useState(false);
+    const themeTxt = useThemeText();
 
-    const handleTimeChange = (time, validTime) => {
-        if (!validTime) return;
-
-        setTime(time);
+    function SubmitInfo() {
+        if (sectionName == '' || sectionDays == '' || sectionDuration == '') {
+            alert("Empty information, try again.")
+        } else {
+            console.log(sectionName);
+            // c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor
+            addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
+            alert("Info saved!");
+        }
     }
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{ ...themeBg, minHeight: height}}>
-                <View >
+            <SafeAreaView style={{ ...themeBg, minHeight: height }}>
+                <View style={{ flex: 1 }} >
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', ...themeBg }}>
                         < BackButton />
                     </View>
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionName}
-                        value={sectionName}
-                        placeholder='Section Name'
-                    >
-                    </TextInput>
+                    <ScrollView>
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionName}
+                            value={sectionName}
+                            placeholder='Section Name'
+                        >
+                        </TextInput>
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionDuration}
-                        value={sectionDuration}
-                        placeholder='Section Time'
-                    >
-                    </TextInput>
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionID}
+                            value={sectionID}
+                            placeholder='Course ID'
+                        >
+                        </TextInput>
 
-                    {/* <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionDays}
-                        value={sectionDays}
-                        placeholder='Section Days'
-                    >
-                    </TextInput> */}
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionDuration}
+                            value={sectionDuration}
+                            placeholder='Section Time'
+                        >
+                        </TextInput>
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionStartTime}
-                        value={sectionStartTime}
-                        placeholder='Section Start Time'
-                    >
-                    </TextInput>
-
-
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionEndTime}
-                        value={sectionEndTime}
-                        placeholder='Section End Time'
-                    >
-                    </TextInput>
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionStartTime}
+                            value={sectionStartTime}
+                            placeholder='Section Start Time'
+                        >
+                        </TextInput>
 
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionProfessor}
-                        value={sectionProfessor}
-                        placeholder='Instructor'
-                    >
-                    </TextInput>
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionEndTime}
+                            value={sectionEndTime}
+                            placeholder='Section End Time'
+                        >
+                        </TextInput>
 
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setSectionRoom}
-                        value={sectionRoom}
-                        placeholder='Section Room'
-                    >
-                    </TextInput>
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionProfessor}
+                            value={sectionProfessor}
+                            placeholder='Instructor'
+                        >
+                        </TextInput>
 
-                    <Text>Select Days:</Text>
-                    <Picker
-                        selectedValue={sectionDays}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setSectionDays(itemValue)
-                        }>
-                        <Picker.Item label='Monday' value='M' />
-                        <Picker.Item label='Tuesday' value='T' />
-                        <Picker.Item label='Wednesday' value='W' />
-                        <Picker.Item label='Thursday' value='R' />
-                        <Picker.Item label='Friday' value='F' />
-                        <Picker.Item label='Saturday' value='S' />
-                        <Picker.Item label='Monday|Wednesday|Friday' value='MWF' />
-                        <Picker.Item label='Tuesday|Thursday' value='TR' />
-                        <Picker.Item label='Monday|Wednesday' value='MW' />
-                        <Picker.Item label='Wednesday|Friday' value='WF' />
-                    </Picker>
+
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionRoom}
+                            value={sectionRoom}
+                            placeholder='Section Room'
+                        >
+                        </TextInput>
+
+
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setStartDate}
+                            value={startDate}
+                            placeholder='First day'
+                        >
+                        </TextInput>
+
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setEndDate}
+                            value={endDate}
+                            placeholder='Last day'
+                        >
+                        </TextInput>
+
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionBuilding}
+                            value={sectionBuilding}
+                            placeholder='Building'
+                        >
+                        </TextInput>
+
+                        <Text>Select Days:</Text>
+                        <Picker
+                            style={themeTxt}
+                            selectedValue={sectionDays}
+                            onValueChange={(itemValue, itemIndex) =>
+                                setSectionDays(itemValue)
+                            }>
+                            <Picker.Item label='Monday' value='M' />
+                            <Picker.Item label='Tuesday' value='T' />
+                            <Picker.Item label='Wednesday' value='W' />
+                            <Picker.Item label='Thursday' value='R' />
+                            <Picker.Item label='Friday' value='F' />
+                            <Picker.Item label='Saturday' value='S' />
+                            <Picker.Item label='Monday|Wednesday|Friday' value='MWF' />
+                            <Picker.Item label='Tuesday|Thursday' value='TR' />
+                            <Picker.Item label='Monday|Wednesday' value='MW' />
+                            <Picker.Item label='Wednesday|Friday' value='WF' />
+                        </Picker>
+                        <Button
+                            style={{ ...themeBg }}
+                            onPress={SubmitInfo}
+                            title="Submit"
+                        ></Button>
+                    </ScrollView>
+
+
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>
@@ -124,10 +174,10 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        height: 40,
-        margin: 12,
+        height: '6.5%',
+        margin: 5,
         borderWidth: 1,
         padding: 10,
-        
+
     }
 });
