@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { saveUser, getUserByEmail } = require('../db_manager/userStorage');
-const admin = require('../firebaseAuth');
+const {authenticate} = require('../firebaseTokenHandler');
 
 
 
@@ -44,30 +44,11 @@ const loginUser = async (req, res) => {
   });
 };
 
-async function authenticate(req, res, next) {
-  const token = req.headers.authorization.split(' ')[1];
-
-  if (token=='') {
-    return res.status(401).send('Unauthorized');
-  }
-  
-  console.log(`Got token from user: ${token}`);
-
-  try {
-    const decoded = await admin.auth().verifyIdToken(token);
-    req.user = decoded; // contains uid, email, etc.
-    console.log("Token Verified");
-    next();
-  } catch (err) {
-    console.log("Invalid token")
-    return res.status(401).send('Invalid token');
-  }
-}
 
 
 
-router.post('/register', authenticate, registerUser);
+router.post('/register', authenticate,  registerUser);
 
-router.post('/login', authenticate, loginUser);
+router.post('/login', authenticate,  loginUser);
 
 module.exports = router;

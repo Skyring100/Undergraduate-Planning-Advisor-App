@@ -19,7 +19,6 @@ function initAuth(){
       persistence: getReactNativePersistence(AsyncStorage),
     });
   }catch{
-    console.log("Auth object is trying to be reinitalized, ignoring reinitalization");
     return getAuth(app);
   }
 }
