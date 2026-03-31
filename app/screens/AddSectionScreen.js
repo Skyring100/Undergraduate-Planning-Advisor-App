@@ -23,6 +23,8 @@ export default function AddSectionScreen() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [sectionBuilding, setSectionBuilding] = useState('');
+    const [sectionID, setSectionID] = useState('');
+
 
     const themeBg = useThemeBackground();
     const firstColour = useFirstColour();
@@ -36,8 +38,9 @@ export default function AddSectionScreen() {
             alert("Empty information, try again.")
         } else {
             console.log(sectionName);
-            // crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor
-            addSections(sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor)
+            // c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor
+            addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
+            alert("Info saved!");
         }
     }
 
@@ -55,6 +58,14 @@ export default function AddSectionScreen() {
                             onChangeText={setSectionName}
                             value={sectionName}
                             placeholder='Section Name'
+                        >
+                        </TextInput>
+
+                        <TextInput
+                            style={[styles.input, themeTxt]}
+                            onChangeText={setSectionID}
+                            value={sectionID}
+                            placeholder='Course ID'
                         >
                         </TextInput>
 
@@ -145,7 +156,7 @@ export default function AddSectionScreen() {
                             <Picker.Item label='Wednesday|Friday' value='WF' />
                         </Picker>
                         <Button
-                            style={{ ...themeBg}}
+                            style={{ ...themeBg }}
                             onPress={SubmitInfo}
                             title="Submit"
                         ></Button>

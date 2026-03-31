@@ -78,10 +78,11 @@ const getSectionsOnDayOfWeek = async (req, res) => {
 }
 
 const addSection = async (req, res) => {
-  const { crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
+  const { c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
   console.log(req.url);
 
-  const section = sectionStorage.setSection(crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  const section = sectionStorage.setSection(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  console.log("section is "+  section  );
 
   var result;
   if (!section) {

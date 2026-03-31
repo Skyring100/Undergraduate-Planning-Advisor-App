@@ -55,6 +55,11 @@ export default function AppHeader() {
                             <Text>Check your progress and how you have been doing for your degree.</Text>
                         </View> : <View><Text></Text></View>}
 
+                        {routeName === 'AddSection' ? <View style={styles.explanation}>
+                            <Text>Add information for your section to appear in your weekly schedule.</Text>
+                        </View> : <View><Text></Text></View>}
+
+
                     </PopUp>
                 </View>
                 <Text style={styles.headerText}>Gradian</Text>
