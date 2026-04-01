@@ -99,8 +99,8 @@ const prereqList = async (req, res) => {
 
 };
 
-router.get('/all', authenticate, getAllCourses)
-router.get('/:id', getCourseById)
-router.get('/allprereqs/:target', prereqList)
-router.get('/check/:completed/:target', prereqCheck)
+router.get('/all', authenticate, getAllCourses);
+router.get('/:id', authenticate, getCourseById);
+router.get('/allprereqs/:target', authenticate, prereqList);
+router.get('/check/:completed/:target', authenticate, prereqCheck);
 module.exports = router;

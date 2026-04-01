@@ -9,14 +9,14 @@ if (!admin.apps.length) {
 }
 
 const authenticate = async (req, res, next) => {
-  console.log(req.headers);
+
   const token = req.headers['authorization'].split(' ')[1];
 
   if (token=='') {
     return res.status(401).send('Unauthorized');
   }
   
-  console.log(`Got token from user: ${token}`);
+  console.log(`Got token from user: ${token.substring(0,15)}...`);
 
   try {
     const decoded = await admin.auth().verifyIdToken(token);

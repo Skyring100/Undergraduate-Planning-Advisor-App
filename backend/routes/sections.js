@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const sectionStorage = require('../db_manager/sectionStorage')
+const sectionStorage = require('../db_manager/sectionStorage');
+const {authenticate} = require('../firebaseTokenHandler');
 
 const getSectionsForCourse = async (req, res) => {
   const { courseID } = req.params;
@@ -101,9 +102,9 @@ const addSection = async (req, res) => {
 }
 
 
-router.get('/course/:courseID', getSectionsForCourse);
-router.get('/:crn', getSectionByCRN);
-router.get('/dow/:dow', getSectionsOnDayOfWeek);
-router.post('/course', addSection);
+router.get('/course/:courseID', authenticate, getSectionsForCourse);
+router.get('/:crn', authenticate, getSectionByCRN);
+router.get('/dow/:dow', authenticate, getSectionsOnDayOfWeek);
+router.post('/course', authenticate, addSection);
 
 module.exports = router;
