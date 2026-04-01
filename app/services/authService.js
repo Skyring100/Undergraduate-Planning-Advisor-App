@@ -67,7 +67,7 @@ export const loginUser = async (email, password) => {
     }),
     signal: controller.signal
   });
-  
+  clearTimeout(timeoutId);
 
   return addTokenData(response, token);
 };
