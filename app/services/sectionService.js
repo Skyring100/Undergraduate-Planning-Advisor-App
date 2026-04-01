@@ -2,7 +2,7 @@ import { API_BASE_URL } from './api.js';
 
 export const getSectionsForCourse = async (courseID) => {
     const url = `${API_BASE_URL}/section/${courseID}`;
-    console.log(url)
+    console.log(url);
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -17,7 +17,7 @@ export const getSectionsForCourse = async (courseID) => {
 
 export const getSectionsOnDayOfWeek = async (dow) => {
     const url = `${API_BASE_URL}/sections/dow/${dow}`;
-    console.log(url)
+    console.log(url);
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -32,7 +32,7 @@ export const getSectionsOnDayOfWeek = async (dow) => {
 
 export const addSections = async (section) => {
     const url = `${API_BASE_URL}/sections/${section}`;
-    console.log(section)
+    console.log(section);
     const response = await fetch(url, {
         method: 'POST',
         headers: {
