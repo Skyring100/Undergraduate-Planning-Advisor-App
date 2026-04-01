@@ -3,7 +3,7 @@ import { StyleSheet, Image, View, Text, Button } from 'react-native';
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { mainDark, mainLight, useThemeStore } from '../../contexts/ThemeContext';
+import { useFirstColour, useThemeStore } from '../../contexts/ThemeContext';
 
 import PopUp from './PopUp';
 import { useNavigationState } from '@react-navigation/native';
@@ -12,13 +12,14 @@ import { useNavigationState } from '@react-navigation/native';
 
 export default function AppHeader() {
 
+    const colour = useFirstColour();
     const CustomHeader = () => {
         const routeName = useNavigationState((state) =>
             state.routes[state.index].name
         );
 
         return (
-            <View style={[styles.header, { backgroundColor: 'blue' }]}>
+            <View style={[styles.header, colour]}>
                 <View style={styles.helpButton}>
                     <PopUp >
 
