@@ -1,18 +1,50 @@
-import { API_BASE_URL } from './api.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from './api.js';
 
 export const getAllCourses = async () => {
     const url = `${API_BASE_URL}/courses/all`;
-    await AsyncStorage.getItem('authToken')
-    console.log(url)
+    console.log(url);
+    const token = await AsyncStorage.getItem('authToken');
     const response = await fetch(url, {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
         },
     });
+
     const data = await response.json();
-    console.log(data);
+    console.log("data");
+    console.log(data.message);
 
     return data;
 };
+
+export const checkPrereqs = async (completed, target) => {
+    const completedString = completed.join(",");
+    const url = `${API_BASE_URL}/courses/check/${completedString}/${target}`;
+    console.log(url);
+    const matches = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        },
+    }
+    ).then(response => response.json()).data;
+    return matches;
+}
+
+export const getPrereqsOf = async (target) => {
+    const url = `${API_BASE_URL}/courses/allprereqs/${target}`;
+    console.log(url);
+    const all = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    }
+    ).then(response => response.json());
+    const ret = all.data;
+    console.log(ret);
+    return ret;
+}

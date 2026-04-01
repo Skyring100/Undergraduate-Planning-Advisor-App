@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const sectionStorage = require('../db_manager/sectionStorage')
+const sectionStorage = require('../db_manager/sectionStorage');
+const {authenticate} = require('../firebaseTokenHandler');
 
 const getSectionsForCourse = async (req, res) => {
   const { courseID } = req.params;
@@ -78,10 +79,11 @@ const getSectionsOnDayOfWeek = async (req, res) => {
 }
 
 const addSection = async (req, res) => {
-  const { crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
+  const { c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
   console.log(req.url);
 
-  const section = sectionStorage.setSection(crn, c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  const section = sectionStorage.setSection(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+  console.log("section is "+  section  );
 
   var result;
   if (!section) {
@@ -100,9 +102,9 @@ const addSection = async (req, res) => {
 }
 
 
-router.get('/course/:courseID', getSectionsForCourse);
-router.get('/:crn', getSectionByCRN);
-router.get('/dow/:dow', getSectionsOnDayOfWeek);
-router.post('/course', addSection);
+router.get('/course/:courseID', authenticate, getSectionsForCourse);
+router.get('/:crn', authenticate, getSectionByCRN);
+router.get('/dow/:dow', authenticate, getSectionsOnDayOfWeek);
+router.post('/course', authenticate, addSection);
 
 module.exports = router;

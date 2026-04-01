@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from './api.js';
-import { initializeAuth, getReactNativePersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { initializeAuth, getAuth, getReactNativePersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { initializeApp, getApps  } from 'firebase/app';
 
@@ -19,23 +19,42 @@ function initAuth(){
       persistence: getReactNativePersistence(AsyncStorage),
     });
   }catch{
-    console.log("Auth object is trying to be reinitalized, ignoring reinitalization");
+    return getAuth(app);
   }
 }
 
+if(app == undefined){
+  console.log("'app' is undefined for authentication!");
+}
+if(auth == undefined){
+  console.log("'auth' is undefined for authentication!");
+}
+
 export const loginUser = async (email, password) => {
-  const url = `${API_BASE_URL}/auth/login`;
-  console.log('Login API URL:', url);
   console.log("Signing in with Firebase auth...");
-  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  var userCredential;
+  try{
+    userCredential = await signInWithEmailAndPassword(auth, email, password);
+  }catch(err){
+    if(err.code == 'auth/invalid-email' || err.code == 'auth/invalid-credential'){
+      const errMsg = "Invalid username or password";
+      console.log(errMsg);
+      return {success: false, message: errMsg};
+    }else{
+      console.log("Error with authentication: ", err);
+      return {success : false, message: err.message};
+    }
+  }
   const token = await userCredential.user.getIdToken();
   console.log(`Got token from Firebase: ${token}`);
-
+  
+  const url = `${API_BASE_URL}/auth/login`;
+  console.log('Login API URL:', url);
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify({
       email,
@@ -43,11 +62,8 @@ export const loginUser = async (email, password) => {
     })
   });
   
-  const data = await response.json();
-  console.log('Login response data:', data);
-  await AsyncStorage.setItem('authToken', data.token);
 
-  return data;
+  return addTokenData(response, token);
 };
 
 export const registerUser = async (email, password, first_name, last_name) => {
@@ -71,10 +87,17 @@ export const registerUser = async (email, password, first_name, last_name) => {
     }),
   });
 
-  const data = await response.json();
-  console.log(data);
-  await AsyncStorage.setItem('authToken', data.token);
-
-  return data;
+  return addTokenData(response, token);
 };
 
+async function addTokenData(response, token){
+  const data = await response.json();
+  console.log('Login response data:', data);
+  try{
+    await AsyncStorage.setItem('authToken', token);
+  }catch(err){
+    console.log(err);
+  }
+  data['token'] = token;
+  return data; 
+}

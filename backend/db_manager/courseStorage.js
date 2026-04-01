@@ -17,6 +17,11 @@ export function getAllCourses()
     return courses;
 }
 
+export function getPrereqsOf(target) {
+    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=? ORDER BY ordering;').all(target).map(prereq => prereq.course_id);
+    return prereqs;
+}
+
 export function checkIfPrereqsMatchCourse(completed, target)
 {
     /**
@@ -90,6 +95,7 @@ export function checkIfPrereqsMatchCourse(completed, target)
         }
     }
     ret = wrapCourses(ret);
+    console.log(ret);
 
     return recursivePrereqCheck(completed, ret);
 }
@@ -100,6 +106,7 @@ function recursivePrereqCheck(completed, root) {
      * @param completed The courses already completed by the student.
      * @param prereq The prerequisite dictionary of the course.
      */
+    if (root == undefined) return true;
     switch (root.relation) {
         case "single":
             console.log("found a single course: " + root.name)

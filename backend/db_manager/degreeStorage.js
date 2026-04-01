@@ -9,8 +9,7 @@ export function getDegreeByID(degreeID) {
 }
 
 export function createDegree(name, is_minor, course_reqs, credit_reqs) {
-
-    const degreeInfo = db.prepare("INSERT INTO degree(name, is_minor) VALUES (?, ?)").run(name, ((is_minor) ? 1 : 0) );
+    const degreeInfo = db.prepare("INSERT INTO degree(degree_name, is_minor) VALUES (?, ?)").run(name, ((is_minor)? 1 : 0));
     const courseReqs =  course_reqs;
     for (let i = 0; i < courseReqs.length; i++) {
         const course = courseReqs[i].course_id;

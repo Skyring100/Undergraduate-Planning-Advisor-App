@@ -27,29 +27,25 @@ export default function LoginScreen() {
 
     const { setUser } = useUserStore();
     const { login } = useAuth();
-    const [emailInput, setEmailInput] = useState('');
-    const [password, setPassword] = useState('');
+    const [emailInput, setEmailInput] = useState('test@test.com');
+    const [password, setPassword] = useState('test123');
 
 
     const handleLogin = async () => {
 
-        /*                                                      // Login logic
         if (!emailInput || !password) {
             alert('Error', 'Please fill in all fields');
             return;
         }
+
         // Simple email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput)) {
             alert('Error', 'Please enter a valid email address');
             return;
         }
-            */
 
-        //Temporary disable login API call for development purposes
-       // const result = await loginUser(emailInput, password);
-        const result = {success: true, message:"Logged in"}
-        
+        const result = await loginUser(emailInput, password);
         if(result.success){
             alert("Success");
 

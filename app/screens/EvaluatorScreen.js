@@ -3,49 +3,65 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, ScrollView } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import ProgressBar from '../components/Evaluator/ProgressBar';
-import possibleCourses from '../data/possible_courses.json'
 import completedCourses from '../data/completed_courses.json'
 import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
 import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
+import {getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
+    const [possibleCourses, setPossibleCourses] = useState([]);
+    const [progressBarPercent, setProgressBarPercent] = useState(0);
+    
 
     const {setUser} = useUserStore();
-
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
 
     // TODO: make the user context supply these next few variables
-    const progressBarPercent = (completedCourses.length/possibleCourses.length)*100;
     const number = useSharedValue(0);
-    const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(2) + "%";});
+    const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(4) + "%";});
 
-    useEffect(() => {
-        number.value = withTiming(progressBarPercent, {
-            duration: 2000,
-            easing: Easing.out(Easing.exp),
-        })
-    }, []);
+    useEffect(() => {(async () => {
+        console.log("WE'RE CALLING THIS FUCNTION GUys");
+        const resp = await getAllCourses();
+        const data = resp.data;
+        console.log("Here is the data");
+        console.log(data);
+        setPossibleCourses(data);
+        setProgressBarPercent((completedCourses.length/data.length)*100);
+        console.log(number);
+        setTimeout(() => {
+            number.value = withTiming(progressBarPercent, {
+                duration: 2000,
+                easing: Easing.out(Easing.exp),
+        })}, 10000);
+    })()}, [])
 
 
     // take all the courses the user has every prerequisite for completed
+    /*
     const nextCourses = possibleCourses.filter(
-                                course => course.prereqs.map(prereq => (
-                                    completedCourses.map(course => course.id).includes(prereq)
-                                    )
-                                ).every(Boolean) && course.prereqs.length != 0
+                                course => checkIfPrereqsMatchCourse(
+                                    completedCourses.map(comp => comp.id), course.id
+                                ) && course.prereqs.length != 0
                                 && !completedCourses.map(other => other.id).includes(course.id)
                             );
+                            */
+    const nextCourses = possibleCourses.filter(course => {
+        const matches = checkPrereqs(completedCourses.map(comp => comp.id), course.id);
+        return matches && !completedCourses.map(other => other.id).includes(course.id);
+    });
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
@@ -64,7 +80,7 @@ export default function EvaluatorScreen() {
                     nextCourses.length == 0 ? "Looks like none of your courses have a next step."
                     : "Now try tackling these courses here:"
                 }</Text>
-                <View style={styles.listContainer}>
+                <ScrollView contentContainerStyle={styles.listContainer}>
                         {
                             nextCourses.map(course => (
                                 <Animated.View key={course.id} style={{
@@ -86,44 +102,29 @@ export default function EvaluatorScreen() {
                                         }}
                                     >
                                         <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
-                                            {course.id}
+                                            {course.course_id}
                                         </Text>
                                         <Text style={[styles.courseTitle, themeText]}>
                                             {course.title}
                                         </Text>
-                                        <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
-                                            Because you took: {(() => {
-                                                // yet again another huge line of code that makes things pretty
-                                                // basically turns a list of prereq IDs into other stuff
-                                                // TODO: make this work with how prereqs are pulled from the database
-                                                // probably some functional shenanigans required
-                                                const name = course.prereqs.join(", ");
-                                                console.log(name);
-                                                const commas = name.match(",");
-                                                if (commas === null) return name;
-                                                if (commas.length == 1) {
-                                                    return name.replace(", ", " and ");
-                                                } else if (commas.length > 1) {
-                                                    const ind = name.lastIndexOf(", ");
-                                                    const before = name.slice(0, ind);
-                                                    const after = name.slice(ind + 2);
-                                                    return before + ", and " + after;
-                                                }
-                                            })()}
-                                        </Text>
                                         <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
-                                            {course.desc}
+                                            {course.description}
                                         </Text>
-                                        <AddCourseButton name={course.id + ": " + course.title} />
+                                {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
                                     </Animated.View>
                                </Animated.View>
                                 )
                             )
                         }
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </SafeAreaProvider>
     );
+}
+
+const prereqGetter = async (course) => {
+    const data = await getPrereqsOf(course);
+    return data.json().data;
 }
 
 const styles = StyleSheet.create({
@@ -133,6 +134,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         margin: 'auto',
+    },
+    listContainer: {
     },
     yearHeader:{
         color: '#060a03ff',
@@ -164,15 +167,14 @@ const styles = StyleSheet.create({
     variableSizeTextHolder: {
         flexDirection: "row",
         alignItems: "center",
-        flexShrink: 1,
     },
     bigPercentage: {
         fontWeight: 300,
         fontSize: 23,
     },
     courseTitle: {
-        lineHeight: "15",
         fontWeight: 300,
         fontSize: 20,
+        textAlign: 'center'
     }
 });
