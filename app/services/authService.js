@@ -51,10 +51,6 @@ export const loginUser = async (email, password) => {
   const url = `${API_BASE_URL}/auth/login`;
   console.log('Login API URL:', url);
 
-  // Add timeout to prevent infinite hanging
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
-
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -64,10 +60,8 @@ export const loginUser = async (email, password) => {
     body: JSON.stringify({
       email,
       password,
-    }),
-    signal: controller.signal
+    })
   });
-  clearTimeout(timeoutId);
 
   return addTokenData(response, token);
 };
@@ -80,9 +74,6 @@ export const registerUser = async (email, password, first_name, last_name) => {
   const token = await userCredential.user.getIdToken();
   console.log(`Got token from Firebase: ${token}`);
 
-  // Add timeout to prevent infinite hanging
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
 
   const response = await fetch(url, {
     method: 'POST',
@@ -94,10 +85,8 @@ export const registerUser = async (email, password, first_name, last_name) => {
       email,
       first_name,
       last_name,
-    }),
-    signal: controller.signal
+    })
   });
-  clearTimeout(timeoutId);
 
   return addTokenData(response, token);
 };
