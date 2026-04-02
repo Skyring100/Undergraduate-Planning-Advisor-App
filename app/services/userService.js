@@ -4,7 +4,6 @@ import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 export const getUserProfile = async () => {
   try {
     const url = `${API_BASE_URL}/users/profile`;
-    const token = await AsyncStorage.getItem('authToken');
     console.log('Get profile API URL:', url);
 
     const token = await AsyncStorage.getItem('authToken');
