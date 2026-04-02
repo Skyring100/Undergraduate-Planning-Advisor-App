@@ -45,24 +45,25 @@ export const createDegreePlan = async (degreePlanName, studentID) => {
     };
 
 export const getDegreePlanByID = async (studentID) => {
-    try{
+    try {
+        console.log(`Getting degree plan for student ${studentID}`);
         const url = `${API_BASE_URL}/degreePlans/${studentID}`;
-            console.log(url);
-            const token = await AsyncStorage.getItem('authToken');
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                'Authorization': `Bearer ${token}`
-            });
-            const data = await response.json();
-            console.log(data);
+        console.log(url);
+        const token = await AsyncStorage.getItem('authToken');
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            'Authorization': `Bearer ${token}`
+        });
+        const data = await response.json();
+        console.log(data);
 
-            return {success: true, data};
-        } catch (error) {
-            console.error('Error getting degree plan:', error);
-            return {success: false, data: null};
-        }
-    };
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error getting degree plan:', error);
+        return {success: false, data: null};
+    }
+};
 

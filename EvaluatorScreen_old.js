@@ -14,13 +14,11 @@ import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
 import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
-import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
-import {getDegreePlanByID} from "../services/degreePlannerService";
-import {getUserProfile} from "../services/userService";
+import {getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
-    const [degreeCourses, setDegreeCourses] = useState([]);
+    const [possibleCourses, setPossibleCourses] = useState([]);
     const [progressBarPercent, setProgressBarPercent] = useState(0);
     
 
@@ -28,32 +26,18 @@ export default function EvaluatorScreen() {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
-    
-    // to find when the next courses are
-    const nextCourseTime = (() => {
-        let d = new Date(); 
-        return ({
-            year: d.getFullYear(), 
-            semester: (Math.floor((d.getMonth()-1+4)/4)*4 + 1 )%12,
-        });
-    })();
-
 
     // TODO: make the user context supply these next few variables
     const number = useSharedValue(0);
     const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(4) + "%";});
 
     useEffect(() => {(async () => {
-        // TODO: change this line in prod
-        console.log("this is what cpsc100 look like");
-        console.log(await getCourseById("CPSC100"));
-        const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+        console.log("WE'RE CALLING THIS FUCNTION GUys");
+        const resp = await getAllCourses();
+        const data = resp.data;
         console.log("Here is the data");
-        console.log(resp.data.data);
-        const data = await Promise.all(resp.data.data.map(async course => await getCourseById(course.course_id))).filter(course => course.success).map(course => course.data);
-        console.log("and processed:");
         console.log(data);
-        setDegreeCourses(data);
+        setPossibleCourses(data);
         setProgressBarPercent((completedCourses.length/data.length)*100);
         console.log(number);
         setTimeout(() => {
@@ -66,28 +50,17 @@ export default function EvaluatorScreen() {
 
     // take all the courses the user has every prerequisite for completed
     /*
-    const nextCourses = degreeCourses.filter(
+    const nextCourses = possibleCourses.filter(
                                 course => checkIfPrereqsMatchCourse(
                                     completedCourses.map(comp => comp.id), course.id
                                 ) && course.prereqs.length != 0
                                 && !completedCourses.map(other => other.id).includes(course.id)
                             );
                             */
-    /*
-    const nextCourses = degreeCourses.filter(course => {
+    const nextCourses = possibleCourses.filter(course => {
         const matches = checkPrereqs(completedCourses.map(comp => comp.id), course.id);
         return matches && !completedCourses.map(other => other.id).includes(course.id);
-        */
-
-    /*
-     * we need to check:
-     * - is course in the user's degree plan?
-     * - is the course next semester?
-     * - does user have all the prereqs? (have a function for that)
-     * - if not, what are they missing? (come up with something for that)
-     * - has user not yet finished the course?
-     */
-    const nextCourses = degreeCourses;
+    });
 
     return (
         <SafeAreaProvider>

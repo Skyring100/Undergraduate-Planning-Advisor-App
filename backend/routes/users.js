@@ -4,11 +4,11 @@ const userStorage = require('../db_manager/userStorage');
 const {authenticate} = require('../firebaseTokenHandler');
 
 const getCurrentUser = async (req, res) => {
-  const userId = req.user.userId;
+  const userId = req.user.student_id;
 
   console.log(req.url);
 
-  const user = await userStorage.getUserById(userId);
+  const user = await userStorage.getUserByStudentID(userId);
 
   var result;
   if (!user) {

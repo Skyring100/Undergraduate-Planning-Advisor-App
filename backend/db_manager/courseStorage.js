@@ -4,7 +4,7 @@ const db = getDatabaseConnection();
 
 export function getCourseById(id) {
 
-    const course = db.prepare('SELECT * FROM course JOIN prereqs ON course.course_id = prereqs.course_id WHERE course.id=? ').get(id);
+    const course = db.prepare('SELECT * FROM course JOIN prereq ON course.course_id = prereq.course_id WHERE course.course_id=? ').get(id);
 
     return course;
 }
@@ -18,7 +18,7 @@ export function getAllCourses()
 }
 
 export function getPrereqsOf(target) {
-    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=? ORDER BY ordering;').all(target).map(prereq => prereq.course_id);
+    const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=? ORDER BY ordering;').all(target).map(prereq => prereq.prereq_id);
     return prereqs;
 }
 
@@ -35,8 +35,6 @@ export function checkIfPrereqsMatchCourse(completed, target)
         return obj.prereq_id + " minimum grade of " + obj.min_grade + "|" + obj.nesting
     }, prereqs).join("|").split("|");
     prereqList.pop(); // the last one will be zero, we dont want that
-    console.log("here's the list:")
-    console.log(JSON.stringify(prereqList))
     // turn prereqList into an object
     // first, get highest precedence operator
     let highest = 0;
@@ -95,7 +93,6 @@ export function checkIfPrereqsMatchCourse(completed, target)
         }
     }
     ret = wrapCourses(ret);
-    console.log(ret);
 
     return recursivePrereqCheck(completed, ret);
 }

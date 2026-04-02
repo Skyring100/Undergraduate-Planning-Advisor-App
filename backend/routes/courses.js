@@ -5,7 +5,6 @@ const {authenticate} = require('../firebaseTokenHandler');
 
 const getCourseById = async (req, res) => {
   const { id } = req.params;
-  console.log(`[API] ${new Date().toISOString()} - GET /api/courses/${id}`);
 
   const course = courseStorage.getCourseById(id);
   
@@ -29,7 +28,6 @@ const getCourseById = async (req, res) => {
 };
 
 const getAllCourses = async (req, res) => {
-  console.log(req.url);
   const courses = courseStorage.getAllCourses();
   var result;
   if (!courses) {
@@ -55,7 +53,6 @@ const prereqCheck = async (req, res) => {
   const courses = completed.split(",");
   const matches = courseStorage.checkIfPrereqsMatchCourse(courses, target);
   
-  console.log(req.url);
   var result;
   if (!target) {
     result = { 
@@ -79,7 +76,6 @@ const prereqList = async (req, res) => {
   const { target } = req.params;
   const prereqs = courseStorage.getPrereqsOf(target);
   
-  console.log(req.url);
   var result;
   if (!target) {
     result = { 

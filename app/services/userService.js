@@ -51,7 +51,7 @@ export const getUserProfile = async () => {
 
 export const addCompletedCourses = async (student_id, courses) => {
   try{
-      const url = `${API_BASE_URL}/users/courses/${student_id}`;
+      const url = `${API_BASE_URL}/courses/${student_id}`;
           console.log(url);
           const response = await fetch(url, {
               method: 'PUT',
