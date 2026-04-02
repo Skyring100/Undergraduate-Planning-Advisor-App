@@ -7,7 +7,7 @@ export default function AddButton(props) {
     const firstColour = useFirstColour();
 
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
             <View style={[styles.addButton, firstColour, 
                     {height: props.height, width: props.width, borderColor: props.borderColour, borderWidth: props.borderWidth}]}>
                 <Text style={[styles.addButtonText, themeText, ]}>{props.title}</Text>

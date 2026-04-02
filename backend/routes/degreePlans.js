@@ -56,9 +56,36 @@ const createDegreePlan = async (req, res) => {
 };
 
 
+const addCourseToDegreePlan = async (req, res) => {
+  const { degree_plan_id, year_num, semester_id, course_id } = req.body;
+
+  console.log(req.url);
+  console.log(req.body);
+
+  const creationSuccess = await degreePlanStorage.addCourseToDegreePlan(degree_plan_id, year_num, semester_id, course_id);
+
+  var result;
+  if (!creationSuccess) {
+    result = { 
+      success: false, 
+      message: 'Error with adding course to degree plan in database' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Added course to degree plan', 
+    };
+  }
+
+  res.status(200).json(result);
+  console.log(result);
+};
+
+
 
 
 router.get('/:student_id', authenticate, getDegreePlanByID);
 router.post('/create', authenticate, createDegreePlan);
+router.post('/addCourse', authenticate, addCourseToDegreePlan);
 
 module.exports = router;
