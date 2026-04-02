@@ -29,7 +29,7 @@ export default function LoginScreen() {
     const { login } = useAuth();
     const [emailInput, setEmailInput] = useState('test@test.com');
     const [password, setPassword] = useState('test123');
-
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async () => {
 
@@ -45,10 +45,13 @@ export default function LoginScreen() {
             return;
         }
 
+        setLoading(false);
         const result = await loginUser(emailInput, password);
         if(result.success){
+            setLoading(true);
             navigation.navigate('Dashboard',{})            
         }else{
+            setLoading(true);
             alert(result.message)
         }
         
@@ -63,6 +66,7 @@ export default function LoginScreen() {
                 <View style={styles.titleContainer}>
                     <Text style={[styles.title]}>Login</Text>
                 </View>
+                {loading ? <Text>Loading...</Text> : <View></View>}
                 <TextInput
                     style={[styles.input]}
                     placeholderTextColor="#777"
