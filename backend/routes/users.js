@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const userStorage = require('../db_manager/userStorage')
+const userStorage = require('../db_manager/userStorage');
+const {authenticate} = require('../firebaseTokenHandler');
 
 const getCurrentUser = async (req, res) => {
   const userId = req.user.userId;
@@ -53,7 +54,7 @@ const addCompletedCourses = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
-router.get('/profile', getCurrentUser);
-router.put('/courses/:student_id', addCompletedCourses);
+router.get('/profile', authenticate,getCurrentUser);
+router.put('/courses/:student_id', authenticate, addCompletedCourses);
 
 module.exports = router;

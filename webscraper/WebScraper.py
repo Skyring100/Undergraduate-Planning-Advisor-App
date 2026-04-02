@@ -138,7 +138,7 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             #Create a JSON object for the course data
             course_json = {
                 'id': id,
-                'title': title,
+                'title': "-".join(title.split("-")[1:]),
                 'desc': desc,
                 'prereqs': prereqs
             }
@@ -159,7 +159,7 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
                 (course_id, title, description) 
                 VALUES (?, ?, ?);
             """
-            cur.execute(query, (id, title, desc))
+            cur.execute(query, (id, "-".join(title.split("-")[1:]), desc))
 
             if (type(prereqs) == dict):
                 for j in fit_list_to_db(id, make_compressed_notation(prereqs)):

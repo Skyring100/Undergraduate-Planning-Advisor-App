@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const degreeStorage = require('../db_manager/degreeStorage')
+const degreeStorage = require('../db_manager/degreeStorage');
+const {authenticate} = require('../firebaseTokenHandler');
 
 const getDegreeByID = async (req, res) => {
   const { degreeID } = req.params;
@@ -57,7 +58,7 @@ const createDegree = async (req, res) => {
 
 
 
-router.get('/:degree_id', getDegreeByID);
-router.post('/create', createDegree);
+router.get('/:degree_id', authenticate, getDegreeByID);
+router.post('/create', authenticate, createDegree);
 
 module.exports = router;
