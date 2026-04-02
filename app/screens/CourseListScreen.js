@@ -34,9 +34,6 @@ export default function CourseListScreen() {
 
     useEffect(() => {
         getAllCourses().then((apiResult) => {
-            alert("API call was good");
-            
-
             if (apiResult.success){
                 setCourses(apiResult.data);
                 setFilteredCourseTypes([...new Set(apiResult.data.map(course => course.course_id.slice(0,4)))].sort());
