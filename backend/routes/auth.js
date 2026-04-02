@@ -37,6 +37,7 @@ const loginUser = async (req, res) => {
 
   const user = getUserByEmail(email);
 
+  console.log(user);
   res.json({
     success: true,
     message: 'Login successful',
