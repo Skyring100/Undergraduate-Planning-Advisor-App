@@ -1,17 +1,13 @@
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const getSectionsForCourse = async (courseID) => {
     const url = `${API_BASE_URL}/section/${courseID}`;
     console.log(url);
     const token = await AsyncStorage.getItem('authToken');
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-    });
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
     const data = await response.json();
     console.log(data);
 
@@ -22,13 +18,9 @@ export const getSectionsOnDayOfWeek = async (dow) => {
     const url = `${API_BASE_URL}/sections/dow/${dow}`;
     console.log(url);
     const token = await AsyncStorage.getItem('authToken');
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-    });
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
     const data = await response.json();
     console.log(data);
 
@@ -39,13 +31,9 @@ export const addSections = async (sectionID, sectionDays, sectionStartTime, sect
     const url = `${API_BASE_URL}/sections/create`;
     console.log(sectionID);
     const token = await AsyncStorage.getItem('authToken');
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
+
+    const fetchReq = getBaseRequestHTTP('POST', token);
+    fetchReq['body'] = JSON.stringify({
             course_id: sectionID, 
             days_of_week: sectionDays, 
             start_time: sectionStartTime, 
@@ -55,8 +43,9 @@ export const addSections = async (sectionID, sectionDays, sectionStartTime, sect
             building: sectionBuilding, 
             room_number: sectionRoom, 
             instructor_name: sectionProfessor
-        })
-    });
+        });
+    const response = await fetch(url, fetchReq);
+
     const data = await response.json();
     console.log(data);
 

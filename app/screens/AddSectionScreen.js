@@ -8,7 +8,11 @@ import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
 import { Button } from 'react-native';
 
+
 import { addSections } from '../services/sectionService';
+
+
+
 
 
 
@@ -25,14 +29,13 @@ export default function AddSectionScreen() {
     const [sectionBuilding, setSectionBuilding] = useState('');
     const [sectionID, setSectionID] = useState('');
 
-
     const themeBg = useThemeBackground();
     const themeText = useThemeText();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
+
     const [showPicker, setShowPicker] = useState(false);
-    // const themeTxt = useThemeText();
 
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
@@ -45,6 +48,7 @@ export default function AddSectionScreen() {
         }
     }
 
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
@@ -53,7 +57,9 @@ export default function AddSectionScreen() {
                         < BackButton />
                     </View>
 
+
                     <ScrollView style={themeText}>
+
 
                         <Text style={[themeText, styles.title]}>Select Days:</Text>
                         <Picker
@@ -74,6 +80,7 @@ export default function AddSectionScreen() {
                             <Picker.Item label='Wednesday|Friday' value='WF' />
                         </Picker>
 
+
                         <TextInput
                             style={[styles.input, firstColour]}
                             onChangeText={setSectionName}
@@ -82,6 +89,7 @@ export default function AddSectionScreen() {
                         >
                         </TextInput>
 
+
                         <TextInput
                             style={[styles.input, firstColour]}
                             onChangeText={setSectionID}
@@ -89,6 +97,7 @@ export default function AddSectionScreen() {
                             placeholder='Course ID*'
                         >
                         </TextInput>
+
 
                         <View>
                             <Text style={[themeText, styles.title]}>Start and End time*:</Text>
@@ -101,6 +110,7 @@ export default function AddSectionScreen() {
                                 >
                                 </TextInput>
 
+
                                 <TextInput
                                     style={[styles.inputDates, firstColour]}
                                     onChangeText={setSectionEndTime}
@@ -110,6 +120,7 @@ export default function AddSectionScreen() {
                                 </TextInput>
                             </View>
                         </View>
+
 
                         <View>
                             <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
@@ -122,6 +133,7 @@ export default function AddSectionScreen() {
                                 >
                                 </TextInput>
 
+
                                 <TextInput
                                     style={[styles.inputDates, firstColour]}
                                     onChangeText={setEndDate}
@@ -132,6 +144,7 @@ export default function AddSectionScreen() {
                             </View>
                         </View>
 
+
                         <TextInput
                             style={[styles.input, firstColour]}
                             onChangeText={setSectionProfessor}
@@ -139,6 +152,8 @@ export default function AddSectionScreen() {
                             placeholder='Instructor'
                         >
                         </TextInput>
+
+
 
 
                         <TextInput
@@ -149,6 +164,7 @@ export default function AddSectionScreen() {
                         >
                         </TextInput>
 
+
                         <TextInput
                             style={[styles.input, firstColour]}
                             onChangeText={setSectionBuilding}
@@ -156,6 +172,7 @@ export default function AddSectionScreen() {
                             placeholder='Building'
                         >
                         </TextInput>
+
 
                         <View style={[styles.submit, themeText]}>
                             <Button
@@ -167,15 +184,18 @@ export default function AddSectionScreen() {
                     </ScrollView>
 
 
+
+
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>
     )
 }
 
+
 const styles = StyleSheet.create({
     title: {
-        paddingLeft:5,
+        paddingLeft: 5,
         paddingBottom: 2,
         fontWeight: 'bold'
     },
@@ -184,6 +204,7 @@ const styles = StyleSheet.create({
         margin: 5,
         borderWidth: 1,
         padding: 8,
+
 
     },
     inputDates: {
@@ -206,3 +227,4 @@ const styles = StyleSheet.create({
         // alignContent: 'center'
     }
 });
+

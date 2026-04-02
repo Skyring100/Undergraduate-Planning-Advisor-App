@@ -12,9 +12,12 @@ import { useThemeText, useThemeBackground, useThemeStore, useFirstColour, border
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
+
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
 import AddSectionButton from '../components/Schedule/AddSectionButton';
 // import jsonData from 'data.json';
+
+
 
 
 export default function ScheduleScreen() {
@@ -24,9 +27,6 @@ export default function ScheduleScreen() {
     const [selectedDay, setSelectedDay] = useState('');
     let classes = [];
 
-   
-
-
     const getWeekDays = (day) => {
         const date = new Date(day)
         const days = ['M', 'T', 'W', 'R', 'F', 'S', 'Y'];
@@ -35,10 +35,12 @@ export default function ScheduleScreen() {
         return weekDay;
     }
 
+
     async function getDayOfWeek(selectedWeekD) {
         if (selectedWeekD === "Y") {
             setSchedule("")
         } else {
+
 
             try {
                 await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
@@ -57,11 +59,10 @@ export default function ScheduleScreen() {
                     } else {
                         alert("API call was unsuccessful");
                     }
-
                 })
 
             } catch (e) {
-                
+               
             }
         }
     }
@@ -71,6 +72,7 @@ export default function ScheduleScreen() {
     const { isDarkMode } = useThemeStore();
     const { width, height } = useWindowDimensions();
 
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
@@ -79,7 +81,6 @@ export default function ScheduleScreen() {
                     <BackButton />
                     <AddSectionButton />
                 </View>
-
 
                 <View style={styles.scheduleHeader}>
 
@@ -110,17 +111,19 @@ export default function ScheduleScreen() {
 
                 <DailyAgenda>
 
+
                 </DailyAgenda>
+
 
             </SafeAreaView>
         </SafeAreaProvider>
     );
 
+
     function DailyAgenda() {
 
         if (isVisible) {
             return (
-
 
                 <View style={styles.agendaView}>
                     <FlatList
@@ -140,9 +143,7 @@ export default function ScheduleScreen() {
         }
     }
 
-
 }
-
 
 
 const styles = StyleSheet.create({

@@ -1,16 +1,12 @@
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const getUserProfile = async () => {
   try {
     const url = `${API_BASE_URL}/users/profile`;
     console.log('Get profile API URL:', url);
     
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
 
     console.log('Profile response status:', response.status);
     const data = await response.json();
@@ -53,13 +49,11 @@ export const addCompletedCourses = async (student_id, courses) => {
   try{
       const url = `${API_BASE_URL}/courses/${student_id}`;
           console.log(url);
-          const response = await fetch(url, {
-              method: 'PUT',
-              headers: {
-              'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({courses})
-          });
+
+          const fetchReq = getBaseRequestHTTP('PUT', token);
+          fetchReq['body'] = JSON.stringify({courses});
+          const response = await fetch(url, fetchReq);
+          
           const data = await response.json();
           console.log(data);
 
