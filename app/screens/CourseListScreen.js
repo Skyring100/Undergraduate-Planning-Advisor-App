@@ -2,7 +2,7 @@
 It will have a search bar to filter courses by name or CRN.
 Each course will have an 'Add to Planner' button that allows users to add the course to their degree planner.*/
 
-import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput, Button, Modal, Pressable } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
 import BackButton from '../components/BackButton';
@@ -12,7 +12,7 @@ import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
 import CollapsibleView from '../components/CollapsibleView';
 import { getAllCourses } from '../services/courseService';
-import CoursePopUp from '../components/Requistes/CoursePopUp';
+import CoursePopUp from '../components/CoursePopUp';
 
 
 
@@ -29,7 +29,7 @@ export default function CourseListScreen() {
     const [filteredCourseTypes, setFilteredCourseTypes] = useState([]);
     const [activeType, setActiveType] = useState("All");
 
-    
+    const [selectedCourse, setSelectedCourse] = useState(null);
 
 
     useEffect(() => {
@@ -84,15 +84,56 @@ export default function CourseListScreen() {
                     </CollapsibleView>
                 </View>
 
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={selectedCourse !== null}
+                    onRequestClose={() => setSelectedCourse(null)}>
+                    <View style={styles.popupBackground}>
+                        <View style={styles.mainContent}>
+                            {selectedCourse && (
+                            <View>
+                                <Text style={styles.modalText}>{selectedCourse.course_id.replace(/\n/g, ' ')}: {selectedCourse.title}</Text>
+                                <Text style={styles.modalText}>{selectedCourse.description}</Text>
+                                <Text style={styles.modalText}>{selectedCourse.prereq}</Text>
+                                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
+                                <Text style={styles.textStyle}>Back</Text>
+                                </Pressable>
+                                <Pressable onPress={() => {}} style={[styles.buttonClose]}>
+                                    <Text style={styles.textStyle}>Add to Planner</Text>
+                                </Pressable>
+                                </View>
+                            </View>
+                            )}
+                        </View>
+                    </View>
+                </Modal>
+
                 <FlatList style={styles.FlatList}
                     data={filteredCourses}
                     renderItem={({item}) => (
-                        <View style={styles.contentBackground}>
-                            <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
-                            <Text style={styles.courseTitle}>{item.course_id}</Text>
-                            <Text style={styles.courseText}>{item.title}</Text>
-                            <Text style={styles.courseText}>{item.prereq}</Text>
-                        </View>
+
+                        <TouchableOpacity
+                            onPress={() => setSelectedCourse(item)} 
+                            activeOpacity={0.7}
+                        >
+                            <View course={item} style={styles.contentBackground}>
+                                <View >
+                                    <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
+                                    <Text style={styles.courseTitle}>{item.course_id}</Text>
+                                    <Text style={styles.courseText}>{item.title}</Text>
+                                    <Text style={styles.courseText}>{item.prereq}</Text>
+                                    <View  style={{flexDirection:'row', flex:1}}>
+                                        <View style={{flex:1}}/>
+                                        <Button style={{flex:1}} title='+'/>
+                                    </View>
+                                    
+                                </View>
+
+                            </View >
+                            
+                        </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.course_id}
                     ListFooterComponent={
@@ -170,5 +211,30 @@ const styles = StyleSheet.create({
     },
     filterScrollView: {
         height: 150
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+    buttonClose: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 18,
+        width: '45%',
+        height: 45,
+    },
+    popupBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    mainContent: {
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 20,
+        backgroundColor: '#fff',
     }
 });
