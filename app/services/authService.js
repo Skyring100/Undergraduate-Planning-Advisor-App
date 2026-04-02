@@ -58,8 +58,8 @@ export const loginUser = async (email, password) => {
     });
 
   const response = await fetch(url, fetchReq);
-
-  return addTokenData(response, token);
+  const data = await response.json();
+  return addTokenData(data, token);
 };
 
 export const registerUser = async (email, password, first_name, last_name) => {
@@ -86,8 +86,8 @@ export const registerUser = async (email, password, first_name, last_name) => {
   return addTokenData(response, token);
 };
 
-async function addTokenData(response, token){
-  const data = await response.json();
+async function addTokenData(data, token){
+
   console.log('Login response data:', data);
   try{
     await AsyncStorage.setItem('authToken', token);

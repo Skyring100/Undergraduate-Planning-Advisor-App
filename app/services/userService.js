@@ -1,10 +1,12 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const getUserProfile = async () => {
   try {
     const url = `${API_BASE_URL}/users/profile`;
     console.log('Get profile API URL:', url);
-    
+
+    const token = await AsyncStorage.getItem('authToken');
     const fetchReq = getBaseRequestHTTP('GET', token);
     const response = await fetch(url, fetchReq);
 
@@ -50,6 +52,7 @@ export const addCompletedCourses = async (student_id, courses) => {
       const url = `${API_BASE_URL}/courses/${student_id}`;
           console.log(url);
 
+          const token = await AsyncStorage.getItem('authToken');
           const fetchReq = getBaseRequestHTTP('PUT', token);
           fetchReq['body'] = JSON.stringify({courses});
           const response = await fetch(url, fetchReq);
