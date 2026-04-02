@@ -8,7 +8,11 @@ import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
 import { Button } from 'react-native';
 
+
 import { addSections } from '../services/sectionService';
+
+
+
 
 
 
@@ -25,13 +29,13 @@ export default function AddSectionScreen() {
     const [sectionBuilding, setSectionBuilding] = useState('');
     const [sectionID, setSectionID] = useState('');
 
-
     const themeBg = useThemeBackground();
+    const themeText = useThemeText();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
+
     const [showPicker, setShowPicker] = useState(false);
-    const themeTxt = useThemeText();
 
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
@@ -44,6 +48,7 @@ export default function AddSectionScreen() {
         }
     }
 
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
@@ -52,11 +57,13 @@ export default function AddSectionScreen() {
                         < BackButton />
                     </View>
 
-                    <ScrollView style={themeTxt}>
 
-                        <Text style={themeTxt}>Select Days:</Text>
+                    <ScrollView style={themeText}>
+
+
+                        <Text style={[themeText, styles.title]}>Select Days:</Text>
                         <Picker
-                            style={themeTxt}
+                            style={firstColour}
                             selectedValue={sectionDays}
                             onValueChange={(itemValue, itemIndex) =>
                                 setSectionDays(itemValue)
@@ -73,66 +80,73 @@ export default function AddSectionScreen() {
                             <Picker.Item label='Wednesday|Friday' value='WF' />
                         </Picker>
 
+
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionName}
                             value={sectionName}
                             placeholder='Section Name*'
                         >
                         </TextInput>
 
+
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionID}
                             value={sectionID}
                             placeholder='Course ID*'
                         >
                         </TextInput>
 
+
                         <View>
-                            <Text style={themeTxt}>Start and End time*:</Text>
+                            <Text style={[themeText, styles.title]}>Start and End time*:</Text>
                             <View style={styles.inputView}>
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setSectionStartTime}
                                     value={sectionStartTime}
-                                    placeholder='Section Start Time*'
+                                    placeholder='Section Start Time* (eg: hh:hh)'
                                 >
                                 </TextInput>
 
+
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setSectionEndTime}
                                     value={sectionEndTime}
-                                    placeholder='Section End Time*'
+                                    placeholder='Section End Time* (eg: hh:hh)'
                                 >
                                 </TextInput>
                             </View>
                         </View>
+
 
                         <View>
-                            <Text style={themeTxt}>Start and End Date*:</Text>
+                            <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
                             <View style={styles.inputView}>
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setStartDate}
                                     value={startDate}
-                                    placeholder='First day*'
+                                    placeholder='First day* (eg: yyyy/mm/dd)'
                                 >
                                 </TextInput>
 
+
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setEndDate}
                                     value={endDate}
-                                    placeholder='Last day*'
+                                    placeholder='Last day* (eg: yyyy/mm/dd)'
                                 >
                                 </TextInput>
                             </View>
                         </View>
 
+
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionProfessor}
                             value={sectionProfessor}
                             placeholder='Instructor'
@@ -140,29 +154,36 @@ export default function AddSectionScreen() {
                         </TextInput>
 
 
+
+
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionRoom}
                             value={sectionRoom}
                             placeholder='Section Room'
                         >
                         </TextInput>
 
+
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionBuilding}
                             value={sectionBuilding}
                             placeholder='Building'
                         >
                         </TextInput>
 
-                        <View style={[styles.submit]}>
+
+                        <View style={[styles.submit, themeText]}>
                             <Button
                                 onPress={SubmitInfo}
+                                style={firstColour}
                                 title="Submit"
                             ></Button>
                         </View>
                     </ScrollView>
+
+
 
 
                 </View>
@@ -171,15 +192,19 @@ export default function AddSectionScreen() {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
 
+const styles = StyleSheet.create({
+    title: {
+        paddingLeft: 5,
+        paddingBottom: 2,
+        fontWeight: 'bold'
     },
     input: {
         height: '7.5%',
         margin: 5,
         borderWidth: 1,
         padding: 8,
+
 
     },
     inputDates: {
@@ -202,3 +227,4 @@ const styles = StyleSheet.create({
         // alignContent: 'center'
     }
 });
+

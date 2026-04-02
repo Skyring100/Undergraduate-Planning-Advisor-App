@@ -9,7 +9,7 @@ export default function DropdownList(){
     const themeText = useThemeText();
     const firstColour = useFirstColour();
     const themeBg = useThemeBackground();
-    const data = ['Default Planner 1', 'Default Planner 2', 'Create New Planner'];
+    const data = ['Default Planner 1', 'Planner 2', 'Create New Planner'];
     const toggleDropdown = useCallback(() => setIsOpen(!isOpen), []);
     const dropdownRef = useRef(null);
     const [top, setTop] = useState(0);
@@ -32,6 +32,13 @@ export default function DropdownList(){
         }
     }, [visible])
 
+    const createPlanner = (textInput) => {
+        //create new planner in database and update planner screen with new data
+        data.concat(textInput);
+        setVisible(!visible);
+    }
+    const [textInput, setTextInput] = useState('Planner ' + (data.length + 1));
+
     return (
         <View ref={dropdownRef}>
             <TouchableOpacity 
@@ -50,8 +57,9 @@ export default function DropdownList(){
                     <View style={[styles.modalView, themeBg]}>
                         <TextInput 
                             placeholder="Planner Name" 
-                            style={[styles.textInput, themeText]}/>
-                        <Pressable onPress={() => setVisible(!visible)} style={[{padding: 10, borderRadius: 5}, firstColour]}>
+                            style={[styles.textInput, themeText]}
+                            onChangeText={setTextInput}/>
+                        <Pressable onPress={() => createPlanner(textInput)} style={[{padding: 10, borderRadius: 5}, firstColour]}>
                             <Text style={themeText}>Create</Text>
                         </Pressable>
                     </View>

@@ -1,25 +1,23 @@
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const createDegree = async (name, isMinor, courseReqs, creditReqs) => {
     try{
         const url = `${API_BASE_URL}/degrees/create`;
-            console.log(url)
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name : name,
-                    is_minor : isMinor,
-                    course_reqs : courseReqs,
-                    credit_reqs : creditReqs
-            }),
-            });
-            const data = await response.json();
-            console.log(data);
+        console.log(url)
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('POST', token);
+        fetchReq['body'] = JSON.stringify({
+                name : name,
+                is_minor : isMinor,
+                course_reqs : courseReqs,
+                credit_reqs : creditReqs
+        });
+        const response = await fetch(url, fetchReq);
+        
+        const data = await response.json();
+        console.log(data);
 
-            return {success: true, data};
+        return {success: true, data};
         } catch (error) {
             console.error('Error creating degree:', error);
             return {success: false, data: null};
@@ -30,12 +28,10 @@ export const getDegreeByID = async (degreeID) => {
     try{
         const url = `${API_BASE_URL}/degrees/${degreeID}`;
             console.log(url);
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-            });
+            const token = await AsyncStorage.getItem('authToken');
+            const fetchReq = getBaseRequestHTTP('GET', token);
+
+            const response = await fetch(url, fetchReq);
             const data = await response.json();
             console.log(data);
 

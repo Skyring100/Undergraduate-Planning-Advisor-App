@@ -62,7 +62,6 @@ export default function RegisterScreen() {
         const result = await registerUser(emailInput, password, firstName, lastName);
 
         if (result.success){
-            alert('Success', `Account created`);
             // Navigate to MainTabs (bottom tab navigator)
             navigation.navigate('Login');
             // Reset form

@@ -1,17 +1,12 @@
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const getDegreePlan = async () => {
     const url = `${API_BASE_URL}/degreePlans/all`;
     const token = await AsyncStorage.getItem('authToken');
-    console.log(url)
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-    });
+    console.log(url);
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
     const data = await response.json();
     console.log(data);
 
@@ -23,19 +18,14 @@ export const addCourseToDegreePlan = async (degreePlanID, year, semester, course
         const url = `${API_BASE_URL}/degreePlans/addCourse`;
         console.log(url);
         const token = await AsyncStorage.getItem('authToken');
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            'Authorization': `Bearer ${token}`,
-            body: JSON.stringify({
+        const fetchReq = getBaseRequestHTTP('POST', token);
+        fetchReq['body'] = JSON.stringify({
                 degree_plan_id : degreePlanID,
                 year_num : year,
                 semester_id : semester,
                 course_id : course
-        }),
         });
+        const response = await fetch(url, fetchReq);
         const data = await response.json();
         console.log(data);
 
@@ -51,17 +41,12 @@ export const createDegreePlan = async (degreePlanName, studentID) => {
         const url = `${API_BASE_URL}/degreePlans/create`;
         console.log(url);
         const token = await AsyncStorage.getItem('authToken');
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            'Authorization': `Bearer ${token}`,
-            body: JSON.stringify({
+        const fetchReq = getBaseRequestHTTP('POST', token);
+        fetchReq['body'] = JSON.stringify({
                 degree_plan_name : degreePlanName,
                 student_id : studentID
-        }),
         });
+        const response = await fetch(url, fetchReq);
         const data = await response.json();
         console.log(data);
 
@@ -77,16 +62,10 @@ export const getDegreePlanByID = async (studentID) => {
         const url = `${API_BASE_URL}/degreePlans/${studentID}`;
             console.log(url);
             const token = await AsyncStorage.getItem('authToken');
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                'Authorization': `Bearer ${token}`
-            });
+            const fetchReq = getBaseRequestHTTP('GET', token);
+            const response = await fetch(url, fetchReq);
             const data = await response.json();
             console.log(data);
-
             return {success: true, data};
         } catch (error) {
             console.error('Error getting degree plan:', error);

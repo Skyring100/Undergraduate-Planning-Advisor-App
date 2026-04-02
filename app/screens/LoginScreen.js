@@ -47,15 +47,6 @@ export default function LoginScreen() {
 
         const result = await loginUser(emailInput, password);
         if(result.success){
-            alert("Success");
-
-            /*
-            setUser(user => ({
-                ...user,
-                email: emailInput,
-            }));
-            */
-
             navigation.navigate('Dashboard',{})            
         }else{
             alert(result.message)
