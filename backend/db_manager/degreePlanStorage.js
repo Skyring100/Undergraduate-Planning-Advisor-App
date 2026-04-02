@@ -1,7 +1,7 @@
 import { getDatabaseConnection } from "./databaseActions.js";
 const db = getDatabaseConnection();
 
-
+/////////////////////////////////////////////////I am not sure why this function is here
 export function getDegreePlanById(id) {
 
     const degree_plan = db.prepare('SELECT * FROM degree_plan ON course.course_id = prereqs.course_id WHERE course.id=? ').get(id);

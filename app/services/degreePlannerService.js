@@ -27,7 +27,7 @@ export const addCourseToDegreePlan = async (degreePlanID, year, semester, course
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
-            },                                                          //TODO: fix
+            },
             'Authorization': `Bearer ${token}`,
             body: JSON.stringify({
                 degree_plan_id : degreePlanID,
@@ -41,7 +41,7 @@ export const addCourseToDegreePlan = async (degreePlanID, year, semester, course
 
         return {success: true, data};
     } catch (error) {
-            console.error('Error creating degree plan:', error);
+            console.error('Error adding course to degree plan:', error);
             return {success: false, data: null};
     }
 };
