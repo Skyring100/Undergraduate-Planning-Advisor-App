@@ -66,7 +66,11 @@ export const registerUser = async (email, password, first_name, last_name) => {
   const url = `${API_BASE_URL}/auth/register`;
   console.log(url)
   console.log("Creating Firebase user...");
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  try{
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  }catch(err){
+    return {success: false, message: err.message};
+  }
   const token = await userCredential.user.getIdToken();
   console.log(`Got token from Firebase: ${token}`);
 
