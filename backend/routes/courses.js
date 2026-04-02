@@ -62,7 +62,7 @@ const prereqCheck = async (req, res) => {
   } else {
     result = {
       success: true, 
-      message: 'Prereqs ' + (matches ? 'match' : 'do not match') + "the course ",
+      message: 'Prereqs ' + (matches ? 'match' : 'do not match') + " the course",
       data: matches,
     };
   }
@@ -89,6 +89,7 @@ const prereqList = async (req, res) => {
       data: prereqs,
     };
   }
+    console.log("Route worked");
 
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);

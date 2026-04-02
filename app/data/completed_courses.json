@@ -1,18 +1,24 @@
 [
     {
-        "id" :"CPSC100",
+        "course_id" :"CPSC100",
         "title": "Computer Programming", 
         "desc": "Learn basic programmin",
         "prereqs":  []
     },
     {
-        "id": "CPSC141",
+        "course_id": "CPSC141",
         "title": "Discrete Mathematics",
         "desc": "Comp sci math",
         "prereqs": []
     },
     {
-        "id": "CPSC101",
+        "course_id": "CPSC281",
+        "title": "strux",
+        "desc": "strux",
+        "prereqs": []
+    },
+    {
+        "course_id": "CPSC101",
         "title": "Computer Programming 2",
         "desc": "Learn object oriented stuff in Java",
         "prereqs": ["CPSC100"]

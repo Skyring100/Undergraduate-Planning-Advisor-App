@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
-export const getUserProfile = async () => {
+export const getUserProfileByID = async (uid) => {
   try {
-    const url = `${API_BASE_URL}/users/profile`;
+    const url = `${API_BASE_URL}/users/profile/${uid}`;
     console.log('Get profile API URL:', url);
 
     const token = await AsyncStorage.getItem('authToken');

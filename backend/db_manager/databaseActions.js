@@ -154,7 +154,6 @@ function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
-        comment these out until I need to use them
         DROP TABLE IF EXISTS degree_plan_course;
         DROP TABLE IF EXISTS degree_plan_degree;
         DROP TABLE IF EXISTS degree_plan;

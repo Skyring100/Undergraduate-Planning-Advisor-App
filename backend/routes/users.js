@@ -4,11 +4,13 @@ const userStorage = require('../db_manager/userStorage');
 const {authenticate} = require('../firebaseTokenHandler');
 
 const getCurrentUser = async (req, res) => {
-  const userId = req.user.student_id;
+  const {student_id} = req.params;
 
   console.log(req.url);
 
-  const user = await userStorage.getUserByStudentID(userId);
+  const user = await userStorage.getUserByStudentID(student_id);
+  console.log("user gotten from getcurrent in routes:")
+  console.log(user)
 
   var result;
   if (!user) {
@@ -54,7 +56,7 @@ const addCompletedCourses = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
-router.get('/profile', authenticate,getCurrentUser);
+router.get('/profile/:student_id', authenticate,getCurrentUser);
 router.put('/courses/:student_id', authenticate, addCompletedCourses);
 
 module.exports = router;

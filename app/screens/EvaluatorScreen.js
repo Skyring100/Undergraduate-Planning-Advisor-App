@@ -16,12 +16,13 @@ import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedVal
 import {ReText} from "react-native-redash";
 import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
-import {getUserProfile} from "../services/userService";
+import {getUserProfileByID} from "../services/userService";
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
     const [degreeCourses, setDegreeCourses] = useState([]);
     const [progressBarPercent, setProgressBarPercent] = useState(0);
+    const [flag, setFlag] = useState(false);
     
 
     const {setUser} = useUserStore();
@@ -32,24 +33,25 @@ export default function EvaluatorScreen() {
     // to find when the next courses are
     const nextCourseTime = (() => {
         let d = new Date(); 
+        /* TODO: uncomment this when using the actual date in the future
         return ({
-            year: d.getFullYear(), 
+            year: d.getFullYear() + (d.getMonth >= 9 ? 1 : 0), 
             semester: (Math.floor((d.getMonth()-1+4)/4)*4 + 1 )%12,
         });
+        */
+        return ({year: 2028, semester: 9});
     })();
 
 
     // TODO: make the user context supply these next few variables
     const number = useSharedValue(0);
-    const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(4) + "%";});
+    const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(2) + "%";});
 
     useEffect(() => {(async () => {
         // TODO: change this line in prod
-        console.log("this is what cpsc100 look like");
-        console.log(await getCourseById("CPSC100"));
         const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-        console.log("Here is the data");
-        console.log(resp.data.data);
+        const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+        console.log(userprofile);
         const data = await (async () => {
             const d = await Promise.all(
                 resp.data.data.map(
@@ -57,16 +59,18 @@ export default function EvaluatorScreen() {
                         let courseObj = await getCourseById(course.course_id);
                         courseObj.data.year_num = course.year_num;
                         courseObj.data.semester_id = course.semester_id;
-                        console.log("The returned course object is:");
-                        console.log(courseObj);
+                        console.log(completedCourses.map(comp => comp.course_id));
+                        let matchData = await checkPrereqs(
+                            completedCourses.map(comp => comp.course_id), 
+                            course.course_id);
+                        courseObj.data.matches = matchData.data;
+                        console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
                         return courseObj;
                     }
                 ));
-            console.log("got here")
             const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
-            console.log("got here")
             setProgressBarPercent((completedCourses.length/e.length)*100);
-            console.log("got here")
+            console.log("got here");
             return e;
         })();
         setDegreeCourses(data);
@@ -93,10 +97,9 @@ export default function EvaluatorScreen() {
                             );
                             */
     const nextCourses = degreeCourses.filter(course => {
-        console.log(completedCourses);
         // const matches = checkPrereqs(completedCourses.map(comp => comp.course_id), course.course_id);
         const notCompleted = !completedCourses.map(other => other.id).includes(course.course_id);
-        const nextSemester = nextCourseTime().year == course.year_num && 1 == course.semester_id;
+        const nextSemester = nextCourseTime.year == course.year_num && nextCourseTime.semester == course.semester_id;
         console.log(`nextSemester: ${nextSemester}`);
         console.log(`this course's year: ${course.year_num}`);
         console.log(`this course's semester: ${course.semester_id}`);
@@ -121,15 +124,19 @@ export default function EvaluatorScreen() {
                     Let's see where you're at
                 </Text>
         
-                <ProgressBar full={number.value}/>
+                <ProgressBar full={progressBarPercent} key={progressBarPercent}/>
                 <View style={styles.variableSizeTextHolder}>
                     <Text style={themeText}>You're </Text>
                     <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />
                     <Text style={themeText}> of the way to your degree!</Text>
                 </View>
-                <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{
-                    nextCourses.length == 0 ? "Looks like none of your courses have a next step."
-                    : "Now try tackling these courses here:"
+                <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{(() => {
+                    let nextCourseTimeString = "" + nextCourseTime.year + " " + (nextCourseTime.semester == 1 ? "Winter" : (
+                        nextCourseTime.semester == 5 ? "Spring" : "Fall"));
+                    return (nextCourses.length == 0 ? "Looks like you have no courses next semester.\nTake a break and relax!"
+                    : ("Your courses in the " + nextCourseTimeString
+                    + " semester will be:"));
+                })()
                 }</Text>
                 <ScrollView contentContainerStyle={styles.listContainer}>
                         {
@@ -152,14 +159,15 @@ export default function EvaluatorScreen() {
                                             justifyContent: "space-between",
                                         }}
                                     >
-                                        <Text style={{color: "#777777", fontWeight: 600, fontSize: 12,}}>
+                                        <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
                                             {course.course_id}
                                         </Text>
                                         <Text style={[styles.courseTitle, themeText]}>
                                             {course.title}
                                         </Text>
-                                        <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
-                                            {course.description}
+                                        <Text style={{color: course.matches ? "#66BB66" : "#DD7777", fontWeight: 600, fontSize: 12,}}>
+                                            {course.matches ? "\u2713 You have all the prerequisites for this course" 
+                                                : "\u2717 You are missing some prerequisites:"}
                                         </Text>
                                 {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
                                     </Animated.View>
