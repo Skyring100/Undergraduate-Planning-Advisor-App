@@ -34,14 +34,13 @@ export default function ScheduleScreen() {
         const weekDay = days[dayIndex];
         return weekDay;
     }
-
-    // const themeText = useThemeText();
-
+    
     async function getDayOfWeek(selectedWeekD) {
         // if selectedWeekDay == y OR s, set schedule to nothing, else:
-        // if (selectedWeekDay === "y") {
-        //     setSchedule("")
-        // } else {
+        if (selectedWeekD === "Y") {
+            // console.log("SUNDAY!")
+            setSchedule("")
+        } else {
             const days = [];
             try {
                 await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
@@ -63,7 +62,7 @@ export default function ScheduleScreen() {
             } catch (e) {
                 // alert(e);
             }
-        // }
+        }
     }
 
     const themeText = useThemeText();
@@ -124,11 +123,9 @@ export default function ScheduleScreen() {
         if (isInfoVisible) {
             // alert(classInfo)
             return (
-
                 <View>
                     <Text>{classInfo}</Text>
                 </View>
-
             )
         }
     }
@@ -140,7 +137,7 @@ export default function ScheduleScreen() {
                 <View style={styles.agendaView}>
                     <TouchableOpacity onPress={() => alert(classInfo)}>
                         <View style={[styles.agenda, { borderColor: firstColour.backgroundColor }]}>
-                            <Text style={[themeText, styles.agendaText]}>{selectedWeekDay}</Text>
+                            {/* <Text style={[themeText, styles.agendaText]}>{selectedWeekDay}</Text> */}
                             <Text style={[themeText, styles.agendaText]}>{schedule}</Text>
                         </View>
                     </TouchableOpacity>

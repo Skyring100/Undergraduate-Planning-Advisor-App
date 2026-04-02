@@ -45,7 +45,7 @@ export const addSections = async (sectionID, sectionDays, sectionStartTime, sect
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: {
+        body: JSON.stringify({
             course_id: sectionID, 
             days_of_week: sectionDays, 
             start_time: sectionStartTime, 
@@ -55,7 +55,7 @@ export const addSections = async (sectionID, sectionDays, sectionStartTime, sect
             building: sectionBuilding, 
             room_number: sectionRoom, 
             instructor_name: sectionProfessor
-        }
+        })
     });
     const data = await response.json();
     console.log(data);
