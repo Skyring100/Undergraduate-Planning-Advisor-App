@@ -1,16 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const getAllCourses = async () => {
     const url = `${API_BASE_URL}/courses/all`;
     const token = await AsyncStorage.getItem('authToken');
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-    });
+    
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
 
     const data = await response.json();
 
@@ -21,13 +17,10 @@ export const getCourseById = async (id) => {
     const url = `${API_BASE_URL}/courses/${id}`;
     console.log(`asking for id ${id}`);
     const token = await AsyncStorage.getItem('authToken');
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-    });
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
     console.log("fetch went through!");
 
     const data = await response.json();
