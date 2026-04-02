@@ -108,20 +108,25 @@ const testDegreePlan = {
     ]
 }
 
-const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM3MzAwNzY5YTA3ZTA1MTE2ZjdlNTEzOGZhOTA5MzY4NWVlYmMyNDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXVkIjoidW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXV0aF90aW1lIjoxNzc1MTU2NDM3LCJ1c2VyX2lkIjoiSDhSU2Foc0Q5c1JLYXlmRFBHVjZwbkJ4VTZuMSIsInN1YiI6Ikg4UlNhaHNEOXNSS2F5ZkRQR1Y2cG5CeFU2bjEiLCJpYXQiOjE3NzUxNTY0MzcsImV4cCI6MTc3NTE2MDAzNywiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.UNBmLagevnorYpXZ4dqXqExmLsX_NqbUdH0RioQMhUAUZ3HpoYj3t5rjEwNnZXqVlLj7kDEtMNev2N0P4M5ay4nT6k2WMlP6JvTISsxdzd_mTCXspPHj0LQM7nyDQBR79twyUkr02_6CopjraZZWDnKXLyePuTyzYx90SGqoPmSf2F1jdDcyO3SyraIvtBXbWW7lbmMQKCscQBz_GbaEpk7B05S68PJ9S_okC-fJrMEqcy2C6HNxFeUVrPVjNtMjaDdB-bDHzuJ3cbYX0PmnvnqlyLMOKSeXRmbq8JmDHQSZEKNeRML07wCtwuaWMtIJGSCINRCET7MOnIs1UZxnEA'
+const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM3MzAwNzY5YTA3ZTA1MTE2ZjdlNTEzOGZhOTA5MzY4NWVlYmMyNDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXVkIjoidW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXV0aF90aW1lIjoxNzc1MTYxOTA5LCJ1c2VyX2lkIjoiS2tXMjMweE5wUFJYM0ZtZ3lLRllNUjZzbzlqMiIsInN1YiI6IktrVzIzMHhOcFBSWDNGbWd5S0ZZTVI2c285ajIiLCJpYXQiOjE3NzUxNjE5MDksImV4cCI6MTc3NTE2NTUwOSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Y0Jv0rNy8K75Xz6YeSq72w4ZycEgMjM31BrRUxdEPIMgvCClg8o4pRaYn7SAHG5E9m-Ghta22dbe7axiVoqNiN1EqE12v6VTZz7jf38vrrd251Wyf0uUUExKYyd4IZ6vuSIPQfl8sVrgwscncm11TOs_uswB51_n57UXocCRP0hPA8aV4O-jKV6BPQ1QGm8-FMDup_sJT6DiIQCaO-_lRvcRHo3ycEoJOvVs8tuKPbVSjBINfw8dQzjPbT2Um5JCyp3FzBZvsR30fnElACxDxiKk8u8BP3Pr6RD-Nx9bzHh-qcsluMSPVgFB6duH2BSWOPpWjPYkW6LLV4MNbQ9MmA'
 
 async function testCase(url, requestMessage){
     console.log("----------REQUEST----------")
     console.log(url);
     console.log(requestMessage);
     const response = await fetch(url, requestMessage);
-    console.log("----------RESPONSE----------")
-    console.log(response);
+    const data = await response.json();
+    console.log("----------RESPONSE----------");
+    console.log(data);
+    return data;
 }
 
 
 async function userTestCase(){
     var fetchReq;
+    var response;
+
+    const courses = testUser.completed_courses;
 
     console.log("Testing Login");
     fetchReq = getBaseRequestHTTP('POST', token);
@@ -129,15 +134,16 @@ async function userTestCase(){
       'email' : testUser.email,
       'password' : testUser.password,
     });
-    await testCase(`${API_BASE_URL}/auth/login`, fetchReq);
+    response = await testCase(`${API_BASE_URL}/auth/login`, fetchReq);
     
-    /*
+    const student_id = response.data.student_id;
+
     console.log("Testing adding courses");
     fetchReq = getBaseRequestHTTP('PUT', token);
-    const courses = testUser.completed_courses;
     fetchReq['body'] = JSON.stringify({courses});
-    await testCase(`${API_BASE_URL}/courses/${student_id}`, fetchReq);
-    */
+    await testCase(`${API_BASE_URL}/users/courses/${student_id}`, fetchReq);
+
+    
 }
 
 
