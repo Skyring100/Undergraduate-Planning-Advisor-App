@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_BASE_URL } from './api.js';
+import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 import { initializeAuth, getAuth, getReactNativePersistence, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { initializeApp, getApps  } from 'firebase/app';
@@ -50,48 +50,44 @@ export const loginUser = async (email, password) => {
   
   const url = `${API_BASE_URL}/auth/login`;
   console.log('Login API URL:', url);
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
+
+  const fetchReq = getBaseRequestHTTP('POST', token);
+  fetchReq['body'] = JSON.stringify({
       email,
       password,
-    })
-  });
-  
+    });
 
-  return addTokenData(response, token);
+  const response = await fetch(url, fetchReq);
+  const data = await response.json();
+  return addTokenData(data, token);
 };
 
 export const registerUser = async (email, password, first_name, last_name) => {
   const url = `${API_BASE_URL}/auth/register`;
   console.log(url)
   console.log("Creating Firebase user...");
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  try{
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  }catch(err){
+    return {success: false, message: err.message};
+  }
   const token = await userCredential.user.getIdToken();
   console.log(`Got token from Firebase: ${token}`);
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
+  const fetchReq = getBaseRequestHTTP('POST', token);
+  fetchReq['body'] = JSON.stringify({
       email,
       first_name,
       last_name,
-    }),
-  });
+    });
+
+  const response = await fetch(url, fetchReq);
 
   return addTokenData(response, token);
 };
 
-async function addTokenData(response, token){
-  const data = await response.json();
+async function addTokenData(data, token){
+
   console.log('Login response data:', data);
   try{
     await AsyncStorage.setItem('authToken', token);

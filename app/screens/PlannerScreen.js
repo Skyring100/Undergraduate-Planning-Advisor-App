@@ -15,8 +15,10 @@ import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
 
+
 export default function PlannerScreen() {
     const [degreePlan, setDegreePlan] = useState(degreePlanData);
+
     const addYear = () => {
         setDegreePlan(prev => [...prev, {yearNumber: prev.length + 1, semesters: []}]);
     }
@@ -74,6 +76,8 @@ function YearSection({yearNumber, semesterData, onAddSemester}) {
     const secondColour = useSecondColour();
     const thirdColour = useThirdColour();
     const navigation = useNavigation();
+    
+    const MAX_SEMESTERS = 3;
 
     var semesterWidth;
 
@@ -105,7 +109,8 @@ function YearSection({yearNumber, semesterData, onAddSemester}) {
             <View style={[styles.yearHeader, secondColour]}>
                 <Text style={[styles.yearText, themeText]}>Year {yearNumber}</Text>
                 <AddButton onPress={() => onAddSemester(yearNumber-1)} 
-                            height={40} width={40} title=" + "></AddButton>
+                            height={40} width={40} title=" + "
+                            disabled={semesterData.length >= MAX_SEMESTERS}></AddButton>
             </View>
             
             <View style={{flexDirection: 'row', justifyContent: 'center',}}>

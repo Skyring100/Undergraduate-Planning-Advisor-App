@@ -79,11 +79,12 @@ const getSectionsOnDayOfWeek = async (req, res) => {
 }
 
 const addSection = async (req, res) => {
-  const { c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor } = req.params;
-  console.log(req.url);
-
-  const section = sectionStorage.setSection(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
-  console.log("section is "+  section  );
+  
+  const { course_id, days_of_week, start_time, end_time, start_date, end_date, building, room_number, instructor_name } = req.body;
+  console.log("Body ", req.body);
+  
+  console.log("section is "+  course_id, days_of_week, start_time, end_time, start_date, end_date, building, room_number, instructor_name );
+  const section = sectionStorage.setSection(course_id, days_of_week, start_time, end_time, start_date, end_date, building, room_number, instructor_name);
 
   var result;
   if (!section) {
@@ -105,6 +106,6 @@ const addSection = async (req, res) => {
 router.get('/course/:courseID', authenticate, getSectionsForCourse);
 router.get('/:crn', authenticate, getSectionByCRN);
 router.get('/dow/:dow', authenticate, getSectionsOnDayOfWeek);
-router.post('/course', authenticate, addSection);
+router.post('/create', authenticate, addSection);
 
 module.exports = router;

@@ -29,6 +29,9 @@ export function getSectionsOnDayOfWeek(dow) {
 }
 
 export function setSection( c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor) {
+    console.log("Storage ", c_id, " ", dow, " ", start_time, " ", end_time, " ", start_date, " ", end_date, " ", building, " ", room_n, " ", instructor)
     const q = `INSERT INTO section ( course_id, days_of_week, start_time, end_time, start_date, end_date, building, room_number, instructor_name) 
-                VALUES (''%${c_id}%', '%${dow}%', '%${start_time}%', '%${end_time}%', '%${start_date}%', '%${end_date}%', '%${building}%', '%${room_n}%', '%${instructor}%')`   
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`   
+    db.prepare(q).run(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor)
+    return q;
 }

@@ -8,24 +8,24 @@ import { Calendar, CalendarList, WeekCalendar } from 'react-native-calendars';
 // import { CalendarBody, CalendarContainer, CalendarHeader } from '@howljs/calendar-kit';
 import BackButton from '../components/BackButton';
 import completedCourse from '../data/UNBC_course_data.json';
-import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeStore, useFirstColour, borderColour } from "../contexts/ThemeContext";
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
 
+
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
 import AddSectionButton from '../components/Schedule/AddSectionButton';
+// import jsonData from 'data.json';
+
 
 
 
 export default function ScheduleScreen() {
     const [schedule, setSchedule] = useState([]);
-    const [classInfo, setClassInfo] = useState([]);
     const [selected, setSelected] = useState('');
     const [isVisible, setIsVisible] = useState(false);
-    const [isInfoVisible, setIsInfoVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
-    const [selectedWeekDay, setSelectedWeekDay] = useState('');
-    const firstColour = useFirstColour();
+    let classes = [];
 
     const getWeekDays = (day) => {
         const date = new Date(day)
@@ -35,35 +35,36 @@ export default function ScheduleScreen() {
         return weekDay;
     }
 
-    // const themeText = useThemeText();
 
     async function getDayOfWeek(selectedWeekD) {
-        // if selectedWeekDay == y OR s, set schedule to nothing, else:
-        // if (selectedWeekDay === "y") {
-        //     setSchedule("")
-        // } else {
-            const days = [];
+        if (selectedWeekD === "Y") {
+            setSchedule("")
+        } else {
+
+
             try {
                 await getSectionsOnDayOfWeek(selectedWeekD).then((classData) => {
-                    console.log(classData);
 
                     if (classData != null) {
 
-                        for (let i = 0; i < classData.data[0].course_id.length; i++) {
-                            setSchedule(classData.data[i].course_id + " " + classData.data[i].days_of_week + " " + " " + classData.data[i].start_time + " " + classData.data[i].end_time);
-                            setClassInfo(classData.data[i].start_date + " " + classData.data[i].end_date);
+                        for (const row of classData.data) {
+                            console.log("CLASSES ", row)
+                            if (row.days_of_week.includes(selectedWeekD)) {
+                                classes.push(row);
+                            }
                         }
+
+                        setSchedule(classes);
 
                     } else {
                         alert("API call was unsuccessful");
-                        setSchedule([]);
                     }
                 })
 
             } catch (e) {
-                // alert(e);
+               
             }
-        // }
+        }
     }
 
     const themeText = useThemeText();
@@ -71,16 +72,15 @@ export default function ScheduleScreen() {
     const { isDarkMode } = useThemeStore();
     const { width, height } = useWindowDimensions();
 
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{ ...themeBg, minHeight: height }}>
-
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...themeBg, width: 500 }}>
                     <BackButton />
                     <AddSectionButton />
                 </View>
-
 
                 <View style={styles.scheduleHeader}>
 
@@ -111,56 +111,44 @@ export default function ScheduleScreen() {
 
                 <DailyAgenda>
 
+
                 </DailyAgenda>
 
-                <ClassInfo></ClassInfo>
 
             </SafeAreaView>
         </SafeAreaProvider>
     );
 
-    function ClassInfo() {
-        // alert(classInfo)
-        if (isInfoVisible) {
-            // alert(classInfo)
-            return (
-
-                <View>
-                    <Text>{classInfo}</Text>
-                </View>
-
-            )
-        }
-    }
 
     function DailyAgenda() {
 
         if (isVisible) {
             return (
+
                 <View style={styles.agendaView}>
-                    <TouchableOpacity onPress={() => alert(classInfo)}>
-                        <View style={[styles.agenda, { borderColor: firstColour.backgroundColor }]}>
-                            <Text style={[themeText, styles.agendaText]}>{selectedWeekDay}</Text>
-                            <Text style={[themeText, styles.agendaText]}>{schedule}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <FlatList
+                        data={schedule}
+                        keyExtractor={(item) => item.crn.toString()}
+                        renderItem={({ item }) => (
+                            <View style={[{ padding: 10 }, styles.agenda, themeBg]}>
+                                <Text style={[styles.agendaText, themeText]}>{item.course_id}</Text>
+                                <Text style={[styles.agendaText, themeText]}>{item.start_time}</Text>
+                                <Text style={[styles.agendaText, themeText]}>{item.end_time}</Text>
+                            </View>
+                        )}
+                    />
 
                 </View >
             )
         }
     }
 
-
 }
-
 
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     scheduleHeader: {
         flexDirection: 'row',
@@ -185,6 +173,6 @@ const styles = StyleSheet.create({
     },
     agendaText: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
     }
 })
