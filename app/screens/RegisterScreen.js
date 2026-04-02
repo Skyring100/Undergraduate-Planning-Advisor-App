@@ -31,6 +31,7 @@ export default function RegisterScreen() {
     const [confirmedPassword, setConfirmedPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const {width} = useWindowDimensions();
 
@@ -59,9 +60,11 @@ export default function RegisterScreen() {
             return;
         }
         
+        setLoading(true);
         const result = await registerUser(emailInput, password, firstName, lastName);
 
         if (result.success){
+            setLoading(false);
             // Navigate to MainTabs (bottom tab navigator)
             navigation.navigate('Login');
             // Reset form
@@ -71,6 +74,7 @@ export default function RegisterScreen() {
             setFirstName('');
             setLastName('');
         }else{
+            setLoading(false);
             alert('Error', result.message);
         }
 
@@ -134,7 +138,7 @@ export default function RegisterScreen() {
                 
 
                 <SubmitButton onPress={handleSubmit}/>
-
+                {loading ? <Text>Loading...</Text> : <View></View>}
             </SafeAreaView >
         </SafeAreaProvider>
     );
