@@ -34,13 +34,22 @@ export default function AddSectionScreen() {
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
-
     const [showPicker, setShowPicker] = useState(false);
+
+    const timeFormat = '[0-9][0-9]:[0-9][0-9]';
+    const dateFormat = '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]';
 
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
             alert("Empty information, try again.")
-        } else {
+        } 
+        else if (!timeFormat.test(sectionStartTime) && !timeFormat.test(sectionEndTime)){
+            alert("Time format not accepted. Input correct form please.")
+        }
+        else if (!dateFormat.test(sectionStartTime) && !dateFormat.test(sectionEndTime)){
+            alert("Date format not accepted. Input correct form please.")
+        }
+        else {
             console.log(sectionName);
             // c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor
             addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
