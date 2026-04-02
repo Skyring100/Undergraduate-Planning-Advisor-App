@@ -50,21 +50,40 @@ export default function EvaluatorScreen() {
         const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
         console.log("Here is the data");
         console.log(resp.data.data);
-        const data = await Promise.all(resp.data.data.map(async course => await getCourseById(course.course_id))).filter(course => course.success).map(course => course.data);
+        const data = await (async () => {
+            const d = await Promise.all(
+                resp.data.data.map(
+                    async course => {
+                        let courseObj = await getCourseById(course.course_id);
+                        courseObj.data.year_num = course.year_num;
+                        courseObj.data.semester_id = course.semester_id;
+                        console.log("The returned course object is:");
+                        console.log(courseObj);
+                        return courseObj;
+                    }
+                ));
+            console.log("got here")
+            const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
+            console.log("got here")
+            setProgressBarPercent((completedCourses.length/e.length)*100);
+            console.log("got here")
+            return e;
+        })();
+        setDegreeCourses(data);
         console.log("and processed:");
         console.log(data);
-        setDegreeCourses(data);
-        setProgressBarPercent((completedCourses.length/data.length)*100);
         console.log(number);
-        setTimeout(() => {
-            number.value = withTiming(progressBarPercent, {
-                duration: 2000,
-                easing: Easing.out(Easing.exp),
-        })}, 10000);
     })()}, [])
+    
+    useEffect(() => {
+        number.value = withTiming(progressBarPercent, {
+            duration: 2000,
+            easing: Easing.out(Easing.exp),
+        });
+    });
 
 
-    // take all the courses the user has every prerequisite for completed
+    // take all the courses the user has everyprerequisite for completed
     /*
     const nextCourses = degreeCourses.filter(
                                 course => checkIfPrereqsMatchCourse(
@@ -73,11 +92,17 @@ export default function EvaluatorScreen() {
                                 && !completedCourses.map(other => other.id).includes(course.id)
                             );
                             */
-    /*
     const nextCourses = degreeCourses.filter(course => {
-        const matches = checkPrereqs(completedCourses.map(comp => comp.id), course.id);
-        return matches && !completedCourses.map(other => other.id).includes(course.id);
-        */
+        console.log(completedCourses);
+        // const matches = checkPrereqs(completedCourses.map(comp => comp.course_id), course.course_id);
+        const notCompleted = !completedCourses.map(other => other.id).includes(course.course_id);
+        const nextSemester = nextCourseTime().year == course.year_num && 1 == course.semester_id;
+        console.log(`nextSemester: ${nextSemester}`);
+        console.log(`this course's year: ${course.year_num}`);
+        console.log(`this course's semester: ${course.semester_id}`);
+
+        return notCompleted && nextSemester;
+    });
 
     /*
      * we need to check:
@@ -87,7 +112,6 @@ export default function EvaluatorScreen() {
      * - if not, what are they missing? (come up with something for that)
      * - has user not yet finished the course?
      */
-    const nextCourses = degreeCourses;
 
     return (
         <SafeAreaProvider>
@@ -97,7 +121,7 @@ export default function EvaluatorScreen() {
                     Let's see where you're at
                 </Text>
         
-                <ProgressBar full={progressBarPercent}/>
+                <ProgressBar full={number.value}/>
                 <View style={styles.variableSizeTextHolder}>
                     <Text style={themeText}>You're </Text>
                     <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />

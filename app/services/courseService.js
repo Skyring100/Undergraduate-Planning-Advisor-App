@@ -28,6 +28,7 @@ export const getCourseById = async (id) => {
         'Authorization': `Bearer ${token}`
         },
     });
+    console.log("fetch went through!");
 
     const data = await response.json();
 
