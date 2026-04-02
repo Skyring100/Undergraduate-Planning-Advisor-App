@@ -27,11 +27,12 @@ export default function AddSectionScreen() {
 
 
     const themeBg = useThemeBackground();
+    const themeText = useThemeText();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
     const [showPicker, setShowPicker] = useState(false);
-    const themeTxt = useThemeText();
+    // const themeTxt = useThemeText();
 
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
@@ -52,11 +53,11 @@ export default function AddSectionScreen() {
                         < BackButton />
                     </View>
 
-                    <ScrollView style={themeTxt}>
+                    <ScrollView style={themeText}>
 
-                        <Text style={themeTxt}>Select Days:</Text>
+                        <Text style={[themeText, styles.title]}>Select Days:</Text>
                         <Picker
-                            style={themeTxt}
+                            style={firstColour}
                             selectedValue={sectionDays}
                             onValueChange={(itemValue, itemIndex) =>
                                 setSectionDays(itemValue)
@@ -74,7 +75,7 @@ export default function AddSectionScreen() {
                         </Picker>
 
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionName}
                             value={sectionName}
                             placeholder='Section Name*'
@@ -82,7 +83,7 @@ export default function AddSectionScreen() {
                         </TextInput>
 
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionID}
                             value={sectionID}
                             placeholder='Course ID*'
@@ -90,49 +91,49 @@ export default function AddSectionScreen() {
                         </TextInput>
 
                         <View>
-                            <Text style={themeTxt}>Start and End time*:</Text>
+                            <Text style={[themeText, styles.title]}>Start and End time*:</Text>
                             <View style={styles.inputView}>
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setSectionStartTime}
                                     value={sectionStartTime}
-                                    placeholder='Section Start Time*'
+                                    placeholder='Section Start Time* (eg: hh:hh)'
                                 >
                                 </TextInput>
 
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setSectionEndTime}
                                     value={sectionEndTime}
-                                    placeholder='Section End Time*'
+                                    placeholder='Section End Time* (eg: hh:hh)'
                                 >
                                 </TextInput>
                             </View>
                         </View>
 
                         <View>
-                            <Text style={themeTxt}>Start and End Date*:</Text>
+                            <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
                             <View style={styles.inputView}>
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setStartDate}
                                     value={startDate}
-                                    placeholder='First day*'
+                                    placeholder='First day* (eg: yyyy/mm/dd)'
                                 >
                                 </TextInput>
 
                                 <TextInput
-                                    style={[styles.inputDates, themeTxt]}
+                                    style={[styles.inputDates, firstColour]}
                                     onChangeText={setEndDate}
                                     value={endDate}
-                                    placeholder='Last day*'
+                                    placeholder='Last day* (eg: yyyy/mm/dd)'
                                 >
                                 </TextInput>
                             </View>
                         </View>
 
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionProfessor}
                             value={sectionProfessor}
                             placeholder='Instructor'
@@ -141,7 +142,7 @@ export default function AddSectionScreen() {
 
 
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionRoom}
                             value={sectionRoom}
                             placeholder='Section Room'
@@ -149,16 +150,17 @@ export default function AddSectionScreen() {
                         </TextInput>
 
                         <TextInput
-                            style={[styles.input, themeTxt]}
+                            style={[styles.input, firstColour]}
                             onChangeText={setSectionBuilding}
                             value={sectionBuilding}
                             placeholder='Building'
                         >
                         </TextInput>
 
-                        <View style={[styles.submit]}>
+                        <View style={[styles.submit, themeText]}>
                             <Button
                                 onPress={SubmitInfo}
+                                style={firstColour}
                                 title="Submit"
                             ></Button>
                         </View>
@@ -172,8 +174,10 @@ export default function AddSectionScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-
+    title: {
+        paddingLeft:5,
+        paddingBottom: 2,
+        fontWeight: 'bold'
     },
     input: {
         height: '7.5%',
