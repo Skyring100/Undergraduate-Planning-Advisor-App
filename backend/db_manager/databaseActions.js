@@ -2,7 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 const DATABASE_PATH = './db/database.db';
 const db = initalizeDatabase();
 //Temporary reset for database for testing purposes
-dropTables();
+// dropTables();
 createTables();
 // dummyData();
 
@@ -95,14 +95,14 @@ function createTables(){
     `);
     db.exec(`
         CREATE TABLE IF NOT EXISTS user_taking_degree(
-            student_id INTEGER,
+            student_id TEXT,
             degree_id INTEGER,
             PRIMARY KEY (student_id, degree_id),
             FOREIGN KEY (student_id) REFERENCES user(student_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         );
         CREATE TABLE IF NOT EXISTS user_completed_course(
-            student_id INTEGER,
+            student_id TEXT,
             course_id INTEGER,
             in_progress BOOLEAN,
             PRIMARY KEY (student_id, course_id),
@@ -154,6 +154,7 @@ function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        comment these out until I need to use them
         DROP TABLE IF EXISTS degree_plan_course;
         DROP TABLE IF EXISTS degree_plan_degree;
         DROP TABLE IF EXISTS degree_plan;
