@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View } from 'react-native';
 import {useState} from 'react';
-import { useThemeBackground, useThemeText } from '../../contexts/ThemeContext';
+import { useThemeBackground, useThemeText, useThirdColour } from '../../contexts/ThemeContext';
 
 
 export default function CourseListButton({course}) {
@@ -8,18 +8,18 @@ export default function CourseListButton({course}) {
     const handlePress = () => {
         setModalVisible(true);
     }
-
+    const themeText = useThemeText();
+    const thirdColour = useThirdColour();
+    const themeBg = useThemeBackground();
     const buttonText = (course.id != null) ? course.id : "----";
-    const bgColour = useThemeBackground();
-    const textColour = useThemeText();
 
     return (
         <TouchableOpacity
-            style={[styles.courseButton, bgColour]}
+            style={[styles.courseButton, themeBg]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={[styles.buttonText, textColour]}>{buttonText}</Text>
+            <Text style={[styles.buttonText, themeText]}>{buttonText}</Text>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -30,13 +30,15 @@ export default function CourseListButton({course}) {
                 <View style={styles.popupBackground}>
                     <View style={styles.mainContent}>
                         <View>
-                            <Text style={styles.modalText}>{course.id}: {course.title}</Text>
+                            <Text style={styles.modalText}>{course.id.replace(/\n/g, ' ')}: {course.title}</Text>
                             <Text style={styles.modalText}>{course.desc}</Text>
                             <Text style={styles.modalText}>{course.prereq}</Text>
+                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                            <Pressable onPress={() => setModalVisible(!modalVisible)} style={[styles.buttonClose, thirdColour]}>
+                                <Text style={styles.textStyle}>Back</Text>
+                            </Pressable>
+                            </View>
                         </View>
-                        <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
                     </View>
                 </View>
             </Modal>
@@ -44,13 +46,14 @@ export default function CourseListButton({course}) {
     );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     courseButton: {
+        color: '#ffffffff',
+        fontWeight: 'bold',
+        fontSize: 20,
+        //backgroundColor: '#078d6e',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderBlockColor: '#00000',
-        height: 40,
+        width: '100%',
     },
     buttonText: {
         color: '#fff',
@@ -61,13 +64,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#000000ff',
-        opacity: 0.65,
     },
     buttonClose: {
-        width: 50,
-        marginTop: 35,
-        backgroundColor: '#2196F3',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 18,
+        width: '45%',
+        height: 45,
     },
     textStyle: {
         color: 'white',
@@ -80,6 +85,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     mainContent: {
-        backgroundColor: '#ffffffff'
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 20,
+        backgroundColor: '#fff',
     }
 });
