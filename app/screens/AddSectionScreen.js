@@ -36,8 +36,8 @@ export default function AddSectionScreen() {
 
     const [showPicker, setShowPicker] = useState(false);
 
-    const timeFormat = '[0-9][0-9]:[0-9][0-9]';
-    const dateFormat = '[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9]';
+    const timeFormat = /[0-9][0-9]:[0-9][0-9]/;
+    const dateFormat = /^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/
 
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
@@ -46,7 +46,7 @@ export default function AddSectionScreen() {
         else if (!timeFormat.test(sectionStartTime) && !timeFormat.test(sectionEndTime)){
             alert("Time format not accepted. Input correct form please.")
         }
-        else if (!dateFormat.test(sectionStartTime) && !dateFormat.test(sectionEndTime)){
+        else if (!dateFormat.test(startDate) && !dateFormat.test(endDate)){
             alert("Date format not accepted. Input correct form please.")
         }
         else {
