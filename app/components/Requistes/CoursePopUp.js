@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View, Dimensions } from 'react-native';
 import {useState} from 'react';
 import { useThemeText, useThirdColour} from '../../contexts/ThemeContext';
 
@@ -32,11 +32,15 @@ export default function CoursePopUPButton({course}) {
                             <Text style={styles.modalText}>{course.id.replace(/\n/g, ' ')}: {course.title}</Text>
                             <Text style={styles.modalText}>{course.desc}</Text>
                             <Text style={styles.modalText}>{course.prereq}</Text>
-                            <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                                <Text style={styles.textStyle}>Hide Modal</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Pressable onPress={() => setModalVisible(!modalVisible)} style={[styles.buttonClose, thirdColour]}>
+                                <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
+                            <Pressable onPress={() => {}} style={[styles.buttonClose, thirdColour]}>
+                                <Text style={styles.textStyle}>Add to Planner</Text>
+                            </Pressable>
+                            </View>
                         </View>
-                        
                     </View>
                 </View>
             </Modal>
@@ -44,7 +48,7 @@ export default function CoursePopUPButton({course}) {
     );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     courseButton: {
         color: '#ffffffff',
         fontWeight: 'bold',
@@ -62,13 +66,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#000000ff',
-        opacity: 0.65,
     },
     buttonClose: {
-        width: 50,
-        marginTop: 35,
-        backgroundColor: '#2196F3',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        marginTop: 10,
+        borderRadius: 18,
+        width: '45%',
+        height: 45,
     },
     textStyle: {
         color: 'white',
@@ -81,6 +87,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     mainContent: {
-        backgroundColor: '#ffffffff'
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 20,
+        backgroundColor: '#fff',
     }
 });
