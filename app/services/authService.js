@@ -72,11 +72,14 @@ export const registerUser = async (email, password, first_name, last_name) => {
   }catch(err){
     return {success: false, message: err.message};
   }
+  console.log(userCredential);
   const token = await userCredential.user.getIdToken();
   console.log(`Got token from Firebase: ${token}`);
 
+  const id = userCredential.user.uid;
   const fetchReq = getBaseRequestHTTP('POST', token);
   fetchReq['body'] = JSON.stringify({
+      id,
       email,
       first_name,
       last_name,
