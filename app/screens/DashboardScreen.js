@@ -12,7 +12,7 @@ import EvaluatorButton from '../components/Dashboard/EvaluatorButton';
 import RequistesButton from '../components/Dashboard/RequistesButton';
 import AllCoursesButton from '../components/Dashboard/AllCoursesButton';
 
-const backHeight = Dimensions.get('window').height;
+const backHeight = Dimensions.get('window').height - 110;
 const middleHeight = backHeight*0.22;
 const topHeight = backHeight*0.29;
 const screenWidth = Dimensions.get('window').width;
@@ -22,22 +22,20 @@ export default function DashboardScreen (){
     const navigation = useNavigation();
 
     return(
-        <SafeAreaProvider>
-            <SafeAreaView style={{flexDirection: 'column',flex: 1}}>
-                <View style={styles.backView}>
-                    <RequistesButton/>
-                    <PlannerButton/>
-                </View>
-                <View style={styles.middleView}>
-                    <AllCoursesButton/>
-                    <ScheduleButton/>
-                </View>
-                <View style={styles.topView}>
-                    <EvaluatorButton/>
-                </View>
-                
-            </SafeAreaView >
-        </SafeAreaProvider>
+        <View style={{flexDirection: 'column',flex: 1}}>
+            <View style={styles.backView}>
+                <RequistesButton/>
+                <PlannerButton/>
+            </View>
+            <View style={styles.middleView}>
+                <AllCoursesButton/>
+                <ScheduleButton/>
+            </View>
+            <View style={styles.topView}>
+                <EvaluatorButton/>
+            </View>
+            
+        </View >
     )
 }
 

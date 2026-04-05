@@ -7,7 +7,7 @@ import possibleCourses from '../../data/possible_courses.json'
 import completedCourses from '../../data/completed_courses.json'
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-const screenHeight = Dimensions.get('window').height;
+const screenHeight = Dimensions.get('window').height - 130;
 const buttonHeight = screenHeight *0.27;
 const buttonWidth = buttonHeight;//screenWidth * 0.60;
 const chartSize = buttonHeight-10;

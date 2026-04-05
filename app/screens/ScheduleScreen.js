@@ -75,47 +75,47 @@ export default function ScheduleScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{ ...themeBg, minHeight: height }}>
+        <SafeAreaView style={{ ...themeBg, minHeight: height, width: width,}}>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...themeBg, width: 500 }}>
-                    <BackButton />
-                    <AddSectionButton />
-                </View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...themeBg, width: 500 }}>
+                <BackButton />
+                <AddSectionButton />
+            </View>
 
-                <View style={styles.scheduleHeader}>
+            <View style={styles.scheduleHeader}>
 
-                </View>
+            </View>
 
-                <Calendar
-                    key={isDarkMode} // to allow it to rerender every time isDarkMode changes
-                    onDayPress={async (day) => {
-                        //if selected day is different from current date string, erase everything and set it again
-                        setIsVisible(true);
-                        setSelected(day.dateString);
-                        setSelectedDay(day.dateString);
-                        await getDayOfWeek(getWeekDays(day.dateString));
-                    }}
-                    markedDates={
-                        {
-                            [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e" }
-                        }
+            <Calendar
+                key={isDarkMode} // to allow it to rerender every time isDarkMode changes
+                onDayPress={async (day) => {
+                    //if selected day is different from current date string, erase everything and set it again
+                    setIsVisible(true);
+                    setSelected(day.dateString);
+                    setSelectedDay(day.dateString);
+                    await getDayOfWeek(getWeekDays(day.dateString));
+                }}
+                markedDates={
+                    {
+                        [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e" }
                     }
-                    theme={{
-                        calendarBackground: isDarkMode ? "#000" : "#fff",
-                        textSectionTitleColor: isDarkMode ? "#fff" : "#000",
-                        dayTextColor: "#777",
-                        monthTextColor: "#777",
-                        textDisabledColor: "#777",
-                    }}
-                />
+                }
+                theme={{
+                    calendarBackground: isDarkMode ? "#000" : "#fff",
+                    textSectionTitleColor: isDarkMode ? "#fff" : "#000",
+                    dayTextColor: "#777",
+                    monthTextColor: "#777",
+                    textDisabledColor: "#777",
+                }}
+            />
 
-                <DailyAgenda>
-
-
-                </DailyAgenda>
+            <DailyAgenda>
 
 
-            </SafeAreaView>
+            </DailyAgenda>
+
+
+        </SafeAreaView>
         </SafeAreaProvider>
     );
 

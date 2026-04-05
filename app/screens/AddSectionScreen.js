@@ -59,145 +59,143 @@ export default function AddSectionScreen() {
 
 
     return (
-        <SafeAreaProvider>
-            <SafeAreaView style={{ ...themeBg, minHeight: height }}>
-                <View style={{ flex: 1 }} >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', ...themeBg }}>
-                        < BackButton />
+        <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30}}>
+            <View style={{ flex: 1 }} >
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', ...themeBg }}>
+                    < BackButton />
+                </View>
+
+
+                <ScrollView style={themeText}>
+
+
+                    <Text style={[themeText, styles.title]}>Select Days:</Text>
+                    <Picker
+                        style={firstColour}
+                        selectedValue={sectionDays}
+                        onValueChange={(itemValue, itemIndex) =>
+                            setSectionDays(itemValue)
+                        }>
+                        <Picker.Item label='Monday' value='M' />
+                        <Picker.Item label='Tuesday' value='T' />
+                        <Picker.Item label='Wednesday' value='W' />
+                        <Picker.Item label='Thursday' value='R' />
+                        <Picker.Item label='Friday' value='F' />
+                        <Picker.Item label='Saturday' value='S' />
+                        <Picker.Item label='Monday|Wednesday|Friday' value='MWF' />
+                        <Picker.Item label='Tuesday|Thursday' value='TR' />
+                        <Picker.Item label='Monday|Wednesday' value='MW' />
+                        <Picker.Item label='Wednesday|Friday' value='WF' />
+                    </Picker>
+
+
+                    <TextInput
+                        style={[styles.input, firstColour]}
+                        onChangeText={setSectionName}
+                        value={sectionName}
+                        placeholder='Section Name*'
+                    >
+                    </TextInput>
+
+
+                    <TextInput
+                        style={[styles.input, firstColour]}
+                        onChangeText={setSectionID}
+                        value={sectionID}
+                        placeholder='Course ID*'
+                    >
+                    </TextInput>
+
+
+                    <View>
+                        <Text style={[themeText, styles.title]}>Start and End time*:</Text>
+                        <View style={styles.inputView}>
+                            <TextInput
+                                style={[styles.inputDates, firstColour]}
+                                onChangeText={setSectionStartTime}
+                                value={sectionStartTime}
+                                placeholder='Section Start Time* (eg: hh:hh)'
+                            >
+                            </TextInput>
+
+
+                            <TextInput
+                                style={[styles.inputDates, firstColour]}
+                                onChangeText={setSectionEndTime}
+                                value={sectionEndTime}
+                                placeholder='Section End Time* (eg: hh:hh)'
+                            >
+                            </TextInput>
+                        </View>
                     </View>
 
 
-                    <ScrollView style={themeText}>
+                    <View>
+                        <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
+                        <View style={styles.inputView}>
+                            <TextInput
+                                style={[styles.inputDates, firstColour]}
+                                onChangeText={setStartDate}
+                                value={startDate}
+                                placeholder='First day* (eg: yyyy/mm/dd)'
+                            >
+                            </TextInput>
 
 
-                        <Text style={[themeText, styles.title]}>Select Days:</Text>
-                        <Picker
+                            <TextInput
+                                style={[styles.inputDates, firstColour]}
+                                onChangeText={setEndDate}
+                                value={endDate}
+                                placeholder='Last day* (eg: yyyy/mm/dd)'
+                            >
+                            </TextInput>
+                        </View>
+                    </View>
+
+
+                    <TextInput
+                        style={[styles.input, firstColour]}
+                        onChangeText={setSectionProfessor}
+                        value={sectionProfessor}
+                        placeholder='Instructor'
+                    >
+                    </TextInput>
+
+
+
+
+                    <TextInput
+                        style={[styles.input, firstColour]}
+                        onChangeText={setSectionRoom}
+                        value={sectionRoom}
+                        placeholder='Section Room'
+                    >
+                    </TextInput>
+
+
+                    <TextInput
+                        style={[styles.input, firstColour]}
+                        onChangeText={setSectionBuilding}
+                        value={sectionBuilding}
+                        placeholder='Building'
+                    >
+                    </TextInput>
+
+
+                    <View style={[styles.submit, themeText]}>
+                        <Button
+                            onPress={SubmitInfo}
                             style={firstColour}
-                            selectedValue={sectionDays}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setSectionDays(itemValue)
-                            }>
-                            <Picker.Item label='Monday' value='M' />
-                            <Picker.Item label='Tuesday' value='T' />
-                            <Picker.Item label='Wednesday' value='W' />
-                            <Picker.Item label='Thursday' value='R' />
-                            <Picker.Item label='Friday' value='F' />
-                            <Picker.Item label='Saturday' value='S' />
-                            <Picker.Item label='Monday|Wednesday|Friday' value='MWF' />
-                            <Picker.Item label='Tuesday|Thursday' value='TR' />
-                            <Picker.Item label='Monday|Wednesday' value='MW' />
-                            <Picker.Item label='Wednesday|Friday' value='WF' />
-                        </Picker>
-
-
-                        <TextInput
-                            style={[styles.input, firstColour]}
-                            onChangeText={setSectionName}
-                            value={sectionName}
-                            placeholder='Section Name*'
-                        >
-                        </TextInput>
-
-
-                        <TextInput
-                            style={[styles.input, firstColour]}
-                            onChangeText={setSectionID}
-                            value={sectionID}
-                            placeholder='Course ID*'
-                        >
-                        </TextInput>
-
-
-                        <View>
-                            <Text style={[themeText, styles.title]}>Start and End time*:</Text>
-                            <View style={styles.inputView}>
-                                <TextInput
-                                    style={[styles.inputDates, firstColour]}
-                                    onChangeText={setSectionStartTime}
-                                    value={sectionStartTime}
-                                    placeholder='Section Start Time* (eg: hh:hh)'
-                                >
-                                </TextInput>
-
-
-                                <TextInput
-                                    style={[styles.inputDates, firstColour]}
-                                    onChangeText={setSectionEndTime}
-                                    value={sectionEndTime}
-                                    placeholder='Section End Time* (eg: hh:hh)'
-                                >
-                                </TextInput>
-                            </View>
-                        </View>
-
-
-                        <View>
-                            <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
-                            <View style={styles.inputView}>
-                                <TextInput
-                                    style={[styles.inputDates, firstColour]}
-                                    onChangeText={setStartDate}
-                                    value={startDate}
-                                    placeholder='First day* (eg: yyyy/mm/dd)'
-                                >
-                                </TextInput>
-
-
-                                <TextInput
-                                    style={[styles.inputDates, firstColour]}
-                                    onChangeText={setEndDate}
-                                    value={endDate}
-                                    placeholder='Last day* (eg: yyyy/mm/dd)'
-                                >
-                                </TextInput>
-                            </View>
-                        </View>
-
-
-                        <TextInput
-                            style={[styles.input, firstColour]}
-                            onChangeText={setSectionProfessor}
-                            value={sectionProfessor}
-                            placeholder='Instructor'
-                        >
-                        </TextInput>
+                            title="Submit"
+                        ></Button>
+                    </View>
+                </ScrollView>
 
 
 
 
-                        <TextInput
-                            style={[styles.input, firstColour]}
-                            onChangeText={setSectionRoom}
-                            value={sectionRoom}
-                            placeholder='Section Room'
-                        >
-                        </TextInput>
-
-
-                        <TextInput
-                            style={[styles.input, firstColour]}
-                            onChangeText={setSectionBuilding}
-                            value={sectionBuilding}
-                            placeholder='Building'
-                        >
-                        </TextInput>
-
-
-                        <View style={[styles.submit, themeText]}>
-                            <Button
-                                onPress={SubmitInfo}
-                                style={firstColour}
-                                title="Submit"
-                            ></Button>
-                        </View>
-                    </ScrollView>
-
-
-
-
-                </View>
-            </SafeAreaView>
-        </SafeAreaProvider>
+            </View>
+        </SafeAreaView>
     )
 }
 

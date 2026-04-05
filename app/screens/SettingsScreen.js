@@ -45,7 +45,7 @@ export default function SettingsScreen() {
                     <LogoutButton/>
                 </View>
             </SafeAreaView >
-        </SafeAreaProvider>
+        <SafeAreaProvider>
     );
 }
 

@@ -57,91 +57,88 @@ export default function CourseListScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={[{width: width, minHeight: height}, themeBg]}>
-                
-                <View style={[{alignItems: 'center', justifyContent: 'center', backgroundColor: '#4b4b4b'}]}>
-                    <BackButton/>
+        <SafeAreaView style={[{width: width, minHeight: height, }, themeBg]}>
+            
+            <View style={[{alignItems: 'center', justifyContent: 'center', backgroundColor: '#4b4b4b'}]}>
+                <BackButton/>
 
-                    <CollapsibleView>
-                        <ScrollView style={styles.filterScrollView}>
-                            <View style={styles.filterRow}>
-                                {course_type.map(type => (
-                                    <TouchableOpacity
-                                        key={type}
-                                        onPress={() => setActiveType(type)}
-                                        style={[styles.filter, activeType === type && styles.filterActive]}
-                                    >
-                                        <Text style={[styles.filterText, activeType === type && styles.filterTextActive]}>
-                                            {type}
-                                        </Text>
-                                    </TouchableOpacity>
-                                ))}
-                            </View>
-                        </ScrollView>
-                    </CollapsibleView>
-                </View>
-
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={selectedCourse !== null}
-                    onRequestClose={() => setSelectedCourse(null)}>
-                    <View style={styles.popupBackground}>
-                        <View style={styles.mainContent}>
-                            {selectedCourse && (
-                            <View>
-                                <Text style={styles.modalText}>{selectedCourse.course_id.replace(/\n/g, ' ')}: {selectedCourse.title}</Text>
-                                <Text style={styles.modalText}>{selectedCourse.description}</Text>
-                                <Text style={styles.modalText}>{selectedCourse.prereq}</Text>
-                                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                                <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
-                                <Text style={styles.textStyle}>Back</Text>
-                                </Pressable>
-                                <Pressable onPress={() => {}} style={[styles.buttonClose]}>
-                                    <Text style={styles.textStyle}>Add to Planner</Text>
-                                </Pressable>
-                                </View>
-                            </View>
-                            )}
+                <CollapsibleView>
+                    <ScrollView style={styles.filterScrollView}>
+                        <View style={styles.filterRow}>
+                            {course_type.map(type => (
+                                <TouchableOpacity
+                                    key={type}
+                                    onPress={() => setActiveType(type)}
+                                    style={[styles.filter, activeType === type && styles.filterActive]}
+                                >
+                                    <Text style={[styles.filterText, activeType === type && styles.filterTextActive]}>
+                                        {type}
+                                    </Text>
+                                </TouchableOpacity>
+                            ))}
                         </View>
+                    </ScrollView>
+                </CollapsibleView>
+            </View>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={selectedCourse !== null}
+                onRequestClose={() => setSelectedCourse(null)}>
+                <View style={styles.popupBackground}>
+                    <View style={styles.mainContent}>
+                        {selectedCourse && (
+                        <View>
+                            <Text style={styles.modalText}>{selectedCourse.course_id.replace(/\n/g, ' ')}: {selectedCourse.title}</Text>
+                            <Text style={styles.modalText}>{selectedCourse.description}</Text>
+                            <Text style={styles.modalText}>{selectedCourse.prereq}</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
+                            <Text style={styles.textStyle}>Back</Text>
+                            </Pressable>
+                            <Pressable onPress={() => {}} style={[styles.buttonClose]}>
+                                <Text style={styles.textStyle}>Add to Planner</Text>
+                            </Pressable>
+                            </View>
+                        </View>
+                        )}
                     </View>
-                </Modal>
+                </View>
+            </Modal>
 
-                <FlatList style={styles.FlatList}
-                    data={filteredCourses}
-                    renderItem={({item}) => (
+            <FlatList style={styles.FlatList}
+                data={filteredCourses}
+                renderItem={({item}) => (
 
-                        <TouchableOpacity
-                            onPress={() => setSelectedCourse(item)} 
-                            activeOpacity={0.7}
-                        >
-                            <View course={item} style={styles.contentBackground}>
-                                <View >
-                                    <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
-                                    <Text style={styles.courseTitle}>{item.course_id}</Text>
-                                    <Text style={styles.courseText}>{item.title}</Text>
-                                    <Text style={styles.courseText}>{item.prereq}</Text>
-                                    <View  style={{flexDirection:'row', flex:1}}>
-                                        <View style={{flex:1}}/>
-                                        <Button style={{flex:1}} title='+'/>
-                                    </View>
-                                    
+                    <TouchableOpacity
+                        onPress={() => setSelectedCourse(item)} 
+                        activeOpacity={0.7}
+                    >
+                        <View course={item} style={styles.contentBackground}>
+                            <View >
+                                <View style={{backgroundColor: firstColour.backgroundColor, height: 5, width: 'auto'}}/>
+                                <Text style={styles.courseTitle}>{item.course_id}</Text>
+                                <Text style={styles.courseText}>{item.title}</Text>
+                                <Text style={styles.courseText}>{item.prereq}</Text>
+                                <View  style={{flexDirection:'row', flex:1}}>
+                                    <View style={{flex:1}}/>
+                                    <Button style={{flex:1}} title='+'/>
                                 </View>
+                                
+                            </View>
 
-                            </View >
-                            
-                        </TouchableOpacity>
-                    )}
-                    keyExtractor={(item) => item.course_id}
-                    ListFooterComponent={
-                        <SafeAreaView style={{marginBottom: 310}}>
-                        </SafeAreaView>
-
-                    }
-                />
-                
-
-            </SafeAreaView>
+                        </View >
+                        
+                    </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item.course_id}
+                ListFooterComponent={
+                    <SafeAreaView style={{marginBottom: 470}}>
+                    </SafeAreaView>
+                }
+            />
+        </SafeAreaView>
         </SafeAreaProvider>
     )
 }

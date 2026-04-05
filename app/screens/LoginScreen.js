@@ -62,35 +62,35 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, {width: width}]}>
-                <View style={styles.titleContainer}>
-                    <Text style={[styles.title]}>Login</Text>
-                </View>
-                {loading ? <Text>Loading...</Text> : <View></View>}
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your email"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    value={emailInput}
-                    onChangeText={setEmailInput}
-                />
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your password"
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    value={password}
-                    onChangeText={setPassword}
-                />
+        <SafeAreaView style={[styles.container, {width: width, marginTop: -30}]}>
+            <View style={styles.titleContainer}>
+                <Text style={[styles.title]}>Login</Text>
+            </View>
+            {loading ? <Text>Loading...</Text> : <View></View>}
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={emailInput}
+                onChangeText={setEmailInput}
+            />
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your password"
+                autoCapitalize="none"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={setPassword}
+            />
 
-                <LoginButton handlePress={handleLogin} />
+            <LoginButton handlePress={handleLogin} />
 
-                <RegisterButton />
-                
-            </SafeAreaView >
+            <RegisterButton />
+            
+        </SafeAreaView >
         </SafeAreaProvider>
     );
 }

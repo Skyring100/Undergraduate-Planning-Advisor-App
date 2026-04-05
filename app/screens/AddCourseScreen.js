@@ -15,7 +15,7 @@ function TabBar({ state, descriptors, navigation, position }) {
     const { buildHref } = useLinkBuilder();
     
     return (
-        <View style={{ flexDirection: 'row' }}>
+        <SafeAreaView style={{ flexDirection: 'row' }}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -69,7 +69,7 @@ function TabBar({ state, descriptors, navigation, position }) {
                     </PlatformPressable>
                 );
             })}
-        </View>
+        </SafeAreaView>
     );
 }
 

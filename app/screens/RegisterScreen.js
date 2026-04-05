@@ -84,62 +84,62 @@ export default function RegisterScreen() {
     
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, {width: width}]}>
-                <BackButton/>
-                <View style={styles.titleContainer}>
-                    <Text style={[styles.title]}>Register</Text>
-                </View>
+        <SafeAreaView style={[styles.container, {width: width}]}>
+            <BackButton/>
+            <View style={styles.titleContainer}>
+                <Text style={[styles.title]}>Register</Text>
+            </View>
 
-                <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
+            <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
 
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your first name"
-                    autoCapitalize="none"
-                    value={firstName}
-                    onChangeText={setFirstName}
-                />
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your last name (optional)"
-                    autoCapitalize="none"
-                    value={lastName}
-                    onChangeText={setLastName}
-                />
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your email address"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    value={emailInput}
-                    onChangeText={setEmailInput}
-                />
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Enter your password"
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    value={password}
-                    onChangeText={setPassword}
-                />
-                <TextInput
-                    style={[styles.input]}
-                    placeholderTextColor="#777"
-                    placeholder="Re-enter your password"
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                    value={confirmedPassword}
-                    onChangeText={setConfirmedPassword}
-                />
-                
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your first name"
+                autoCapitalize="none"
+                value={firstName}
+                onChangeText={setFirstName}
+            />
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your last name (optional)"
+                autoCapitalize="none"
+                value={lastName}
+                onChangeText={setLastName}
+            />
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your email address"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={emailInput}
+                onChangeText={setEmailInput}
+            />
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Enter your password"
+                secureTextEntry={true}
+                autoCapitalize="none"
+                value={password}
+                onChangeText={setPassword}
+            />
+            <TextInput
+                style={[styles.input]}
+                placeholderTextColor="#777"
+                placeholder="Re-enter your password"
+                secureTextEntry={true}
+                autoCapitalize="none"
+                value={confirmedPassword}
+                onChangeText={setConfirmedPassword}
+            />
+            
 
-                <SubmitButton onPress={handleSubmit}/>
-                {loading ? <Text>Loading...</Text> : <View></View>}
-            </SafeAreaView >
+            <SubmitButton onPress={handleSubmit}/>
+            {loading ? <Text>Loading...</Text> : <View></View>}
+        </SafeAreaView >
         </SafeAreaProvider>
     );
 }

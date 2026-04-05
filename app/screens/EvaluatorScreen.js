@@ -118,65 +118,65 @@ export default function EvaluatorScreen() {
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
-                <BackButton/>
-                <Text style={[styles.titleText, themeText]}>
-                    Let's see where you're at
-                </Text>
-        
-                <ProgressBar full={progressBarPercent} key={progressBarPercent}/>
-                <View style={styles.variableSizeTextHolder}>
-                    <Text style={themeText}>You're </Text>
-                    <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />
-                    <Text style={themeText}> of the way to your degree!</Text>
-                </View>
-                <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{(() => {
-                    let nextCourseTimeString = "" + nextCourseTime.year + " " + (nextCourseTime.semester == 1 ? "Winter" : (
-                        nextCourseTime.semester == 5 ? "Spring" : "Fall"));
-                    return (nextCourses.length == 0 ? "Looks like you have no courses next semester.\nTake a break and relax!"
-                    : ("Your courses in the " + nextCourseTimeString
-                    + " semester will be:"));
-                })()
-                }</Text>
-                <ScrollView contentContainerStyle={styles.listContainer}>
-                        {
-                            nextCourses.map(course => (
-                                <Animated.View key={course.id} style={{
-                                    width: width * 0.8,
-                                    alignItems: "left",
-                                    borderWidth: 1,
-                                    borderColor: "#777777",
-                                    padding: 5,
-                                    borderRadius: 10,
+        <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
+            <BackButton/>
+            <Text style={[styles.titleText, themeText]}>
+                Let's see where you're at
+            </Text>
+    
+            <ProgressBar full={progressBarPercent} key={progressBarPercent}/>
+            <View style={styles.variableSizeTextHolder}>
+                <Text style={themeText}>You're </Text>
+                <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />
+                <Text style={themeText}> of the way to your degree!</Text>
+            </View>
+            <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{(() => {
+                let nextCourseTimeString = "" + nextCourseTime.year + " " + (nextCourseTime.semester == 1 ? "Winter" : (
+                    nextCourseTime.semester == 5 ? "Spring" : "Fall"));
+                return (nextCourses.length == 0 ? "Looks like you have no courses next semester.\nTake a break and relax!"
+                : ("Your courses in the " + nextCourseTimeString
+                + " semester will be:"));
+            })()
+            }</Text>
+            <ScrollView contentContainerStyle={styles.listContainer}>
+                    {
+                        nextCourses.map(course => (
+                            <Animated.View key={course.id} style={{
+                                width: width * 0.8,
+                                alignItems: "left",
+                                borderWidth: 1,
+                                borderColor: "#777777",
+                                padding: 5,
+                                borderRadius: 10,
+                                }}
+                                entering={SlideInDown.duration(1000).easing(Easing.out(Easing.exp)) }
+                            >
+                            {/* edit this JSX to change how the courses are displayed */}
+                                <Animated.View 
+                                    style={{
+                                        flexGrow: 1, 
+                                        alignItems: "center", 
+                                        justifyContent: "space-between",
                                     }}
-                                    entering={SlideInDown.duration(1000).easing(Easing.out(Easing.exp)) }
                                 >
-                                {/* edit this JSX to change how the courses are displayed */}
-                                    <Animated.View 
-                                        style={{
-                                            flexGrow: 1, 
-                                            alignItems: "center", 
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
-                                            {course.course_id}
-                                        </Text>
-                                        <Text style={[styles.courseTitle, themeText]}>
-                                            {course.title}
-                                        </Text>
-                                        <Text style={{color: course.matches ? "#66BB66" : "#DD7777", fontWeight: 600, fontSize: 12,}}>
-                                            {course.matches ? "\u2713 You have all the prerequisites for this course" 
-                                                : "\u2717 You are missing some prerequisites:"}
-                                        </Text>
-                                {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
-                                    </Animated.View>
-                               </Animated.View>
-                                )
+                                    <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
+                                        {course.course_id}
+                                    </Text>
+                                    <Text style={[styles.courseTitle, themeText]}>
+                                        {course.title}
+                                    </Text>
+                                    <Text style={{color: course.matches ? "#66BB66" : "#DD7777", fontWeight: 600, fontSize: 12,}}>
+                                        {course.matches ? "\u2713 You have all the prerequisites for this course" 
+                                            : "\u2717 You are missing some prerequisites:"}
+                                    </Text>
+                            {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
+                                </Animated.View>
+                           </Animated.View>
                             )
-                        }
-                </ScrollView>
-            </SafeAreaView>
+                        )
+                    }
+            </ScrollView>
+        </SafeAreaView>
         </SafeAreaProvider>
     );
 }
