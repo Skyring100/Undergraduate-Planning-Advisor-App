@@ -1,5 +1,5 @@
 import 'react-native-get-random-values';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { View, BackHandler, Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -26,11 +26,12 @@ import AddSectionScreen from './screens/AddSectionScreen';
 import AddCourseScreen from './screens/AddCourseScreen';
 
 
-
-
 const Stack = createNativeStackNavigator();
+const hideBar = ['Login', 'Register'];
 
 export default function App() {
+
+    const [currentRoute, setCurrentRoute] = useState('Login');
 
     useEffect(() => {
 
@@ -60,8 +61,15 @@ export default function App() {
             <AuthProvider>
                 <UserProvider>
                     <SafeAreaProvider>
-                        <NavigationContainer>
-                            <Stack.Navigator initialRouteName="Login" screenOptions={{
+                        <NavigationContainer
+                            onReady={() => setCurrentRoute('Login')}
+                            onStateChange={(state) => {
+                                const route = state?.routes[state.index]?.name;
+                                if(route) setCurrentRoute(route);
+                            }}>
+                            <Stack.Navigator 
+                                initialRouteName="Login" 
+                                screenOptions={{
                                     header: (props) => <AppHeader {...props}/>,
                                 }}>
                                 <Stack.Screen name="Login" component={LoginScreen} />
@@ -76,7 +84,7 @@ export default function App() {
                                 <Stack.Screen name="AddSection" component={AddSectionScreen}/>
                                 <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
                             </Stack.Navigator>
-                            <BottomBar/>
+                            {!hideBar.includes(currentRoute) && <BottomBar/>}
                         </NavigationContainer>
                     </SafeAreaProvider>
                 </UserProvider>

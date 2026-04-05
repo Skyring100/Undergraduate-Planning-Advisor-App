@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { Image, Pressable, StyleSheet, Text, View, Dimensions } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View, Dimensions, Platform } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useFirstColour, useFourthColour, useThemeBackground, useThemeStore } from '../contexts/ThemeContext';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -9,8 +9,8 @@ export default function BottomBar() {
     const bg1 = useFirstColour();
     const bg2 = useThemeBackground();
     return (
-        <SafeAreaView style={[styles.footer, bg2]}>
-            <View style={[styles.navBar, bg1]}>
+        <SafeAreaView style={styles.footer}>
+            <View style={styles.navBar}>
                 <TouchableIcon route="Requisites">
                     <Image style={styles.image} source={require('../assets/navbar-icons/checklist.png')} />
                 </TouchableIcon>
@@ -31,7 +31,7 @@ export default function BottomBar() {
     );
 }
 
-const TouchableIcon = ({route, children}) => {
+export const TouchableIcon = ({route, children}) => {
     const navigation = useNavigation();
     return (
         <>
@@ -44,19 +44,22 @@ const TouchableIcon = ({route, children}) => {
 
 const imgWidth = 30;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     footer: {
         paddingTop: "-60",
         width: "100%",
+        backgroundColor: '#035642',
+
     },
     navBar: {
-        height: 59,
+        height: Platform.OS === 'ios' ? 40 : 59,
         flexDirection: "row",
         padding: 10,
         alignItems: "center",
         justifyContent: "space-between",
         paddingLeft: imgWidth,
         paddingRight: imgWidth,
+        backgroundColor: '#035642',
     },
     image: {
         justifyContent: 'center',
@@ -64,6 +67,7 @@ const styles = StyleSheet.create({
         resizeMode: 'center',
         height: imgWidth,
         width: imgWidth,
+        marginTop: Platform.OS === 'ios' ? 25 : 0,
     },
     gradcap: {
         marginLeft: imgWidth * (-14/30),
