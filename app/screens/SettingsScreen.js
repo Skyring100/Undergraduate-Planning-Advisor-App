@@ -45,24 +45,24 @@ export default function SettingsScreen() {
                     <LogoutButton/>
                 </View>
             </SafeAreaView >
-        <SafeAreaProvider>
+        </SafeAreaProvider>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        alignContent: 'center',
-        margin: 'auto',
-    },
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 30,
         padding: 80
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        alignContent: 'center',
+        margin: 'auto',
     },
     title: {
         fontSize: 28,
