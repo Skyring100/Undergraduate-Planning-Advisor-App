@@ -43,6 +43,7 @@ const TouchableIcon = ({route, children}) => {
 }
 
 const imgWidth = 30;
+
 const styles = StyleSheet.create({
     footer: {
         paddingTop: "-60",
@@ -68,10 +69,12 @@ const styles = StyleSheet.create({
         marginLeft: imgWidth * (-14/30),
         marginRight: imgWidth * (-18/30),
         width: imgWidth * (62/30),
+        resizeMode: 'contain',
     },
     star: {
         marginLeft: -2,
         marginRight: -2,
         width: imgWidth * (34/30),
+        resizeMode: 'contain',
     },
 });
