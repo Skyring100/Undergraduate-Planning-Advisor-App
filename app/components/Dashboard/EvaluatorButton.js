@@ -14,7 +14,6 @@ const chartSize = buttonHeight;
 
 export default function EvaluatorButton() {
     const navigation = useNavigation();
-    const { isDarkMode, indexColour } = useThemeStore();
     const textColour = useThemeText();
     
     const pieChartPercent = (completedCourses.length/possibleCourses.length)*100;
@@ -33,12 +32,13 @@ export default function EvaluatorButton() {
         >   
                 <AnimatedCircularProgress
                     size={chartSize}
-                    width={20}
+                    width={30}
                     fill={pieChartPercent}
-                    tintColor={isDarkMode ? mainDark[indexColour] : mainLight[indexColour]}
-                    backgroundColor={isDarkMode ? borderColour[indexColour] : mainDark[indexColour]}
+                    tintColor={'#035642'}
+                    backgroundColor={'#022b21'}
                     rotation={0}
                     duration={1500}
+                    lineCap='round'
                 >
                     {
                         (fill) => (
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     buttonText: {
-        fontSize: buttonHeight*0.25,
+        fontSize: buttonHeight*0.20,
         fontWeight: 'bold',
         fontFamily: 'Montserrat-Bold',
     },

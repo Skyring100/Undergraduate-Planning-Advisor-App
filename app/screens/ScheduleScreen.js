@@ -11,6 +11,7 @@ import completedCourse from '../data/UNBC_course_data.json';
 import { useThemeText, useThemeBackground, useThemeStore, useFirstColour, borderColour } from "../contexts/ThemeContext";
 import { useWindowDimensions } from "react-native";
 import PopUp from '../components/Header/PopUp';
+import DailyAgenda from '../components/Schedule/DailyAgenda';
 
 
 import { getSectionsOnDayOfWeek } from '../services/sectionService';
@@ -109,10 +110,7 @@ export default function ScheduleScreen() {
                 }}
             />
 
-            <DailyAgenda>
-
-
-            </DailyAgenda>
+            <DailyAgenda variant="timeline" schedule={schedule}/>
 
 
         </SafeAreaView>
@@ -120,28 +118,28 @@ export default function ScheduleScreen() {
     );
 
 
-    function DailyAgenda() {
+    // function DailyAgenda() {
 
-        if (isVisible) {
-            return (
+    //     if (isVisible) {
+    //         return (
 
-                <View style={styles.agendaView}>
-                    <FlatList
-                        data={schedule}
-                        keyExtractor={(item) => item.crn.toString()}
-                        renderItem={({ item }) => (
-                            <View style={[{ padding: 10 }, styles.agenda, themeBg]}>
-                                <Text style={[styles.agendaText, themeText]}>{item.course_id}</Text>
-                                <Text style={[styles.agendaText, themeText]}>{item.start_time}</Text>
-                                <Text style={[styles.agendaText, themeText]}>{item.end_time}</Text>
-                            </View>
-                        )}
-                    />
+    //             <View style={styles.agendaView}>
+    //                 <FlatList
+    //                     data={schedule}
+    //                     keyExtractor={(item) => item.crn.toString()}
+    //                     renderItem={({ item }) => (
+    //                         <View style={[{ padding: 10 }, styles.agenda, themeBg]}>
+    //                             <Text style={[styles.agendaText, themeText]}>{item.course_id}</Text>
+    //                             <Text style={[styles.agendaText, themeText]}>{item.start_time}</Text>
+    //                             <Text style={[styles.agendaText, themeText]}>{item.end_time}</Text>
+    //                         </View>
+    //                     )}
+    //                 />
 
-                </View >
-            )
-        }
-    }
+    //             </View >
+    //         )
+    //     }
+    // }
 
 }
 

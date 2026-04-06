@@ -24,6 +24,7 @@ import RequiredCoursesScreen from './screens/RequiredCoursesScreen';
 import CourseListScreen from './screens/CourseListScreen';
 import AddSectionScreen from './screens/AddSectionScreen';
 import AddCourseScreen from './screens/AddCourseScreen';
+import { ScheduleProvider } from './contexts/ScheduleContext';
 
 
 const Stack = createNativeStackNavigator();
@@ -57,38 +58,41 @@ export default function App() {
 
 
     return (
-        <ThemeProvider>
-            <AuthProvider>
-                <UserProvider>
-                    <SafeAreaProvider>
-                        <NavigationContainer
-                            onReady={() => setCurrentRoute('Login')}
-                            onStateChange={(state) => {
-                                const route = state?.routes[state.index]?.name;
-                                if(route) setCurrentRoute(route);
-                            }}>
-                            <Stack.Navigator 
-                                initialRouteName="Login" 
-                                screenOptions={{
-                                    header: (props) => <AppHeader {...props}/>,
+        
+        <AuthProvider>
+            <UserProvider>
+                <ThemeProvider>
+                    <ScheduleProvider>
+                        <SafeAreaProvider>
+                            <NavigationContainer
+                                onReady={() => setCurrentRoute('Login')}
+                                onStateChange={(state) => {
+                                    const route = state?.routes[state.index]?.name;
+                                    if(route) setCurrentRoute(route);
                                 }}>
-                                <Stack.Screen name="Login" component={LoginScreen} />
-                                <Stack.Screen name="Register" component={RegisterScreen} />
-                                <Stack.Screen name="Dashboard" component={DashboardScreen} />
-                                <Stack.Screen name="Settings" component={SettingsScreen} />
-                                <Stack.Screen name="Planner" component={PlannerScreen} />
-                                <Stack.Screen name="Schedule" component={ScheduleScreen} />
-                                <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
-                                <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
-                                <Stack.Screen name="CourseList" component={CourseListScreen} />
-                                <Stack.Screen name="AddSection" component={AddSectionScreen}/>
-                                <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
-                            </Stack.Navigator>
-                            {!hideBar.includes(currentRoute) && <BottomBar/>}
-                        </NavigationContainer>
-                    </SafeAreaProvider>
-                </UserProvider>
-            </AuthProvider>
-        </ThemeProvider>
-    )
+                                <Stack.Navigator 
+                                    initialRouteName="Login" 
+                                    screenOptions={{
+                                        header: (props) => <AppHeader {...props}/>,
+                                    }}>
+                                    <Stack.Screen name="Login" component={LoginScreen} />
+                                    <Stack.Screen name="Register" component={RegisterScreen} />
+                                    <Stack.Screen name="Dashboard" component={DashboardScreen} />
+                                    <Stack.Screen name="Settings" component={SettingsScreen} />
+                                    <Stack.Screen name="Planner" component={PlannerScreen} />
+                                    <Stack.Screen name="Schedule" component={ScheduleScreen} />
+                                    <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
+                                    <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
+                                    <Stack.Screen name="CourseList" component={CourseListScreen} />
+                                    <Stack.Screen name="AddSection" component={AddSectionScreen}/>
+                                    <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
+                                </Stack.Navigator>
+                                {!hideBar.includes(currentRoute) && <BottomBar/>}
+                            </NavigationContainer>
+                        </SafeAreaProvider>
+                    </ScheduleProvider>
+                </ThemeProvider>
+            </UserProvider>
+        </AuthProvider>
+)
 }
