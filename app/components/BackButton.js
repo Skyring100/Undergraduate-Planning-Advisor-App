@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import {mainDark, mainLight, useThemeStore, useFirstColour} from "../contexts/ThemeContext";
 
 
@@ -12,15 +12,14 @@ export default function BackButton() {
     const handlePress = () => {
         navigation.goBack();
     };
-    const firstBg = useFirstColour();
     
     return (
         <TouchableOpacity
-            style={[firstBg, styles.button]}
+            style={styles.button}
             onPress={handlePress}
             activeOpacity={0.7}
         >
-            <Text style={styles.buttonText}> ◀ Go Back</Text>
+            <Image source={require('../assets/backButton.png')} style={styles.image} />
         </TouchableOpacity>
     );
 }
@@ -29,15 +28,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        marginTop: 10,
-        borderRadius: 18,
-        width: buttonWidth,
-        height: 45,
-        right: screenWidth*.32
     },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '600',
+    image: {
+        height: 30,
+        width: 40,
+        resizeMode: 'contain'
     },
 });

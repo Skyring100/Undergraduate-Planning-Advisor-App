@@ -6,7 +6,7 @@ import {mainDark, mainLight, useThemeStore, useFirstColour} from "../../contexts
 
 
 const screenWidth = Dimensions.get('window').width;
-const buttonWidth = screenWidth * 0.3; // 30% of screen
+const buttonWidth = screenWidth * 0.5; // 30% of screen
 
 // TODO: make this affect the user context
 export default function LogoutButton() {
@@ -16,11 +16,10 @@ export default function LogoutButton() {
         console.log("Token reset", await AsyncStorage.getItem('authToken'));
         navigation.navigate('Login',{});
     };
-    const firstBg = useFirstColour();
     
     return (
         <TouchableOpacity
-            style={[firstBg, styles.button]}
+            style={styles.button}
             onPress={handlePress}
             activeOpacity={0.7}
         >
@@ -37,11 +36,12 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         width: buttonWidth,
         height: 45,
-        right: screenWidth*.32
+        backgroundColor: '#035642'
     },
     buttonText: {
         color: '#fff',
-        fontSize: 16,
-        fontWeight: '600',
+        fontSize: 20,
+        fontWeight: 'bold',
+        fontFamily: 'Montserrat',
     },
 });
