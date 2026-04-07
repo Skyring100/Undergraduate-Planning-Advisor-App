@@ -45,8 +45,8 @@ export const ScheduleProvider = ({ children }) => {
         try {
             setLoading(true);
             const classData = await getSectionsOnDayOfWeek(todayDayOfWeek);
-            if (result?.data){
-                const classes = result.data.filter(row => row.days_of_week.includes(todayDayOfWeek));
+            if (classData?.data){
+                const classes = classData.data.filter(row => row.days_of_week.includes(todayDayOfWeek));
                 classes.sort((a, b) => a.start_time.localeCompare(b.start_time));
                 setSchedule(classes);
             }
