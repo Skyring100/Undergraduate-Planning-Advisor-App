@@ -12,7 +12,7 @@ function getTodayDayOfWeek() {
 }
 
 export const ScheduleProvider = ({ children }) => {
-    const [schedule, setSchedule] = useState('');
+    const [schedule, setSchedule] = useState([]);
     const [loading, setLoading] = useState(true);
     const [today, setToday] = useState(new Date().toDateString());
 
@@ -38,7 +38,7 @@ export const ScheduleProvider = ({ children }) => {
     const fetchSchedule = async () => {
         const todayDayOfWeek = getTodayDayOfWeek();
         if (todayDayOfWeek === 'Y') {
-            setSchedule("");
+            setSchedule([]);
             setLoading(false);
             return;
         }
@@ -57,8 +57,27 @@ export const ScheduleProvider = ({ children }) => {
         }
     };
 
+    const fetchByDay = async(todayDayOfWeek) => {
+        if (todayDayOfWeek === 'Y') return [];
+        try {
+            const classData = await getSectionsOnDayOfWeek(todayDayOfWeek);
+            if (classData?.data){
+                const classes = classData.data.filter(row => row.days_of_week.includes(todayDayOfWeek));
+                classes.sort((a, b) => a.start_time.localeCompare(b.start_time));
+                return classes;
+            }
+        } catch (e) {
+            console.error("Error fetching schedule: ", e);
+        } 
+        return [];
+    };
+
+    const [refreshToken, setRefreshToken] = useState(0);
+
+    const invalidateCache = () => {setRefreshToken(t => t+1)};
+
     return (
-        <ScheduleContext.Provider value={{ schedule, loading, refetch: fetchSchedule }}>
+        <ScheduleContext.Provider value={{ schedule, loading, fetchByDay, refetch: fetchSchedule, invalidateCache, refreshToken }}>
             {children}
         </ScheduleContext.Provider>
     );

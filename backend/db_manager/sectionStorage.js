@@ -34,6 +34,7 @@ export function setSection( c_id, dow, start_time, end_time, start_date, end_dat
         const q = `INSERT INTO section ( course_id, days_of_week, start_time, end_time, start_date, end_date, building, room_number, instructor_name) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         db.prepare(q).run(c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor);
+        return q;
     } catch(error){
         if(error.errcode == 787){
             console.log("Invalid course id!");
@@ -43,5 +44,4 @@ export function setSection( c_id, dow, start_time, end_time, start_date, end_dat
         }
     }
 
-    return q;
 }

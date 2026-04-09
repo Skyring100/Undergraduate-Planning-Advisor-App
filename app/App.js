@@ -25,6 +25,7 @@ import CourseListScreen from './screens/CourseListScreen';
 import AddSectionScreen from './screens/AddSectionScreen';
 import AddCourseScreen from './screens/AddCourseScreen';
 import AccountScreen from './screens/AccountScreen';
+import AgendaScreen from './screens/AgendaScreen';
 import { ScheduleProvider } from './contexts/ScheduleContext';
 import DrawerNav from './components/Header/DrawerNav';
 import { DrawerProvider, useDrawer } from './contexts/DrawerContext';
@@ -54,7 +55,7 @@ function AppContent({currentRoute}) {
                     <Stack.Screen name="Dashboard" component={DashboardScreen} />
                     <Stack.Screen name="Settings" component={SettingsScreen} />
                     <Stack.Screen name="Planner" component={PlannerScreen} />
-                    <Stack.Screen name="Schedule" component={ScheduleScreen} />
+                    <Stack.Screen name="Schedule" component={AgendaScreen} />
                     <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
                     <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
                     <Stack.Screen name="CourseList" component={CourseListScreen} />
