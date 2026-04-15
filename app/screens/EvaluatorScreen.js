@@ -9,12 +9,12 @@ import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import ProgressBar from '../components/Evaluator/ProgressBar';
 import completedCourses from '../data/completed_courses.json'
-import {useThemeText, useThemeBackground, useThemeShaded, useFourthColour} from "../contexts/ThemeContext";
+import {useThemeText, useThemeBackground, useThemeShaded, useThemeGreyed, useFourthColour} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
 import Animated, {SlideInDown, SlideInLeft, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
-import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
+import {getCourseById, getPrereqsOf, checkPrereqs, prereqString, getAllCourses} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
 import {getUserProfileByID} from "../services/userService";
 
@@ -23,11 +23,13 @@ export default function EvaluatorScreen() {
     const [degreeCourses, setDegreeCourses] = useState([]);
     const [progressBarPercent, setProgressBarPercent] = useState(0);
     const [flag, setFlag] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     
     const floatToColour = n => {
-        let redComponent = Math.floor(0x7d + 0x55*(Math.cbrt(Math.cos(n * 3 * Math.PI / 3))));
-        let grnComponent = Math.floor(0x7d + 0x55*(Math.cbrt(Math.cos(n * 3 * Math.PI / 3 - (2 * Math.PI / 3)))));
-        let bluComponent = Math.floor(0x7d + 0x55*(Math.cbrt(Math.cos(n * 3 * Math.PI / 3 + (2 * Math.PI / 3)))));
+        let num2 = Math.min(Math.max(0, n ** 1.5), 1);
+        let redComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos (num2 * 3.5      * Math.PI / 3))));
+        let grnComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos((num2 * 3.5 - 2) * Math.PI / 3))));
+        let bluComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos((num2 * 3.5 + 2) * Math.PI / 3))));
         return (redComponent * 0x1000000) + (grnComponent * 0x10000) + (bluComponent * 0x100) + 0xFF;
     }
 
@@ -36,6 +38,7 @@ export default function EvaluatorScreen() {
     const themeFourth = useFourthColour();
     const themeBg = useThemeBackground();
     const themeShaded = useThemeShaded();
+    const themeGreyed = useThemeGreyed();
     const {width} = useWindowDimensions();
     const [gpa, setGPA] = useState(4.33)
     
@@ -90,10 +93,17 @@ export default function EvaluatorScreen() {
                             completedCourses.map(comp => comp.course_id), 
                             course.course_id);
                         courseObj.data.matches = matchData.data;
+                        console.log("prereqstring: ")
+                        let prereqString = await prereqString(
+                            completedCourses.map(comp => comp.course_id), 
+                            course.course_id);
+                        console.log(JSON.stringify(prereqString));
+                        courseObj.data.prereq_string = prereqString.data;
                         console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
                         return courseObj;
                     }
                 ));
+            console.log(JSON.stringify(d));
             const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
             console.log(e);
             setProgressBarPercent((completedCourses.length/e.length)*100);
@@ -102,6 +112,7 @@ export default function EvaluatorScreen() {
                 nextCourseTime.semester - 4 == 5 ? "Spring" : "Fall")) + " Semester");
             console.log(semesterNumberText);
             console.log("got here");
+            setIsLoading(false);
             return e;
         })();
         setDegreeCourses(data);
@@ -185,10 +196,25 @@ export default function EvaluatorScreen() {
                         </Text>
                     </View>
                     {(() => {if (grade != undefined) return (<>
-                        <Text style={[styles.bigGPAText, {color: floatToColour(gradePointOf[grade]/4.33) || themeText}]}>{grade}</Text>
+                        <Text style={[styles.bigGPAText, {color: floatToColour((gradePointOf[grade]/4.33)) || themeText}]}>{grade}</Text>
                     </>);})()
                     }
             {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
+                <View style={{flexDirection: "row", flexWrap: "wrap", gap: 10}}>
+                    {   (() => {
+                            console.log(course);
+                            return course.prereq_string.map(obj => {
+                                return (
+                                    <View style={{backgroundColor: obj.state == "have" ? "#55bb55" : "#bb5555", padding: 5, borderRadius: 18}}>
+                                        <Text style={{color: themeGreyed.backgroundColor}}>
+                                            {(obj.state == "have" ? "\u2713 " : "\u2717 ") + obj.course}
+                                        </Text>
+                                    </View>
+                                )
+                            })
+                        })()
+                    }
+                </View>
                 </Animated.View>
            </View>
        </View>
@@ -247,51 +273,54 @@ export default function EvaluatorScreen() {
                             + " semester looks."));
                         })()
                         }</Text>
-                            {(() => {if (nextCourses.filter(c => c.matches).length > 0) 
-                                    return (
-                                        <>
-                                            <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
-                                                You've got the prereqs for these:
-                                            </Text>
-                                        </>
-                                    );}
-                            )()}
-                            <View style={[styles.courseBubbleBubble, themeShaded]}>
-                                {(() => {
-                                    return nextCourses.filter(c => c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
-                                    })()
-                                }
-                            </View>
-                            {(() => {if (nextCourses.filter(c => !c.matches).length > 0) 
-                                    return (
-                                        <>
-                                            <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
-                                                You're still missing some for these:
-                                            </Text>
-                                        </>
-                                    );}
-                            )()}
-                            <View style={[styles.courseBubbleBubble, themeShaded]}>
-                                {(() => {
-                                    return nextCourses.filter(c => !c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
-                                    })()
-                                }
-                            </View>
-                            {(() => {if (completedCourses.length > 0) 
-                                    return (
-                                        <>
-                                            <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
-                                                You've completed these:
-                                            </Text>
-                                        </>
-                                    );}
-                            )()}
-                            <View style={[styles.courseBubbleBubble, themeShaded]}>
-                                {(() => {
-                                    return completedCourses.map(c => courseToAnimatedView(c, ++courseAnimationIterator, c.grade || ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"][Math.floor(Math.random() * 13)]));
-                                    })()
-                                }
-                            </View>
+                        {(() => {if (nextCourses.filter(c => c.matches).length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You've got the prereqs for these:
+                                        </Text>
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return nextCourses.filter(c => c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                })()
+                            }
+                        </View>
+                        {(() => {if (nextCourses.filter(c => !c.matches).length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You're still missing some for these:
+                                        </Text>
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return nextCourses.filter(c => !c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                })()
+                            }
+                        </View>
+                        {(() => {if (completedCourses.length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You've completed these:
+                                        </Text>
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return completedCourses.map(c => courseToAnimatedView(c, ++courseAnimationIterator, c.grade || ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"][Math.floor(Math.random() * 13)]));
+                                })()
+                            }
+                        </View>
                     </View>
                 </ScrollView>
             </SafeAreaView>

@@ -40,6 +40,21 @@ export const checkPrereqs = async (completed, target) => {
     return data;
 }
 
+export const prereqString = async (completed, target) => {
+    console.log("courseservice has been called");
+    const completedString = completed.join(",");
+    const url = `${API_BASE_URL}/courses/string/${completedString}/${target}`;
+    console.log(url);
+
+    const token = await AsyncStorage.getItem('authToken');
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+    console.log("fetch has been gotten");
+
+    const data = await response.json();
+    return data;
+}
+
 export const getPrereqsOf = async (target) => {
     const url = `${API_BASE_URL}/courses/allprereqs/${target}`;
 
