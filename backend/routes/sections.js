@@ -90,7 +90,7 @@ const addSection = async (req, res) => {
   if (!section) {
     result = {
       success: false,
-      message: 'No section found'
+      message: 'Invalid course id'
     };
   }
   else {
@@ -100,6 +100,8 @@ const addSection = async (req, res) => {
       data: section
     };
   }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
 }
 
 

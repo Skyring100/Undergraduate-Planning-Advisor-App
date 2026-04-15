@@ -45,13 +45,13 @@ export default function LoginScreen() {
             return;
         }
 
-        setLoading(false);
+        setLoading(true);
         const result = await loginUser(emailInput, password);
         if(result.success){
-            setLoading(true);
+            setLoading(false);
             navigation.navigate('Dashboard',{})            
         }else{
-            setLoading(true);
+            setLoading(false);
             alert(result.message)
         }
         

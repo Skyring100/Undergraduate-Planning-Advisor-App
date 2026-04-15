@@ -1,5 +1,5 @@
 import { Header } from '@react-navigation/elements';
-import { StyleSheet, Image, View, Text, Button } from 'react-native';
+import { StyleSheet, Image, View, Text, Button, Pressable, Dimensions } from 'react-native';
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -7,8 +7,12 @@ import { useFirstColour, useThemeStore } from '../../contexts/ThemeContext';
 
 import PopUp from './PopUp';
 import { useNavigationState } from '@react-navigation/native';
+import { useDrawer } from '../../contexts/DrawerContext';
+import BackButton from '../BackButton';
 
 //<Header title='Gradian' style={styles.header}/>
+const screenWidth = Dimensions.get('window').width;
+
 
 export default function AppHeader() {
 
@@ -17,9 +21,13 @@ export default function AppHeader() {
         const routeName = useNavigationState((state) =>
             state.routes[state.index].name
         );
+        const { setIsDrawerOpen } = useDrawer();
 
         return (
-            <View style={[styles.header, colour]}>
+            <View style={styles.header}>
+                <View style = {styles.backButton}>
+                    <BackButton/>
+                </View>
                 <View style={styles.helpButton}>
                     <PopUp >
 
@@ -63,9 +71,16 @@ export default function AppHeader() {
 
                     </PopUp>
                 </View>
-                <Text style={styles.headerText}>Gradian</Text>
-                <Image style={styles.image} source={require('../../assets/white-main-logo.png')} />
-                <SettingsButton />
+                <Text style={styles.headerText}>{routeName}</Text>
+                <View style={styles.navDrawerContainer}>
+                    <View style={styles.square}>
+                        <Pressable onPress={() => setIsDrawerOpen(true)} style={{paddingTop: navWidth*0.8}}>
+                            <Image source={require('../../assets/drawer.png')} style={styles.drawerImage} />
+                        </Pressable>
+                    </View>
+                    <View style={styles.triangle}/>
+                </View>
+                
             </View>
 
         );
@@ -81,19 +96,27 @@ export default function AppHeader() {
     );
 }
 
-const styles = StyleSheet.create({
+const navWidth = 80;
+
+export const styles = StyleSheet.create({
+
     header: {
-        tintColor: '#fff',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        height: 125,
+        width: '100%',
+        backgroundColor: '#035642'
     },
     headerText: {
+        position: 'absolute',
         color: '#fff',
-        fontSize: 28,
-        marginTop: 30,
-        marginLeft: 65,
-        marginRight: 10,
+        fontSize: 30,
+        fontWeight: 'bold',
+        fontFamily: 'Montserrat',
+        marginTop: 45,
+        marginLeft: 45,
+        marginRight: 45,
     },
     explanation: {
         flexDirection: 'column',
@@ -103,16 +126,48 @@ const styles = StyleSheet.create({
     },
     helpButton: {
         position: 'absolute',
-        left: 40,
+        left: 60,
+        marginTop: 20,
     },
     image: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 35,
-        marginBottom: 5,
-        marginRight: 25,
-        resizeMode: 'center',
+        resizeMode: 'contain',
         width: 61,
         height: 40
+    },
+    drawerImage: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        resizeMode: 'contain',
+        width: navWidth/2,
+        height: navWidth/2,
+    },
+    navDrawerContainer: {
+        position: 'absolute',
+        right: 0,
+        alignItems: 'center',
+    },
+    square: {
+        width: navWidth,
+        height: 145,
+        backgroundColor: '#022b21',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    triangle: {
+        width: 0,
+        height: 0,
+        borderLeftWidth: navWidth/2,
+        borderRightWidth: navWidth/2,
+        borderTopWidth: 20,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderTopColor: '#022b21',
+    },
+    backButton: {
+        position: 'absolute',
+        left: -10,
+        top: 63
     }
 });

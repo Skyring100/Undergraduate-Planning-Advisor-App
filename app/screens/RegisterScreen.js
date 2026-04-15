@@ -66,7 +66,7 @@ export default function RegisterScreen() {
         if (result.success){
             setLoading(false);
             // Navigate to MainTabs (bottom tab navigator)
-            navigation.navigate('Login');
+            navigation.navigate('Dashboard');
             // Reset form
             setEmailInput('');
             setPassword('');

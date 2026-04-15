@@ -10,6 +10,7 @@ import { Button } from 'react-native';
 
 
 import { addSections } from '../services/sectionService';
+import { useSchedule } from '../contexts/ScheduleContext';
 
 
 
@@ -39,6 +40,22 @@ export default function AddSectionScreen() {
     const timeFormat = /[0-9][0-9]:[0-9][0-9]/;
     const dateFormat = /^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/
 
+    //triggers a re-fetch if a new section is added
+    const {refetch, invalidateCache} = useSchedule();
+
+    const handleAdd = async () => {
+        try{
+        console.log(sectionName);
+        await addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
+        invalidateCache();
+        refetch();
+        alert("Info saved!");
+        } catch (e) {
+            console.error('Error adding section: ', e);
+        }
+
+    }
+
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
             alert("Empty information, try again.")
@@ -50,10 +67,8 @@ export default function AddSectionScreen() {
             alert("Date format not accepted. Input correct form please.")
         }
         else {
-            console.log(sectionName);
             // c_id, dow, start_time, end_time, start_date, end_date, building, room_n, instructor
-            addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
-            alert("Info saved!");
+            handleAdd();
         }
     }
 
@@ -61,11 +76,6 @@ export default function AddSectionScreen() {
     return (
         <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30}}>
             <View style={{ flex: 1 }} >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', ...themeBg }}>
-                    < BackButton />
-                </View>
-
-
                 <ScrollView style={themeText}>
 
 
@@ -189,6 +199,7 @@ export default function AddSectionScreen() {
                             title="Submit"
                         ></Button>
                     </View>
+                    
                 </ScrollView>
 
 

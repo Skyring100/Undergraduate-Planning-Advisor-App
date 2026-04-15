@@ -12,14 +12,13 @@ import EvaluatorButton from '../components/Dashboard/EvaluatorButton';
 import RequistesButton from '../components/Dashboard/RequistesButton';
 import AllCoursesButton from '../components/Dashboard/AllCoursesButton';
 import { useThemeBackground, useThemeShaded, useThemeText } from '../contexts/ThemeContext';
-import { TouchableIcon } from '../components/BottomBar';
-import DailyAgenda from '../components/Schedule/DailyAgenda';
+import DailyAgenda from '../components/Dashboard/DailyAgenda';
 import { useSchedule } from '../contexts/ScheduleContext';
 
 const screenHeight = Dimensions.get('window').height - 110;
 const topBoxH = screenHeight*0.22;
 const topHeight = screenHeight*0.29;
-const bottomBH = screenHeight*0.40;
+const bottomBH = screenHeight*0.55;
 const screenWidth = Dimensions.get('window').width;
 
 export default function DashboardScreen (){
@@ -32,9 +31,7 @@ export default function DashboardScreen (){
     const dayName = days[today.getDay()];
 
     function TodaySchedule() {
-        const { schedule, loading } = useSchedule();
-        if(loading) return <Text style={[styles.text, textColour]}>Loading...</Text>;
-        return <DailyAgenda variant = "card" schedule={schedule}/>;
+        return <DailyAgenda/>;
     }
 
     return(
@@ -48,7 +45,7 @@ export default function DashboardScreen (){
                 </View>
             </View>
             <View style={[styles.bottomBox, boxColour]}>
-                <Pressable onPress={() => navigation.navigate("CourseList") } style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                <Pressable onPress={() => navigation.navigate("Schedule") } style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Image style={[styles.bottomImage, {tintColor: '#035642'}]} source={require('../assets/navbar-icons/calendar.png')} />
                     <Text style={[styles.text, textColour]}>Today - {dayName}</Text>
                 </Pressable>
@@ -88,6 +85,7 @@ export const styles = StyleSheet.create({
             justifyContent: 'center',
             alignSelf: 'center',
             padding: 10,
+            maxHeight: bottomBH,
         },
         topImage: {
             justifyContent: 'center',

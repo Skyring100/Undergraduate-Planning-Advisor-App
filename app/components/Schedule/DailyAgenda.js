@@ -40,7 +40,7 @@ export default function DailyAgenda({variant = 'card', schedule = []}) {
                                                 <Image style={[styles.image, {tintColor: themeText.color}]} source={require('../../assets/clock.png')} />
                                                 <Text style={[styles.cardDetail, themeText]}>{cls.start_time} - {cls.end_time}</Text>
                                                 <Image style={[styles.image, {tintColor: themeText.color}]} source={require('../../assets/location.png')} />
-                                                <Text style={[styles.cardDetail, themeText]}>{cls.building} {cls.room}</Text>
+                                                <Text style={[styles.cardDetail, themeText]}>{cls.building} {cls.room_number}</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -72,7 +72,7 @@ export default function DailyAgenda({variant = 'card', schedule = []}) {
                                     <Image style={styles.image} source={require('../../assets/clock.png')} />
                                     <Text style={[styles.cardDetail, themeText]}>{item.start_time} - {item.end_time}</Text>
                                     <Image style={styles.image} source={require('../../assets/location.png')} />
-                                    <Text style={[styles.cardDetail, themeText]}>{item.building} {item.room}</Text>
+                                    <Text style={[styles.cardDetail, themeText]}>{item.building} {item.room_number}</Text>
                                 </View>
                             </View>
                         </View>
