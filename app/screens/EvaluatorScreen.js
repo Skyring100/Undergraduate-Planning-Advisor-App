@@ -14,7 +14,8 @@ import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
 import Animated, {SlideInDown, SlideInLeft, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
-import {getCourseById, getPrereqsOf, checkPrereqs, prereqString, getAllCourses} from "../services/courseService";
+import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
+import {prereqString} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
 import {getUserProfileByID} from "../services/userService";
 
@@ -76,57 +77,63 @@ export default function EvaluatorScreen() {
     const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(2) + "%";});
     const [semesterNumberText, setSemesterNumberText] = useState("");
 
-    useEffect(() => {(async () => {
-        // TODO: change this line in prod
-        const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-        const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-        console.log(userprofile);
-        const data = await (async () => {
-            const d = await Promise.all(
-                resp.data.data.map(
-                    async course => {
-                        let courseObj = await getCourseById(course.course_id);
-                        courseObj.data.year_num = course.year_num;
-                        courseObj.data.semester_id = course.semester_id;
-                        console.log(completedCourses.map(comp => comp.course_id));
-                        let matchData = await checkPrereqs(
-                            completedCourses.map(comp => comp.course_id), 
-                            course.course_id);
-                        courseObj.data.matches = matchData.data;
-                        console.log("prereqstring: ")
-                        let prereqString = await prereqString(
-                            completedCourses.map(comp => comp.course_id), 
-                            course.course_id);
-                        console.log(JSON.stringify(prereqString));
-                        courseObj.data.prereq_string = prereqString.data;
-                        console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
-                        return courseObj;
-                    }
-                ));
-            console.log(JSON.stringify(d));
-            const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
-            console.log(e);
-            setProgressBarPercent((completedCourses.length/e.length)*100);
-            setSemesterNumberText("Year " + (nextCourseTime.year - (e[0].year_num) + ((nextCourseTime.semester - 4) < 9 ? 1 : 0))
-                + " - " + ((nextCourseTime.semester - 4) == 1 ? "Winter" : (
-                nextCourseTime.semester - 4 == 5 ? "Spring" : "Fall")) + " Semester");
-            console.log(semesterNumberText);
-            console.log("got here");
-            setIsLoading(false);
-            return e;
-        })();
-        setDegreeCourses(data);
-        console.log("and processed:");
-        console.log(data);
-        console.log(number);
-    })()}, [])
+    useEffect(() => {
+        const pullAsync = async () => {
+            // TODO: change this line in prod
+            const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+            const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+            console.log(userprofile);
+            const data = await (async () => {
+                const d = await Promise.all(
+                    resp.data.data.map(
+                        async course => {
+                            let courseObj = await getCourseById(course.course_id);
+                            courseObj.data.year_num = course.year_num;
+                            courseObj.data.semester_id = course.semester_id;
+                            let matchData = await checkPrereqs(
+                                completedCourses.map(comp => comp.course_id), 
+                                course.course_id);
+                            courseObj.data.matches = matchData.data;
+                            let pqString = await prereqString(
+                                completedCourses.map(comp => comp.course_id),
+                                course.course_id
+                            );
+                            console.log(JSON.stringify(pqString));
+                            console.log("Course awaited successfully");
+                            courseObj.data.prereq_string = pqString.data;
+                            console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
+                            return courseObj;
+                        }
+                    ));
+                console.log(JSON.stringify(d));
+                const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
+                console.log(e);
+                setProgressBarPercent((completedCourses.length/e.length)*100);
+                setSemesterNumberText("Year " + (nextCourseTime.year - (e[0].year_num) + ((nextCourseTime.semester - 4) < 9 ? 1 : 0))
+                    + " - " + ((nextCourseTime.semester - 4) == 1 ? "Winter" : (
+                    nextCourseTime.semester - 4 == 5 ? "Spring" : "Fall")) + " Semester");
+                console.log(semesterNumberText);
+                console.log("got here");
+                setIsLoading(false);
+                return e;
+            })();
+            setDegreeCourses(data);
+            console.log("and processed:");
+            console.log(data);
+            console.log(number);
+        };
+        try {
+            pullAsync();
+        } catch (error) {
+            console.error(error);
+        }
+    }, [])
 
     const creditCountText = useDerivedValue(() => {return "" + (number.value * degreeCourses.length/100 *3).toFixed(0) + "/" + degreeCourses.length * 3 + " credits"});
     const percentageColour = useDerivedValue(() => {
         let redComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 300))));
         let grnComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 3 - (2 * Math.PI / 3)))));
         let bluComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 3 + (2 * Math.PI / 3)))));
-        console.log((redComponent * 0x1000000) + (grnComponent * 0x10000) + (bluComponent * 0x100) + 0xFF);
         return ((redComponent * 0x1000000) + (grnComponent * 0x10000) + (bluComponent * 0x100) + 0xFF);
     });
     
@@ -175,7 +182,7 @@ export default function EvaluatorScreen() {
             <View style={{overflow: "hidden", flexGrow: 1,}}>
                 <Animated.View 
                     style={{
-                        alignItems: "left", 
+                        alignItems: "center", 
                         justifyContent: "space-between",
                         paddingRight: 5,
                         flexGrow: 1,
@@ -190,31 +197,34 @@ export default function EvaluatorScreen() {
                         <Text style={[themeText]}>
                             {course.title.trim()}
                         </Text>
-                        <Text style={{color: course.matches ? 0x55BB55FF : "#bb5555", fontWeight: 600, fontSize: 12,}}>
-                            {course.matches ? "\u2713 You have all the prerequisites for this course" 
-                                : "\u2717 You are missing some prerequisites"}
-                        </Text>
+                        {(() => {if (grade === undefined) return (<>
+                            <Text style={{color: course.matches ? 0x55BB55FF : "#bb5555", fontWeight: 600, fontSize: 12,}}>
+                                {course.matches ? "\u2713 You have all the prerequisites for this course" 
+                                    : "\u2717 You are missing some prerequisites"}
+                            </Text>
+                            <View style={{flexDirection: "row", flexWrap: "wrap", gap: 10}}>
+                                {   (() => {
+                                        console.log(course);
+                                        if (course.prereq_string === undefined) return <></>;
+                                        return (course.prereq_string).map(obj => {
+                                            return (
+                                                <View style={{backgroundColor: obj.state == "have" ? "#55bb55" : "#bb5555", padding: 2, borderRadius: 18}}>
+                                                    <Text style={{color: themeBg.backgroundColor, fontWeight: 700, top: obj.state == "have" ? -1.5 : 0,}}>
+                                                        {(obj.state == "have" ? " \u2713 " : " \u2717 ") + obj.course + " "}
+                                                    </Text>
+                                                </View>
+                                            )
+                                        })
+                                    })()
+                                }
+                            </View>
+                        </>);})()}
                     </View>
                     {(() => {if (grade != undefined) return (<>
-                        <Text style={[styles.bigGPAText, {color: floatToColour((gradePointOf[grade]/4.33)) || themeText}]}>{grade}</Text>
-                    </>);})()
-                    }
+                        <Text style={[styles.bigGPAText, { lineHeight: "50", color: floatToColour((gradePointOf[grade]/4.33)) || themeText}]}>{grade}</Text>
+                    </>);})() }
+
             {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
-                <View style={{flexDirection: "row", flexWrap: "wrap", gap: 10}}>
-                    {   (() => {
-                            console.log(course);
-                            return course.prereq_string.map(obj => {
-                                return (
-                                    <View style={{backgroundColor: obj.state == "have" ? "#55bb55" : "#bb5555", padding: 5, borderRadius: 18}}>
-                                        <Text style={{color: themeGreyed.backgroundColor}}>
-                                            {(obj.state == "have" ? "\u2713 " : "\u2717 ") + obj.course}
-                                        </Text>
-                                    </View>
-                                )
-                            })
-                        })()
-                    }
-                </View>
                 </Animated.View>
            </View>
        </View>

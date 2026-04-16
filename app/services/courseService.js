@@ -15,13 +15,11 @@ export const getAllCourses = async () => {
 
 export const getCourseById = async (id) => {
     const url = `${API_BASE_URL}/courses/${id}`;
-    console.log(`asking for id ${id}`);
     const token = await AsyncStorage.getItem('authToken');
 
     const fetchReq = getBaseRequestHTTP('GET', token);
     const response = await fetch(url, fetchReq);
 
-    console.log("fetch went through!");
 
     const data = await response.json();
 
@@ -38,7 +36,7 @@ export const checkPrereqs = async (completed, target) => {
 
     const data = await response.json();
     return data;
-}
+};
 
 export const prereqString = async (completed, target) => {
     console.log("courseservice has been called");
@@ -53,7 +51,7 @@ export const prereqString = async (completed, target) => {
 
     const data = await response.json();
     return data;
-}
+};
 
 export const getPrereqsOf = async (target) => {
     const url = `${API_BASE_URL}/courses/allprereqs/${target}`;
@@ -64,4 +62,4 @@ export const getPrereqsOf = async (target) => {
 
     const data = await response.json();
     return data;
-}
+};

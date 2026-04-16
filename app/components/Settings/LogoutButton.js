@@ -11,6 +11,7 @@ const buttonWidth = screenWidth * 0.5; // 30% of screen
 // TODO: make this affect the user context
 export default function LogoutButton() {
     const navigation = useNavigation();
+    const firstBg = useFirstColour();
     const handlePress = async () => {
         await AsyncStorage.setItem('authToken', '');
         console.log("Token reset", await AsyncStorage.getItem('authToken'));
@@ -19,7 +20,7 @@ export default function LogoutButton() {
     
     return (
         <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, firstBg]}
             onPress={handlePress}
             activeOpacity={0.7}
         >

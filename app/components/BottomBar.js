@@ -9,8 +9,8 @@ export default function BottomBar() {
     const bg1 = useFirstColour();
     const bg2 = useThemeBackground();
     return (
-        <SafeAreaView style={styles.footer}>
-            <View style={styles.navBar}>
+        <SafeAreaView style={[styles.footer, bg1]}>
+            <View style={[styles.navBar, bg1]}>
                 <TouchableIcon route="Requisites">
                     <Image style={styles.image} source={require('../assets/navbar-icons/checklist.png')} />
                 </TouchableIcon>

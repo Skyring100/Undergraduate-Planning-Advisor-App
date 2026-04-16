@@ -103,20 +103,20 @@ export default function App() {
                 <ThemeProvider>
                     <ScheduleProvider>
                         <DrawerProvider>
-                        <SafeAreaProvider>
-                            <NavigationContainer
-                                onReady={() => setCurrentRoute('Login')}
-                                onStateChange={(state) => {
-                                    const route = state?.routes[state.index]?.name;
-                                    if(route) setCurrentRoute(route);
-                                }}>
-                                    <AppContent currentRoute={currentRoute} />
-                            </NavigationContainer>
-                        </SafeAreaProvider>
+                            <SafeAreaProvider>
+                                <NavigationContainer
+                                    onReady={() => setCurrentRoute('Login')}
+                                    onStateChange={(state) => {
+                                        const route = state?.routes[state.index]?.name;
+                                        if(route) setCurrentRoute(route);
+                                    }}>
+                                        <AppContent currentRoute={currentRoute} />
+                                </NavigationContainer>
+                            </SafeAreaProvider>
                         </DrawerProvider>
                     </ScheduleProvider>
                 </ThemeProvider>
             </UserProvider>
         </AuthProvider>
-)
+    );
 }

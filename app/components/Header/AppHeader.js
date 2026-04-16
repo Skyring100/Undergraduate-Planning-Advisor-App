@@ -3,7 +3,7 @@ import { StyleSheet, Image, View, Text, Button, Pressable, Dimensions } from 're
 import SettingsButton from './SettingsButton';
 import HelpButton from './HelpButton';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { useFirstColour, useThemeStore } from '../../contexts/ThemeContext';
+import { useFirstColour, useZerothColour, useThemeText, useThemeStore, useThemeBackground } from '../../contexts/ThemeContext';
 
 import PopUp from './PopUp';
 import { useNavigationState } from '@react-navigation/native';
@@ -17,6 +17,9 @@ const screenWidth = Dimensions.get('window').width;
 export default function AppHeader() {
 
     const colour = useFirstColour();
+    const colour2 = useZerothColour();
+    const themeText = useThemeText();
+    
     const CustomHeader = () => {
         const routeName = useNavigationState((state) =>
             state.routes[state.index].name
@@ -24,7 +27,7 @@ export default function AppHeader() {
         const { setIsDrawerOpen } = useDrawer();
 
         return (
-            <View style={styles.header}>
+            <View style={[styles.header, colour]}>
                 <View style = {styles.backButton}>
                     <BackButton/>
                 </View>
@@ -71,16 +74,15 @@ export default function AppHeader() {
 
                     </PopUp>
                 </View>
-                <Text style={styles.headerText}>{routeName}</Text>
+                <Text style={[styles.headerText, themeText]}>{routeName}</Text>
                 <View style={styles.navDrawerContainer}>
-                    <View style={styles.square}>
+                    <View style={[styles.square, colour2]}>
                         <Pressable onPress={() => setIsDrawerOpen(true)} style={{paddingTop: navWidth*0.8}}>
                             <Image source={require('../../assets/drawer.png')} style={styles.drawerImage} />
                         </Pressable>
                     </View>
-                    <View style={styles.triangle}/>
+                    <View style={[styles.triangle, {borderTopColor: colour2.backgroundColor}]}/>
                 </View>
-                
             </View>
 
         );
@@ -106,7 +108,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         height: 125,
         width: '100%',
-        backgroundColor: '#035642'
     },
     headerText: {
         position: 'absolute',
@@ -163,7 +164,6 @@ export const styles = StyleSheet.create({
         borderTopWidth: 20,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
-        borderTopColor: '#022b21',
     },
     backButton: {
         position: 'absolute',
