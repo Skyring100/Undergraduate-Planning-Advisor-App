@@ -43,7 +43,6 @@ export default function PlannerScreen() {
             <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10, flex: 1, gap: 10}}>
                 
                 <View style={{alignItems: 'center', justifyContent: 'center'}}> 
-                    <BackButton/>
                     <View style={{height: 10}}></View>
                     <DropdownList/>
                 </View>

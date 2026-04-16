@@ -242,7 +242,6 @@ export default function EvaluatorScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
-                <BackButton/>
                     <ScrollView contentContainerStyle={{paddingBottom: 20}}>
                     <View style={styles.containerSmall}>
                         <View style={[styles.progressBarHolder, themeShaded]}>

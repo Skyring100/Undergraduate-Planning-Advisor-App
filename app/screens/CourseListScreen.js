@@ -60,7 +60,6 @@ export default function CourseListScreen() {
         <SafeAreaView style={[{width: width, minHeight: height, }, themeBg]}>
             
             <View style={[{alignItems: 'center', justifyContent: 'center', backgroundColor: '#4b4b4b'}]}>
-                <BackButton/>
 
                 <CollapsibleView>
                     <ScrollView style={styles.filterScrollView}>

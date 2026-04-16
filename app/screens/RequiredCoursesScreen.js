@@ -184,9 +184,6 @@ export default function RequiredCoursesScreen() {
         return (
             <SafeAreaProvider>
                 <SafeAreaView style={[{width: width, height: height}, themeBg]}>
-                    <View style={[themeBg, {alignItems: 'center', justifyContent: 'flex-end', flexDirection: 'row', marginRight: 20, marginBottom: 10}]}>
-                        <BackButton/>
-                    </View>
                     <FlatList
                         data={DummyData}
                         ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
