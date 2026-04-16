@@ -96,8 +96,35 @@ const prereqList = async (req, res) => {
 
 };
 
+const prereqString = async (req, res) => {
+  console.log("route has been called");
+  const { completed, target } = req.params;
+  const courses = completed.split(",");
+  const matches = courseStorage.makeNestedPrereqString(courses, target);
+  console.log("finished getting prereqs from db");
+  
+  var result;
+  if (!target) {
+    result = { 
+      success: false, 
+      message: 'No target specified or malformed URL'
+    };
+  } else {
+    result = {
+      success: true, 
+      message: 'Prereqs object obtained for the course',
+      data: matches,
+    };
+  }
+
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+
+};
+
 router.get('/all', authenticate, getAllCourses);
 router.get('/:id', authenticate, getCourseById);
 router.get('/allprereqs/:target', authenticate, prereqList);
 router.get('/check/:completed/:target', authenticate, prereqCheck);
+router.get('/string/:completed/:target', authenticate, prereqString);
 module.exports = router;

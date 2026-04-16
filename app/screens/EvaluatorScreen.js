@@ -9,12 +9,13 @@ import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
 import ProgressBar from '../components/Evaluator/ProgressBar';
 import completedCourses from '../data/completed_courses.json'
-import {useThemeText, useThemeBackground} from "../contexts/ThemeContext";
+import {useThemeText, useThemeBackground, useThemeShaded, useThemeGreyed, useFourthColour} from "../contexts/ThemeContext";
 import {useWindowDimensions} from "react-native";
 import AddCourseButton from "../components/Evaluator/AddCourseButton.js";
-import Animated, {SlideInDown, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
+import Animated, {SlideInDown, SlideInLeft, Easing, useSharedValue, withTiming, useDerivedValue} from "react-native-reanimated";
 import {ReText} from "react-native-redash";
 import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
+import {prereqString} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
 import {getUserProfileByID} from "../services/userService";
 
@@ -23,12 +24,24 @@ export default function EvaluatorScreen() {
     const [degreeCourses, setDegreeCourses] = useState([]);
     const [progressBarPercent, setProgressBarPercent] = useState(0);
     const [flag, setFlag] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     
+    const floatToColour = n => {
+        let num2 = Math.min(Math.max(0, n ** 1.5), 1);
+        let redComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos (num2 * 3.5      * Math.PI / 3))));
+        let grnComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos((num2 * 3.5 - 2) * Math.PI / 3))));
+        let bluComponent = Math.floor(0x66 + 0x55*(Math.cbrt(Math.cos((num2 * 3.5 + 2) * Math.PI / 3))));
+        return (redComponent * 0x1000000) + (grnComponent * 0x10000) + (bluComponent * 0x100) + 0xFF;
+    }
 
     const {setUser} = useUserStore();
     const themeText = useThemeText();
+    const themeFourth = useFourthColour();
     const themeBg = useThemeBackground();
+    const themeShaded = useThemeShaded();
+    const themeGreyed = useThemeGreyed();
     const {width} = useWindowDimensions();
+    const [gpa, setGPA] = useState(4.33)
     
     // to find when the next courses are
     const nextCourseTime = (() => {
@@ -41,43 +54,88 @@ export default function EvaluatorScreen() {
         */
         return ({year: 2028, semester: 9});
     })();
+    let courseAnimationIterator = 0;
 
+    const gradePointOf = {
+        "A+": 4.33,
+        "A": 4.0,
+        "A-": 3.67,
+        "B+": 3.33,
+        "B": 3.0,
+        "B-": 2.67,
+        "C+": 2.33,
+        "C": 2.0,
+        "C-": 1.67,
+        "D+": 1.33,
+        "D": 1.0,
+        "D-": 0.67,
+        "F": 0,
+    }
 
     // TODO: make the user context supply these next few variables
     const number = useSharedValue(0);
     const percentageText = useDerivedValue(() => {return "" + number.value.toFixed(2) + "%";});
+    const [semesterNumberText, setSemesterNumberText] = useState("");
 
-    useEffect(() => {(async () => {
-        // TODO: change this line in prod
-        const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-        const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-        console.log(userprofile);
-        const data = await (async () => {
-            const d = await Promise.all(
-                resp.data.data.map(
-                    async course => {
-                        let courseObj = await getCourseById(course.course_id);
-                        courseObj.data.year_num = course.year_num;
-                        courseObj.data.semester_id = course.semester_id;
-                        console.log(completedCourses.map(comp => comp.course_id));
-                        let matchData = await checkPrereqs(
-                            completedCourses.map(comp => comp.course_id), 
-                            course.course_id);
-                        courseObj.data.matches = matchData.data;
-                        console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
-                        return courseObj;
-                    }
-                ));
-            const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
-            setProgressBarPercent((completedCourses.length/e.length)*100);
-            console.log("got here");
-            return e;
-        })();
-        setDegreeCourses(data);
-        console.log("and processed:");
-        console.log(data);
-        console.log(number);
-    })()}, [])
+    useEffect(() => {
+        const pullAsync = async () => {
+            // TODO: change this line in prod
+            const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+            const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+            console.log(userprofile);
+            const data = await (async () => {
+                const d = await Promise.all(
+                    resp.data.data.map(
+                        async course => {
+                            let courseObj = await getCourseById(course.course_id);
+                            courseObj.data.year_num = course.year_num;
+                            courseObj.data.semester_id = course.semester_id;
+                            let matchData = await checkPrereqs(
+                                completedCourses.map(comp => comp.course_id), 
+                                course.course_id);
+                            courseObj.data.matches = matchData.data;
+                            let pqString = await prereqString(
+                                completedCourses.map(comp => comp.course_id),
+                                course.course_id
+                            );
+                            console.log(JSON.stringify(pqString));
+                            console.log("Course awaited successfully");
+                            courseObj.data.prereq_string = pqString.data;
+                            console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
+                            return courseObj;
+                        }
+                    ));
+                console.log(JSON.stringify(d));
+                const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
+                console.log(e);
+                setProgressBarPercent((completedCourses.length/e.length)*100);
+                setSemesterNumberText("Year " + (nextCourseTime.year - (e[0].year_num) + ((nextCourseTime.semester - 4) < 9 ? 1 : 0))
+                    + " - " + ((nextCourseTime.semester - 4) == 1 ? "Winter" : (
+                    nextCourseTime.semester - 4 == 5 ? "Spring" : "Fall")) + " Semester");
+                console.log(semesterNumberText);
+                console.log("got here");
+                setIsLoading(false);
+                return e;
+            })();
+            setDegreeCourses(data);
+            console.log("and processed:");
+            console.log(data);
+            console.log(number);
+        };
+        try {
+            pullAsync();
+        } catch (error) {
+            console.error(error);
+        }
+    }, [])
+
+    const creditCountText = useDerivedValue(() => {return "" + (number.value * degreeCourses.length/100 *3).toFixed(0) + "/" + degreeCourses.length * 3 + " credits"});
+    const percentageColour = useDerivedValue(() => {
+        let redComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 300))));
+        let grnComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 3 - (2 * Math.PI / 3)))));
+        let bluComponent = Math.floor(0x77 + 0x55*(Math.cbrt(Math.cos(number.value/100 * 2 * Math.PI / 3 + (2 * Math.PI / 3)))));
+        return ((redComponent * 0x1000000) + (grnComponent * 0x10000) + (bluComponent * 0x100) + 0xFF);
+    });
     
     useEffect(() => {
         number.value = withTiming(progressBarPercent, {
@@ -97,7 +155,6 @@ export default function EvaluatorScreen() {
                             );
                             */
     const nextCourses = degreeCourses.filter(course => {
-        // const matches = checkPrereqs(completedCourses.map(comp => comp.course_id), course.course_id);
         const notCompleted = !completedCourses.map(other => other.id).includes(course.course_id);
         const nextSemester = nextCourseTime.year == course.year_num && nextCourseTime.semester == course.semester_id;
         console.log(`nextSemester: ${nextSemester}`);
@@ -106,6 +163,72 @@ export default function EvaluatorScreen() {
 
         return notCompleted && nextSemester;
     });
+
+    // function to make jsx out of a course list
+    const courseToAnimatedView = (course, index, grade) => (
+        <View style={{
+            flexDirection: "row",
+            margin: 10,
+            alignItems: "left",
+            padding: 5,
+            borderRadius: 10,
+            gap: 10,
+            ...themeBg,
+            }}
+            key={index}
+        >
+        {/* edit this JSX to change how the courses are displayed */}
+            <View style={{...themeFourth, width: 10, borderRadius: 99, paddingLeft: 5,}} />
+            <View style={{overflow: "hidden", flexGrow: 1,}}>
+                <Animated.View 
+                    style={{
+                        alignItems: "center", 
+                        justifyContent: "space-between",
+                        paddingRight: 5,
+                        flexGrow: 1,
+                        flexDirection: "row",
+                    }}
+                    entering={SlideInLeft.duration(1000).easing(Easing.out(Easing.exp)).delay(index*100)}
+                >
+                    <View>
+                        <Text style={[themeText, {fontWeight: "600"}]}>
+                            {course.course_id}
+                        </Text>
+                        <Text style={[themeText]}>
+                            {course.title.trim()}
+                        </Text>
+                        {(() => {if (grade === undefined) return (<>
+                            <Text style={{color: course.matches ? 0x55BB55FF : "#bb5555", fontWeight: 600, fontSize: 12,}}>
+                                {course.matches ? "\u2713 You have all the prerequisites for this course" 
+                                    : "\u2717 You are missing some prerequisites"}
+                            </Text>
+                            <View style={{flexDirection: "row", flexWrap: "wrap", gap: 10}}>
+                                {   (() => {
+                                        console.log(course);
+                                        if (course.prereq_string === undefined) return <></>;
+                                        return (course.prereq_string).map(obj => {
+                                            return (
+                                                <View style={{backgroundColor: obj.state == "have" ? "#55bb55" : "#bb5555", padding: 2, borderRadius: 18}}>
+                                                    <Text style={{color: themeBg.backgroundColor, fontWeight: 700, top: obj.state == "have" ? -1.5 : 0,}}>
+                                                        {(obj.state == "have" ? " \u2713 " : " \u2717 ") + obj.course + " "}
+                                                    </Text>
+                                                </View>
+                                            )
+                                        })
+                                    })()
+                                }
+                            </View>
+                        </>);})()}
+                    </View>
+                    {(() => {if (grade != undefined) return (<>
+                        <Text style={[styles.bigGPAText, { lineHeight: "50", color: floatToColour((gradePointOf[grade]/4.33)) || themeText}]}>{grade}</Text>
+                    </>);})() }
+
+            {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
+                </Animated.View>
+           </View>
+       </View>
+    );
 
     /*
      * we need to check:
@@ -120,66 +243,101 @@ export default function EvaluatorScreen() {
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
                 <BackButton/>
-                <Text style={[styles.titleText, themeText]}>
-                    Let's see where you're at
-                </Text>
-        
-                <ProgressBar full={progressBarPercent} key={progressBarPercent}/>
-                <View style={styles.variableSizeTextHolder}>
-                    <Text style={themeText}>You're </Text>
-                    <ReText text={percentageText}style={[styles.bigPercentage, themeText]} />
-                    <Text style={themeText}> of the way to your degree!</Text>
-                </View>
-                <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{(() => {
-                    let nextCourseTimeString = "" + nextCourseTime.year + " " + (nextCourseTime.semester == 1 ? "Winter" : (
-                        nextCourseTime.semester == 5 ? "Spring" : "Fall"));
-                    return (nextCourses.length == 0 ? "Looks like you have no courses next semester.\nTake a break and relax!"
-                    : ("Your courses in the " + nextCourseTimeString
-                    + " semester will be:"));
-                })()
-                }</Text>
-                <ScrollView contentContainerStyle={styles.listContainer}>
-                        {
-                            nextCourses.map(course => (
-                                <Animated.View key={course.id} style={{
-                                    width: width * 0.8,
-                                    alignItems: "left",
-                                    borderWidth: 1,
-                                    borderColor: "#777777",
-                                    padding: 5,
-                                    borderRadius: 10,
-                                    }}
-                                    entering={SlideInDown.duration(1000).easing(Easing.out(Easing.exp)) }
-                                >
-                                {/* edit this JSX to change how the courses are displayed */}
-                                    <Animated.View 
-                                        style={{
-                                            flexGrow: 1, 
-                                            alignItems: "center", 
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <Text style={{flexGrow: 1, paddingTop: 5, ...themeText}}>
-                                            {course.course_id}
+                    <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+                    <View style={styles.containerSmall}>
+                        <View style={[styles.progressBarHolder, themeShaded]}>
+                            <View style={[styles.doubleSideTextHolder, {paddingLeft: 10, paddingRight: 10,}]}>
+                                <Text style={[themeText]}>{semesterNumberText}</Text>
+                                <ReText text={creditCountText} style={{color: percentageColour, flexShrink: 1, margin: 0, lineHeight: 1,}} />
+                            </View>
+                            <ProgressBar full={progressBarPercent} key={progressBarPercent}/>
+                        </View>
+                        <View style={[styles.doubleSideTextHolder, {width: 370}]}>
+                            <View style={[styles.progressBarHolder, themeShaded, {flexShrink: 1, width: 170, flexDirection: "column", alignItems: "center", justifyContent: "space-evenly"}]}>
+                                <Text style={themeText}>You're running a</Text>
+                                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-evenly", gap: 10,}}>
+                                    <Text style={[styles.bigGPAText, {color: floatToColour(gpa / 4.33)}]}>{gpa.toFixed(2) /* TODO: make this pull from degree service */}</Text>
+                                    <Text style={themeText}>GPA</Text>
+                                </View>
+                            </View>
+                            <View style={[styles.progressBarHolder, themeShaded, {flexShrink: 1, width: 170, flexDirection: "column", alignItems: "center", justifyContent: "space-evenly"}]}>
+                                <Text style={themeText}>and taking</Text>
+                                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-evenly", gap: "10",}}>
+                                    <Text style={[styles.bigGPAText, themeText]}>{"4" /* TODO: make this pull from degree service */}</Text>
+                                    <Text style={themeText}>courses</Text>
+                                </View>
+                            </View>
+                        </View>
+                        {/*
+                        <View style={styles.variableSizeTextHolder}>
+                            <Text style={themeText}>You're</Text>
+                            <ReText text={percentageText}style={[styles.bigPercentage, {color: percentageColour}]} />
+                            <Text style={themeText}>of the way to your degree!</Text>
+                        </View>
+                        */}
+                        <Text style={{...themeText, textAlign: "center", paddingBottom: 10,}}>{(() => {
+                            let nextCourseTimeString = "" + nextCourseTime.year + " " + (nextCourseTime.semester == 1 ? "Winter" : (
+                                nextCourseTime.semester == 5 ? "Spring" : "Fall"));
+                            return (nextCourses.length == 0 ? "Looks like you have no courses next semester.\nTake a break and relax!"
+                            : ("Here's how the " + nextCourseTimeString
+                            + " semester looks."));
+                        })()
+                        }</Text>
+                        {(() => {if (nextCourses.filter(c => c.matches).length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You've got the prereqs for these:
                                         </Text>
-                                        <Text style={[styles.courseTitle, themeText]}>
-                                            {course.title}
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return nextCourses.filter(c => c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                })()
+                            }
+                        </View>
+                        {(() => {if (nextCourses.filter(c => !c.matches).length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You're still missing some for these:
                                         </Text>
-                                        <Text style={{color: course.matches ? "#66BB66" : "#DD7777", fontWeight: 600, fontSize: 12,}}>
-                                            {course.matches ? "\u2713 You have all the prerequisites for this course" 
-                                                : "\u2717 You are missing some prerequisites:"}
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return nextCourses.filter(c => !c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                })()
+                            }
+                        </View>
+                        {(() => {if (completedCourses.length > 0) 
+                                return (
+                                    <>
+                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                            You've completed these:
                                         </Text>
-                                {/* <AddCourseButton name={course.id + ": " + course.title} /> */}
-                                    </Animated.View>
-                               </Animated.View>
-                                )
-                            )
-                        }
+                                    </>
+                                );}
+                        )()}
+                        <View style={[styles.courseBubbleBubble, themeShaded]}>
+                            {(() => {
+                                if (isLoading) return (<><Text>Loading...</Text></>); else
+                                return completedCourses.map(c => courseToAnimatedView(c, ++courseAnimationIterator, c.grade || ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"][Math.floor(Math.random() * 13)]));
+                                })()
+                            }
+                        </View>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </SafeAreaProvider>
     );
 }
+
 
 const prereqGetter = async (course) => {
     const data = await getPrereqsOf(course);
@@ -194,7 +352,23 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         margin: 'auto',
     },
-    listContainer: {
+    containerSmall: {
+        alignItems: "left",
+    },
+    courseBubbleBubble: {
+        borderRadius: 10, 
+        marginLeft: 10, 
+        marginRight: 10, 
+    },
+    doubleSideTextHolder: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    progressBarHolder: {
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
     },
     yearHeader:{
         color: '#060a03ff',
@@ -231,9 +405,14 @@ const styles = StyleSheet.create({
         fontWeight: 300,
         fontSize: 23,
     },
-    courseTitle: {
-        fontWeight: 300,
-        fontSize: 20,
-        textAlign: 'center'
-    }
+    enrollHeader: {
+        fontWeight: 600,
+        fontSize: 18,
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    bigGPAText: {
+        fontWeight: 800,
+        fontSize: 50
+    },
 });

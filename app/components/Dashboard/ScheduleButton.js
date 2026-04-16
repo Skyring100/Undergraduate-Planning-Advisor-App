@@ -6,7 +6,7 @@ import OutlinedText from '@kdn0325/react-native-outlined-text';
 const screenWidth = Dimensions.get('window').width;
 const buttonWidth = screenWidth * 0.7;
 
-const screenHeight = Dimensions.get('window').height;
+const screenHeight = Dimensions.get('window').height - 130;
 const buttonHeight = screenHeight *0.30;
 
 

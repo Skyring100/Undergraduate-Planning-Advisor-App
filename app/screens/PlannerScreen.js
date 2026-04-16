@@ -40,7 +40,7 @@ export default function PlannerScreen() {
 
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10,flex: 1, gap: 10}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10, flex: 1, gap: 10}}>
                 
                 <View style={{alignItems: 'center', justifyContent: 'center'}}> 
                     <BackButton/>

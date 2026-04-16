@@ -8,7 +8,7 @@ const {authenticate} = require('../firebaseTokenHandler');
 const registerUser = async (req, res) => {
   console.log(req.url);
   console.log(req.body);
-  const { email, first_name, last_name } = req.body;
+  const {id, email, first_name, last_name } = req.body;
 
 
   const existingUser = getUserByEmail(email);
@@ -18,8 +18,8 @@ const registerUser = async (req, res) => {
       message: 'User with this email already exists'
     });
   }
-  console.log(req.user);
-  saveUser(req.user.uid, email, first_name, last_name);
+  //console.log(req.user);
+  saveUser(id, email, first_name, last_name);
 
   const newUser = getUserByEmail(email);
   res.status(201).json({

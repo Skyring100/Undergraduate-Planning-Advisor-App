@@ -1,11 +1,11 @@
+
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
-import DarkLightSlider from '../components/Settings/DarkLightSlider';
-import ColourDropdown from '../components/Settings/ColourDropdown';
+import DarkLightButton from '../components/Settings/DarkLightButton';
 import ColourButton from '../components/Settings/ColourButton';
 import { ThemeProvider, useThemeStore, useThemeText, useThemeBackground } from "../contexts/ThemeContext";
 import LogoutButton from '../components/Settings/LogoutButton';
@@ -15,7 +15,7 @@ const inputWidth = screenWidth * 0.85; // 85% of screen
 
 
 
-export default function SettingsScreen() {
+export default function AccountScreen() {
 
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
@@ -23,12 +23,24 @@ export default function SettingsScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
-                <Text style={[styles.title, themeText]}>Appearance</Text>
-                <View style={{alignItems: 'center', justifyContent: 'center',}}>
-                    <DarkLightSlider/>
+                <BackButton/>
+                <View style={styles.titleContainer}>
+                    <Text style={[styles.title, themeText]}>Account</Text>
                 </View>
                 <View style={{alignItems: 'center', justifyContent: 'center',}}>
-                    <ColourDropdown/>
+                    <DarkLightButton/>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+                    <ColourButton colour={'Green'} index={0}/>
+                    <ColourButton colour={'Red'} index={1}/>
+                    <ColourButton colour={'Blue'} index={2}/>
+                    <ColourButton colour={'Pink'} index={3}/>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
+                    <ColourButton colour={'Purple'} index={4}/>
+                    <ColourButton colour={'Yellow'} index={5}/>
+                    <ColourButton colour={'Orange'} index={6}/>
+                    <ColourButton colour={'Grey'} index={7}/>
                 </View>
                 <View style={{alignItems: 'center', justifyContent: 'center', flex:1}}>
                     <LogoutButton/>
@@ -39,17 +51,23 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 30,
+        padding: 80
+    },
     container: {
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: "space-around",
-        paddingBottom: 'auto',
+        alignContent: 'center',
+        margin: 'auto',
     },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        margin: 10,
     },
     buttonText: {
         color: '#fff',
@@ -63,6 +81,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         backgroundColor: '#f9f9f9',
         marginTop: 10,
-        width: inputWidth,
+        width: inputWidth
     },
 });

@@ -1,6 +1,7 @@
 import 'react-native-get-random-values';
-import { useEffect } from 'react';
-import { BackHandler, Alert } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, BackHandler, Alert } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -10,6 +11,7 @@ import AppHeader from './components/Header/AppHeader';
 import { UserProvider } from './contexts/UserContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider } from './contexts/AuthContext';
+import BottomBar from './components/BottomBar';
 
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
@@ -22,60 +24,99 @@ import RequiredCoursesScreen from './screens/RequiredCoursesScreen';
 import CourseListScreen from './screens/CourseListScreen';
 import AddSectionScreen from './screens/AddSectionScreen';
 import AddCourseScreen from './screens/AddCourseScreen';
-
-
+import AccountScreen from './screens/AccountScreen';
+import AgendaScreen from './screens/AgendaScreen';
+import { ScheduleProvider } from './contexts/ScheduleContext';
+import DrawerNav from './components/Header/DrawerNav';
+import { DrawerProvider, useDrawer } from './contexts/DrawerContext';
 
 
 const Stack = createNativeStackNavigator();
+const hideBar = ['Login', 'Register'];
+
+function AppContent({currentRoute}) {
+        const { isDrawerOpen, setIsDrawerOpen } = useDrawer();
+
+        return (
+            <>
+                {!hideBar.includes(currentRoute) && 
+                    <DrawerNav 
+                        isOpen={isDrawerOpen}
+                        onClose={() => setIsDrawerOpen(false)}/>
+                }
+                    
+                <Stack.Navigator 
+                    initialRouteName="Login" 
+                    screenOptions={{
+                        header: (props) => <AppHeader {...props}/>,
+                    }}>
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="Register" component={RegisterScreen} />
+                    <Stack.Screen name="Dashboard" component={DashboardScreen} />
+                    <Stack.Screen name="Settings" component={SettingsScreen} />
+                    <Stack.Screen name="Planner" component={PlannerScreen} />
+                    <Stack.Screen name="Schedule" component={AgendaScreen} />
+                    <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
+                    <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
+                    <Stack.Screen name="CourseList" component={CourseListScreen} />
+                    <Stack.Screen name="AddSection" component={AddSectionScreen}/>
+                    <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
+                    <Stack.Screen name="Account" component={AccountScreen}/>
+                </Stack.Navigator>
+                {!hideBar.includes(currentRoute) && <BottomBar/>}
+            </>
+        );
+}
+
 
 export default function App() {
 
-  useEffect(() => {
+    const [currentRoute, setCurrentRoute] = useState('Login');
 
-    const onBackPress = () => {
+    useEffect(() => {
 
-      Alert.alert('Exit App', 'Do you want to exit?', [
-        { text: 'Cancel', onPress: () => null, style: 'cancel' },
-        { text: 'YES', onPress: () => BackHandler.exitApp() },
-      ]);
+        const onBackPress = () => {
 
-      return true;
-    };
+            Alert.alert('Exit App', 'Do you want to exit?', [
+                { text: 'Cancel', onPress: () => null, style: 'cancel' },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
+            ]);
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      onBackPress
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            onBackPress
+        );
+
+        return () => backHandler.remove();
+    }, []);
+
+
+
+
+    return (
+        
+        <AuthProvider>
+            <UserProvider>
+                <ThemeProvider>
+                    <ScheduleProvider>
+                        <DrawerProvider>
+                            <SafeAreaProvider>
+                                <NavigationContainer
+                                    onReady={() => setCurrentRoute('Login')}
+                                    onStateChange={(state) => {
+                                        const route = state?.routes[state.index]?.name;
+                                        if(route) setCurrentRoute(route);
+                                    }}>
+                                        <AppContent currentRoute={currentRoute} />
+                                </NavigationContainer>
+                            </SafeAreaProvider>
+                        </DrawerProvider>
+                    </ScheduleProvider>
+                </ThemeProvider>
+            </UserProvider>
+        </AuthProvider>
     );
-
-    return () => backHandler.remove();
-  }, []);
-
-
-
-
-  return (
-    <ThemeProvider>
-      <AuthProvider>
-        <UserProvider>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login" screenOptions={{
-                header: (props) => <AppHeader {...props}/>,
-              }}>
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="Register" component={RegisterScreen} />
-              <Stack.Screen name="Dashboard" component={DashboardScreen} />
-              <Stack.Screen name="Settings" component={SettingsScreen} />
-              <Stack.Screen name="Planner" component={PlannerScreen} />
-              <Stack.Screen name="Schedule" component={ScheduleScreen} />
-              <Stack.Screen name="Requisites" component={RequiredCoursesScreen} />
-              <Stack.Screen name="Evaluator" component={EvaluatorScreen} />
-              <Stack.Screen name="CourseList" component={CourseListScreen} />
-              <Stack.Screen name="AddSection" component={AddSectionScreen}/>
-              <Stack.Screen name="AddCourse" component={AddCourseScreen}/>
-            </Stack.Navigator>
-          </NavigationContainer>
-        </UserProvider>
-      </AuthProvider>
-    </ThemeProvider>
-  )
 }
