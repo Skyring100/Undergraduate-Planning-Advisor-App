@@ -19,18 +19,21 @@ export default function AppHeader() {
     const colour = useFirstColour();
     const colour2 = useZerothColour();
     const themeText = useThemeText();
-    
+
     const CustomHeader = () => {
         const routeName = useNavigationState((state) =>
             state.routes[state.index].name
         );
+
         const { setIsDrawerOpen } = useDrawer();
 
         return (
             <View style={[styles.header, colour]}>
-                <View style = {styles.backButton}>
-                    <BackButton/>
-                </View>
+
+                {/* <View style={styles.backButton}>
+                    <BackButton />
+                </View> */}
+
                 <View style={styles.helpButton}>
                     <PopUp >
 
@@ -77,11 +80,11 @@ export default function AppHeader() {
                 <Text style={[styles.headerText, themeText]}>{routeName}</Text>
                 <View style={styles.navDrawerContainer}>
                     <View style={[styles.square, colour2]}>
-                        <Pressable onPress={() => setIsDrawerOpen(true)} style={{paddingTop: navWidth*0.8}}>
+                        <Pressable onPress={() => setIsDrawerOpen(true)} style={{ paddingTop: navWidth * 0.8 }}>
                             <Image source={require('../../assets/drawer.png')} style={styles.drawerImage} />
                         </Pressable>
                     </View>
-                    <View style={[styles.triangle, {borderTopColor: colour2.backgroundColor}]}/>
+                    <View style={[styles.triangle, { borderTopColor: colour2.backgroundColor }]} />
                 </View>
             </View>
 
@@ -141,8 +144,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         resizeMode: 'contain',
-        width: navWidth/2,
-        height: navWidth/2,
+        width: navWidth / 2,
+        height: navWidth / 2,
     },
     navDrawerContainer: {
         position: 'absolute',
@@ -159,13 +162,15 @@ export const styles = StyleSheet.create({
     triangle: {
         width: 0,
         height: 0,
-        borderLeftWidth: navWidth/2,
-        borderRightWidth: navWidth/2,
+        borderLeftWidth: navWidth / 2,
+        borderRightWidth: navWidth / 2,
         borderTopWidth: 20,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
     },
     backButton: {
+        // backgroundColor: 'red',
+        // flex: 1,
         position: 'absolute',
         left: -10,
         top: 63

@@ -15,8 +15,6 @@ import { useSchedule } from '../contexts/ScheduleContext';
 
 
 
-
-
 export default function AddSectionScreen() {
     const [sectionName, setSectionName] = useState('');
     const [sectionDays, setSectionDays] = useState('');
@@ -41,15 +39,15 @@ export default function AddSectionScreen() {
     const dateFormat = /^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/
 
     //triggers a re-fetch if a new section is added
-    const {refetch, invalidateCache} = useSchedule();
+    const { refetch, invalidateCache } = useSchedule();
 
     const handleAdd = async () => {
-        try{
-        console.log(sectionName);
-        await addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
-        invalidateCache();
-        refetch();
-        alert("Info saved!");
+        try {
+            console.log(sectionName);
+            await addSections(sectionID, sectionDays, sectionStartTime, sectionEndTime, startDate, endDate, sectionBuilding, sectionRoom, sectionProfessor);
+            invalidateCache();
+            refetch();
+            alert("Info saved!");
         } catch (e) {
             console.error('Error adding section: ', e);
         }
@@ -59,11 +57,11 @@ export default function AddSectionScreen() {
     function SubmitInfo() {
         if (sectionName == '' || sectionDays == '' || sectionID == '') {
             alert("Empty information, try again.")
-        } 
-        else if (!timeFormat.test(sectionStartTime) && !timeFormat.test(sectionEndTime)){
+        }
+        else if (!timeFormat.test(sectionStartTime) && !timeFormat.test(sectionEndTime)) {
             alert("Time format not accepted. Input correct form please.")
         }
-        else if (!dateFormat.test(startDate) && !dateFormat.test(endDate)){
+        else if (!dateFormat.test(startDate) && !dateFormat.test(endDate)) {
             alert("Date format not accepted. Input correct form please.")
         }
         else {
@@ -74,7 +72,7 @@ export default function AddSectionScreen() {
 
 
     return (
-        <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30}}>
+        <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30 }}>
             <View style={{ flex: 1 }} >
                 <ScrollView style={themeText}>
 
@@ -195,11 +193,17 @@ export default function AddSectionScreen() {
                     <View style={[styles.submit, themeText]}>
                         <Button
                             onPress={SubmitInfo}
+                            color= "#035642"
                             style={firstColour}
                             title="Submit"
                         ></Button>
                     </View>
-                    
+
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.backButton}>
+                            <BackButton />
+                        </View>
+                    </View>
                 </ScrollView>
 
 
@@ -241,8 +245,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-end',
         marginTop: '5%',
-        marginLeft: '14%'
+        marginLeft: '14%',
         // alignContent: 'center'
+    },
+    backButton: {
+        marginTop: 5,
+        backgroundColor: 'green',
+        width: '20%',
+        borderRadius: 25,
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 
