@@ -9,6 +9,7 @@ import CourseListScreen from './CourseListScreen';
 import { useLinkBuilder } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
 import { useRoute } from '@react-navigation/native';
+import CourseList from '../components/Planner/CourseList';
 
 
 
@@ -87,7 +88,7 @@ function Tabs({yearIndex, semesterIndex, degreePlanID}) {
                 />
             <Tab.Screen 
                 name="All Courses" 
-                component={CourseListScreen}
+                component={CourseList}
                 initialParams={{yearIndex, semesterIndex, degreePlanID}}
                 />
         </Tab.Navigator>
