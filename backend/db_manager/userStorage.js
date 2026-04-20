@@ -66,3 +66,13 @@ export function addTakenDegree(student_id, degree_id){
   const result = db.prepare('INSERT INTO user_taking_degree(student_id, degree_id) VALUES (?, ?)').run(student_id, degree_id);
   return result;
 }
+
+export function setCurrentUserDegree(student_id, degree_id){
+  const result = db.prepare('UPDATE user SET current_degree_id = ? WHERE user.student_id=?').run(student_id, degree_id);
+  return result;
+}
+
+export function setCurrentuserDegreePlan(student_id, degree_plan_id){
+  const result = db.prepare('UPDATE user SET current_degree_plan = ? WHERE user.student_id=?').run(student_id, degree_plan_id);
+  return result;
+}
