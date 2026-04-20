@@ -37,7 +37,7 @@ export const getDegreeByID = async (degreeID) => {
 
             return {success: true, data};
         } catch (error) {
-            console.error('Error creating degree:', error);
+            console.error('Error getting degree:', error);
             return {success: false, data: null};
         }
     };
