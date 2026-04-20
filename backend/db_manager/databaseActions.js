@@ -90,7 +90,9 @@ function createTables(){
             first_name TEXT NOT NULL,
             last_name TEXT,
             gpa REAL,
-            created_at TEXT
+            created_at TEXT,
+            current_degree_plan_id INTEGER,
+            current_degree_id INTEGER
         );
     `);
     db.exec(`

@@ -56,4 +56,22 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-module.exports = app;
+function formatResponseObject(responseObj, databaseResult, messageSuccess, messageFail){
+  var result;
+  if (!databaseResult) {
+    result = { 
+      success: false, 
+      message: messageFail
+    };
+  } else{
+    result = {
+      success: true, 
+      message: messageSuccess, 
+      data: databaseResult
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  responseObj.status(statusCode).json(result);
+}
+
+module.exports = {app, formatResponseObject};

@@ -1,7 +1,7 @@
 import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const getDegreePlan = async () => {
+export const getAllDegreePlans = async () => {
     const url = `${API_BASE_URL}/degreePlans/all`;
     const token = await AsyncStorage.getItem('authToken');
     console.log(url);
