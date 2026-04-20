@@ -100,7 +100,7 @@ export default function AgendaScreen(){
 
     
 
-    const timelineProps ={
+    const timelineProps = {
         //format24h: false,
         scrollToFirst: true,
         initialTime: initialTime,
@@ -137,6 +137,8 @@ export default function AgendaScreen(){
                 fontFamily: 'Montserrat'
             }
         },
+
+
 
         renderEvent: ( item ) => (
             <View style = {{flex:1, flexDirection: 'row'}}>
@@ -196,6 +198,7 @@ export default function AgendaScreen(){
                         <AddSectionButton/>
                     </View>
                     <TimelineList
+                        key={currentDate}
                         events={eventsByDate}
                         timelineProps={timelineProps}
                         showNowIndicator
