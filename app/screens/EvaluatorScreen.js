@@ -18,6 +18,7 @@ import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../servi
 import {prereqString} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
 import {getUserProfileByID} from "../services/userService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
@@ -79,9 +80,10 @@ export default function EvaluatorScreen() {
 
     useEffect(() => {
         const pullAsync = async () => {
+            const userID = await AsyncStorage.getItem("student_id");
             // TODO: change this line in prod
-            const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-            const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
+            const resp = await getDegreePlanByID(userID);
+            const userprofile = await getUserProfileByID(userID);
             console.log(userprofile);
             const data = await (async () => {
                 const d = await Promise.all(

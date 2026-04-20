@@ -75,7 +75,7 @@ export default function DropdownList({onPlanSelect}){
 
     useEffect(() => {
         const fetchData = async () => {
-            const uid = getAuth().currentUser?.uid;
+            const uid = await AsyncStorage.getItem("student_id");
             if(!uid){
                 console.error('No logged in user');
                 return;
