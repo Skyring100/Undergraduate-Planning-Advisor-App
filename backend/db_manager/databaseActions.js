@@ -167,6 +167,7 @@ function dropTables(){
         DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
         DROP TABLE IF EXISTS prereq;
+        DROP TABLE IF EXISTS user;
     `);
 }
 
