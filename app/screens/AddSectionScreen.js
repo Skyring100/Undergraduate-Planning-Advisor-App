@@ -72,6 +72,7 @@ export default function AddSectionScreen() {
 
 
     return (
+        <SafeAreaProvider>
         <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30 }}>
             <View style={{ flex: 1 }} >
                 <ScrollView style={themeText}>
@@ -122,7 +123,7 @@ export default function AddSectionScreen() {
                                 style={[styles.inputDates, firstColour]}
                                 onChangeText={setSectionStartTime}
                                 value={sectionStartTime}
-                                placeholder='Section Start Time* (eg: hh:hh)'
+                                placeholder='Start* (hh:hh)'
                             >
                             </TextInput>
 
@@ -131,7 +132,7 @@ export default function AddSectionScreen() {
                                 style={[styles.inputDates, firstColour]}
                                 onChangeText={setSectionEndTime}
                                 value={sectionEndTime}
-                                placeholder='Section End Time* (eg: hh:hh)'
+                                placeholder='End* (hh:hh)'
                             >
                             </TextInput>
                         </View>
@@ -145,7 +146,7 @@ export default function AddSectionScreen() {
                                 style={[styles.inputDates, firstColour]}
                                 onChangeText={setStartDate}
                                 value={startDate}
-                                placeholder='First day* (eg: yyyy/mm/dd)'
+                                placeholder='First day* (yyyy/mm/dd)'
                             >
                             </TextInput>
 
@@ -154,13 +155,13 @@ export default function AddSectionScreen() {
                                 style={[styles.inputDates, firstColour]}
                                 onChangeText={setEndDate}
                                 value={endDate}
-                                placeholder='Last day* (eg: yyyy/mm/dd)'
+                                placeholder='Last day* (yyyy/mm/dd)'
                             >
                             </TextInput>
                         </View>
                     </View>
 
-
+                    <Text style={[themeText, styles.title]}>Optional:</Text>
                     <TextInput
                         style={[styles.input, firstColour]}
                         onChangeText={setSectionProfessor}
@@ -211,6 +212,7 @@ export default function AddSectionScreen() {
 
             </View>
         </SafeAreaView>
+        </SafeAreaProvider>
     )
 }
 
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
     },
     input: {
         height: '7.5%',
-        margin: 5,
+        margin: 2,
         borderWidth: 1,
         padding: 8,
 
@@ -231,9 +233,8 @@ const styles = StyleSheet.create({
     },
     inputDates: {
         height: '100%',
-        width: '40%',
+        width: '50%',
         borderWidth: 1,
-        margin: 5,
     },
     inputView: {
         flexDirection: 'row',
