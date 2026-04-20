@@ -26,6 +26,33 @@ export const getCourseById = async (id) => {
     return data;
 };
 
+export const getCoursesByDepartment = async (department) => {
+    const url = `${API_BASE_URL}/courses/department/${department}`;
+    const token = await AsyncStorage.getItem('authToken');
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
+
+    const data = await response.json();
+
+    return data;
+};
+
+export const getDepartmentCodes = async () => {
+    const url = `${API_BASE_URL}/courses/department/codes`;
+    const token = await AsyncStorage.getItem('authToken');
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
+
+    const data = await response.json();
+
+    return data;
+};
+
+
 export const checkPrereqs = async (completed, target) => {
     const completedString = completed.join(",");
     const url = `${API_BASE_URL}/courses/check/${completedString}/${target}`;

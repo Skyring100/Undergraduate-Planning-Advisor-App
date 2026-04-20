@@ -42,10 +42,45 @@ const getAllCourses = async (req, res) => {
       data: courses
     };
   }
+};
 
+const getCoursesByDepartment = async (req, res) => {
+  const {department} = req.params;
+  const courses = courseStorage.getCoursesByDepartment(department);
+  var result;
+  if (!courses) {
+    result = { 
+      success: false, 
+      message: 'Courses not found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Courses found', 
+      data: courses
+    };
+  }
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
+};
 
+const getDepartmentCodes = async (req, res) => {
+  const codes = courseStorage.getDepartmentCodes();
+  var result;
+  if (!courses) {
+    result = { 
+      success: false, 
+      message: 'Could not get department codes' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Department codes successful', 
+      data: codes
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
 };
 
 const prereqCheck = async (req, res) => {
@@ -127,4 +162,6 @@ router.get('/:id', authenticate, getCourseById);
 router.get('/allprereqs/:target', authenticate, prereqList);
 router.get('/check/:completed/:target', authenticate, prereqCheck);
 router.get('/string/:completed/:target', authenticate, prereqString);
+router.get('department/:department', authenticate, getCoursesByDepartment);
+router.get('department/codes', authenticate, getDepartmentCodes);
 module.exports = router;
