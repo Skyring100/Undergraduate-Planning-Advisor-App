@@ -1,19 +1,24 @@
 /*RequiredCourses page will show the list of courses the user is required to take for their degree program.
 It will also show what electives they have chosen for each degree planner.
 It will have a dropdown to select different degree planners and view the courses accordingly.
-There will be a button that will navigate to the CourseList page.*/ 
+There will be a button that will navigate to the CourseList page.*/
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
-import { useThemeText, useThemeBackground,
-    useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
+import {
+    useThemeText, useThemeBackground,
+    useFirstColour, useSecondColour, useThirdColour
+} from "../contexts/ThemeContext";
 import CourseListButton from '../components/Planner/CourseListButton';
 import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree, getDegreeByID } from '../services/degreeService';
 import all_courses from '../data/UNBC_course_data.json';
 import CourseCompletedButton from '../components/Requistes/CourseCompletedButton';
 import { useRoute } from '@react-navigation/native';
+import AddButton from '../components/Planner/AddButton';
+import { useNavigation } from '@react-navigation/native';
+
 
 const DummyData = [
     {
@@ -115,7 +120,7 @@ const DummyElectives = [
                 id: "WMST 303",
                 title: "XXXX"
             },
-            
+
         ]
     },
     {
@@ -141,7 +146,7 @@ const newDegree = {
     course_reqs: [
         "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231", "ENGL270", "CPSC300", "CPSC320", "CPSC321", "CPSC444"
     ],
-    credit_reqs : []
+    credit_reqs: []
 }
 
 export default function RequiredCoursesScreen() {
@@ -149,100 +154,76 @@ export default function RequiredCoursesScreen() {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const firstColour = useFirstColour();
-    const {width, height} = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
+    const navigation = useNavigation();
 
+
+    // const themeBg = useThemeBackground();
     // TODO: use "setCurrentUserDegree" in userService to change the user's selected degree
     // Whenever you want to access selected degree, use "await AsyncStorage.getItem("current_degree_id")"
 
-    /*
-    useEffect(() => {
-        createDegree(newDegree).then((apiResult) => {
-            if (apiResult.success){
-                const reqs = newDegree.course_reqs;
-                const matchedCourses = all_courses.all_courses.filter(course => reqs.includes(course.id));
-                const grouped = groupByLevel(matchedCourses);
-                setRequirements(grouped);
-            }else{
-                alert("API call was unsuccessful");
-                setRequirements([]);
-            }
-        });
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView style={[{ width: width, height: height }, themeBg]}>
+                <AddButton onPress={() => { navigation.navigate('EditDegreeReqs') }} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton>
 
-    }, []);
-    
-    useEffect(() => {
-        getDegreeByID(1).then((apiResult) => {
-            if (apiResult.success){
-                console.log(apiResult.data);
-            }else{
-                alert("API call was unsuccessful");
-                setRequirements([]);
-            }
-        });
+                <FlatList
+                    data={DummyData}
+                    ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
+                    renderItem={({ item: l }) => (
+                        <View key={l.levelNumber}>
+                            <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
+                        </View>
+                    )}
+                    keyExtractor={(l) => l.levelNumber.toString()}
+                    ListFooterComponent={
+                        <SafeAreaView style={{ marginBottom: 50 }}>
+                            <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
+                            {DummyElectives.map(l => (
+                                <View key={l.levelNumber}>
+                                    <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
+                                </View>
+                            ))}
+                        </SafeAreaView>
 
-    }, []);
-    */
-    
-    
-        return (
-            <SafeAreaProvider>
-                <SafeAreaView style={[{width: width, height: height}, themeBg]}>
-                    <FlatList
-                        data={DummyData}
-                        ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
-                        renderItem={({item: l}) => (
-                            <View key={l.levelNumber}>
-                                <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
-                            </View>
-                        )}
-                        keyExtractor={(l) => l.levelNumber.toString()}
-                        ListFooterComponent={
-                            <SafeAreaView style={{marginBottom: 50}}>
-                                <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
-                                {DummyElectives.map(l => (
-                                    <View key={l.levelNumber}>
-                                        <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
-                                    </View>
-                                ))}
-                            </SafeAreaView>
+                    }
+                />
 
-                        }
-                    />
-                </SafeAreaView>
-            </SafeAreaProvider>
-        )
+            </SafeAreaView>
+        </SafeAreaProvider>
+    )
 }
 
 
-function LevelSection({levelNumber, courseData}) {
+function LevelSection({ levelNumber, courseData }) {
     const themeText = useThemeText();
     const secondColour = useSecondColour();
     const thirdColour = useThirdColour();
     const route = useRoute();
-    const {yearIndex, semesterIndex, degreePlanID} = route.params;
-    
+    const { yearIndex, semesterIndex, degreePlanID } = route.params;
+
 
     return (
         <View>
-            <View style={{flexDirection: 'row', justifyContent: 'center',}}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
                 <Text style={[styles.levelHeader, secondColour, themeText]}>Level {levelNumber}</Text>
                 <Text style={[styles.done, secondColour, themeText]}>Done</Text>
             </View>
-            <View style={{flexDirection: 'column', justifyContent: 'center',}}>
+            <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
                 {
                     courseData.map(course => (
-                        
-                        <View key={course.id} style={{flexDirection: 'row', justifyContent: 'center',}}>
+
+                        <View key={course.id} style={{ flexDirection: 'row', justifyContent: 'center', }}>
                             {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
-}
-                            <CoursePopUp 
+                            }
+                            <CoursePopUp
                                 course={course}
-                                yearIndex ={yearIndex}
-                                semesterIndex ={semesterIndex}
+                                yearIndex={yearIndex}
+                                semesterIndex={semesterIndex}
                                 degreePlanID={degreePlanID}
-                                />
-                            <CourseCompletedButton/>
+                            />
+                            <CourseCompletedButton />
                         </View>
                     ))
                 }
@@ -251,7 +232,7 @@ function LevelSection({levelNumber, courseData}) {
     )
 }
 
-function groupByLevel(courseList){
+function groupByLevel(courseList) {
     const groups = {};
     courseList.forEach(course => {
         const level = Math.floor(parseInt(course.id) / 100) * 100;
@@ -274,13 +255,13 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
     },
-    levelHeader:{
+    levelHeader: {
         fontWeight: 'bold',
         fontSize: 25,
         width: '70%',
         textAlign: 'center'
     },
-    courseHeader:{
+    courseHeader: {
         color: '#ffffffff',
         fontWeight: 'bold',
         fontSize: 20,
