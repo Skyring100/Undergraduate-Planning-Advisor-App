@@ -13,6 +13,7 @@ import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree, getDegreeByID } from '../services/degreeService';
 import all_courses from '../data/UNBC_course_data.json';
 import CourseCompletedButton from '../components/Requistes/CourseCompletedButton';
+import { useRoute } from '@react-navigation/native';
 
 const DummyData = [
     {
@@ -210,11 +211,13 @@ export default function RequiredCoursesScreen() {
         )
 }
 
+
 function LevelSection({levelNumber, courseData}) {
     const themeText = useThemeText();
     const secondColour = useSecondColour();
     const thirdColour = useThirdColour();
-
+    const route = useRoute();
+    const {yearIndex, semesterIndex, degreePlanID} = route.params;
     
 
     return (
@@ -230,7 +233,12 @@ function LevelSection({levelNumber, courseData}) {
                         <View key={course.id} style={{flexDirection: 'row', justifyContent: 'center',}}>
                             {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
 }
-                            <CoursePopUp course={course}></CoursePopUp>
+                            <CoursePopUp 
+                                course={course}
+                                yearIndex ={yearIndex}
+                                semesterIndex ={semesterIndex}
+                                degreePlanID={degreePlanID}
+                                />
                             <CourseCompletedButton/>
                         </View>
                     ))

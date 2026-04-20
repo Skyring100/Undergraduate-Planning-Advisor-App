@@ -1,9 +1,10 @@
 import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View, Dimensions } from 'react-native';
 import {useState} from 'react';
 import { useThemeText, useThirdColour} from '../../contexts/ThemeContext';
+import { addCourseToDegreePlan } from '../../services/degreePlannerService';
+import { useNavigation } from '@react-navigation/native';
 
-
-export default function CoursePopUPButton({course}) {
+export default function CoursePopUPButton({course, yearIndex, semesterIndex, degreePlanID}) {
     const [modalVisible, setModalVisible] = useState(false);
     const handlePress = () => {
         setModalVisible(true);
@@ -11,6 +12,32 @@ export default function CoursePopUPButton({course}) {
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
     const buttonText = (course.id != null) ? course.id : "----";
+    const navigation = useNavigation();
+
+    const handleAddToPlanner = async() =>{
+        console.log('Adding course with: ', {
+            degreePlanID,
+            yearIndex,
+            semesterIndex,
+            course_id: course.id
+        });
+
+        const result = await addCourseToDegreePlan(
+            degreePlanID,
+            yearIndex+1,
+            semesterIndex+1,
+            course.id
+        );
+
+        console.log('Add course result: ', JSON.stringify(result));
+
+        if(result.success){
+            setModalVisible(false);
+            navigation.goBack();
+        } else {
+            console.error('Failed to add course');
+        }
+    }
 
     return (
         <TouchableOpacity
@@ -36,7 +63,7 @@ export default function CoursePopUPButton({course}) {
                             <Pressable onPress={() => setModalVisible(!modalVisible)} style={[styles.buttonClose, thirdColour]}>
                                 <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
-                            <Pressable onPress={() => {}} style={[styles.buttonClose, thirdColour]}>
+                            <Pressable onPress={handleAddToPlanner} style={[styles.buttonClose, thirdColour]}>
                                 <Text style={styles.textStyle}>Add to Planner</Text>
                             </Pressable>
                             </View>

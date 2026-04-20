@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react';
 import CollapsibleView from '../components/CollapsibleView';
 import { getAllCourses } from '../services/courseService';
 import CoursePopUp from '../components/CoursePopUp';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { addCourseToDegreePlan } from '../services/degreePlannerService';
 
 
 
@@ -31,6 +33,33 @@ export default function CourseListScreen() {
 
     const [selectedCourse, setSelectedCourse] = useState(null);
 
+    const route = useRoute();
+    const navigation = useNavigation();
+    const {yearIndex, semesterIndex, degreePlanID} = route.params;
+
+    const handleAddToPlanner = async() =>{
+        console.log('Adding course with: ', {
+            degreePlanID,
+            yearIndex,
+            semesterIndex,
+            course_id: selectedCourse.course_id
+        })
+        const result = await addCourseToDegreePlan(
+            degreePlanID,
+            yearIndex+1,
+            semesterIndex+1,
+            selectedCourse.course_id
+        );
+
+        console.log('Add course result: ', JSON.stringify(result));
+
+        if(result.success){
+            setSelectedCourse(null);
+            navigation.goBack();
+        } else {
+            console.error('Failed to add course');
+        }
+    }
 
     useEffect(() => {
         getAllCourses().then((apiResult) => {
@@ -96,7 +125,7 @@ export default function CourseListScreen() {
                             <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
                             <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
-                            <Pressable onPress={() => {}} style={[styles.buttonClose]}>
+                            <Pressable onPress={handleAddToPlanner} style={[styles.buttonClose]}>
                                 <Text style={styles.textStyle}>Add to Planner</Text>
                             </Pressable>
                             </View>
