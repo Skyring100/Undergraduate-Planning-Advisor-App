@@ -57,12 +57,12 @@ const createDegreePlan = async (req, res) => {
 
 
 const addCourseToDegreePlan = async (req, res) => {
-  const { degree_plan_id, year_num, semester_id, course_id } = req.body;
+  const { degree_plan_id, year, semester_id, course_id } = req.body;
 
   console.log(req.url);
   console.log(req.body);
 
-  const creationSuccess = await degreePlanStorage.addCourseToDegreePlan(degree_plan_id, year_num, semester_id, course_id);
+  const creationSuccess = await degreePlanStorage.addCourseToDegreePlan(degree_plan_id, year, semester_id, course_id);
 
   var result;
   if (!creationSuccess) {

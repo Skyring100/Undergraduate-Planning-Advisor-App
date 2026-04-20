@@ -18,7 +18,7 @@ export function createDegreePlan(degreePlanName, studentID) {
 
 export function addCourseToDegreePlan(degreePlanID, year, semesterID, courseID) {
 
-    const degreePlan = db.prepare("INSERT INTO degree_plan_course(degreePlanID, year, semesterID, courseID) VALUES (?, ?, ?, ?)").run(degreePlanID, year, semesterID, courseID);
+    const degreePlan = db.prepare("INSERT INTO degree_plan_course(degree_plan_id, year, semester_id, course_id) VALUES (?, ?, ?, ?)").run(degreePlanID, year, semesterID, courseID);
     
     return true;
 }

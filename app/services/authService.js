@@ -96,7 +96,7 @@ async function addTokenData(data, token){
   try{
     await AsyncStorage.setItem('token', token);
     await AsyncStorage.setItem('email', data.data.email);
-    await AsyncStorage.setItem('studentID', data.data.student_id);
+    await AsyncStorage.setItem('student_id', data.data.student_id);
   }catch(err){
     console.log(err);
   }

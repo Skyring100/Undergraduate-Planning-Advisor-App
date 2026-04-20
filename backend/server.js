@@ -25,7 +25,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/sections', sectionRoutes);
 app.use('/api/degrees', degreeRoutes);
-app.use('/api/degreePlans', degreePlanRoutes);
+app.use('/api/degree_plans', degreePlanRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 

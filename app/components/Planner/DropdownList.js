@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { createDegreePlan, getDegreePlanByID } from "../../services/degreePlannerService";
 import { getUserProfileByID } from "../../services/userService";
 import { getAuth } from 'firebase/auth';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -38,7 +39,7 @@ export default function DropdownList({onPlanSelect}){
 
 
     const createPlanner = async (textInput) => {
-        const uid = getAuth().currentUser?.uid;
+        const uid = await AsyncStorage.getItem("student_id");
             if(!uid){
                 console.error('No logged in user');
                 return;

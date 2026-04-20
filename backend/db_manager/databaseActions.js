@@ -2,7 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 const DATABASE_PATH = './db/database.db';
 const db = initalizeDatabase();
 //Temporary reset for database for testing purposes
-// dropTables();
+//dropTables();
 createTables();
 // dummyData();
 
@@ -138,11 +138,11 @@ function createTables(){
     db.exec(`
         CREATE TABLE IF NOT EXISTS degree_plan_course (
             degree_plan_id INTEGER,
-            year_num INTEGER,
+            year INTEGER,
             semester_id INTEGER,
             course_id TEXT,
 
-            PRIMARY KEY (degree_plan_id, year_num, semester_id, course_id),
+            PRIMARY KEY (degree_plan_id, year, semester_id, course_id),
             FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id),
 
