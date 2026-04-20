@@ -11,7 +11,7 @@ const app = getApps().length === 0
   : getApps()[0];
 
 
-const auth = initAuth()
+export const auth = initAuth()
 
 function initAuth(){
   try{
@@ -94,7 +94,9 @@ async function addTokenData(data, token){
 
   console.log('Login response data:', data);
   try{
-    await AsyncStorage.setItem('authToken', token);
+    await AsyncStorage.setItem('token', token);
+    await AsyncStorage.setItem('email', data.data.email);
+    await AsyncStorage.setItem('studentID', data.data.student_id);
   }catch(err){
     console.log(err);
   }

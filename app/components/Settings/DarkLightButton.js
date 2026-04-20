@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
-import { useThemeStore, useFirstColour} from '../../contexts/ThemeContext';
+import { useThemeStore, useFirstColour, useThemeText} from '../../contexts/ThemeContext';
 import { useTheme } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -20,6 +20,7 @@ export default function DarkLightSlider() {
             onPress={toggleTheme}
             activeOpacity={0.7}
         >
+            <Text style={[styles.buttonText, useThemeText]}>{"Toggle Light/Dark Mode"}</Text>
         </TouchableOpacity>
     );
 }
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
         height: 45,
     },
     buttonText: {
-        color: '#fff',
         fontSize: 16,
         fontWeight: '600',
     },
