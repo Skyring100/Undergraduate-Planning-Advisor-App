@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
-import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeStore, useFirstColour, useThemeShaded } from "../contexts/ThemeContext";
 import TimeInput from '@tighten/react-native-time-input';
 import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
@@ -26,7 +26,7 @@ export default function EditDegreeReqScreen() {
     const themeBg = useThemeBackground();
     const { width, height } = useWindowDimensions();
     const firstColour = useFirstColour();
-
+    const textInputColor = useThemeShaded();
 
 
     const submit = async () => {
@@ -54,7 +54,7 @@ export default function EditDegreeReqScreen() {
                 <ScrollView style={themeText}>
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        style={[styles.input, textInputColor]}
                         onChangeText={setName}
                         value={name}
                         placeholder='Name*'
@@ -64,7 +64,7 @@ export default function EditDegreeReqScreen() {
                     {/* The way this will work is that I'll later return a proper boolean, for now is just text */}
                     <Text style={[themeText, styles.title]}>Is it a minor?</Text>
                     <Picker
-                        style={firstColour}
+                        style={textInputColor}
                         selectedValue={isMinor}
                         onValueChange={(itemValue, itemIndex) =>
                             setIsMinor(itemValue)
@@ -74,7 +74,7 @@ export default function EditDegreeReqScreen() {
                     </Picker>
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        style={[styles.input, textInputColor]}
                         onChangeText={setCourseId}
                         value={courseId}
                         placeholder='Course ID*'
@@ -83,7 +83,7 @@ export default function EditDegreeReqScreen() {
 
                     <Text style={[themeText, styles.title]}>Min Grade</Text>
                     <Picker
-                        style={firstColour}
+                        style={textInputColor}
                         selectedValue={minGrade}
                         onValueChange={(itemValue, itemIndex) =>
                             setMinGrade(itemValue)
@@ -97,7 +97,7 @@ export default function EditDegreeReqScreen() {
                     </Picker>
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        style={[styles.input, textInputColor]}
                         onChangeText={setDesc}
                         value={desc}
                         placeholder='Course Description'
@@ -105,7 +105,7 @@ export default function EditDegreeReqScreen() {
                     </TextInput>
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        style={[styles.input, textInputColor]}
                         keyboardType='numeric'
                         onChangeText={setNumCred}
                         value={numCred}
