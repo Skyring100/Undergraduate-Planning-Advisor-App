@@ -7,6 +7,7 @@ export const getUserProfileByID = async (uid) => {
     console.log('Get profile API URL:', url);
 
     const token = await AsyncStorage.getItem('authToken');
+    console.log(token)
     const fetchReq = getBaseRequestHTTP('GET', token);
     const response = await fetch(url, fetchReq);
 
