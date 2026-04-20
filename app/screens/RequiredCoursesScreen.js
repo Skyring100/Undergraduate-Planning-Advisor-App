@@ -152,6 +152,9 @@ export default function RequiredCoursesScreen() {
     const {width, height} = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
 
+    // TODO: use "setCurrentUserDegree" in userService to change the user's selected degree
+    // Whenever you want to access selected degree, use "await AsyncStorage.getItem("current_degree_id")"
+
     /*
     useEffect(() => {
         createDegree(newDegree).then((apiResult) => {

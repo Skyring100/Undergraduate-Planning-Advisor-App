@@ -22,6 +22,10 @@ export default function PlannerScreen() {
     const [visible, setVisible] = useState(false);
     const [selectedYear, setSelectedYear] = useState(degreePlan.yearNumber ?? 1);
 
+
+    // TODO: use "setCurrentUserDegreePlan" in userService to change the user's selected degree plan
+    // Whenever you want to access selected degree plan, use "await AsyncStorage.getItem("current_degree_plan_id")"
+
     const handlePlanSelect = async (plan) => {
         setCurrentPlan(plan.degree_plan_id);
         const result = await getDegreePlanByID(plan.degree_plan_id);

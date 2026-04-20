@@ -80,10 +80,10 @@ export default function EvaluatorScreen() {
 
     useEffect(() => {
         const pullAsync = async () => {
-            const userID = await AsyncStorage.getItem("student_id");
+            const degreePlanID = await AsyncStorage.getItem("current_degree_plan_id");
             // TODO: change this line in prod
-            const resp = await getDegreePlanByID(userID);
-            const userprofile = await getUserProfileByID(userID);
+            const resp = await getDegreePlanByID(degreePlanID);
+            const userprofile = await getUserProfileByID(degreePlanID);
             console.log(userprofile);
             const data = await (async () => {
                 const d = await Promise.all(

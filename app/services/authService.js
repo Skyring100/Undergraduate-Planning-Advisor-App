@@ -59,6 +59,8 @@ export const loginUser = async (email, password) => {
 
   const response = await fetch(url, fetchReq);
   const data = await response.json();
+  console.log("Login recieved data below:");
+  console.log(data);
   return addTokenData(data, token);
 };
 
@@ -87,6 +89,8 @@ export const registerUser = async (email, password, first_name, last_name) => {
 
   const response = await fetch(url, fetchReq);
   const data = await response.json();
+  console.log("Register recieved data below:");
+  console.log(data);
   return addTokenData(data, token);
 };
 
@@ -98,7 +102,7 @@ async function addTokenData(data, token){
     await AsyncStorage.setItem('email', data.data.email);
     await AsyncStorage.setItem('student_id', data.data.student_id);
     await AsyncStorage.setItem('current_degree_id', data.data.current_degree_id);
-    await AsyncStorage.setItem('current_degree_+plan_id', data.data.current_degree_plan_id);
+    await AsyncStorage.setItem('current_degree_plan_id', data.data.current_degree_plan_id);
   }catch(err){
     console.log(err);
   }

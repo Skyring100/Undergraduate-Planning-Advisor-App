@@ -80,6 +80,7 @@ export const setCurrentUserDegree = async (student_id, degree_id) => {
         const data = await response.json();
         console.log(data);
 
+        await AsyncStorage.setItem('current_degree_id', degree_id);
         return {success: true, data};
     } catch (error) {
         console.error('Error adding setting current degree for user:', error);
@@ -99,6 +100,7 @@ export const setCurrentUserDegree = async (student_id, degree_id) => {
         const data = await response.json();
         console.log(data);
 
+        await AsyncStorage.setItem('current_degree_plan_id', degree_plan_id);
         return {success: true, data};
     } catch (error) {
         console.error('Error adding setting current degree plan for user:', error);
