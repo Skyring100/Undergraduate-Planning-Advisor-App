@@ -80,7 +80,6 @@ export default function RegisterScreen() {
     return(
         <SafeAreaProvider>
         <SafeAreaView style={[styles.container, {width: width}]}>
-            <BackButton/>
             <View style={styles.titleContainer}>
                 <Text style={[styles.title]}>Register</Text>
             </View>
