@@ -23,7 +23,9 @@ export function getCoursesByDepartment(department){
 }
 
 export function getDepartmentCodes(){
-    const departments = db.prepare('SELECT department FROM course ORDER BY ASC').get();
+    const departments = db.prepare('SELECT department FROM course GROUP BY department').all();
+    console.log("Departments:");
+    console.log(departments);
     return departments;
 }
 
