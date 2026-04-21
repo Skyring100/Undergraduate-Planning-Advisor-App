@@ -41,7 +41,7 @@ export default function DropdownList({onPlanSelect}){
 
     const createPlanner = async (textInput) => {
         try{
-            const planID = `local_${Date.getTime()}`;
+            const planID = `local_${Date.now()}`;
             const newPlan = {degree_ids: [], years:[]};
             await AsyncStorage.setItem(`degree_plan_${planID}`, JSON.stringify(newPlan));
             
@@ -51,6 +51,7 @@ export default function DropdownList({onPlanSelect}){
             setPlanners(prev => [...prev, newPlanEntry]);
             setValue(textInput);
             setVisible(false);
+            onPlanSelect && onPlanSelect(newPlanEntry);
         } catch (e){
             console.error('Failed to create planner: ', e);
         }
@@ -62,10 +63,13 @@ export default function DropdownList({onPlanSelect}){
     useEffect(() => {
         const fetchData = async () => {
             
-                const result = await getAllDegreePlans();
-                if(result.success) {
-                    setPlanners(result.data.data);
-                    console.log('Planners: ', result.data.data);
+                 if(result?.success && result.data?.length > 0) {
+                    setPlanners(prev => {
+                        const existingIDs = new Set(prev.map(p => String(p.degree_plan_id)));
+                        const newPlans = result.data.filter(p => !existingIDs.has(String(p.degree_plan_id)));
+                        return [...prev, ...newPlans];
+                    });
+                    console.log('Planners: ', result.data);
                     console.log('------------------------------------------');
                 }
         
