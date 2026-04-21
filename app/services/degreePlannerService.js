@@ -58,9 +58,9 @@ export const createDegreePlan = async (degreePlanName, studentID, degreeID) => {
     }
 };
 
-export const getDegreePlanByID = async (studentID) => {
+export const getDegreePlanByID = async (degreePlanID) => {
     try{
-        const url = `${API_BASE_URL}/degree_plans/${studentID}`;
+        const url = `${API_BASE_URL}/degree_plans/${degreePlanID}`;
             const token = await AsyncStorage.getItem('authToken');
             const fetchReq = getBaseRequestHTTP('GET', token);
             const response = await fetch(url, fetchReq);

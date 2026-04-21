@@ -31,6 +31,14 @@ if(auth == undefined){
 }
 
 export const loginUser = async (email, password) => {
+    const keys = await AsyncStorage.getAllKeys();
+    keys.forEach(async (k) => {
+      console.log(k);
+        if(k.startsWith("degree_plan_")){
+            console.log("Removing now");
+            await AsyncStorage.removeItem(k);
+        }
+    });
   console.log("Signing in with Firebase auth...");
   var userCredential;
   try{

@@ -4,12 +4,12 @@ const degreePlanStorage = require('../db_manager/degreePlanStorage');
 const {authenticate} = require('../firebaseTokenHandler');
 
 const getDegreePlanByID = async (req, res) => {
-  const { student_id } = req.params;
+  const { degree_plan_id } = req.params;
 
   console.log(req.url);
   console.log(req.params);
 
-  const degreePlan = degreePlanStorage.getDegreePlanByID(student_id);
+  const degreePlan = degreePlanStorage.getDegreePlanByID(degree_plan_id);
 
   var result;
   if (!degreePlan) {
@@ -88,7 +88,7 @@ const addCourseToDegreePlan = async (req, res) => {
 
 
 
-router.get('/:student_id', authenticate, getDegreePlanByID);
+router.get('/:degree_plan_id', authenticate, getDegreePlanByID);
 router.post('/create', authenticate, createDegreePlan);
 router.post('/addCourse', authenticate, addCourseToDegreePlan);
 

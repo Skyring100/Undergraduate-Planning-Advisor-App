@@ -36,15 +36,18 @@ export default function DropdownList({onPlanSelect}){
             onPlanSelect && onPlanSelect(planData)
         
     })
-
+    console.log("Planners OG:")
+    console.log(planners);
 
     const createPlanner = async (textInput) => {
         try{
-            const planID = `local_${Date.now()}`;
+            const planID = `local_${Date.getTime()}`;
             const newPlan = {degree_ids: [], years:[]};
             await AsyncStorage.setItem(`degree_plan_${planID}`, JSON.stringify(newPlan));
             
             const newPlanEntry = {degree_plan_name: textInput, degree_plan_id: planID};
+            console.log("Planners create planner:")
+            console.log(planners);
             setPlanners(prev => [...prev, newPlanEntry]);
             setValue(textInput);
             setVisible(false);
@@ -70,6 +73,8 @@ export default function DropdownList({onPlanSelect}){
                 const sid = profile.data.student_id;
                 setStudentId(sid);
                 const result = await getDegreePlanByID(sid);
+                console.log("Planners use effect:")
+                console.log(planners);
                 if(result.success) {
                     setPlanners(result.data.data);
                 }
@@ -112,7 +117,7 @@ export default function DropdownList({onPlanSelect}){
                             <View style={[styles.dropdownOptions, themeBg, {top: top}]} >
                             <FlatList
                                 data={planners}
-                                keyExtractor={(item) => (item.degree_plan_id ?? item.degree_plan_name.toString())}
+                                keyExtractor={(item) => (item.degree_plan_id)}
                                 renderItem={({ item }) => (
                                     <TouchableOpacity 
                                         activeOpacity={0.8} 
