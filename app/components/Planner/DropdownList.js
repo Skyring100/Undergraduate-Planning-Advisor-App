@@ -2,7 +2,7 @@ import { View, TextInput, Pressable, Text, TouchableOpacity, StyleSheet, FlatLis
 import React, { useCallback, useEffect, useRef, useState} from "react";
 import { useThemeText, useFirstColour, useThemeBackground, useThemeShaded } from "../../contexts/ThemeContext";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { createDegreePlan, getDegreePlanByID } from "../../services/degreePlannerService";
+import { createDegreePlan, getAllDegreePlans, getDegreePlanByID } from "../../services/degreePlannerService";
 import { getUserProfileByID } from "../../services/userService";
 import { getAuth } from 'firebase/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -57,28 +57,18 @@ export default function DropdownList({onPlanSelect}){
         
     }
 
-    const [textInput, setTextInput] = useState('Planner ' + (planners.length + 1));
+    const [textInput, setTextInput] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const uid = await AsyncStorage.getItem("student_id");
-            if(!uid){
-                console.error('No logged in user');
-                return;
-            }
-
-            const profile = await getUserProfileByID(uid);
-
-            if(profile.success) {
-                const sid = profile.data.student_id;
-                setStudentId(sid);
-                const result = await getDegreePlanByID(sid);
-                console.log("Planners use effect:")
-                console.log(planners);
+            
+                const result = await getAllDegreePlans();
                 if(result.success) {
                     setPlanners(result.data.data);
+                    console.log('Planners: ', result.data.data);
+                    console.log('------------------------------------------');
                 }
-            }
+        
         };
         fetchData();
     }, []);
