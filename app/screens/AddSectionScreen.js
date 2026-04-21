@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
-import { useThemeText, useThemeBackground, useThemeStore, useFirstColour } from "../contexts/ThemeContext";
+import { useThemeText, useThemeShaded, useThemeBackground, useThemeStore, useFirstColour } from "../contexts/ThemeContext";
 import TimeInput from '@tighten/react-native-time-input';
 import { Picker } from '@react-native-picker/picker';
 import { useWindowDimensions } from "react-native";
@@ -29,7 +29,9 @@ export default function AddSectionScreen() {
     const [sectionID, setSectionID] = useState('');
 
     const themeBg = useThemeBackground();
+    const themeShaded = useThemeShaded();
     const themeText = useThemeText();
+    console.log("theme text: " + JSON.stringify(themeText));
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
 
@@ -72,34 +74,36 @@ export default function AddSectionScreen() {
 
 
     return (
-        <SafeAreaProvider>
         <SafeAreaView style={{ ...themeBg, minHeight: height, marginTop: -30 }}>
             <View style={{ flex: 1 }} >
                 <ScrollView style={themeText}>
 
 
                     <Text style={[themeText, styles.title]}>Select Days:</Text>
-                    <Picker
-                        style={firstColour}
-                        selectedValue={sectionDays}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setSectionDays(itemValue)
-                        }>
-                        <Picker.Item label='Monday' value='M' />
-                        <Picker.Item label='Tuesday' value='T' />
-                        <Picker.Item label='Wednesday' value='W' />
-                        <Picker.Item label='Thursday' value='R' />
-                        <Picker.Item label='Friday' value='F' />
-                        <Picker.Item label='Saturday' value='S' />
-                        <Picker.Item label='Monday|Wednesday|Friday' value='MWF' />
-                        <Picker.Item label='Tuesday|Thursday' value='TR' />
-                        <Picker.Item label='Monday|Wednesday' value='MW' />
-                        <Picker.Item label='Wednesday|Friday' value='WF' />
-                    </Picker>
+                    <View style={styles.pickerContainer}>
+                        <Picker
+                            style={[themeShaded, themeText]}
+                            selectedValue={sectionDays}
+                            onValueChange={(itemValue, itemIndex) =>
+                                setSectionDays(itemValue)
+                            }>
+                            <Picker.Item label='Monday' value='M' />
+                            <Picker.Item label='Tuesday' value='T' />
+                            <Picker.Item label='Wednesday' value='W' />
+                            <Picker.Item label='Thursday' value='R' />
+                            <Picker.Item label='Friday' value='F' />
+                            <Picker.Item label='Saturday' value='S' />
+                            <Picker.Item label='Monday | Wednesday | Friday' value='MWF' />
+                            <Picker.Item label='Tuesday | Thursday' value='TR' />
+                            <Picker.Item label='Monday | Wednesday' value='MW' />
+                            <Picker.Item label='Wednesday | Friday' value='WF' />
+                        </Picker>
+                    </View>
 
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        placeholderTextColor="#777"
+                        style={[styles.input, themeShaded, themeText]}
                         onChangeText={setSectionName}
                         value={sectionName}
                         placeholder='Section Name*'
@@ -108,7 +112,8 @@ export default function AddSectionScreen() {
 
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        placeholderTextColor="#777"
+                        style={[styles.input, themeShaded, themeText]}
                         onChangeText={setSectionID}
                         value={sectionID}
                         placeholder='Course ID*'
@@ -120,7 +125,8 @@ export default function AddSectionScreen() {
                         <Text style={[themeText, styles.title]}>Start and End time*:</Text>
                         <View style={styles.inputView}>
                             <TextInput
-                                style={[styles.inputDates, firstColour]}
+                                placeholderTextColor="#777"
+                                style={[styles.inputDates, themeShaded, {color: "#f00"}]}
                                 onChangeText={setSectionStartTime}
                                 value={sectionStartTime}
                                 placeholder='Start* (hh:hh)'
@@ -129,7 +135,8 @@ export default function AddSectionScreen() {
 
 
                             <TextInput
-                                style={[styles.inputDates, firstColour]}
+                                placeholderTextColor="#777"
+                                style={[styles.inputDates, themeShaded, themeText]}
                                 onChangeText={setSectionEndTime}
                                 value={sectionEndTime}
                                 placeholder='End* (hh:hh)'
@@ -143,7 +150,8 @@ export default function AddSectionScreen() {
                         <Text style={[themeText, styles.title]}>Start and End Date*:</Text>
                         <View style={styles.inputView}>
                             <TextInput
-                                style={[styles.inputDates, firstColour]}
+                                placeholderTextColor="#777"
+                                style={[styles.inputDates, themeShaded, themeText]}
                                 onChangeText={setStartDate}
                                 value={startDate}
                                 placeholder='First day* (yyyy/mm/dd)'
@@ -152,7 +160,8 @@ export default function AddSectionScreen() {
 
 
                             <TextInput
-                                style={[styles.inputDates, firstColour]}
+                                placeholderTextColor="#777"
+                                style={[styles.inputDates, themeShaded, themeText]}
                                 onChangeText={setEndDate}
                                 value={endDate}
                                 placeholder='Last day* (yyyy/mm/dd)'
@@ -163,7 +172,8 @@ export default function AddSectionScreen() {
 
                     <Text style={[themeText, styles.title]}>Optional:</Text>
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        placeholderTextColor="#777"
+                        style={[styles.input, themeShaded, themeText]}
                         onChangeText={setSectionProfessor}
                         value={sectionProfessor}
                         placeholder='Instructor'
@@ -171,7 +181,8 @@ export default function AddSectionScreen() {
                     </TextInput>
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        placeholderTextColor="#777"
+                        style={[styles.input, themeShaded, themeText]}
                         onChangeText={setSectionRoom}
                         value={sectionRoom}
                         placeholder='Section Room'
@@ -180,7 +191,8 @@ export default function AddSectionScreen() {
 
 
                     <TextInput
-                        style={[styles.input, firstColour]}
+                        placeholderTextColor="#777"
+                        style={[styles.input, themeShaded, themeText]}
                         onChangeText={setSectionBuilding}
                         value={sectionBuilding}
                         placeholder='Building'
@@ -192,7 +204,7 @@ export default function AddSectionScreen() {
                         <Button
                             onPress={SubmitInfo}
                             color= "#035642"
-                            style={firstColour}
+                            style={[themeShaded, themeText]}
                             title="Submit"
                         ></Button>
                     </View>
@@ -209,7 +221,6 @@ export default function AddSectionScreen() {
 
             </View>
         </SafeAreaView>
-        </SafeAreaProvider>
     )
 }
 
@@ -220,22 +231,32 @@ const styles = StyleSheet.create({
         paddingBottom: 2,
         fontWeight: 'bold'
     },
+    pickerContainer: {
+        fontWeight: 'bold',
+        height: 45,
+        justifyContent: "center",
+        margin: 5,
+        borderRadius: 10,
+        borderWidth: 0,
+        overflow: "hidden",
+    },
     input: {
-        height: '7.5%',
-        margin: 2,
-        borderWidth: 1,
+        height: 45,
+        margin: 5,
+        borderRadius: 10,
         padding: 8,
-
-
     },
     inputDates: {
-        height: '100%',
-        width: '50%',
-        borderWidth: 1,
+        height: 45,
+        margin: 5,
+        flexGrow: 1,
+        borderRadius: 10,
+        padding: 8,
     },
     inputView: {
         flexDirection: 'row',
-        margin: 5
+        margin: 5,
+        gap: 10,
     },
     submit: {
         // flex: 1,

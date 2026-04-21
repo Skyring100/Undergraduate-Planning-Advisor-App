@@ -114,10 +114,6 @@ export default function AgendaScreen(){
             textColor: themeTxt.color,
             eventBackground: 'transparent',
             'stylesheet.event.blockbased':{
-                container:{
-                    borderWidth: 2,
-                    borderRadius: 20,
-                }
             },
             nowIndicatorLine: {
                 ...firstColour,
@@ -131,6 +127,9 @@ export default function AgendaScreen(){
                 ...extraColour,
                 height: 8,
                 width: 8,
+            },
+            eventStyle: {
+                borderWidth: 0,
             },
             line: {
                 backgroundColor: 'transparent',
@@ -224,12 +223,14 @@ const styles = StyleSheet.create({
         marginVertical: 6,
         paddingBottom: 10,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2},
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
+        borderWidth: 0,
     },
     calendar: {
         borderRadius: 20,
+        borderWidth: 0,
     },
     monthHeader:{
         flexDirection: 'row',
@@ -237,11 +238,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         paddingTop: 10,
         paddingBottom: 4,
+        borderWidth: 0,
     },
     monthText:{
         fontSize: 20,
         fontFamily: 'Montserrat',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        borderWidth: 0,
     },
     card: {
         flex:1,
@@ -252,6 +255,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         elevation: 2,
         overflow: 'hidden',
+        borderWidth: 0,
     },
     cardAccent: {
         marginLeft: 15,
@@ -260,34 +264,41 @@ const styles = StyleSheet.create({
         width: 5,
         backgroundColor: '#035642',
         borderRadius: 5,
+        borderWidth: 0,
     },
     cardContent: {
         padding: 10,
         flex: 1,
+        borderWidth: 0,
     },
     cardCourseId: {
         fontWeight: 'bold',
         fontSize: 14,
         //color: '#035642',
+        borderWidth: 0,
     },
     cardCourseName: {
         fontSize: 13,
         color: '#fff3f3',
         marginBottom: 4,
+        borderWidth: 0,
     },
     cardInfo: {
         flexDirection: 'row',
         gap: 12,
         marginBottom: 8,
+        borderWidth: 0,
     },
     cardDetail: {
         fontSize: 12,
         color: '#666',
+        borderWidth: 0,
     },
     text: {
             fontSize: 30,
             fontFamily: 'Montserrat',
             padding: 10,
+        borderWidth: 0,
     },
     image: {
         justifyContent: 'center',
@@ -295,5 +306,6 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         resizeMode: 'contain',
+        borderWidth: 0,
     },
 })
