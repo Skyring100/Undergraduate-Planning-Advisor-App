@@ -190,17 +190,23 @@ export default function RequiredCoursesScreen() {
             for (let j=0; j<allCoursesList.length; j++) {
                 console.log("flattening at "+j+" ("+allCoursesList[j].id+") ");
                 while (allCoursesList[j].nesting == 2 && j < allCoursesList.length - 1) {
+                    console.log("j at top: "+j+"/"+(allCoursesList.length));
+                    console.log(JSON.stringify(allCoursesList.map(course => course.id)));
                     let entry2 = allCoursesList[j + 1];
+                    console.log("including "+entry2.id);
                     allCoursesList[j].id = allCoursesList[j].id + "\n\u1D52\u02B3 " + entry2.id;
                     allCoursesList[j].title = allCoursesList[j].title + "\n\u1D52\u02B3 " + entry2.title;
                     allCoursesList[j].nesting = entry2.nesting;
                     allCoursesList.splice(j + 1, 1); // remove the other entry
-                    j--;
+                    console.log(JSON.stringify(allCoursesList.map(course => course.id)));
+                    console.log("nesting: "+allCoursesList[j].nesting);
+                    console.log("j: "+j+"/"+(allCoursesList.length));
                 }
-                allCoursesList[allCoursesList.length - 1].nesting = 1;
+                console.log("escaped while loop")
                 console.log("length is now "+allCoursesList.length+" (next is iteration "+(j + 1)+") ");
                 console.log("now working with "+JSON.stringify(allCoursesList.map(y => y.id))+" ");
             }
+            allCoursesList[allCoursesList.length - 1].nesting = 1;
             console.log("got here");
             for (let i=1; i<=4; i++) {
                 console.log("pushing courses at year "+i);
