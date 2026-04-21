@@ -170,9 +170,6 @@ export default function AddSectionScreen() {
                     >
                     </TextInput>
 
-
-
-
                     <TextInput
                         style={[styles.input, firstColour]}
                         onChangeText={setSectionRoom}

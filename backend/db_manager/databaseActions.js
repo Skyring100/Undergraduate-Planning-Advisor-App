@@ -118,19 +118,11 @@ function createTables(){
         CREATE TABLE IF NOT EXISTS degree_plan (
             degree_plan_id INTEGER PRIMARY KEY AUTOINCREMENT,
             student_id TEXT NOT NULL,
+            degree_id INTEGER NOT NULL,
             degree_plan_name TEXT,
             created_at TEXT,
             
             FOREIGN KEY (student_id) REFERENCES user(student_id)
-        );
-    `);
-
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS degree_plan_degree (
-            degree_plan_id INTEGER PRIMARY KEY,
-            degree_id INTEGER,
-
-            FOREIGN KEY (degree_plan_id) REFERENCES degree_plan(degree_plan_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         );
     `);

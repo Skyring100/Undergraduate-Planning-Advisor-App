@@ -12,19 +12,85 @@ import {useWindowDimensions} from "react-native";
 import DropdownList from '../components/Planner/DropdownList';
 import AddButton from '../components/Planner/AddButton';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { getDegreePlanByID } from '../services/degreePlannerService';
+import { createDegreePlan, getDegreePlanByID } from '../services/degreePlannerService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+ 
 
 export default function PlannerScreen() {
     const [degreePlan, setDegreePlan] = useState([]);
     const [currentPlan, setCurrentPlan] = useState(null);
     const [visible, setVisible] = useState(false);
     const [selectedYear, setSelectedYear] = useState(degreePlan.yearNumber ?? 1);
+    const [studentID, setStudentID] = useState();
+    const [degreeID, setDegreeID] = useState();
 
 
     // TODO: use "setCurrentUserDegreePlan" in userService to change the user's selected degree plan
     // Whenever you want to access selected degree plan, use "await AsyncStorage.getItem("current_degree_plan_id")"
+
+    /*
+    useEffect(() => {
+        AsyncStorage.getItem("student_id").then((studentID) => {
+            AsyncStorage.getItem("current_degree_plan_id").then((planID) => {
+                // If there is no current plan, create a default plan for user
+                if(!planID){
+                    console.log("No exisitng current degree plan, making default plan...");
+                    createDegreePlan("My Degree Plan", studentID, 0).then((apiResult) => {
+                        if (apiResult.success){
+                            setCurrentPlan(apiResult.data.lastInsertRowid);
+                            console.log("generated new default degree plan with id "+apiResult.data.lastInsertRowid);
+                        }else{
+                            console.log("Unable to create default degree plan!");
+                            setCurrentPlan(undefined);
+                        }
+                    });
+                }else{
+                    console.log("Default plan id detected: ");
+
+                    setCurrentPlan(planID);
+                }
+            });
+        });
+        
+    }, []);
+    */
+    /*
+        useEffect(() => {  
+            getStoredData();
+
+            console.log(studentID);
+            console.log(currentPlan);
+            console.log(degreeID);
+            // If there is no current plan, create a default plan for user
+            if(!currentPlan){
+                console.log("No exisitng current degree plan, making default plan...");
+                createDegreePlan("My Degree Plan", studentID, degreeID).then((apiResult) => {
+                    if (apiResult.success){
+                        setCurrentPlan(apiResult.data.lastInsertRowid);
+                        console.log("generated new default degree plan with id "+apiResult.data.lastInsertRowid);
+                    }else{
+                        console.log("Unable to create default degree plan!");
+                        setCurrentPlan(undefined);
+                    }
+                });
+            }else{
+                console.log("Default plan id detected: ");
+                setCurrentPlan(currentPlan);
+            }
+    }, []);
+
+    const getStoredData = async () => {
+        const studentID = await AsyncStorage.getItem("student_id");
+        const planID = await AsyncStorage.getItem("current_degree_plan_id");
+        const degreeID = await AsyncStorage.getItem("current_degree_id");
+        setStudentID(studentID);
+        setCurrentPlan(planID);
+        setDegreeID(degreeID);
+    };
+    */
+    
 
     const handlePlanSelect = async (plan) => {
         setCurrentPlan(plan.degree_plan_id);
