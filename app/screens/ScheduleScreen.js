@@ -27,6 +27,7 @@ export default function ScheduleScreen() {
     const [isVisible, setIsVisible] = useState(false);
     const [selectedDay, setSelectedDay] = useState('');
     let classes = [];
+    const firstBg = useFirstColour();
 
     const getWeekDays = (day) => {
         const date = new Date(day)
@@ -97,7 +98,7 @@ export default function ScheduleScreen() {
                 }}
                 markedDates={
                     {
-                        [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: "#078d6e" }
+                        [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: firstBg.backgroundColor }
                     }
                 }
                 theme={{

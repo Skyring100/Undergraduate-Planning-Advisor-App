@@ -7,11 +7,9 @@ const {formatResponseObject} = require('../server');
 const getCurrentUser = async (req, res) => {
   const {student_id} = req.params;
 
-  console.log(req.url);
 
   const user = await userStorage.getUserByStudentID(student_id);
-  console.log("user gotten from getcurrent in routes:")
-  console.log(user)
+
 
   var result;
   if (!user) {

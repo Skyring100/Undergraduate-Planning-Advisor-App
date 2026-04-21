@@ -120,6 +120,10 @@ export default function AgendaScreen(){
                 }
             },
             nowIndicatorLine: {
+                ...firstColour,
+                height: 2,
+            },
+            nowIndicatorKnob:{
                 ...extraColour,
                 height: 2,
             },
@@ -140,12 +144,11 @@ export default function AgendaScreen(){
             }
         },
 
-
-
         renderEvent: ( item ) => (
+            <>
             <View style = {{flex:1, flexDirection: 'row'}}>
-                <View style={[styles.card, themeBg]}>
-                    <View style={styles.cardAccent}/>
+                <View style={[styles.card, grey]}>
+                    <View style={[styles.cardAccent, firstColour]}/>
                         <View style={styles.cardContent}>
                             <Text style={[styles.cardCourseId, themeTxt]}>{item.course_id}</Text>
                             <Text style={[styles.cardCourseName, themeTxt]}>{item.course_name}</Text>
@@ -158,6 +161,7 @@ export default function AgendaScreen(){
                         </View>
                 </View>
             </View>
+            </>
                         )
         
     };
@@ -242,7 +246,7 @@ const styles = StyleSheet.create({
     card: {
         flex:1,
         flexDirection: 'row',
-        // borderRadius: 20,
+        borderRadius: 20,
         // borderWidth: 2,
         marginVertical: 4,
         marginHorizontal: 8,
