@@ -108,7 +108,7 @@ export default function DropdownList({onPlanSelect}){
                             <View style={[styles.dropdownOptions, themeBg, {top: top}]} >
                             <FlatList
                                 data={planners}
-                                keyExtractor={(item) => item.degree_plan_id.toString()}
+                                keyExtractor={(item) => (item.degree_plan_id ?? item.degree_plan_name.toString())}
                                 renderItem={({ item }) => (
                                     <TouchableOpacity 
                                         activeOpacity={0.8} 

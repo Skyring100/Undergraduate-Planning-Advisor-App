@@ -15,9 +15,7 @@ export default function CoursePopUPButton({course, yearIndex, semesterIndex, deg
     const thirdColour = useThirdColour();
     const buttonText = (course.id != null) ? course.id : "----";
     
-    const route = useRoute();
     const navigation = useNavigation();
-    const {yearIndex, semesterIndex, degreePlanID} = route.params;
 
     const handleAddToPlanner = async() =>{
         try{

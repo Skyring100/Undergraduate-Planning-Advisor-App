@@ -11,11 +11,12 @@ import {useThemeText, useThemeBackground, useSecondColour, useThirdColour, useFi
 import {useWindowDimensions} from "react-native";
 import DropdownList from '../components/Planner/DropdownList';
 import AddButton from '../components/Planner/AddButton';
-import { useNavigation } from '@react-navigation/native';
-import { useState, useEffect } from 'react';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { useState, useEffect, use } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { createDegreePlan, getDegreePlanByID } from '../services/degreePlannerService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
  
 
 export default function PlannerScreen() {
@@ -26,6 +27,7 @@ export default function PlannerScreen() {
     const [studentID, setStudentID] = useState();
     const [degreeID, setDegreeID] = useState();
 
+    const isFocused = useIsFocused();
 
     // TODO: use "setCurrentUserDegreePlan" in userService to change the user's selected degree plan
     // Whenever you want to access selected degree plan, use "await AsyncStorage.getItem("current_degree_plan_id")"
@@ -90,13 +92,50 @@ export default function PlannerScreen() {
         setDegreeID(degreeID);
     };
     */
+
+    useEffect(()=> {
+        if(!isFocused) return;
+
+        const refreshPlan = async () => {
+            try{
+                const planId = await AsyncStorage.getItem('current_plan_id');
+                if(!planId) return;
+
+                const raw = await AsyncStorage.getItem(`degree_plan_${currentPlan}`);
+                if (!raw) return;
+
+                const plan = JSON.parse(raw);
+
+                const mapped = plan.years.map(year => ({
+                    yearNumber: year.year_number,
+                    semesters: year.semesters.map(sem => ({
+                        semesterNumber: sem.semester_number,
+                        courses: sem.courses,
+                    }))
+                }));
+                setDegreePlan(mapped);
+                setCurrentPlan(planId);
+            } catch (e) {
+                console.error('Failed to refresh plan: ', e);
+            }
+        };
+
+        refreshPlan();
+    }, [isFocused]);
     
 
     const handlePlanSelect = async (plan) => {
         setCurrentPlan(plan.degree_plan_id);
-        const result = await getDegreePlanByID(plan.degree_plan_id);
-        if(result.success){
-            const mapped = result.data.years.map(year => ({
+        await AsyncStorage.setItem('current_plan_id', String(plan.degree_plan_id));
+
+        const existing = await AsyncStorage.getItem(`degree_plan_${plan.degree_plan_id}`);
+        if(!existing){
+            const newPlan = {degree_ids: [plan.degree_plan_id], years: []};
+            await AsyncStorage.setItem(`degree_plan_${plan.degree_plan_id}`, JSON.stringify(newPlan));
+            setDegreePlan([]);
+        } else {
+            const parsed = JSON.parse(existing);
+            const mapped = parsed.data.years.map(year => ({
                 yearNumber: year.year_number,
                 semesters: year.semesters.map(sem => ({
                     semesterNumber: sem.semester_number,
@@ -269,7 +308,7 @@ function SemesterCourses({courses}){
             <View>
                 {
                     courses.map(c=>(
-                        <View key={c.id}>
+                        <View key={c}>
                             <CourseListButton course={c}></CourseListButton>
                         </View>
                     ))
