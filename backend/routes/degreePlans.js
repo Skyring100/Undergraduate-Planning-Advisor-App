@@ -77,6 +77,7 @@ const addCourseToDegreePlan = async (req, res) => {
     result = {
       success: true, 
       message: 'Added course to degree plan', 
+      data: creationSuccess
     };
   }
 

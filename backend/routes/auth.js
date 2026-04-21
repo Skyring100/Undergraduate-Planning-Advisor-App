@@ -35,7 +35,7 @@ const loginUser = async (req, res) => {
   console.log(req.body);
   const { email } = req.body;
 
-  const user = getUserByEmail(email);
+  var user = getUserByEmail(email);
 
   console.log(user);
   res.status(201).json({

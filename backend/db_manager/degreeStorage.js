@@ -41,5 +41,5 @@ export function createDegree(name, is_minor, course_reqs, credit_reqs) {
         const credReq = creditReqs[i];
         db.prepare("INSERT INTO degree_credit_requirement(degree_id, description, num_credits) VALUES (?, ?, ?)").all(degreeInfo.lastInsertRowid, credReq.description, credReq.num_credits);   
     }
-    return true;
+    return degreeInfo;
 }

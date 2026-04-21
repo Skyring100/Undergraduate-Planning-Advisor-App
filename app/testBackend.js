@@ -1,14 +1,14 @@
 /*
-Run this test script with with 'node --env-file=.env .\testBackend.js'
+Run this test script with with 'node --env-file=.env .\testBackend.js' <token>
 */
 import { API_BASE_URL, getBaseRequestHTTP } from './services/api.js';
 // The following JSON variables are examples of CREATING the object in the backend
 //NOTE: this JSON may not reflect the structure RETURNED from the backend (ie. might have more fields, different structure)
 const testUser = {
-    email: "test@test.com",
+    email: "yesyes@yes.com",
     password: "test123",
-    first_name: "Test",
-    last_name: "Tester",
+    first_name: "yes",
+    last_name: "yes",
     completed_courses: [
         "CPSC100",
         "CPSC101",
@@ -109,7 +109,6 @@ const testDegreePlan = {
     ]
 }
 
-const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiMDk1NzQ3YmY4MzMxZWE0YWQ1M2YzNzBjNjMyNjAxNzliMGQyM2EiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXVkIjoidW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXV0aF90aW1lIjoxNzc2NzUzMDg3LCJ1c2VyX2lkIjoidkcyT1F2cHBFNWZzMFNEUDlUSEdVRjAxYU9xMiIsInN1YiI6InZHMk9RdnBwRTVmczBTRFA5VEhHVUYwMWFPcTIiLCJpYXQiOjE3NzY3NTMwODcsImV4cCI6MTc3Njc1NjY4NywiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.OWhnfrb03XFw7mGp-nKvTF4EpwP42MPK-xnTa6WDVrHaqrf9cf_oSK4ApztU6J7ikXd2ltpFpZrZEEuoHqSI7SwuyCELkDtdq5lHhYtg9u9W-YeGXZg6D5aHQp3tZuGP5Qia3XR6Zapen4F9PQe8JHFHKMavCLPJB_n2BMiOTJMiB1TVjooxr5_ecDAU9Je-DPPQR-Dev3ohWGMrz1N8PMXFLDXPBw_WoX-7ZEwWQe2U_Y55LCVsoRzMSoN-Z8ZU9WAq8EzuHVUeYJTKFFU-k24GU-CixPCvPVY2O8nIq44x52et5BsIzEUiFh6M4lckNnf-Nzoi54Q_7H_qL2zulg'
 async function testCase(url, requestMessage){
     console.log("----------REQUEST----------")
     console.log(url);
@@ -117,7 +116,11 @@ async function testCase(url, requestMessage){
     const response = await fetch(url, requestMessage);
     try{
         const data = await response.json();
-        console.log("----------RESPONSE----------");
+        var passOrFail = "Pass";
+        if(!data.success){
+            passOrFail = "Fail";
+        }
+        console.log(`----------RESPONSE:${passOrFail}----------`);
         console.log(data);
         return data;
     }catch(err){
@@ -128,7 +131,7 @@ async function testCase(url, requestMessage){
 }
 
 
-async function userTestCase(){
+async function testAPI(token){
     var fetchReq;
     var response;
 
@@ -162,8 +165,8 @@ async function userTestCase(){
 
 
     //Adding dummy degree planner
-    const degree_id = response.data.lastInsertRowid
-    console.log("Testing degree creation");
+    const degree_id = response.data.lastInsertRowid;
+    console.log("Testing degree planner creation");
     fetchReq = getBaseRequestHTTP('POST', token);
     fetchReq['body'] = JSON.stringify({
             degree_plan_name : testDegreePlan.name,
@@ -180,10 +183,16 @@ async function userTestCase(){
         degree_plan_id : degree_id,
         year : 2020,
         semester_id : 1,
-        course_id : "GEOG350"
+        course_id : "GEOG250"
     });
     response = await testCase(`${API_BASE_URL}/degree_plans/addCourse`, fetchReq);
 }
 
 
-await userTestCase();
+const args = process.argv
+
+if(args.length > 2){
+    await testAPI(args[2]);
+}else{
+    console.log("Please specifiy a valid token in command line");
+}
