@@ -47,6 +47,46 @@ export const getUserProfileByID = async (uid) => {
 };
 
 
+export const updateFirstName = async (studentID, firstName) => {
+  try{
+        const url = `${API_BASE_URL}/users/first-name/${studentID}`;
+        console.log(url);
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({studentID, firstName});
+        const response = await fetch(url, fetchReq);
+        
+        const data = await response.json();
+        console.log(data);
+
+        await AsyncStorage.setItem('first_name', firstName);
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error updating user first name:', error);
+        return {success: false, data: null};
+    }
+}
+
+export const updateLastName = async (studentID, lastName) => {
+  try{
+        const url = `${API_BASE_URL}/users/last-name/${studentID}`;
+        console.log(url);
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({studentID, lastName});
+        const response = await fetch(url, fetchReq);
+        
+        const data = await response.json();
+        console.log(data);
+
+        await AsyncStorage.setItem('last_name', lastName);
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error updating user last name:', error);
+        return {success: false, data: null};
+    }
+}
+
 export const addCompletedCourses = async (student_id, courses) => {
   try{
       const url = `${API_BASE_URL}/courses/${student_id}`;

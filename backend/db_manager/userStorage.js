@@ -44,6 +44,32 @@ export function saveUser(studentID, email, firstName, lastName) {
   return userResult;
 }
 
+export function updateFirstName(studentID, firstName)
+{
+  console.log(`${studentID}, ${firstName}`);
+  const userResult = db.prepare('UPDATE user SET first_name= ? WHERE student_id = ?').run(firstName, studentID);
+
+  if (!userResult)
+  {
+    return undefined;
+  }
+
+  return userResult;
+}
+
+export function updateLastName(studentID, lastName)
+{
+  console.log(`${studentID}, ${lastName}`);
+  const userResult = db.prepare('UPDATE user SET last_name = ? WHERE student_id = ?').run(lastName, studentID);
+
+  if (!userResult)
+  {
+    return undefined;
+  }
+
+  return userResult;
+}
+
 export function addCompletedCourses(studentID, courses){
   //Ensure we are not readding courses the user already took
   const currentCoursesQuery = db.prepare('SELECT course_id FROM user_completed_course WHERE user_completed_course.student_id = ?').all(studentID);
