@@ -3,6 +3,8 @@ import {useState} from 'react';
 import { useThemeText, useThirdColour} from '../../contexts/ThemeContext';
 import { addCourseToDegreePlan } from '../../services/degreePlannerService';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function CoursePopUPButton({course, yearIndex, semesterIndex, degreePlanID}) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -12,32 +14,40 @@ export default function CoursePopUPButton({course, yearIndex, semesterIndex, deg
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
     const buttonText = (course.id != null) ? course.id : "----";
+    
+    const route = useRoute();
     const navigation = useNavigation();
+    const {yearIndex, semesterIndex, degreePlanID} = route.params;
 
     const handleAddToPlanner = async() =>{
-        console.log('Adding course with: ', {
-            degreePlanID,
-            yearIndex,
-            semesterIndex,
-            course_id: course.id
-        });
+        try{
+            const key = `degree_plan_${degreePlanID}`;
+            const raw = await AsyncStorage.getItem(key);
+            const plan = raw ? JSON.parse(raw) : {degree_ids: [], years: []};
 
-        const result = await addCourseToDegreePlan(
-            degreePlanID,
-            yearIndex+1,
-            semesterIndex+1,
-            course.id
-        );
+            let year = plan.years.find(y => y.year_number === yearIndex + 1);
+            if (!year){
+                    year = {year_number: yearIndex+1, semesters:[]};
+                    plan.years.push(year);
+            }
 
-        console.log('Add course result: ', JSON.stringify(result));
+            let semester = year.semesters.find(s => s.semester_number === semesterIndex + 1);
+            if (!semester){
+                semester = {semester_number: semesterIndex+1, courses:[]};
+                year.semesters.push(semester);
+            }
 
-        if(result.success){
-            setModalVisible(false);
+            if (!semester.courses.includes(selectedCourse.course_id)){
+                semester.courses.push(selectedCourse.course_id);
+            }
+
+            await AsyncStorage.setItem(key, JSON.stringify(plan));
+            setSelectedCourse(null);
             navigation.goBack();
-        } else {
-            console.error('Failed to add course');
+        } catch (e) {
+            console.error('Failed to add course: ', e);
         }
-    }
+    };
 
     return (
         <TouchableOpacity

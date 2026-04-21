@@ -6,7 +6,6 @@ import { createDegreePlan, getDegreePlanByID } from "../../services/degreePlanne
 import { getUserProfileByID } from "../../services/userService";
 import { getAuth } from 'firebase/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { readFile, writeFile } from "fs/promises";
 
 
 
@@ -40,35 +39,14 @@ export default function DropdownList({onPlanSelect}){
 
 
     const createPlanner = async (textInput) => {
-        const uid = await AsyncStorage.getItem("student_id");
-            if(!uid){
-                console.error('No logged in user');
-                return;
-            }
-
-        const profile = await getUserProfileByID(uid);
-        if(!profile.success){
-            console.error('Could not get user profile');
-            return;
+        try{
+            const newPlan = {degree_ids: [], years:[]};
+            await AsyncStorage.setItem(`degree_plan_${textInput}`, JSON.stringify(newPlan));
+            setPlanners(prev => [...prev, {degree_plan_name: textInput}]);
+            setVisible(false);
+        } catch (e){
+            console.error('Failed to create planner: ', e);
         }
-
-        const student_id = profile.data.student_id;
-
-        //create new planner in database and update planner screen with new data
-        const result = await createDegreePlan(textInput, student_id);
-        console.log('student_id used for refetch: ', student_id);
-
-        if(result.success){
-            const updated = await getDegreePlanByID(student_id);
-            console.log('Updated data: ', JSON.stringify(updated));
-            if (updated.success){
-               setPlanners(updated.data.data); 
-            }
-            
-           setVisible(false); 
-        }
-
-        console.log('Create plan result: ', JSON.stringify(result));
         
     }
 
