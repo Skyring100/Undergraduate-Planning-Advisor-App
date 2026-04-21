@@ -40,9 +40,10 @@ export default function DropdownList({onPlanSelect}){
 
     const createPlanner = async (textInput) => {
         try{
+            const planID = `local_${Date.now()}`;
             const newPlan = {degree_ids: [], years:[]};
-            await AsyncStorage.setItem(`degree_plan_${textInput}`, JSON.stringify(newPlan));
-            setPlanners(prev => [...prev, {degree_plan_name: textInput}]);
+            await AsyncStorage.setItem(`degree_plan_${planID}`, JSON.stringify(newPlan));
+            setPlanners(prev => [...prev, {degree_plan_name: textInput, degree_plan_id: planID}]);
             setVisible(false);
         } catch (e){
             console.error('Failed to create planner: ', e);
