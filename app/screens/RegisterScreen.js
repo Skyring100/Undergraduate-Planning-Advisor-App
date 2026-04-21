@@ -4,7 +4,7 @@ On clicking register it will validate inputs and navigate to Dashboard page.*/
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions } from "react-native"
+import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions, ScrollView } from "react-native"
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
@@ -79,97 +79,122 @@ export default function RegisterScreen() {
     
     return(
         <SafeAreaProvider>
-        <SafeAreaView style={[styles.container, {width: width}]}>
-            <View style={styles.titleContainer}>
-                <Text style={[styles.title]}>Register</Text>
+        <SafeAreaView style={[styles.screen]}>
+
+            <View style={styles.card}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backWrap}>
+                    <Text style={styles.backText}>◀ Back to login</Text>
+                </TouchableOpacity>
+                    
+                <Text style={styles.title}>Sign Up</Text>
+
+                <ScrollView showsVerticalScrollIndicator={false}>
+
+                    <TextInput
+                        autoFocus
+                        style={[styles.input]}
+                        placeholderTextColor="#777"
+                        placeholder="Enter your first name"
+                        autoCapitalize="none"
+                        value={firstName}
+                        onChangeText={setFirstName}
+                    />
+                    <TextInput
+                        style={[styles.input]}
+                        placeholderTextColor="#777"
+                        placeholder="Enter your last name (optional)"
+                        autoCapitalize="none"
+                        value={lastName}
+                        onChangeText={setLastName}
+                    />
+                    <TextInput
+                        style={[styles.input]}
+                        placeholderTextColor="#777"
+                        placeholder="Enter your email address"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        value={emailInput}
+                        onChangeText={setEmailInput}
+                    />
+                    <TextInput
+                        style={[styles.input]}
+                        placeholderTextColor="#777"
+                        placeholder="Enter your password"
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                    <TextInput
+                        style={[styles.input]}
+                        placeholderTextColor="#777"
+                        placeholder="Re-enter your password"
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        value={confirmedPassword}
+                        onChangeText={setConfirmedPassword}
+                    />
+
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={loading}>
+                        <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Submit'}</Text>
+                    </TouchableOpacity>
+                </ScrollView>
             </View>
-
-            <Text  style={{fontSize: 16, fontWeight: '600'}}>Please fill out all boxes</Text>
-
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your first name"
-                autoCapitalize="none"
-                value={firstName}
-                onChangeText={setFirstName}
-            />
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your last name (optional)"
-                autoCapitalize="none"
-                value={lastName}
-                onChangeText={setLastName}
-            />
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your email address"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={emailInput}
-                onChangeText={setEmailInput}
-            />
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your password"
-                secureTextEntry={true}
-                autoCapitalize="none"
-                value={password}
-                onChangeText={setPassword}
-            />
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Re-enter your password"
-                secureTextEntry={true}
-                autoCapitalize="none"
-                value={confirmedPassword}
-                onChangeText={setConfirmedPassword}
-            />
-            
-
-            <SubmitButton onPress={handleSubmit}/>
-            {loading ? <Text>Loading...</Text> : <View></View>}
         </SafeAreaView >
         </SafeAreaProvider>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        alignContent: 'center',
-        margin: 'auto',
+        backgroundColor: '#1B4D3E',
+        justifyContent: 'flex-end',
     },
-    titleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 30,
-        padding: 10
+    card: {
+        backgroundColor: '#EFEFEF',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        paddingHorizontal: 28,
+        paddingTop: 28,
+        paddingBottom: 30,
     },
     title: {
-        fontSize: 28,
+        fontSize: 26,
         fontWeight: 'bold',
-    },
-    buttonText: {
-        color: '#fff',
+        marginBottom: 20,
+        color: '#111'
     },
     input: {
         height: 50,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        paddingHorizontal: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        paddingHorizontal: 16,
+        fontSize: 15,
+        marginBottom: 12,
+        color: '#333',
+    },
+    button: {
+        height: 52,
+        backgroundColor: '#1B4D3E',
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 16,
+    },
+    buttonText: {
+        color: '#fff',
         fontSize: 16,
-        backgroundColor: '#f9f9f9',
-        marginTop: 10,
-        width: inputWidth
+        fontWeight: '600'
+    },
+    
+    backWrap: {
+        marginBottom: 10
+    },
+    backText: {
+        color: '#1B4D3E',
+        fontSize: 14,
+        fontWeight: '500'
     },
 });
 

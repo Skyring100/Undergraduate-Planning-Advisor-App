@@ -5,7 +5,7 @@ On clicking login it will validate credentials and navigate to Dashboard page.*/
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import LoginButton from '../components/LoginRegister/LoginButton';
 import RegisterButton from '../components/LoginRegister/RegisterButton';
@@ -47,14 +47,9 @@ export default function LoginScreen() {
 
         setLoading(true);
         const result = await loginUser(emailInput, password);
-        if(result.success){
-            setLoading(false);
-            navigation.navigate('Dashboard',{})            
-        }else{
-            setLoading(false);
-            alert(result.message)
-        }
-        
+        setLoading(false);
+
+        result.success ? navigation.navigate('Dashboard',{}) : alert(result.message);
     }
 
 
@@ -62,70 +57,109 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaProvider>
-        <SafeAreaView style={[styles.container, {width: width, marginTop: -30}]}>
-            <View style={styles.titleContainer}>
-                <Text style={[styles.title]}>Login</Text>
+        <SafeAreaView style={[styles.screen]}>
+            <Image source={require('../assets/white-main-logo.png')} style={styles.logoImage} />
+
+            <View style={{marginBottom: 24, marginLeft: 28}}>
+                <Text style={{color: '#fff', fontSize: 34, fontWeight: 'bold', marginTop: 8,}}>Hello!</Text>
+                <Text style={{color: '#cde8d8', fontSize: 20,}}>Welcome Student</Text>
             </View>
-            {loading ? <Text>Loading...</Text> : <View></View>}
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your email"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={emailInput}
-                onChangeText={setEmailInput}
-            />
-            <TextInput
-                style={[styles.input]}
-                placeholderTextColor="#777"
-                placeholder="Enter your password"
-                autoCapitalize="none"
-                secureTextEntry={true}
-                value={password}
-                onChangeText={setPassword}
-            />
-
-            <LoginButton handlePress={handleLogin} />
-
-            <RegisterButton />
             
+
+            <View style={[styles.card]}>
+                <Text style={styles.title}>Login</Text>
+            
+                <TextInput
+                    style={[styles.input]}
+                    placeholderTextColor="#777"
+                    placeholder="Eemail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={emailInput}
+                    onChangeText={setEmailInput}
+                />
+                <TextInput
+                    style={[styles.input]}
+                    placeholderTextColor="#777"
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
+                />
+
+                <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
+                    <Text style={styles.buttonText}>{loading ? 'Logging in...' : 'Login'}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Register')} style={styles.registerButton}>
+                    <Text style={styles.registerButtonText}> Don't have an account? <Text style={styles.registerButtonTextBold}>Sign Up</Text></Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView >
         </SafeAreaProvider>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        alignContent: 'center',
-        margin: 'auto',
+        backgroundColor: '#1B4D3E',
+        justifyContent: 'flex-end',   // card hugs the bottom, green fills above
     },
-    titleContainer: {
-        flexDirection: 'row',
+    card: {
+        backgroundColor: '#EFEFEF',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        paddingHorizontal: 28,
+        paddingTop: 28,
+        paddingBottom: 30,
+        // Login card will naturally be shorter, Register taller due to more fields
+    },
+    title: { 
+        fontSize: 26, 
+        fontWeight: 'bold', 
+        marginBottom: 20, 
+        color: '#111'
+    },
+    input: {
+        height: 50, backgroundColor: '#fff', borderRadius: 10,
+        paddingHorizontal: 16, fontSize: 15, marginBottom: 12, color: '#333',
+    },
+    forgotWrap: {
+        alignSelf: 'flex-end',
+        marginBottom: 20
+    },
+    forgotText: { color: '#444',
+        fontSize: 13
+    },
+    button: {
+        height: 52,
+        backgroundColor: '#1B4D3E',
+        borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 30,
-        padding: 80
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
+        marginBottom: 16,
     },
     buttonText: {
         color: '#fff',
-    },
-    input: {
-        height: 50,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        paddingHorizontal: 15,
         fontSize: 16,
-        backgroundColor: '#f9f9f9',
-        marginTop: 10,
-        width: inputWidth
+        fontWeight: '600'
+    },
+    registerButton: {
+        alignItems: 'center'
+    },
+    registerButtonText: { 
+    color: '#555',
+    fontSize: 14
+    },
+    registerButtonTextBold: {
+        fontWeight: 'bold',
+        color: '#1B4D3E'
+    },
+    logoImage: {
+        resizeMode: 'contain',
+        width: 230,
+        height: 150
     },
 });
