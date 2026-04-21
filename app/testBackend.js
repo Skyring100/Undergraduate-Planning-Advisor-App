@@ -113,8 +113,8 @@ async function testCase(url, requestMessage){
     console.log("----------REQUEST----------")
     console.log(url);
     console.log(requestMessage);
-    const response = await fetch(url, requestMessage);
     try{
+        const response = await fetch(url, requestMessage);
         const data = await response.json();
         var passOrFail = "Pass";
         if(!data.success){
@@ -124,7 +124,7 @@ async function testCase(url, requestMessage){
         console.log(data);
         return data;
     }catch(err){
-        console.log("Test failed, reason below")
+        console.log("----------RESPONSE:Fail----------")
         console.log(err);
         process.exit();
     }
