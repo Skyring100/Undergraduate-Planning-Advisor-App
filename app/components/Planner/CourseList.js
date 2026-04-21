@@ -4,17 +4,14 @@ It will have a search bar to filter courses by name or CRN.
 Each course will have an 'Add to Planner' button that allows users to add the course to their degree planner.*/
 
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput, Button, Modal, Pressable } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
 import BackButton from '../components/BackButton';
 import { useThemeText, useThemeBackground,
     useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
-import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
 import CollapsibleView from '../components/CollapsibleView';
 import { getAllCourses } from '../services/courseService';
 import CoursePopUp from '../components/CoursePopUp';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { addCourseToDegreePlan } from '../services/degreePlannerService';
 
 
@@ -126,7 +123,6 @@ export default function CourseList() {
                             <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
                             <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
-                            <Pressable onPress={() => {}} style={[styles.buttonClose]}>
                             <Pressable onPress={handleAddToPlanner} style={[styles.buttonClose]}>
                                 <Text style={styles.textStyle}>Add to Planner</Text>
                             </Pressable>
