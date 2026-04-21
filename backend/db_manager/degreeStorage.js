@@ -3,7 +3,7 @@ const db = getDatabaseConnection();
 
 
 export function getDegreeByID(degreeID) {
-    const q = "SELECT * FROM degree JOIN degree_course_requirement ON degree.degree_id = degree_course_requirement.degree_id JOIN degree_credit_requirement ON degree.degree_id = degree_credit_requirement.degree_id WHERE degree.degree_id=? ORDER BY degree_course_requirement.level"
+    const q = `SELECT * FROM degree JOIN degree_course_requirement ON degree.degree_id = degree_course_requirement.degree_id JOIN degree_credit_requirement ON degree.degree_id = degree_credit_requirement.degree_id WHERE degree.degree_id=? ORDER BY SUBSTRING(degree_course_requirement.course_id, 5, 1);`
     const degree = db.prepare(q).all(degreeID);
     return degree;
 }

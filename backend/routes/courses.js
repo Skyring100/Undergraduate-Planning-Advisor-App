@@ -4,13 +4,13 @@ const courseStorage = require('../db_manager/courseStorage');
 const {authenticate} = require('../firebaseTokenHandler');
 
 const getCourseById = async (req, res) => {
-  console.log(req.url);
   const { id } = req.params;
 
   const course = courseStorage.getCourseById(id);
   
   var result;
   if (!course) {
+    console.log("found a course: " + id);
     result = { 
       success: false, 
       message: 'Course not found' 
@@ -25,7 +25,6 @@ const getCourseById = async (req, res) => {
   
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
-
 };
 
 const getAllCourses = async (req, res) => {
@@ -142,7 +141,7 @@ const prereqList = async (req, res) => {
 const prereqString = async (req, res) => {
   console.log("route has been called");
   const { completed, target } = req.params;
-  const courses = completed.split(",");
+  const courses = completed.trim().split(",");
   const matches = courseStorage.makeNestedPrereqString(courses, target);
   console.log("finished getting prereqs from db");
   

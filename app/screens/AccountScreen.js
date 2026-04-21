@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions, Alert } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
@@ -13,6 +13,7 @@ import GeneralMenuButton from '../components/GeneralMenuButton';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { auth } from '../services/authService';
+import { updateFirstName, updateLastName } from '../services/userService';
 
 const screenWidth = Dimensions.get('window').width;
 const inputWidth = screenWidth * 0.85; // 85% of screen
@@ -26,24 +27,40 @@ export default function AccountScreen() {
     const {width} = useWindowDimensions();
 
     const resetPassword = async () =>{
-    const email = await AsyncStorage.getItem("email");
-    sendPasswordResetEmail(auth, email)
-    .then(() => {
-        setPasswordResetText("Password reset email has been sent! Check your email at "+email);
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Firebase Password Reset Error: "+errorCode+" "+errorMessage)
-        setPasswordResetText("Email could not be sent, try again later");
-    });
-}
+        const email = await AsyncStorage.getItem("email");
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            setPasswordResetText("Password reset email has been sent! Check your email at "+email);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Firebase Password Reset Error: "+errorCode+" "+errorMessage)
+            setPasswordResetText("Email could not be sent, try again later");
+        });
+    }
+
+    const handleUpdateFirstName = async () => {
+        const studentID = await AsyncStorage.getItem('student_id');
+        Alert.prompt('Update First Name', 'Enter your new first name', (newName) =>  updateFirstName(studentID, newName));
+    };
+
+    const handleUpdateLastName = async () => {
+        const studentID = await AsyncStorage.getItem('student_id');
+        Alert.prompt('Update Last Name', 'Enter your new last name', (newName) => updateLastName(studentID, newName));
+    };
 
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
                 <View style={styles.titleContainer}>
                     <Text style={[styles.title, themeText]}>Account</Text>
+                </View>
+                <View>
+                    <GeneralMenuButton handlePress={handleUpdateFirstName} text={"Update First Name"} />
+                </View>
+                <View>
+                    <GeneralMenuButton handlePress={handleUpdateLastName} text={"Update Last Name"} />
                 </View>
                 <View>
                     <GeneralMenuButton handlePress={resetPassword} text={"Reset password"}></GeneralMenuButton>

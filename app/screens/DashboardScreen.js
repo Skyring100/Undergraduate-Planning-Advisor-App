@@ -11,7 +11,7 @@ import ScheduleButton from '../components/Dashboard/ScheduleButton';
 import EvaluatorButton from '../components/Dashboard/EvaluatorButton';
 import RequistesButton from '../components/Dashboard/RequistesButton';
 import AllCoursesButton from '../components/Dashboard/AllCoursesButton';
-import { useThemeBackground, useThemeShaded, useThemeText } from '../contexts/ThemeContext';
+import { useThemeBackground, useThemeShaded, useThemeText, useFirstColour } from '../contexts/ThemeContext';
 import DailyAgenda from '../components/Dashboard/DailyAgenda';
 import { useSchedule } from '../contexts/ScheduleContext';
 
@@ -25,6 +25,7 @@ export default function DashboardScreen (){
     const bg2 = useThemeBackground();
     const boxColour = useThemeShaded();
     const textColour = useThemeText();
+    const firstColour = useFirstColour().backgroundColor;
     const navigation = useNavigation();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date();
@@ -46,7 +47,7 @@ export default function DashboardScreen (){
             </View>
             <View style={[styles.bottomBox, boxColour]}>
                 <Pressable onPress={() => navigation.navigate("Schedule") } style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <Image style={[styles.bottomImage, {tintColor: '#035642'}]} source={require('../assets/navbar-icons/calendar.png')} />
+                    <Image style={[styles.bottomImage, {tintColor: firstColour}]} source={require('../assets/navbar-icons/calendar.png')} />
                     <Text style={[styles.text, textColour]}>Today - {dayName}</Text>
                 </Pressable>
                 <TodaySchedule/>                

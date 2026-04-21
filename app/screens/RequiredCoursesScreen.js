@@ -6,10 +6,8 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
-import {
-    useThemeText, useThemeBackground,
-    useFirstColour, useSecondColour, useThirdColour
-} from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeShaded,
+    useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import CourseListButton from '../components/Planner/CourseListButton';
 import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree, getDegreeByID } from '../services/degreeService';
@@ -25,16 +23,16 @@ const DummyData = [
         levelNumber: 100,
         courselist: [
             {
-                id: "CPSC 100",
-                title: "Introduction to Computer Science"
+                id: "CPSC100",
+                title: "Computer Programming I",
             },
             {
-                id: "CPSC 101",
-                title: "Introduction to Computer Science"
+                id: "CPSC101",
+                title: "Computer Programming II",
             },
             {
-                id: "CPSC 141",
-                title: "Computational Mathematics"
+                id: "CPSC141",
+                title: "Discrete Computational Mathematics",
             },
         ]
     },
@@ -42,16 +40,16 @@ const DummyData = [
         levelNumber: 200,
         courselist: [
             {
-                id: "CPSC 230",
-                title: "XXXX"
+                id: "CPSC230",
+                title: "Introduction to Logic Design"
             },
             {
-                id: "CPSC 231",
-                title: "XXXX"
+                id: "CPSC231",
+                title: "Computer Organization and Architecture"
             },
             {
-                id: "ENGL 270",
-                title: "XXXX"
+                id: "ENGL270",
+                title: "Expository Writing"
             },
         ]
     },
@@ -59,16 +57,16 @@ const DummyData = [
         levelNumber: 300,
         courselist: [
             {
-                id: "CPSC 300",
-                title: "XXXX"
+                id: "CPSC300",
+                title: "Software Engineering"
             },
             {
-                id: "CPSC 320",
-                title: "XXXX"
+                id: "CPSC320",
+                title: "Programming Languages"
             },
             {
-                id: "CPSC 321",
-                title: "XXXX"
+                id: "CPSC321",
+                title: "Operating Systems"
             },
         ]
     },
@@ -76,8 +74,8 @@ const DummyData = [
         levelNumber: 400,
         courselist: [
             {
-                id: "CPSC 444",
-                title: "XXXX"
+                id: "CPSC444",
+                title: "Computer Networks"
             }
         ]
     },]
@@ -87,12 +85,12 @@ const DummyElectives = [
         levelNumber: 100,
         courselist: [
             {
-                id: "Fun 100",
-                title: "Introduction to Computer Science"
+                id: "FUN 100",
+                title: "Introduction to Fun"
             },
             {
                 id: "COMM 100",
-                title: "Introduction to Computer Science"
+                title: "Introduction to Canadian Business"
             },
         ]
     },
@@ -153,6 +151,7 @@ export default function RequiredCoursesScreen() {
     // when this is added, use these as style components for text colour instead of #fff and #000
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const themeShaded = useThemeShaded();
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
@@ -162,68 +161,71 @@ export default function RequiredCoursesScreen() {
     // const themeBg = useThemeBackground();
     // TODO: use "setCurrentUserDegree" in userService to change the user's selected degree
     // Whenever you want to access selected degree, use "await AsyncStorage.getItem("current_degree_id")"
-
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={[{ width: width, height: height }, themeBg]}>
-                {/* <AddButton onPress={() => { navigation.navigate('EditDegreeReqs') }} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton> */}
-
+            <SafeAreaView style={[themeBg]}>
                 <FlatList
                     data={DummyData}
-                    ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
-                    renderItem={({ item: l }) => (
-                        <View key={l.levelNumber}>
+                    renderItem={({item: l}) => (
+                        <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                             <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                         </View>
                     )}
                     keyExtractor={(l) => l.levelNumber.toString()}
                     ListFooterComponent={
-                        <SafeAreaView style={{ marginBottom: 50 }}>
+                        <SafeAreaView style={{marginBottom: 50}}>
                             <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
                             {DummyElectives.map(l => (
-                                <View key={l.levelNumber}>
+                                <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                                     <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                                 </View>
                             ))}
                         </SafeAreaView>
 
-                    }
-                />
+                }
+            />
 
-            </SafeAreaView>
-        </SafeAreaProvider>
+        </SafeAreaView>
+    </SafeAreaProvider>
     )
 }
 
 
 function LevelSection({ levelNumber, courseData }) {
     const themeText = useThemeText();
+    const themeShaded = useThemeShaded();
+    const themeBg = useThemeBackground();
+    const firstColour = useSecondColour();
     const secondColour = useSecondColour();
     const thirdColour = useThirdColour();
     const route = useRoute();
     const { yearIndex, semesterIndex, degreePlanID } = route.params;
-
-
     return (
         <View>
-            <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
-                <Text style={[styles.levelHeader, secondColour, themeText]}>Level {levelNumber}</Text>
-                <Text style={[styles.done, secondColour, themeText]}>Done</Text>
+            <View style={{flexDirection: 'column', alignItems: 'left'}}>
+                <Text style={[styles.levelHeader, themeShaded, themeText]}>{levelNumber} Level</Text>
+                <View style={[styles.horizontalLine, firstColour]}></View>
             </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
+            <View style={{flexDirection: 'column', justifyContent: 'center', gap: 10, padding: 10, }}>
                 {
                     courseData.map(course => (
-
-                        <View key={course.id} style={{ flexDirection: 'row', justifyContent: 'center', }}>
-                            {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
+                        
+                        <View key={course.id} style={{
+                            flexDirection: 'row', 
+                            justifyContent: 'space-between',
+                            borderRadius: 10,
+                            alignItems: "center",
+                            padding: 5,
+                            paddingRight: 10,
+                            ...themeBg,
+                        }}>
+                            {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text> 
                             }
-                            <CoursePopUp
-                                course={course}
-                                yearIndex={yearIndex}
-                                semesterIndex={semesterIndex}
-                                degreePlanID={degreePlanID}
-                            />
-                            <CourseCompletedButton />
+                            <View style={{flexDirection: "row", alignItems: "center",}}>
+                                <View style={[styles.verticalLine, firstColour]}></View>
+                                <CoursePopUp course={course}></CoursePopUp>
+                            </View>
+                            <CourseCompletedButton/>
                         </View>
                     ))
                 }
@@ -255,11 +257,24 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
     },
-    levelHeader: {
+    verticalLine: {
+        padding: 4,
+        borderRadius: 10,
+        width: 8,
+        marginLeft: 5,
+        marginRight: 5,
+        height: 40,
+    },
+    horizontalLine: {
+        padding: 4,
+        margin: 5,
+        borderRadius: 10,
+        height: 8,
+        flex: 1,
+    },
+    levelHeader:{
+        fontSize: 18,
         fontWeight: 'bold',
-        fontSize: 25,
-        width: '70%',
-        textAlign: 'center'
     },
     courseHeader: {
         color: '#ffffffff',

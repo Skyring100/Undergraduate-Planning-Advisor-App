@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions, View } from 'react-native';
-import { borderColour, fourthLight, mainDark, mainLight, thirdDark, thirdLight, useThemeStore, useFirstColour } from '../../contexts/ThemeContext';
+import { useFirstColour, borderColour, fourthLight, mainDark, mainLight, thirdDark, thirdLight, useThemeStore} from '../../contexts/ThemeContext';
 import OutlinedText from '@kdn0325/react-native-outlined-text';
 
 const screenWidth = Dimensions.get('window').width;
@@ -13,7 +13,7 @@ const buttonHeight = screenHeight *0.5;
 export default function AddSectionButton() {
     const navigation = useNavigation();
     const { isDarkMode, indexColour } = useThemeStore();
-    const firstColour = useFirstColour();
+    const firstBg = useFirstColour();
     
     const handlePress = () => {
         navigation.navigate('AddSection',{})
@@ -21,7 +21,7 @@ export default function AddSectionButton() {
     
     return (
         <TouchableOpacity
-            style={[styles.button, firstColour]}
+            style={[styles.button, firstBg]}
             onPress={handlePress}
             activeOpacity={0.95}
         >
@@ -32,7 +32,6 @@ export default function AddSectionButton() {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#035642',
         marginHorizontal: 12,
         marginTop: 4,
         paddingVertical: 10,

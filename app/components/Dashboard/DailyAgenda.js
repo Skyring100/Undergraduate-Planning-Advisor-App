@@ -1,10 +1,11 @@
 import { View, Text, FlatList, StyleSheet, Image, useWindowDimensions } from "react-native";
-import { useThemeText, useThemeBackground, useThemeGreyed} from "../../contexts/ThemeContext";
+import { useFirstColour, useThemeText, useThemeBackground, useThemeGreyed} from "../../contexts/ThemeContext";
 import { useSchedule } from "../../contexts/ScheduleContext";
 
 export default function DailyAgenda() {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const firstBg = useFirstColour();
     const {schedule, loading} = useSchedule();
     const {height, width} = useWindowDimensions();
 
@@ -17,7 +18,7 @@ export default function DailyAgenda() {
             keyExtractor={(item) => item.crn.toString()}
             renderItem={({ item }) => (
                 <View style={[styles.card, themeBg, {width: width*0.8}]}>
-                    <View style={styles.cardAccent}/>
+                    <View style={[styles.cardAccent, firstBg]}/>
                         <View style={styles.cardContent}>
                             <Text style={[styles.cardCourseId, themeText]}>{item.course_id}</Text>
                             <Text style={[styles.cardCourseName, themeText]}>{item.course_name}</Text>
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         height: '40%',
         width: 5,
-        backgroundColor: '#035642',
         borderRadius: 5,
     },
     cardContent: {

@@ -14,7 +14,11 @@ export default function CoursePopUPButton({course, yearIndex, semesterIndex, deg
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
     const buttonText = (course.id != null) ? course.id : "----";
+<<<<<<< HEAD
     const buttonText2 = (course.title != null) ? course.title : "----";
+=======
+    
+>>>>>>> refs/remotes/origin/master
     const navigation = useNavigation();
 
     const handleAddToPlanner = async() =>{

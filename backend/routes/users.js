@@ -7,11 +7,9 @@ const {formatResponseObject} = require('../server');
 const getCurrentUser = async (req, res) => {
   const {student_id} = req.params;
 
-  console.log(req.url);
 
   const user = await userStorage.getUserByStudentID(student_id);
-  console.log("user gotten from getcurrent in routes:")
-  console.log(user)
+
 
   var result;
   if (!user) {
@@ -30,6 +28,32 @@ const getCurrentUser = async (req, res) => {
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
 };
+
+const updateFirstName = async (req, res) => {
+  console.log(req.url);
+  console.log(req.params);
+  console.log(req.body);
+
+  const {formatResponseObject} = require('../server');
+
+  const {studentID, firstName} = req.body;
+
+  const updateRes = userStorage.updateFirstName(studentID, firstName);
+  formatResponseObject(res, updateRes, "Changed user first name", "Failed to update user first name");
+}
+
+const updateLastName = async (req, res) => {
+  console.log(req.url);
+  console.log(req.params);
+  console.log(req.body);
+
+  const {formatResponseObject} = require('../server');
+
+  const {studentID, lastName} = req.body;
+
+  const updateRes = userStorage.updateLastName(studentID, lastName);
+  formatResponseObject(res, updateRes, "Changed user last name", "Failed to update user last name");
+}
 
 const addCompletedCourses = async (req, res) => {
   console.log(req.url);
@@ -74,6 +98,8 @@ const setCurrentUserDegreePlan = async (req, res) => {
 
 router.get('/profile/:student_id', authenticate,getCurrentUser);
 router.put('/courses/:student_id', authenticate, addCompletedCourses);
+router.put('/first-name/:student_id', authenticate, updateFirstName);
+router.put('/last-name/:student_id', authenticate, updateLastName);
 router.put('/set-degree', authenticate, setCurrentUserDegree);
 router.put('/set-degree-plan', authenticate, setCurrentUserDegreePlan);
 

@@ -10,7 +10,7 @@ export default function CourseCompletedButton() {
     const uncheckedColour = useThemeText();
 
     return (
-        <View style={[styles.container, thirdColour]}>
+        <View style={[styles.container]}>
             <Checkbox 
                 style={styles.checkbox}
                 value={isChecked}
@@ -26,7 +26,6 @@ export default function CourseCompletedButton() {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        width: '30%',
     },
     checkbox: {
         borderRadius: 5,
