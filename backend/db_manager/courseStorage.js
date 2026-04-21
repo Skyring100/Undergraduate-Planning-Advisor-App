@@ -3,9 +3,7 @@ const db = getDatabaseConnection();
 
 
 export function getCourseById(id) {
-
-    const course = db.prepare('SELECT * FROM course JOIN prereq ON course.course_id = prereq.course_id WHERE course.course_id=? ').get(id);
-
+    const course = db.prepare('SELECT * FROM course WHERE course.course_id=? ').get(id);
     return course;
 }
 
@@ -24,8 +22,6 @@ export function getCoursesByDepartment(department){
 
 export function getDepartmentCodes(){
     const departments = db.prepare('SELECT department FROM course GROUP BY department').all();
-    console.log("Departments:");
-    console.log(departments);
     return departments;
 }
 
@@ -56,7 +52,6 @@ export function makeNestedPrereqString(completed, target)
     }
 
     //now pair on precedence
-    console.log("pairing on precedence");
     while (prereqList.length > 1) {
         for (let p=highest; p>0; p--) {
             for (let i=0; i<prereqList.length; i++) {
@@ -68,7 +63,6 @@ export function makeNestedPrereqString(completed, target)
             }
         }
     }
-    console.log("flattening spikes");
     // flatten associativity spikes
     let ret = prereqList[0];
     let modMade = true;
@@ -85,7 +79,6 @@ export function makeNestedPrereqString(completed, target)
             }
         }
     }
-    console.log("wrapping courses");
 
     // wrap singles recursively
     function wrapCourses(current) {
@@ -133,7 +126,6 @@ export function checkIfPrereqsMatchCourse(completed, target)
     }
 
     //now pair on precedence
-    console.log("pairing on precedence");
     while (prereqList.length > 1) {
         for (let p=highest; p>0; p--) {
             for (let i=0; i<prereqList.length; i++) {
@@ -145,7 +137,6 @@ export function checkIfPrereqsMatchCourse(completed, target)
             }
         }
     }
-    console.log("flattening spikes");
     // flatten associativity spikes
     let ret = prereqList[0];
     let modMade = true;
@@ -162,7 +153,6 @@ export function checkIfPrereqsMatchCourse(completed, target)
             }
         }
     }
-    console.log("wrapping courses");
 
     // wrap singles recursively
     function wrapCourses(current) {
@@ -213,25 +203,18 @@ function recursiveHaveNeed(completed, root, first) {
     if (root == undefined) return [];
     switch (root.relation) {
         case "single":
-            console.log("found a single course: " + root.name)
             return [{
                 state: completed.includes(root.name) ? "have" : "need",
                 course: root.name,
             }];
         case "and":
-            console.log("found an AND")
             if (first) {
-                console.log("found the first one")
                 return root.on.map(obj => recursiveHaveNeed(completed, obj, false)[0]);
             }
             else {
                 let roe = root.on.every(obj => recursivePrereqCheck(completed, obj));
                 let text = "(" + root.on.map(obj => {
                     let rhn = recursiveHaveNeed(completed, obj, false)[0];
-                    console.log("rhn: ")
-                    console.log(JSON.stringify(rhn));
-                    console.log("so course is: ")
-                    console.log(rhn.course);
                     return rhn.course;
                 }).join(" and ") + ")"
                 
@@ -241,15 +224,10 @@ function recursiveHaveNeed(completed, root, first) {
                 }];
             }
         case "or":
-            console.log("found an OR")
             let ros = root.on.every(obj => recursivePrereqCheck(completed, obj));
 
             let text = "(" + root.on.map(obj => {
                 let rhn = recursiveHaveNeed(completed, obj, false)[0];
-                console.log("rhn: ")
-                console.log(JSON.stringify(rhn));
-                console.log("so course is: ")
-                console.log(rhn.course);
                 return rhn.course;
             }).join(" or ") + ")"
             

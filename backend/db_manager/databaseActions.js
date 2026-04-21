@@ -69,7 +69,7 @@ function createTables(){
             degree_id INTEGER,
             course_id TEXT,
             min_grade TEXT,
-            PRIMARY KEY (degree_id, course_id),
+            nesting INTEGER,
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
@@ -107,6 +107,7 @@ function createTables(){
             student_id TEXT,
             course_id INTEGER,
             in_progress BOOLEAN,
+            grade TEXT,
             PRIMARY KEY (student_id, course_id),
             FOREIGN KEY (student_id) REFERENCES user(student_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
@@ -158,8 +159,6 @@ function dropTables(){
         DROP TABLE IF EXISTS degree_credit_requirement;
         DROP TABLE IF EXISTS degree;
         DROP TABLE IF EXISTS section;
-        DROP TABLE IF EXISTS prereq;
-        DROP TABLE IF EXISTS user;
     `);
 }
 
@@ -177,9 +176,9 @@ function dummyData(){
     `);
     // this will change if test@test.com's user id changes
     db.exec(`
-        INSERT INTO degree_plan(degree_plan_id, student_id, degree_plan_name, created_at) VALUES
-            (1, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Computer Science", "2026-04-20"),
-            (2, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Mathematics", "2026-04-20")
+        INSERT INTO degree_plan(degree_plan_id, degree_id, student_id, degree_plan_name) VALUES
+            (1, 1, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Computer Science"),
+            (2, 2, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Mathematics")
     `);
     db.exec(`
         INSERT INTO degree_plan_course(degree_plan_id, year, semester_id, course_id) VALUES
@@ -303,7 +302,35 @@ function dummyData(){
             (2, "PHYS101", "C-", 2),
             (2, "PHYS111", "C-", 1)
     `);
+
+    db.exec(`
+        INSERT OR REPLACE INTO degree_credit_requirement VALUES
+            (1, 1, "400-Level Courses", 12);
+    `);
+
+    db.exec(`
+        INSERT OR REPLACE INTO user_taking_degree VALUES
+            ("vG2OQvppE5fs0SDP9THGUF01aOq2", 1);
+    `);
+
+
+    db.exec(`
+        INSERT OR REPLACE INTO user_completed_course VALUES
+            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC100", 0, "B+"),
+            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC141", 0, "B+"),
+            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC101", 0, "B+"),
+            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC281", 1, "B+"),
+    `);
     
+    /*
+
+course                     degree_plan_degree       
+degree                     prereq                   
+degree_course_requirement  section                  
+degree_credit_requirement  user                     
+degree_plan                user_completed_course    
+degree_plan_course         user_taking_degree       
+     */
 }
 
 export function getDatabaseConnection(){
