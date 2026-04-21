@@ -29,6 +29,26 @@ const getCurrentUser = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
+const getAllCheckedOffBy = async (req, res) => {
+  const {student_id} = req.params;
+  const resp = await userStorage.getAllCheckedOffBy(student_id);
+  var result;
+  if (!resp) {
+    result = { 
+      success: false, 
+      message: 'User not found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'User found', 
+      data: resp
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
+
 const updateFirstName = async (req, res) => {
   console.log(req.url);
   console.log(req.params);
@@ -100,6 +120,7 @@ router.get('/profile/:student_id', authenticate,getCurrentUser);
 router.put('/courses/:student_id', authenticate, addCompletedCourses);
 router.put('/first-name/:student_id', authenticate, updateFirstName);
 router.put('/last-name/:student_id', authenticate, updateLastName);
+router.get('/checked/:student_id', authenticate, getAllCheckedOffBy);
 router.put('/set-degree', authenticate, setCurrentUserDegree);
 router.put('/set-degree-plan', authenticate, setCurrentUserDegreePlan);
 

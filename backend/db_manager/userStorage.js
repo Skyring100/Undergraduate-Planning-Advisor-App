@@ -1,6 +1,15 @@
 import { getDatabaseConnection } from "./databaseActions.js";
 const db = getDatabaseConnection();
 
+export function getAllCheckedOffBy(studentID) {
+    const q = `
+    SELECT * FROM user 
+        JOIN user_checked_course ON (
+            user.student_id = user_checked_course.student_id
+        AND user.current_degree_id = user_checked_course.degree_id
+    ) WHERE user.student_id = ?;`
+    return db.prepare(q).all(studentID).map(c => c.course_id);
+}
 
 export function getUserByEmail(email) {
   const user = db.prepare('SELECT * FROM user WHERE user.email=?').get(email);

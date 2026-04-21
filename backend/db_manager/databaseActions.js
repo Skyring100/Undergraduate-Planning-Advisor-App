@@ -113,6 +113,15 @@ function createTables(){
             FOREIGN KEY (student_id) REFERENCES user(student_id),
             FOREIGN KEY (course_id) REFERENCES course(course_id)
         );
+        CREATE TABLE IF NOT EXISTS user_checked_course(
+            student_id TEXT,
+            degree_id INTEGER,
+            course_id TEXT,
+            PRIMARY KEY (student_id, degree_id, course_id),
+            FOREIGN KEY (student_id) REFERENCES user(student_id),
+            FOREIGN KEY (course_id) REFERENCES course(course_id),
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
+        );
     `);
 
     //Degree planner related tables
@@ -150,6 +159,7 @@ function dropTables(){
     console.log("Dropping tables");
     // We will NOT drop course table since it contains all web scraped data
     db.exec(`
+        DROP TABLE IF EXISTS user_checked_course;
         DROP TABLE IF EXISTS degree_plan_course;
         DROP TABLE IF EXISTS degree_plan_degree;
         DROP TABLE IF EXISTS degree_plan;
@@ -245,7 +255,7 @@ function dummyData(){
 
     db.exec(`
         INSERT OR REPLACE INTO degree_credit_requirement VALUES
-            (1, 1, '400-Level Courses', 12);
+            (1, 1, '400-Level Courses', 12),
             (2, 1, '400-Level Courses', 12);
     `);
 
@@ -261,6 +271,13 @@ function dummyData(){
             ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC141', 0, 'B+'),
             ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC101', 0, 'B+'),
             ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC281', 1, 'B+')
+    `);
+    db.exec(`
+        INSERT OR REPLACE INTO user_checked_course VALUES
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 1, 'CPSC100'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 1, 'CPSC141'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 1, 'CPSC101'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 1, 'CPSC281')
     `);
     
     /*
