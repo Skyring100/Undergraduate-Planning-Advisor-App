@@ -166,7 +166,7 @@ export default function RequiredCoursesScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[{ width: width, height: height }, themeBg]}>
-                <AddButton onPress={() => { navigation.navigate('EditDegreeReqs') }} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton>
+                {/* <AddButton onPress={() => { navigation.navigate('EditDegreeReqs') }} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton> */}
 
                 <FlatList
                     data={DummyData}

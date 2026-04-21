@@ -36,7 +36,7 @@ export const addCourseToDegreePlan = async (degreePlanID, year, semester, course
     }
 };
 
-export const createDegreePlan = async (degreePlanName, studentID) => {
+export const createDegreePlan = async (degreePlanName, studentID, degreeID) => {
     try{
         const url = `${API_BASE_URL}/degree_plans/create`;
         console.log(url);
@@ -44,7 +44,8 @@ export const createDegreePlan = async (degreePlanName, studentID) => {
         const fetchReq = getBaseRequestHTTP('POST', token);
         fetchReq['body'] = JSON.stringify({
                 degree_plan_name : degreePlanName,
-                student_id : studentID
+                student_id : studentID,
+                degree_id: degreeID
         });
         const response = await fetch(url, fetchReq);
         const data = await response.json();
