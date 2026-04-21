@@ -294,7 +294,7 @@ function YearSection({yearNumber, semesterData, currentPlan}) {
                         <View key={sem.semesterNumber} style={{width: '100%'}}>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', zIndex: 2}}>
                                 <Text style={[styles.semesterHeader, themeText, shade]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
-                                <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1, degreePlanID: currentPlan})}} height={'auto'} width={'auto'} title=" + " marginTop={5} ></AddButton>
+                                <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1, degreePlanID: currentPlan})}} height={'auto'} width={'auto'} title=" + " marginTop={5} color={themeText.color}></AddButton>
                             </View>
                             <View style={[styles.line, {borderColor: colour.backgroundColor}]}/>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
