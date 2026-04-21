@@ -2,9 +2,9 @@ import { DatabaseSync } from "node:sqlite";
 const DATABASE_PATH = './db/database.db';
 const db = initalizeDatabase();
 //Temporary reset for database for testing purposes
-//dropTables();
+dropTables();
 createTables();
-// dummyData();
+ dummyData();
 
 function initalizeDatabase(){
     return new DatabaseSync(DATABASE_PATH);
@@ -70,9 +70,10 @@ function createTables(){
             course_id TEXT,
             min_grade TEXT,
             nesting INTEGER,
-            FOREIGN KEY (degree_id) REFERENCES degree(degree_id),
-            FOREIGN KEY (course_id) REFERENCES course(course_id)
+            FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         );
+    `);
+    db.exec(`
         CREATE TABLE IF NOT EXISTS degree_credit_requirement (
             degree_id INTEGER,
             credit_requirement_id INTEGER,
@@ -164,162 +165,162 @@ function dropTables(){
 
 function dummyData(){
     db.exec(`
-        INSERT INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff'), ('ENGL270', 'English 2', 3, 'Basic English'), ('CPSC300', 'Programming 3', 3, 'Advanced Java'), ('CPSC320', 'Databases 1', 3, 'Introduction to Databases'), ('CPSC321', 'Databases 2', 3, 'More Databases'), ('CPSC444', 'Computer Arch 4', 3, 'More assembly stuff')
+        INSERT OR REPLACE INTO course(course_id, title, credits, description) VALUES ('CPSC100', 'Programming 1', 3, 'Basic Java'), ('CPSC101', 'Programming 2', 3, 'Advanced Java'), ('CPSC141', 'Discrete Math', 3, 'Lots of cpsc math'), ('CPSC230', 'Computer Arch', 3, 'Assembly stuff'), ('CPSC231', 'Computer Arch 2', 3, 'More assembly stuff'), ('ENGL270', 'English 2', 3, 'Basic English'), ('CPSC300', 'Programming 3', 3, 'Advanced Java'), ('CPSC320', 'Databases 1', 3, 'Introduction to Databases'), ('CPSC321', 'Databases 2', 3, 'More Databases'), ('CPSC444', 'Computer Arch 4', 3, 'More assembly stuff')
     `);
     db.exec(`
         INSERT INTO section(crn, course_id, days_of_week, start_time, end_time, start_date, end_date) VALUES (1, 'CPSC100','MWF', '08:00', '09:20', '2026/03/16', '2026/05/27'), (2, 'CPSC101', 'TR', '09:30', '10:50', '2026/03/16', '2026/05/27')
     `);
     db.exec(`
-        INSERT INTO degree(degree_id, degree_name, is_minor) VALUES
-            (1, "Computer Science", FALSE),
-            (2, "Mathematics", FALSE)
+        INSERT OR REPLACE INTO degree(degree_id, degree_name, is_minor) VALUES
+            (1, 'Computer Science', FALSE),
+            (2, 'Mathematics', FALSE)
     `);
     // this will change if test@test.com's user id changes
     db.exec(`
-        INSERT INTO degree_plan(degree_plan_id, degree_id, student_id, degree_plan_name) VALUES
-            (1, 1, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Computer Science"),
-            (2, 2, "vG2OQvppE5fs0SDP9THGUF01aOq2", "Mathematics")
+        INSERT OR REPLACE INTO degree_plan(degree_plan_id, degree_id, student_id, degree_plan_name) VALUES
+            (1, 1, 'vG2OQvppE5fs0SDP9THGUF01aOq2', 'Computer Science'),
+            (2, 2, 'vG2OQvppE5fs0SDP9THGUF01aOq2', 'Mathematics')
     `);
     db.exec(`
-        INSERT INTO degree_plan_course(degree_plan_id, year, semester_id, course_id) VALUES
-            (1, 2024, 9, "CPSC100"),
-            (1, 2024, 9, "CPSC141"),
-            (1, 2025, 1, "CPSC101"),
-            (1, 2025, 9, "CPSC230"),
-            (1, 2026, 1, "CPSC231"),
-            (1, 2026, 1, "ENGL270"),
-            (1, 2026, 5, "CPSC321"),
-            (1, 2026, 9, "CPSC300"),
-            (1, 2026, 9, "CPSC320"),
-            (1, 2027, 1, "CPSC444")
+        INSERT OR REPLACE INTO degree_plan_course(degree_plan_id, year, semester_id, course_id) VALUES
+            (1, 2024, 9, 'CPSC100'),
+            (1, 2024, 9, 'CPSC141'),
+            (1, 2025, 1, 'CPSC101'),
+            (1, 2025, 9, 'CPSC230'),
+            (1, 2026, 1, 'CPSC231'),
+            (1, 2026, 1, 'ENGL270'),
+            (1, 2026, 5, 'CPSC321'),
+            (1, 2026, 9, 'CPSC300'),
+            (1, 2026, 9, 'CPSC320'),
+            (1, 2027, 1, 'CPSC444')
     `);
 
     // dummy data for degree courses
     db.exec(`
         INSERT INTO degree_course_requirement VALUES 
-            (1, "CPSC100", "C-", 1),
-            (1, "CPSC101", "C-", 1),
-            (1, "CPSC141", "C-", 1),
-            (1, "ENGL170", "C-", 2),
-            (1, "ENGL270", "C-", 1),
-            (1, "MATH100", "C-", 1),
-            (1, "CPSC224", "C-", 1),
-            (1, "CPSC230", "C-", 1),
-            (1, "CPSC231", "C-", 1),
-            (1, "CPSC260", "C-", 1),
-            (1, "CPSC281", "C-", 1),
-            (1, "MATH220", "C-", 1),
-            (1, "CPSC300", "C-", 1),
-            (1, "CPSC320", "C-", 1),
-            (1, "CPSC321", "C-", 1),
-            (1, "CPSC340", "C-", 1),
-            (1, "CPSC344", "C-", 2),
-            (1, "CPSC444", "C-", 1),
-            (1, "CPSC4XX", "C-", 1),
-            (1, "CPSC4XX", "C-", 1),
-            (1, "CPSC4XX", "C-", 1),
-            (1, "CPSC4XX", "C-", 1),
-            (1, "CPSC1XX", "C-", 2),
-            (1, "CPSC2XX", "C-", 2),
-            (1, "CPSC3XX", "C-", 2),
-            (1, "CPSC4XX", "C-", 2),
-            (1, "MATH335", "C-", 2),
-            (1, "STAT371", "C-", 1),
-            (1, "CPSC1XX", "C-", 2),
-            (1, "CPSC2XX", "C-", 2),
-            (1, "CPSC3XX", "C-", 2),
-            (1, "CPSC4XX", "C-", 2),
-            (1, "MATH335", "C-", 2),
-            (1, "STAT371", "C-", 1),
-            (1, "CPSC1XX", "C-", 2),
-            (1, "CPSC2XX", "C-", 2),
-            (1, "CPSC3XX", "C-", 2),
-            (1, "CPSC4XX", "C-", 2),
-            (1, "MATH335", "C-", 2),
-            (1, "STAT371", "C-", 1),
-            (1, "BIOL103", "C-", 2),
-            (1, "BIOL104", "C-", 2),
-            (1, "CHEM100", "C-", 2),
-            (1, "CHEM101", "C-", 2),
-            (1, "ENVS101", "C-", 2),
-            (1, "GEOG204", "C-", 2),
-            (1, "GEOG205", "C-", 2),
-            (1, "GEOG210", "C-", 2),
-            (1, "PHYS100", "C-", 2),
-            (1, "PHYS101", "C-", 2),
-            (1, "PHYS110", "C-", 2),
-            (1, "PHYS111", "C-", 2),
-            (1, "PSYC101", "C-", 1),
-            (1, "BIOL103", "C-", 2),
-            (1, "BIOL104", "C-", 2),
-            (1, "CHEM100", "C-", 2),
-            (1, "CHEM101", "C-", 2),
-            (1, "ENVS101", "C-", 2),
-            (1, "GEOG204", "C-", 2),
-            (1, "GEOG205", "C-", 2),
-            (1, "GEOG210", "C-", 2),
-            (1, "PHYS100", "C-", 2),
-            (1, "PHYS101", "C-", 2),
-            (1, "PHYS110", "C-", 2),
-            (1, "PHYS111", "C-", 2),
-            (1, "PSYC101", "C-", 1),
-            (2, "ENGL170", "C-", 2),
-            (2, "ENGL270", "C-", 1),
-            (2, "CPSC100", "C-", 1),
-            (2, "CPSC141", "C-", 1),
-            (2, "MATH100", "C-", 1),
-            (2, "MATH101", "C-", 1),
-            (2, "MATH202", "C-", 1),
-            (2, "MATH204", "C-", 1),
-            (2, "MATH220", "C-", 1),
-            (2, "MATH224", "C-", 1),
-            (2, "MATH230", "C-", 1),
-            (2, "MATH301", "C-", 1),
-            (2, "MATH302", "C-", 1),
-            (2, "MATH320", "C-", 1),
-            (2, "MATH335", "C-", 2),
-            (2, "MATH336", "C-", 1),
-            (2, "STAT371", "C-", 1),
-            (2, "STAT372", "C-", 1),
-            (2, "MATH326", "C-", 2),
-            (2, "MATH405", "C-", 1),
-            (2, "MATH4XX", "C-", 1),
-            (2, "MATH4XX", "C-", 1),
-            (2, "MATH4XX", "C-", 1),
-            (2, "MATH4XX", "C-", 1),
-            (2, "BIOL103", "C-", 2),
-            (2, "BIOL104", "C-", 2),
-            (2, "CHEM100", "C-", 2),
-            (2, "CHEM101", "C-", 2),
-            (2, "PHYS100", "C-", 2),
-            (2, "PHYS101", "C-", 2),
-            (2, "PHYS111", "C-", 1),
-            (2, "BIOL103", "C-", 2),
-            (2, "BIOL104", "C-", 2),
-            (2, "CHEM100", "C-", 2),
-            (2, "CHEM101", "C-", 2),
-            (2, "PHYS100", "C-", 2),
-            (2, "PHYS101", "C-", 2),
-            (2, "PHYS111", "C-", 1)
+            (1, 'CPSC100', 'C-', 1),
+            (1, 'CPSC101', 'C-', 1),
+            (1, 'CPSC141', 'C-', 1),
+            (1, 'ENGL170', 'C-', 2),
+            (1, 'ENGL270', 'C-', 1),
+            (1, 'MATH100', 'C-', 1),
+            (1, 'CPSC224', 'C-', 1),
+            (1, 'CPSC230', 'C-', 1),
+            (1, 'CPSC231', 'C-', 1),
+            (1, 'CPSC260', 'C-', 1),
+            (1, 'CPSC281', 'C-', 1),
+            (1, 'MATH220', 'C-', 1),
+            (1, 'CPSC300', 'C-', 1),
+            (1, 'CPSC320', 'C-', 1),
+            (1, 'CPSC321', 'C-', 1),
+            (1, 'CPSC340', 'C-', 1),
+            (1, 'CPSC344', 'C-', 2),
+            (1, 'CPSC444', 'C-', 1),
+            (1, 'CPSC4XX', 'C-', 1),
+            (1, 'CPSC4XX', 'C-', 1),
+            (1, 'CPSC4XX', 'C-', 1),
+            (1, 'CPSC4XX', 'C-', 1),
+            (1, 'CPSC1XX', 'C-', 2),
+            (1, 'CPSC2XX', 'C-', 2),
+            (1, 'CPSC3XX', 'C-', 2),
+            (1, 'CPSC4XX', 'C-', 2),
+            (1, 'MATH335', 'C-', 2),
+            (1, 'STAT371', 'C-', 1),
+            (1, 'CPSC1XX', 'C-', 2),
+            (1, 'CPSC2XX', 'C-', 2),
+            (1, 'CPSC3XX', 'C-', 2),
+            (1, 'CPSC4XX', 'C-', 2),
+            (1, 'MATH335', 'C-', 2),
+            (1, 'STAT371', 'C-', 1),
+            (1, 'CPSC1XX', 'C-', 2),
+            (1, 'CPSC2XX', 'C-', 2),
+            (1, 'CPSC3XX', 'C-', 2),
+            (1, 'CPSC4XX', 'C-', 2),
+            (1, 'MATH335', 'C-', 2),
+            (1, 'STAT371', 'C-', 1),
+            (1, 'BIOL103', 'C-', 2),
+            (1, 'BIOL104', 'C-', 2),
+            (1, 'CHEM100', 'C-', 2),
+            (1, 'CHEM101', 'C-', 2),
+            (1, 'ENVS101', 'C-', 2),
+            (1, 'GEOG204', 'C-', 2),
+            (1, 'GEOG205', 'C-', 2),
+            (1, 'GEOG210', 'C-', 2),
+            (1, 'PHYS100', 'C-', 2),
+            (1, 'PHYS101', 'C-', 2),
+            (1, 'PHYS110', 'C-', 2),
+            (1, 'PHYS111', 'C-', 2),
+            (1, 'PSYC101', 'C-', 1),
+            (1, 'BIOL103', 'C-', 2),
+            (1, 'BIOL104', 'C-', 2),
+            (1, 'CHEM100', 'C-', 2),
+            (1, 'CHEM101', 'C-', 2),
+            (1, 'ENVS101', 'C-', 2),
+            (1, 'GEOG204', 'C-', 2),
+            (1, 'GEOG205', 'C-', 2),
+            (1, 'GEOG210', 'C-', 2),
+            (1, 'PHYS100', 'C-', 2),
+            (1, 'PHYS101', 'C-', 2),
+            (1, 'PHYS110', 'C-', 2),
+            (1, 'PHYS111', 'C-', 2),
+            (1, 'PSYC101', 'C-', 1),
+            (2, 'ENGL170', 'C-', 2),
+            (2, 'ENGL270', 'C-', 1),
+            (2, 'CPSC100', 'C-', 1),
+            (2, 'CPSC141', 'C-', 1),
+            (2, 'MATH100', 'C-', 1),
+            (2, 'MATH101', 'C-', 1),
+            (2, 'MATH202', 'C-', 1),
+            (2, 'MATH204', 'C-', 1),
+            (2, 'MATH220', 'C-', 1),
+            (2, 'MATH224', 'C-', 1),
+            (2, 'MATH230', 'C-', 1),
+            (2, 'MATH301', 'C-', 1),
+            (2, 'MATH302', 'C-', 1),
+            (2, 'MATH320', 'C-', 1),
+            (2, 'MATH335', 'C-', 2),
+            (2, 'MATH336', 'C-', 1),
+            (2, 'STAT371', 'C-', 1),
+            (2, 'STAT372', 'C-', 1),
+            (2, 'MATH326', 'C-', 2),
+            (2, 'MATH405', 'C-', 1),
+            (2, 'MATH4XX', 'C-', 1),
+            (2, 'MATH4XX', 'C-', 1),
+            (2, 'MATH4XX', 'C-', 1),
+            (2, 'MATH4XX', 'C-', 1),
+            (2, 'BIOL103', 'C-', 2),
+            (2, 'BIOL104', 'C-', 2),
+            (2, 'CHEM100', 'C-', 2),
+            (2, 'CHEM101', 'C-', 2),
+            (2, 'PHYS100', 'C-', 2),
+            (2, 'PHYS101', 'C-', 2),
+            (2, 'PHYS111', 'C-', 1),
+            (2, 'BIOL103', 'C-', 2),
+            (2, 'BIOL104', 'C-', 2),
+            (2, 'CHEM100', 'C-', 2),
+            (2, 'CHEM101', 'C-', 2),
+            (2, 'PHYS100', 'C-', 2),
+            (2, 'PHYS101', 'C-', 2),
+            (2, 'PHYS111', 'C-', 1)
     `);
 
     db.exec(`
         INSERT OR REPLACE INTO degree_credit_requirement VALUES
-            (1, 1, "400-Level Courses", 12);
+            (1, 1, '400-Level Courses', 12);
     `);
 
     db.exec(`
         INSERT OR REPLACE INTO user_taking_degree VALUES
-            ("vG2OQvppE5fs0SDP9THGUF01aOq2", 1);
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 1);
     `);
 
 
     db.exec(`
         INSERT OR REPLACE INTO user_completed_course VALUES
-            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC100", 0, "B+"),
-            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC141", 0, "B+"),
-            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC101", 0, "B+"),
-            ("vG2OQvppE5fs0SDP9THGUF01aOq2", "CPSC281", 1, "B+"),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC100', 0, 'B+'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC141', 0, 'B+'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC101', 0, 'B+'),
+            ('vG2OQvppE5fs0SDP9THGUF01aOq2', 'CPSC281', 1, 'B+')
     `);
     
     /*
