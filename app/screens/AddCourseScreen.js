@@ -103,6 +103,7 @@ export default function AddCourseScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+                <BackButton/>
                 <Tabs 
                 yearIndex ={yearIndex}
                 semesterIndex={semesterIndex}

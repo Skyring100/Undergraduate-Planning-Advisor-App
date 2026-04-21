@@ -35,6 +35,11 @@ const createDegree = async (req, res) => {
   console.log(req.url);
   console.log(req.body);
 
+  console.log(name);
+  console.log(is_minor);
+  console.log(course_reqs);
+  console.log(is_minor);
+
   const creationSuccess = await degreeStorage.createDegree(name, is_minor, course_reqs, credit_reqs);
 
   var result;
@@ -47,6 +52,7 @@ const createDegree = async (req, res) => {
     result = {
       success: true, 
       message: 'Created degree', 
+      data: creationSuccess
     };
   }
 

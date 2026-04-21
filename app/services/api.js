@@ -1,5 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 const IP = process.env.EXPO_PUBLIC_BACKEND_IP;
 const PORT = process.env.EXPO_PUBLIC_BACKEND_PORT;
 

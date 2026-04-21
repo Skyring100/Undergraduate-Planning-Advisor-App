@@ -14,7 +14,12 @@ export default function AddButton(props) {
                     borderColor: props.borderColour, 
                     borderWidth: props.borderWidth,
                     backgroundColor: props.backgroundColor,
-                    opacity: props.opacity
+                    opacity: props.opacity,
+                    left: props.left,
+                    right:props.right,
+                    marginRight: props.marginRight,
+                    marginLeft: props.marginLeft,
+                    marginTop: props.marginTop,
                     }]}>
                 <Text style={[styles.addButtonText, {color: props.color} ]}>{props.title}</Text>
             </View>

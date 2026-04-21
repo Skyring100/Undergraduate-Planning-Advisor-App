@@ -7,7 +7,8 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest"
   },
   "dependencies": {
     "@howljs/calendar-kit": "^2.5.6",
@@ -19,6 +20,7 @@
     "@react-navigation/native": "^7.1.28",
     "@react-navigation/native-stack": "^7.12.0",
     "@tighten/react-native-time-input": "^1.0.3",
+    "@types/jest": "29.5.14",
     "crypto": "^1.0.1",
     "dotenv": "^17.3.1",
     "expo": "~54.0.32",
@@ -26,6 +28,8 @@
     "expo-haptics": "~15.0.8",
     "expo-status-bar": "~3.0.9",
     "firebase": "^12.11.0",
+    "jest": "~29.7.0",
+    "jest-expo": "~54.0.17",
     "node": "^25.8.2",
     "os": "^0.1.2",
     "path": "^0.12.7",
@@ -53,5 +57,8 @@
   "devDependencies": {
     "patch-package": "^8.0.1",
     "react-native-dotenv": "^3.4.11"
+  },
+  "jest": {
+    "preset": "jest-expo"
   }
 }

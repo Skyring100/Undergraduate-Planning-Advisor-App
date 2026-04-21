@@ -39,35 +39,15 @@ export default function DropdownList({onPlanSelect}){
 
 
     const createPlanner = async (textInput) => {
-        const uid = await AsyncStorage.getItem("student_id");
-            if(!uid){
-                console.error('No logged in user');
-                return;
-            }
-
-        const profile = await getUserProfileByID(uid);
-        if(!profile.success){
-            console.error('Could not get user profile');
-            return;
+        try{
+            const planID = `local_${Date.now()}`;
+            const newPlan = {degree_ids: [], years:[]};
+            await AsyncStorage.setItem(`degree_plan_${planID}`, JSON.stringify(newPlan));
+            setPlanners(prev => [...prev, {degree_plan_name: textInput, degree_plan_id: planID}]);
+            setVisible(false);
+        } catch (e){
+            console.error('Failed to create planner: ', e);
         }
-
-        const student_id = profile.data.student_id;
-
-        //create new planner in database and update planner screen with new data
-        const result = await createDegreePlan(textInput, student_id);
-        console.log('student_id used for refetch: ', student_id);
-
-        if(result.success){
-            const updated = await getDegreePlanByID(student_id);
-            console.log('Updated data: ', JSON.stringify(updated));
-            if (updated.success){
-               setPlanners(updated.data.data); 
-            }
-            
-           setVisible(false); 
-        }
-
-        console.log('Create plan result: ', JSON.stringify(result));
         
     }
 
@@ -129,7 +109,7 @@ export default function DropdownList({onPlanSelect}){
                             <View style={[styles.dropdownOptions, themeBg, {top: top}]} >
                             <FlatList
                                 data={planners}
-                                keyExtractor={(item) => item.degree_plan_id.toString()}
+                                keyExtractor={(item) => (item.degree_plan_id ?? item.degree_plan_name.toString())}
                                 renderItem={({ item }) => (
                                     <TouchableOpacity 
                                         activeOpacity={0.8} 

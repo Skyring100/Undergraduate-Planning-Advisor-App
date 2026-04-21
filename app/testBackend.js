@@ -55,10 +55,11 @@ const testDegree = {
 }
 
 const testDegreePlan = {
-    degree_ids: [1],
+    name: "my plan",
+    degree_id: 1,
     years:[
         {
-            "year_number": 1,
+            "year_number": 2020,
             "semesters": [
                 {
                     "semester_number": 1,
@@ -71,7 +72,7 @@ const testDegreePlan = {
             ]
         },
         {
-            "year_number": 2,
+            "year_number": 2021,
             "semesters": [
                 {
                     "semester_number": 1,
@@ -88,7 +89,7 @@ const testDegreePlan = {
             ]
         },
         {
-            "year_number": 3,
+            "year_number": 2022,
             "semesters": [
                 {
                     "semester_number": 1,
@@ -97,7 +98,7 @@ const testDegreePlan = {
             ]
         },
         {
-            "year_number": 4,
+            "year_number": 2023,
             "semesters": [
                 {
                     "semester_number": 2,
@@ -108,17 +109,22 @@ const testDegreePlan = {
     ]
 }
 
-const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjM3MzAwNzY5YTA3ZTA1MTE2ZjdlNTEzOGZhOTA5MzY4NWVlYmMyNDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXVkIjoidW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXV0aF90aW1lIjoxNzc1MTYxOTA5LCJ1c2VyX2lkIjoiS2tXMjMweE5wUFJYM0ZtZ3lLRllNUjZzbzlqMiIsInN1YiI6IktrVzIzMHhOcFBSWDNGbWd5S0ZZTVI2c285ajIiLCJpYXQiOjE3NzUxNjE5MDksImV4cCI6MTc3NTE2NTUwOSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Y0Jv0rNy8K75Xz6YeSq72w4ZycEgMjM31BrRUxdEPIMgvCClg8o4pRaYn7SAHG5E9m-Ghta22dbe7axiVoqNiN1EqE12v6VTZz7jf38vrrd251Wyf0uUUExKYyd4IZ6vuSIPQfl8sVrgwscncm11TOs_uswB51_n57UXocCRP0hPA8aV4O-jKV6BPQ1QGm8-FMDup_sJT6DiIQCaO-_lRvcRHo3ycEoJOvVs8tuKPbVSjBINfw8dQzjPbT2Um5JCyp3FzBZvsR30fnElACxDxiKk8u8BP3Pr6RD-Nx9bzHh-qcsluMSPVgFB6duH2BSWOPpWjPYkW6LLV4MNbQ9MmA'
-
+const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiMDk1NzQ3YmY4MzMxZWE0YWQ1M2YzNzBjNjMyNjAxNzliMGQyM2EiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXVkIjoidW5kZXJncmFkdWF0ZWRlZ3JlZXBsYW5uLWNkOGVhIiwiYXV0aF90aW1lIjoxNzc2NzUzMDg3LCJ1c2VyX2lkIjoidkcyT1F2cHBFNWZzMFNEUDlUSEdVRjAxYU9xMiIsInN1YiI6InZHMk9RdnBwRTVmczBTRFA5VEhHVUYwMWFPcTIiLCJpYXQiOjE3NzY3NTMwODcsImV4cCI6MTc3Njc1NjY4NywiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.OWhnfrb03XFw7mGp-nKvTF4EpwP42MPK-xnTa6WDVrHaqrf9cf_oSK4ApztU6J7ikXd2ltpFpZrZEEuoHqSI7SwuyCELkDtdq5lHhYtg9u9W-YeGXZg6D5aHQp3tZuGP5Qia3XR6Zapen4F9PQe8JHFHKMavCLPJB_n2BMiOTJMiB1TVjooxr5_ecDAU9Je-DPPQR-Dev3ohWGMrz1N8PMXFLDXPBw_WoX-7ZEwWQe2U_Y55LCVsoRzMSoN-Z8ZU9WAq8EzuHVUeYJTKFFU-k24GU-CixPCvPVY2O8nIq44x52et5BsIzEUiFh6M4lckNnf-Nzoi54Q_7H_qL2zulg'
 async function testCase(url, requestMessage){
     console.log("----------REQUEST----------")
     console.log(url);
     console.log(requestMessage);
     const response = await fetch(url, requestMessage);
-    const data = await response.json();
-    console.log("----------RESPONSE----------");
-    console.log(data);
-    return data;
+    try{
+        const data = await response.json();
+        console.log("----------RESPONSE----------");
+        console.log(data);
+        return data;
+    }catch(err){
+        console.log("Test failed, reason below")
+        console.log(err);
+        process.exit();
+    }
 }
 
 
@@ -126,8 +132,8 @@ async function userTestCase(){
     var fetchReq;
     var response;
 
+    //Log in tests
     const courses = testUser.completed_courses;
-
     console.log("Testing Login");
     fetchReq = getBaseRequestHTTP('POST', token);
     fetchReq['body'] = JSON.stringify({
@@ -136,14 +142,47 @@ async function userTestCase(){
     });
     response = await testCase(`${API_BASE_URL}/auth/login`, fetchReq);
     
+    //Adding completed courses
     const student_id = response.data.student_id;
-
     console.log("Testing adding courses");
     fetchReq = getBaseRequestHTTP('PUT', token);
     fetchReq['body'] = JSON.stringify({courses});
-    await testCase(`${API_BASE_URL}/users/courses/${student_id}`, fetchReq);
+    response = await testCase(`${API_BASE_URL}/users/courses/${student_id}`, fetchReq);
+
+    //Adding dummy degree
+    console.log("Testing degree creation");
+    fetchReq = getBaseRequestHTTP('POST', token);
+    fetchReq['body'] = JSON.stringify({
+        name: testDegree.name,
+        is_minor: testDegree.isMinor,
+        course_reqs: testDegree.course_reqs,
+        credit_reqs: testDegree.credit_reqs
+    });
+    response = await testCase(`${API_BASE_URL}/degrees/create`, fetchReq);
+
+
+    //Adding dummy degree planner
+    const degree_id = response.data.lastInsertRowid
+    console.log("Testing degree creation");
+    fetchReq = getBaseRequestHTTP('POST', token);
+    fetchReq['body'] = JSON.stringify({
+            degree_plan_name : testDegreePlan.name,
+            student_id : student_id,
+            degree_id: degree_id
+    });
+    response = await testCase(`${API_BASE_URL}/degree_plans/create`, fetchReq);
 
     
+    //Add course to degee plan
+    console.log("Testing adding course to degree plan");
+    fetchReq = getBaseRequestHTTP('POST', token);
+    fetchReq['body'] = JSON.stringify({
+        degree_plan_id : degree_id,
+        year : 2020,
+        semester_id : 1,
+        course_id : "GEOG350"
+    });
+    response = await testCase(`${API_BASE_URL}/degree_plans/addCourse`, fetchReq);
 }
 
 
