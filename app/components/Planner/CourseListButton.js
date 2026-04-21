@@ -30,7 +30,7 @@ export default function CourseListButton({course}) {
                 <View style={styles.popupBackground}>
                     <View style={styles.mainContent}>
                         <View>
-                            <Text style={styles.modalText}>{course.id.replace(/\n/g, ' ')}: {course.title}</Text>
+                            <Text style={styles.modalText}>{course.id}: {course.title}</Text>
                             <Text style={styles.modalText}>{course.desc}</Text>
                             <Text style={styles.modalText}>{course.prereq}</Text>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>

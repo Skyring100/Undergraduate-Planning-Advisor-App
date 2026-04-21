@@ -4,8 +4,7 @@ It will have a search bar to filter courses by name or CRN.
 Each course will have an 'Add to Planner' button that allows users to add the course to their degree planner.*/
 
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput, Button, Modal, Pressable } from 'react-native';
-import degreePlanData from '../../data/degree_plans.json'
-import BackButton from '../BackButton';
+import degreePlanData from '../../data/degree_plans.json';
 import { useThemeText, useThemeBackground,
     useFirstColour, useSecondColour, useThirdColour} from "../../contexts/ThemeContext";
 import { useEffect, useState } from 'react';
@@ -13,7 +12,9 @@ import CollapsibleView from '../CollapsibleView';
 import { getAllCourses } from '../../services/courseService';
 import CoursePopUp from '../CoursePopUp';
 import { addCourseToDegreePlan } from '../../services/degreePlannerService';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -36,28 +37,35 @@ export default function CourseList() {
     const {yearIndex, semesterIndex, degreePlanID} = route.params;
 
     const handleAddToPlanner = async() =>{
-        console.log('Adding course with: ', {
-            degreePlanID,
-            yearIndex,
-            semesterIndex,
-            course_id: selectedCourse.course_id
-        })
-        const result = await addCourseToDegreePlan(
-            degreePlanID,
-            yearIndex+1,
-            semesterIndex+1,
-            selectedCourse.course_id
-        );
+        try{
+            const key = `degree_plan_${degreePlanID}`;
+            const raw = await AsyncStorage.getItem(key);
+            const plan = raw ? JSON.parse(raw) : {degree_ids: [], years: []};
 
-        console.log('Add course result: ', JSON.stringify(result));
+            let year = plan.years.find(y => y.year_number === yearIndex + 1);
+            if (!year){
+                    year = {year_number: yearIndex+1, semesters:[]};
+                    plan.years.push(year);
+            }
 
-        if(result.success){
+            let semester = year.semesters.find(s => s.semester_number === semesterIndex + 1);
+            if (!semester){
+                semester = {semester_number: semesterIndex+1, courses:[]};
+                year.semesters.push(semester);
+            }
+
+            if (!semester.courses.includes(selectedCourse.course_id)){
+                semester.courses.push(selectedCourse.course_id);
+            }
+
+            await AsyncStorage.setItem(key, JSON.stringify(plan));
+            console.log('Degree Plan: ', JSON.stringify(plan));
             setSelectedCourse(null);
             navigation.goBack();
-        } else {
-            console.error('Failed to add course');
+        } catch (e) {
+            console.error('Failed to add course: ', e);
         }
-    }
+    };
 
     useEffect(() => {
         getAllCourses().then((apiResult) => {
