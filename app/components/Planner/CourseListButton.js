@@ -60,8 +60,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         borderRadius: 18,
-        height: 40,
+        height: 'auto',
         marginBottom: 4,
+        paddingVertical: 10,
     },
     buttonText: {
         color: '#fff',

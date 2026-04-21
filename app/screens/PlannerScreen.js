@@ -11,10 +11,10 @@ import {useThemeText, useThemeBackground, useSecondColour, useThirdColour, useFi
 import {useWindowDimensions} from "react-native";
 import DropdownList from '../components/Planner/DropdownList';
 import AddButton from '../components/Planner/AddButton';
-import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { useState, useEffect, use } from 'react';
+import { useNavigation, useIsFocused, } from '@react-navigation/native';
+import { useState, useEffect, } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { createDegreePlan, getDegreePlanByID } from '../services/degreePlannerService';
+import { addCourseToDegreePlan, createDegreePlan, getDegreePlanByID } from '../services/degreePlannerService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
  
@@ -26,6 +26,9 @@ export default function PlannerScreen() {
     const [selectedYear, setSelectedYear] = useState(degreePlan.yearNumber ?? 1);
     const [studentID, setStudentID] = useState();
     const [degreeID, setDegreeID] = useState();
+    const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+    const [savePromptVisible, setSavePromptVisible] = useState(false);
+    const [pendingAction, setPendingAction] = useState(null);
 
     const isFocused = useIsFocused();
 
@@ -115,6 +118,7 @@ export default function PlannerScreen() {
                 }));
                 setDegreePlan(mapped);
                 setCurrentPlan(planId);
+                setHasUnsavedChanges(true);
             } catch (e) {
                 console.error('Failed to refresh plan: ', e);
             }
@@ -147,9 +151,11 @@ export default function PlannerScreen() {
     };
 
     const addYear = () => {
+        setHasUnsavedChanges(true);
         setDegreePlan(prev => [...prev, {yearNumber: prev.length + 1, semesters: []}]);
-    }
+    };
     const addSemester = (yearIndex) => {
+        setHasUnsavedChanges(true);
         setDegreePlan(prev => prev.map((year, index) => {
             if(index !== yearIndex) return year;
 
@@ -161,6 +167,36 @@ export default function PlannerScreen() {
             return {...year, semesters: [...year.semesters, {semesterNumber: newSemesterNumber, courses: []}]};
 
         }));
+    };
+
+    
+
+    const handleSave = async () => {
+        try{
+            const planId = await AsyncStorage.getItem('current_plan_id');
+            const raw = await AsyncStorage.getItem(`degree_plan_${planId}`);
+            if(!raw) return;
+
+            const plan = JSON.parse(raw);
+
+            for(const year of plan.years){
+                for(const semester of year.semesters){
+                    for(const course of semester.courses){
+                        const courseID = typeof course === 'object' ? course.id : course;
+                        await addCourseToDegreePlan(
+                            planId,
+                            year.year_number,
+                            semester.semester_number,
+                            courseID
+                        );
+                    }
+                }
+            }
+            setHasUnsavedChanges(false);
+            alert('Plan saved!');
+        } catch (e) {
+            console.error('Failed to save plan: ', e);
+        }
     }
     
     const themeText = useThemeText();
@@ -208,9 +244,50 @@ export default function PlannerScreen() {
                     </View>
                 </View>
             </Modal>
+            <Modal 
+                visible={savePromptVisible} 
+                transparent={true} 
+                animationType="fade">
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <View style={[styles.modalView, themeBg]}>
+                        <Text style={[themeText, {marginBottom: 10, fontSize: 20}]}>Would you like to save your degree plans?</Text>
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                            <AddButton onPress={async () => {
+                                await handleSave();
+                                setSavePromptVisible(false);
+                                setHasUnsavedChanges(false);
+                                pendingAction && pendingAction(); 
+                            }} 
+                                height={'auto'} width={'45%'} title=" Save "
+                                backgroundColor={firstColour.backgroundColor} color={themeText.color}></AddButton>
+                            <AddButton onPress={() => {
+                                setSavePromptVisible(false);
+                                setHasUnsavedChanges(false);
+                                pendingAction && pendingAction();
+                            }} 
+                                    height={40} width={'45%'} title="Don't Save"
+                                    color={themeText.color} backgroundColor={firstColour.backgroundColor}></AddButton>
+                        </View>
+                        
+                        
+                    </View>
+                </View>
+                </Modal>
                 <View style={{alignItems: 'center', justifyContent: 'center'}}> 
-                    <View style={{height: 10}}></View>
-                    <DropdownList onPlanSelect={handlePlanSelect}/>
+                    <View style={{height: 10}}/>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <DropdownList onPlanSelect={handlePlanSelect}/>
+                        <AddButton onPress={async () => {
+                                await handleSave();
+                                setSavePromptVisible(false);
+                                setHasUnsavedChanges(false);
+                                pendingAction && pendingAction(); 
+                            }} 
+                                height={50} width={'auto'} title=" Save "
+                                backgroundColor={firstColour.backgroundColor} color={themeText.color}
+                                padding={5} marginRight={-6} marginLeft={-25}></AddButton>
+                    </View>
+                    
                 </View>
                 <FlatList style={{flex: 1, width: width*0.95, alignSelf: 'center'}}
                     data={degreePlan}
@@ -225,12 +302,12 @@ export default function PlannerScreen() {
                 <View style = {{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                           
                     <AddButton onPress={() => setVisible(true)} 
-                            height={50} width={width*0.45} title="+ Add Semester"
+                            height={50} width={width*0.45} title="+ Semester"
                             backgroundColor={'#ffffff'} color={firstColour.backgroundColor}
                             borderWidth={2} borderColour={firstColour.backgroundColor}
                             opacity={0.4}></AddButton>
                     <AddButton onPress={() => addYear()} 
-                            height={50} width={width*0.45} title="+ Add Year"
+                            height={50} width={width*0.45} title="+ Year"
                             backgroundColor={'#ffffff'} color={firstColour.backgroundColor}
                             borderWidth={2} borderColour={firstColour.backgroundColor}
                             opacity={0.4}></AddButton>

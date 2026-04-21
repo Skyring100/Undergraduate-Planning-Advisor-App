@@ -43,7 +43,10 @@ export default function DropdownList({onPlanSelect}){
             const planID = `local_${Date.now()}`;
             const newPlan = {degree_ids: [], years:[]};
             await AsyncStorage.setItem(`degree_plan_${planID}`, JSON.stringify(newPlan));
-            setPlanners(prev => [...prev, {degree_plan_name: textInput, degree_plan_id: planID}]);
+            
+            const newPlanEntry = {degree_plan_name: textInput, degree_plan_id: planID};
+            setPlanners(prev => [...prev, newPlanEntry]);
+            setValue(textInput);
             setVisible(false);
         } catch (e){
             console.error('Failed to create planner: ', e);
@@ -154,17 +157,19 @@ const styles = StyleSheet.create({
     dropdownButton: {
         flexDirection: 'row',
         height: 50,
-        width: '100%',
+        width: '90%',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 15,
         borderRadius: 18,
+       
     },
     dropdownOptions: {
         position: 'absolute',
         //top: 53,
-        width: '100%',
+        width: '84%',
         padding: 10,
+        left: 15,
         maxHeight: 250, 
     },
     backdrop: {
