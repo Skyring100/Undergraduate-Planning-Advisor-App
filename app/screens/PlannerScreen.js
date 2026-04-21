@@ -101,7 +101,7 @@ export default function PlannerScreen() {
                 const planId = await AsyncStorage.getItem('current_plan_id');
                 if(!planId) return;
 
-                const raw = await AsyncStorage.getItem(`degree_plan_${currentPlan}`);
+                const raw = await AsyncStorage.getItem(`degree_plan_${planId}`);
                 if (!raw) return;
 
                 const plan = JSON.parse(raw);
@@ -125,6 +125,7 @@ export default function PlannerScreen() {
     
 
     const handlePlanSelect = async (plan) => {
+        setDegreePlan([]);
         setCurrentPlan(plan.degree_plan_id);
         await AsyncStorage.setItem('current_plan_id', String(plan.degree_plan_id));
 
@@ -132,10 +133,9 @@ export default function PlannerScreen() {
         if(!existing){
             const newPlan = {degree_ids: [plan.degree_plan_id], years: []};
             await AsyncStorage.setItem(`degree_plan_${plan.degree_plan_id}`, JSON.stringify(newPlan));
-            setDegreePlan([]);
         } else {
             const parsed = JSON.parse(existing);
-            const mapped = parsed.data.years.map(year => ({
+            const mapped = parsed.years.map(year => ({
                 yearNumber: year.year_number,
                 semesters: year.semesters.map(sem => ({
                     semesterNumber: sem.semester_number,
@@ -309,7 +309,7 @@ function SemesterCourses({courses}){
                 {
                     courses.map(c=>(
                         <View key={c}>
-                            <CourseListButton course={c}></CourseListButton>
+                            <CourseListButton course={{id: c}}></CourseListButton>
                         </View>
                     ))
                 }
