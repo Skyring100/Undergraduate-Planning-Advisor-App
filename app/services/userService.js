@@ -44,6 +44,48 @@ export const getUserProfileByID = async (uid) => {
     }
 };
 
+export const getAllCheckedOffBy = async (uid) => {
+    try {
+        const url = `${API_BASE_URL}/users/checked/${uid}`;
+
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('GET', token);
+        const response = await fetch(url, fetchReq);
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            let ret = {
+                success: true,
+                data: data.data,
+                message: data.message,
+            };
+            return ret;
+        } else {
+            return {
+                success: false,
+                message: data.message || 'Failed to fetch checked courses. Please try again.',
+            };
+        }
+    } catch (error) {
+        console.error('Get checked API error:', error);
+        console.error('Error details:', {
+            name: error.name,
+            message: error.message,
+        });
+        
+        let errorMessage = 'Network error. Please check your connection and try again.';
+        
+        if (error.message === 'Network request failed') {
+            errorMessage = 'Cannot connect to server. Please verify the server is running and accessible.';
+        }
+        
+        return {
+            success: false,
+            message: errorMessage,
+        };
+    }
+};
 
 export const updateFirstName = async (studentID, firstName) => {
   try{
@@ -141,3 +183,4 @@ export const setCurrentUserDegreePlan = async (student_id, degree_plan_id) => {
         return {success: false, data: null};
     }
 };
+

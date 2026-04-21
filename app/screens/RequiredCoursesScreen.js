@@ -19,131 +19,10 @@ import { useNavigation } from '@react-navigation/native';
 import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
 import {prereqString} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
-import {getUserProfileByID} from "../services/userService";
+import {getUserProfileByID, getAllCheckedOffBy} from "../services/userService";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const DummyData = [
-    {
-        levelNumber: 100,
-        courselist: [
-            {
-                id: "CPSC100",
-                title: "Computer Programming I",
-            },
-            {
-                id: "CPSC101",
-                title: "Computer Programming II",
-            },
-            {
-                id: "CPSC141",
-                title: "Discrete Computational Mathematics",
-            },
-        ]
-    },
-    {
-        levelNumber: 200,
-        courselist: [
-            {
-                id: "CPSC230",
-                title: "Introduction to Logic Design"
-            },
-            {
-                id: "CPSC231",
-                title: "Computer Organization and Architecture"
-            },
-            {
-                id: "ENGL270",
-                title: "Expository Writing"
-            },
-        ]
-    },
-    {
-        levelNumber: 300,
-        courselist: [
-            {
-                id: "CPSC300",
-                title: "Software Engineering"
-            },
-            {
-                id: "CPSC320",
-                title: "Programming Languages"
-            },
-            {
-                id: "CPSC321",
-                title: "Operating Systems"
-            },
-        ]
-    },
-    {
-        levelNumber: 400,
-        courselist: [
-            {
-                id: "CPSC444",
-                title: "Computer Networks"
-            }
-        ]
-    },]
-
-const DummyElectives = [
-    {
-        levelNumber: 100,
-        courselist: [
-            {
-                id: "FUN100",
-                title: "Introduction to Fun"
-            },
-            {
-                id: "COMM100",
-                title: "Introduction to Canadian Business"
-            },
-        ]
-    },
-    {
-        levelNumber: 200,
-        courselist: [
-            {
-                id: "ANTH203",
-                title: "XXXX"
-            },
-            {
-                id: "ANTH213",
-                title: "XXXX"
-            },
-            {
-                id: "NURS205",
-                title: "XXXX"
-            },
-        ]
-    },
-    {
-        levelNumber: 300,
-        courselist: [
-            {
-                id: "WMST303",
-                title: "XXXX"
-            },
-
-        ]
-    },
-    {
-        levelNumber: 400,
-        courselist: [
-            {
-                id: "CPSC450",
-                title: "XXXX"
-            },
-            {
-                id: "CPSC475",
-                title: "XXXX"
-            },
-            {
-                id: "CPSC499",
-                title: "XXXX"
-            }
-        ]
-    },]
-    
 const newDegree = {
     name: 'Computer Science',
     is_minor: false,
@@ -165,6 +44,7 @@ export default function RequiredCoursesScreen() {
     const navigation = useNavigation();
 
     const [degreeCourses, setDegreeCourses] = useState([]);
+    const [checked, setChecked] = useState([]);
 
     useEffect(() => {
         const pullAsync = async () => {
@@ -216,6 +96,11 @@ export default function RequiredCoursesScreen() {
                 });
             }
             setDegreeCourses(degreeCoursesToCopy);
+
+            const chkd = (await getAllCheckedOffBy(studentID)).data;
+            console.log(chkd);
+
+
             setIsLoading(false);
         };
         try {
@@ -258,7 +143,7 @@ export default function RequiredCoursesScreen() {
 }
 
 
-function LevelSection({ levelNumber, courseData }) {
+function LevelSection({ levelNumber, courseData, allCheckedCourses}) {
     const themeText = useThemeText();
     const themeShaded = useThemeShaded();
     const themeBg = useThemeBackground();
@@ -292,7 +177,7 @@ function LevelSection({ levelNumber, courseData }) {
                                 <View style={[styles.verticalLine, firstColour]}></View>
                                 <CoursePopUp course={course}></CoursePopUp>
                             </View>
-                            <CourseCompletedButton/>
+                            <CourseCompletedButton course={course.id}/>
                         </View>
                     ))
                 }
