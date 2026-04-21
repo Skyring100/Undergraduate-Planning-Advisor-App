@@ -11,7 +11,7 @@ import { useThemeText, useThemeBackground,
 import { useEffect, useState } from 'react';
 import CollapsibleView from '../CollapsibleView';
 import { getAllCourses } from '../../services/courseService';
-import CoursePopUp from '../CoursePopUp';
+import CoursePopUPButton from './CoursePopUp';
 import { addCourseToDegreePlan } from '../../services/degreePlannerService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute, useNavigation } from '@react-navigation/native';
@@ -62,7 +62,7 @@ export default function CourseList() {
             await AsyncStorage.setItem(key, JSON.stringify(plan));
             console.log('Degree Plan: ', JSON.stringify(plan));
             setSelectedCourse(null);
-            navigation.goBack();
+            //navigation.goBack();
         } catch (e) {
             console.error('Failed to add course: ', e);
         }
