@@ -6,7 +6,6 @@ import { createDegreePlan, getDegreePlanByID } from "../../services/degreePlanne
 import { getUserProfileByID } from "../../services/userService";
 import { getAuth } from 'firebase/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { readFile, writeFile } from "fs/promises";
 
 
 

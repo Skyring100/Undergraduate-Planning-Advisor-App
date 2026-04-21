@@ -51,21 +51,7 @@ export default function AccountScreen() {
                 <Text>
                     {passwordResetText}
                 </Text>
-                <View style={{alignItems: 'center', justifyContent: 'center',}}>
-                    <DarkLightButton/>
-                </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-                    <ColourButton colour={'Green'} index={0}/>
-                    <ColourButton colour={'Red'} index={1}/>
-                    <ColourButton colour={'Blue'} index={2}/>
-                    <ColourButton colour={'Pink'} index={3}/>
-                </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-                    <ColourButton colour={'Purple'} index={4}/>
-                    <ColourButton colour={'Yellow'} index={5}/>
-                    <ColourButton colour={'Orange'} index={6}/>
-                    <ColourButton colour={'Grey'} index={7}/>
-                </View>
+                
             </SafeAreaView >
         </SafeAreaProvider>
     );
