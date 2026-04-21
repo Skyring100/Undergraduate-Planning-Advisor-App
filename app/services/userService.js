@@ -148,7 +148,7 @@ export const addCompletedCourses = async (student_id, courses) => {
 
 export const setCurrentUserDegree = async (student_id, degree_id) => {
     try{
-        const url = `${API_BASE_URL}/set-degree}`;
+        const url = `${API_BASE_URL}/set-degree/${student_id}`;
         const token = await AsyncStorage.getItem('authToken');
         const fetchReq = getBaseRequestHTTP('PUT', token);
         fetchReq['body'] = JSON.stringify({student_id, degree_id});
@@ -156,7 +156,7 @@ export const setCurrentUserDegree = async (student_id, degree_id) => {
         
         const data = await response.json();
 
-        await AsyncStorage.setItem('current_degree_id', degree_id);
+        await AsyncStorage.setItem('current_degree_id', String(degree_id));
         return {success: true, data};
     } catch (error) {
         console.error('Error adding setting current degree for user:', error);
