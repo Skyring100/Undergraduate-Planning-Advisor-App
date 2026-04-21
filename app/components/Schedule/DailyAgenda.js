@@ -1,9 +1,10 @@
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
-import { useThemeText, useThemeBackground, useThemeGreyed} from "../../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeGreyed, useFirstColour} from "../../contexts/ThemeContext";
 
 export default function DailyAgenda({variant = 'card', schedule = []}) {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const firstBg = useFirstColour();
     const borderColour = useThemeGreyed();
 
     if(!schedule.length) return <Text style={[styles.text, themeText]}>No classes today!</Text>;
@@ -32,7 +33,7 @@ export default function DailyAgenda({variant = 'card', schedule = []}) {
                             <View style={styles.tlContainer}>
                                 {classes.map(cls => (
                                     <View key={cls.crn} style={[styles.tlClass, themeBg, {borderColor: themeText.color}]}>
-                                        <View style={styles.tlAccent} />
+                                        <View style={[styles.tlAccent, firstBg]} />
                                         <View style={styles.tlContent}>
                                             <Text style={[styles.cardCourseId, themeText]}>{cls.course_id}</Text>
                                             <Text style={[styles.cardCourseName, themeText]}>{cls.course_name}</Text>
@@ -64,7 +65,7 @@ export default function DailyAgenda({variant = 'card', schedule = []}) {
                 keyExtractor={(item) => item.crn.toString()}
                 renderItem={({ item }) => (
                     <View style={[styles.card, themeBg]}>
-                        <View style={styles.cardAccent}/>
+                        <View style={[styles.cardAccent, firstBg]}/>
                             <View style={styles.cardContent}>
                                 <Text style={[styles.cardCourseId, themeText]}>{item.course_id}</Text>
                                 <Text style={[styles.cardCourseName, themeText]}>{item.course_name}</Text>

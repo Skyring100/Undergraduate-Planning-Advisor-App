@@ -8,7 +8,7 @@ import {
     CalendarUtils,
 } from 'react-native-calendars';
 import AddSectionButton from "../components/Schedule/AddSectionButton";
-import { useThemeText, useThemeBackground, useThemeShaded, borderColour} from "../contexts/ThemeContext";
+import { useFirstColour, useThemeText, useThemeBackground, useThemeShaded, borderColour} from "../contexts/ThemeContext";
 import { useSchedule } from "../contexts/ScheduleContext";
 
 const days = ['Y', 'M', 'T', 'W', 'R', 'F', 'S'];
@@ -39,6 +39,7 @@ const initialTime = {hour: 8, minute: 0};
 export default function AgendaScreen(){
     const themeTxt = useThemeText();
     const themeBg = useThemeBackground();
+    const firstBg = useFirstColour();
     const grey = useThemeShaded();
     const {width, height} = useWindowDimensions();
     const {fetchByDay, refreshToken} = useSchedule();
@@ -118,11 +119,11 @@ export default function AgendaScreen(){
                 }
             },
             nowIndicatorLine: {
-                backgroundColor: '#035642',
+                backgroundColor: firstBg.backgroundColor,
                 height: 2,
             },
             nowIndicatorKnob:{
-                backgroundColor: '#035642',
+                backgroundColor: firstBg.backgroundColor,
                 height: 8,
                 width: 8,
             },
@@ -138,10 +139,12 @@ export default function AgendaScreen(){
             }
         },
 
+        // TODO: mateus why is there a white border around every element pls fix
         renderEvent: ( item ) => (
+            <>
             <View style = {{flex:1, flexDirection: 'row'}}>
-                <View style={[styles.card, themeBg]}>
-                    <View style={styles.cardAccent}/>
+                <View style={[styles.card, grey]}>
+                    <View style={[styles.cardAccent, firstBg]}/>
                         <View style={styles.cardContent}>
                             <Text style={[styles.cardCourseId, themeTxt]}>{item.course_id}</Text>
                             <Text style={[styles.cardCourseName, themeTxt]}>{item.course_name}</Text>
@@ -154,6 +157,7 @@ export default function AgendaScreen(){
                         </View>
                 </View>
             </View>
+            </>
                         )
         
     };
@@ -182,8 +186,8 @@ export default function AgendaScreen(){
                                 textSectionTitleColor: themeTxt.color,
                                 dayTextColor: themeTxt.color,
                                 monthTextColor: themeTxt.color,
-                                selectedDayBackgroundColor: '#035642',
-                                todayTextColor: '#035642',
+                                selectedDayBackgroundColor: firstBg.backgroundColor,
+                                todayTextColor: firstBg.backgroundColor,
                                 textDayFontFamily: 'Montserrat',
                                 textDayFontSize: 15,
                                 textDayHeaderFontFamily: 'Montserrat',
@@ -237,7 +241,7 @@ const styles = StyleSheet.create({
     card: {
         flex:1,
         flexDirection: 'row',
-        // borderRadius: 20,
+        borderRadius: 20,
         // borderWidth: 2,
         marginVertical: 4,
         marginHorizontal: 8,

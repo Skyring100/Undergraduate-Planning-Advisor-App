@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BackButton from '../components/BackButton';
-import { useThemeText, useThemeBackground,
+import { useThemeText, useThemeBackground, useThemeShaded,
     useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
 import CourseListButton from '../components/Planner/CourseListButton';
 import CoursePopUp from '../components/Requistes/CoursePopUp';
@@ -82,11 +82,11 @@ const DummyElectives = [
         courselist: [
             {
                 id: "Fun 100",
-                title: "Introduction to Computer Science"
+                title: "Introduction to Fun"
             },
             {
                 id: "COMM 100",
-                title: "Introduction to Computer Science"
+                title: "Introduction to Canadian Business"
             },
         ]
     },
@@ -147,6 +147,7 @@ export default function RequiredCoursesScreen() {
     // when this is added, use these as style components for text colour instead of #fff and #000
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
+    const themeShaded = useThemeShaded();
     const firstColour = useFirstColour();
     const {width, height} = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
@@ -183,12 +184,11 @@ export default function RequiredCoursesScreen() {
     
         return (
             <SafeAreaProvider>
-                <SafeAreaView style={[{width: width, height: height}, themeBg]}>
+                <SafeAreaView style={[themeBg]}>
                     <FlatList
                         data={DummyData}
-                        ListHeaderComponent={<Text style={[styles.header, themeText, firstColour]}>Required Courses</Text>}
                         renderItem={({item: l}) => (
-                            <View key={l.levelNumber}>
+                            <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                                 <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                             </View>
                         )}
@@ -197,7 +197,7 @@ export default function RequiredCoursesScreen() {
                             <SafeAreaView style={{marginBottom: 50}}>
                                 <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
                                 {DummyElectives.map(l => (
-                                    <View key={l.levelNumber}>
+                                    <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                                         <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                                     </View>
                                 ))}
@@ -212,25 +212,34 @@ export default function RequiredCoursesScreen() {
 
 function LevelSection({levelNumber, courseData}) {
     const themeText = useThemeText();
-    const secondColour = useSecondColour();
-    const thirdColour = useThirdColour();
-
-    
-
+    const themeShaded = useThemeShaded();
+    const themeBg = useThemeBackground();
+    const firstColour = useSecondColour();
     return (
         <View>
-            <View style={{flexDirection: 'row', justifyContent: 'center',}}>
-                <Text style={[styles.levelHeader, secondColour, themeText]}>Level {levelNumber}</Text>
-                <Text style={[styles.done, secondColour, themeText]}>Done</Text>
+            <View style={{flexDirection: 'column', alignItems: 'left'}}>
+                <Text style={[styles.levelHeader, themeShaded, themeText]}>{levelNumber} Level</Text>
+                <View style={[styles.horizontalLine, firstColour]}></View>
             </View>
-            <View style={{flexDirection: 'column', justifyContent: 'center',}}>
+            <View style={{flexDirection: 'column', justifyContent: 'center', gap: 10, padding: 10, }}>
                 {
                     courseData.map(course => (
                         
-                        <View key={course.id} style={{flexDirection: 'row', justifyContent: 'center',}}>
+                        <View key={course.id} style={{
+                            flexDirection: 'row', 
+                            justifyContent: 'space-between',
+                            borderRadius: 10,
+                            alignItems: "center",
+                            padding: 5,
+                            paddingRight: 10,
+                            ...themeBg,
+                        }}>
                             {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
 }
-                            <CoursePopUp course={course}></CoursePopUp>
+                            <View style={{flexDirection: "row", alignItems: "center",}}>
+                                <View style={[styles.verticalLine, firstColour]}></View>
+                                <CoursePopUp course={course}></CoursePopUp>
+                            </View>
                             <CourseCompletedButton/>
                         </View>
                     ))
@@ -263,11 +272,24 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
     },
+    verticalLine: {
+        padding: 4,
+        borderRadius: 10,
+        width: 8,
+        marginLeft: 5,
+        marginRight: 5,
+        height: 40,
+    },
+    horizontalLine: {
+        padding: 4,
+        margin: 5,
+        borderRadius: 10,
+        height: 8,
+        flex: 1,
+    },
     levelHeader:{
+        fontSize: 18,
         fontWeight: 'bold',
-        fontSize: 25,
-        width: '70%',
-        textAlign: 'center'
     },
     courseHeader:{
         color: '#ffffffff',

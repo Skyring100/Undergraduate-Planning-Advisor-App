@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity, Text, StyleSheet, Dimensions, View, Pressable } from 'react-native';
-import { useThemeStore, mainDark, mainLight, useThemeText, borderColour} from '../../contexts/ThemeContext';
+import { useThemeStore, useFirstColour, useZerothColour, mainDark, mainLight, useThemeText, borderColour} from '../../contexts/ThemeContext';
 import React, { useState } from 'react';
 import OutlinedText from '@kdn0325/react-native-outlined-text';
 import possibleCourses from '../../data/possible_courses.json'
@@ -15,6 +15,8 @@ const chartSize = buttonHeight;
 export default function EvaluatorButton() {
     const navigation = useNavigation();
     const textColour = useThemeText();
+    const firstColour = useFirstColour().backgroundColor;
+    const zerothColour = useZerothColour().backgroundColor;
     
     const pieChartPercent = (completedCourses.length/possibleCourses.length)*100;
     //const [percentage, setPercentage] = useState(pieChartPercent+"%");
@@ -34,8 +36,8 @@ export default function EvaluatorButton() {
                     size={chartSize}
                     width={30}
                     fill={pieChartPercent}
-                    tintColor={'#035642'}
-                    backgroundColor={'#022b21'}
+                    tintColor={firstColour}
+                    backgroundColor={zerothColour}
                     rotation={0}
                     duration={1500}
                     lineCap='round'

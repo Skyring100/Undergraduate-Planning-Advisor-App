@@ -11,14 +11,16 @@ export default function CoursePopUPButton({course}) {
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
     const buttonText = (course.id != null) ? course.id : "----";
+    const buttonText2 = (course.title != null) ? course.title : "----";
 
     return (
         <TouchableOpacity
-            style={[styles.courseButton, thirdColour]}
+            style={[styles.courseButton]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
             <Text style={[styles.buttonText, themeText]}>{buttonText}</Text>
+            <Text style={[styles.buttonTextLight, themeText]}>{buttonText2}</Text>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -56,13 +58,22 @@ export const styles = StyleSheet.create({
         //backgroundColor: '#078d6e',
         textAlign: 'center',
         width: '70%',
+        flexDirection: "row",
+        alignItems: "center",
     },
     buttonText: {
         color: '#fff',
         fontSize: 16,
         fontWeight: '600',
         padding: 5
-    },popupBackground: {
+    },
+    buttonTextLight: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '400',
+        padding: 5
+    },
+    popupBackground: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
