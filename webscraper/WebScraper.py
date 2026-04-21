@@ -161,6 +161,8 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
             """
             cur.execute(query, (id, "-".join(title.split("-")[1:]), desc))
 
+
+
             if (type(prereqs) == dict):
                 for j in fit_list_to_db(id, make_compressed_notation(prereqs)):
                     # TODO: scrape course corequisite status
@@ -185,7 +187,20 @@ def scrape_all_subject_courses(driver: webdriver.Chrome, subject: str):
         except StaleElementReferenceException:
             #If web scraper times out, use driver to get our current working element again
             current_course_element = driver.find_element(By.ID, "results").find_elements(By.XPATH, f"//ul/*[{i}]")
+
+    # deal with placeholder courses
+    for i in range(1, 10):
+        query = """
+        INSERT OR REPLACE INTO course
+            (course_id, title, description) 
+            VALUES (?, ?, ?);
+        """
+        cur.execute(query, (subject.strip() + str(i) + "XX", f"Additional {i}00-level course", f"You can use any {i}th-year course in the {subject.strip()} department to satisfy this requirement."))
+
+
+
     # Write the updated data back to the file
+                
     json.dump(current_data, course_list_file, indent=4)
     course_list_file.close()
     conn.commit()

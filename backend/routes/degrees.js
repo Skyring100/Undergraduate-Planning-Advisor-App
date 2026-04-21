@@ -5,9 +5,7 @@ const {authenticate} = require('../firebaseTokenHandler');
 
 const getDegreeByID = async (req, res) => {
   const { degreeID } = req.params;
-
-  console.log(req.url);
-
+  console.log(degreeID);
   const degree = await degreeStorage.getDegreeByID(degreeID);
 
   var result;
@@ -26,7 +24,6 @@ const getDegreeByID = async (req, res) => {
 
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
-  console.log(result);
 };
 
 const createDegree = async (req, res) => {
@@ -64,7 +61,7 @@ const createDegree = async (req, res) => {
 
 
 
-router.get('/:degree_id', authenticate, getDegreeByID);
+router.get('/:degreeID', authenticate, getDegreeByID);
 router.post('/create', authenticate, createDegree);
 
 module.exports = router;

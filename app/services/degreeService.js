@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const createDegree = async (name, isMinor, courseReqs, creditReqs) => {
@@ -52,14 +53,13 @@ export const editDegree = async (degreeid, name, isMinor, courseReqs, creditReqs
 
 export const getDegreeByID = async (degreeID) => {
     try {
+        console.log("passing "+degreeID+" to the backend");
         const url = `${API_BASE_URL}/degrees/${degreeID}`;
-        console.log(url);
         const token = await AsyncStorage.getItem('authToken');
         const fetchReq = getBaseRequestHTTP('GET', token);
 
         const response = await fetch(url, fetchReq);
         const data = await response.json();
-        console.log(data);
 
         return { success: true, data };
     } catch (error) {

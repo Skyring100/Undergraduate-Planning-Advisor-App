@@ -16,11 +16,6 @@ import CourseCompletedButton from '../components/Requistes/CourseCompletedButton
 import { useRoute } from '@react-navigation/native';
 import AddButton from '../components/Planner/AddButton';
 import { useNavigation } from '@react-navigation/native';
-import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../services/courseService";
-import {prereqString} from "../services/courseService";
-import {getDegreePlanByID} from "../services/degreePlannerService";
-import {getUserProfileByID} from "../services/userService";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const DummyData = [
@@ -160,63 +155,7 @@ export default function RequiredCoursesScreen() {
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const navigation = useNavigation();
-
-    const [degreeCourses, setDegreeCourses] = useState([]);
-
-    useEffect(() => {
-        const pullAsync = async () => {
-            const studentID = await AsyncStorage.getItem("student_id");
-            // TODO: change this line in prod
-            const user = (await getUserProfileByID(studentID)).data;
-            const curDegree = (await getDegreeByID(user.current_degree_id)).data.data;
-
-            // get degree course time town epic poggers yippee
-            let degreeCoursesToCopy = [];
-            let allCoursesList = await Promise.all(
-                curDegree.map(async c => {
-                    console.log("processing course "+c.course_id);
-                    const courseObj = (await getCourseById(c.course_id)).data;
-                    console.log("got title "+courseObj.title);
-                    return {
-                        id: c.course_id,
-                        title: courseObj.title.trim(),
-                        nesting: c.nesting
-                    };
-                })
-            );
-            for (let j=0; j<allCoursesList.length; j++) {
-                console.log("flattening at "+j+" ("+allCoursesList[j].id+") ");
-                while (allCoursesList[j].nesting == 2 && j < allCoursesList.length - 1) {
-                    let entry2 = allCoursesList[j + 1];
-                    allCoursesList[j].id = allCoursesList[j].id + "\n\u1D52\u02B3 " + entry2.id;
-                    allCoursesList[j].title = allCoursesList[j].title + "\n\u1D52\u02B3 " + entry2.title;
-                    allCoursesList[j].nesting = entry2.nesting;
-                    allCoursesList.splice(j + 1, 1); // remove the other entry
-                    j--;
-                }
-                allCoursesList[allCoursesList.length - 1].nesting = 1;
-                console.log("length is now "+allCoursesList.length+" (next is iteration "+(j + 1)+") ");
-                console.log("now working with "+JSON.stringify(allCoursesList.map(y => y.id))+" ");
-            }
-            console.log("got here");
-            for (let i=1; i<=4; i++) {
-                console.log("pushing courses at year "+i);
-                degreeCoursesToCopy.push({
-                    levelNumber: i * 100,
-                    courselist: allCoursesList.filter(x => +(x.id[4]) == i)
-                });
-            }
-            setDegreeCourses(degreeCoursesToCopy);
-            setIsLoading(false);
-        };
-        try {
-            pullAsync();
-        } catch (error) {
-            console.error(error);
-        }
-    }, []);
 
 
     // const themeBg = useThemeBackground();
@@ -226,15 +165,14 @@ export default function RequiredCoursesScreen() {
         <SafeAreaProvider>
             <SafeAreaView style={[themeBg]}>
                 <FlatList
-                    data={degreeCourses}
-                    renderItem={({item: l}) => (isLoading ? <><Text>Loading</Text></> :
+                    data={DummyData}
+                    renderItem={({item: l}) => (
                         <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                             <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                         </View>
                     )}
                     keyExtractor={(l) => l.levelNumber.toString()}
-                />
-                    {/*ListFooterComponent={
+                    ListFooterComponent={
                         <SafeAreaView style={{marginBottom: 50}}>
                             <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
                             {DummyElectives.map(l => (
@@ -243,7 +181,9 @@ export default function RequiredCoursesScreen() {
                                 </View>
                             ))}
                         </SafeAreaView>
-                    }*/}
+
+                }
+            />
 
         </SafeAreaView>
     </SafeAreaProvider>
@@ -270,7 +210,7 @@ function LevelSection({ levelNumber, courseData }) {
                 {
                     courseData.map(course => (
                         
-                        <View key={Math.random()} style={{
+                        <View key={course.id} style={{
                             flexDirection: 'row', 
                             justifyContent: 'space-between',
                             borderRadius: 10,
