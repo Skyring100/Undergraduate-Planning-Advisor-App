@@ -103,12 +103,12 @@ export function addTakenDegree(student_id, degree_id){
   return result;
 }
 
-export function setCurrentUserDegree(student_id, degree_id){
-  const result = db.prepare('UPDATE user SET current_degree_id = ? WHERE user.student_id=?').run(student_id, degree_id);
+export function setCurrentUserDegree(studentID, degreeID){
+  const result = db.prepare('UPDATE user SET current_degree_id = ? WHERE user.student_id=?').run(degreeID, studentID);
   return result;
 }
 
 export function setCurrentuserDegreePlan(student_id, degree_plan_id){
-  const result = db.prepare('UPDATE user SET current_degree_plan = ? WHERE user.student_id=?').run(student_id, degree_plan_id);
+  const result = db.prepare('UPDATE user SET current_degree_plan = ? WHERE user.student_id=?').run(degree_plan_id, student_id);
   return result;
 }

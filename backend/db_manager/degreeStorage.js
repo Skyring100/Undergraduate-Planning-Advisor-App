@@ -14,6 +14,12 @@ export function getDegreeByID(degreeID) {
     return degree;
 }
 
+export function getAllDegrees() {
+    const degrees = db.prepare("SELECT * FROM degree").all();
+
+    return degrees;
+}
+
 export function createDegree(name, is_minor, course_reqs, credit_reqs) {
     const degreeInfo = db.prepare("INSERT INTO degree(degree_name, is_minor) VALUES (?, ?)").run(name, ((is_minor)? 1 : 0));
     const courseReqs =  course_reqs;
