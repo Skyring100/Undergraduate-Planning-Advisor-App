@@ -10,6 +10,7 @@ import { useLinkBuilder } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
 import { useRoute } from '@react-navigation/native';
 import CourseList from '../components/Planner/CourseList';
+import RequiredList from '../components/Planner/RequiredList';
 
 
 
@@ -83,7 +84,7 @@ function Tabs({yearIndex, semesterIndex, degreePlanID}) {
         <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
             <Tab.Screen 
                 name="Required Courses" 
-                component={RequiredCoursesScreen} 
+                component={RequiredList} 
                 initialParams={{yearIndex, semesterIndex, degreePlanID}}
                 />
             <Tab.Screen 

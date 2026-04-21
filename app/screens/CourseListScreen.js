@@ -11,7 +11,7 @@ import { useThemeText, useThemeBackground,
 import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
 import CollapsibleView from '../components/CollapsibleView';
-import CoursePopUp from '../components/CoursePopUp';
+//import CoursePopUp from '../components/CoursePopUp';
 import { addCourseToDegreePlan } from '../services/degreePlannerService';
 import { getAllCourses, getCoursesByDepartment } from '../services/courseService';
 

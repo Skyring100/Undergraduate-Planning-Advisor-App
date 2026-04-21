@@ -85,11 +85,11 @@ const DummyElectives = [
         levelNumber: 100,
         courselist: [
             {
-                id: "FUN 100",
+                id: "FUN100",
                 title: "Introduction to Fun"
             },
             {
-                id: "COMM 100",
+                id: "COMM100",
                 title: "Introduction to Canadian Business"
             },
         ]
@@ -98,15 +98,15 @@ const DummyElectives = [
         levelNumber: 200,
         courselist: [
             {
-                id: "ANTH 203",
+                id: "ANTH203",
                 title: "XXXX"
             },
             {
-                id: "ANTH 213",
+                id: "ANTH213",
                 title: "XXXX"
             },
             {
-                id: "NURS 205",
+                id: "NURS205",
                 title: "XXXX"
             },
         ]
@@ -115,7 +115,7 @@ const DummyElectives = [
         levelNumber: 300,
         courselist: [
             {
-                id: "WMST 303",
+                id: "WMST303",
                 title: "XXXX"
             },
 
@@ -125,19 +125,20 @@ const DummyElectives = [
         levelNumber: 400,
         courselist: [
             {
-                id: "CPSC 450",
+                id: "CPSC450",
                 title: "XXXX"
             },
             {
-                id: "CPSC 475",
+                id: "CPSC475",
                 title: "XXXX"
             },
             {
-                id: "CPSC 499",
+                id: "CPSC499",
                 title: "XXXX"
             }
         ]
     },]
+    
 const newDegree = {
     name: 'Computer Science',
     is_minor: false,
