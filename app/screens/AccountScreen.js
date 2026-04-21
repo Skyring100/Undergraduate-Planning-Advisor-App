@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions, Alert } from 'react-native';
+import { Text, TextInput, StyleSheet, Dimensions, View, useWindowDimensions, Modal, TouchableOpacity } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
@@ -25,6 +25,7 @@ export default function AccountScreen() {
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
     const {width} = useWindowDimensions();
+    const [modal, setModal] = useState({ visible: false, title: '', onConfirm: null, input: '' });
 
     const resetPassword = async () =>{
         const email = await AsyncStorage.getItem("email");
@@ -42,12 +43,12 @@ export default function AccountScreen() {
 
     const handleUpdateFirstName = async () => {
         const studentID = await AsyncStorage.getItem('student_id');
-        Alert.prompt('Update First Name', 'Enter your new first name', (newName) =>  updateFirstName(studentID, newName));
+        setModal({ visible: true, title: 'Update First Name', onConfirm: (val) => updateFirstName(studentID, val), input: '' });
     };
 
     const handleUpdateLastName = async () => {
         const studentID = await AsyncStorage.getItem('student_id');
-        Alert.prompt('Update Last Name', 'Enter your new last name', (newName) => updateLastName(studentID, newName));
+        setModal({ visible: true, title: 'Update Last Name', onConfirm: (val) => updateLastName(studentID, val), input: '' });
     };
 
     return (
@@ -68,6 +69,32 @@ export default function AccountScreen() {
                 <Text>
                     {passwordResetText}
                 </Text>
+                
+                <Modal transparent visible={modal.visible} onRequestClose={() => setModal(m => ({ ...m, visible: false }))}>
+                    <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.4)', justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ backgroundColor: 'white', borderRadius: 12, padding: 24, width: '80%', gap: 12 }}>
+                            <Text style={{ fontSize: 17, fontWeight: '600' }}>{modal.title}</Text>
+                            <TextInput
+                                autoFocus
+                                value={modal.input}
+                                onChangeText={(val) => setModal(m => ({ ...m, input: val }))}
+                                style={{ borderWidth: 1, borderColor: '#ddd', borderRadius: 8, padding: 8 }}
+                            />
+                            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 10 }}>
+                                <TouchableOpacity onPress={() => setModal(m => ({ ...m, visible: false }))}>
+                                    <Text>Cancel</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { 
+                                    if (!modal.input.trim()) return;
+                                    modal.onConfirm(modal.input);
+                                    setModal(m => ({ ...m, visible: false }));
+                                    }}>
+                                    <Text style={{ fontWeight: '600' }}>OK</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
                 
             </SafeAreaView >
         </SafeAreaProvider>

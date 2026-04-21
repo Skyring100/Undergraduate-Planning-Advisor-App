@@ -52,7 +52,7 @@ function AppContent({currentRoute}) {
                         header: (props) => <AppHeader {...props}/>,
                     }}>
                     <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="Register" component={RegisterScreen} />
+                    <Stack.Screen name="Register" component={RegisterScreen} options={{ animation: 'slide_from_bottom' }} />
                     <Stack.Screen name="Dashboard" component={DashboardScreen} />
                     <Stack.Screen name="Settings" component={SettingsScreen} />
                     <Stack.Screen name="Planner" component={PlannerScreen} />
