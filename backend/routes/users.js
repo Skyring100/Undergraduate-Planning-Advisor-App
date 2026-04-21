@@ -102,10 +102,16 @@ const addCompletedCourses = async (req, res) => {
 };
 
 const setCurrentUserDegree = async (req, res) => {
-  const {student_id, degree_id} = req.body;
+  console.log(req.url);
+  console.log(req.params);
+  console.log(req.body);
+  
+  const {formatResponseObject} = require('../server');
+
+  const {studentID, degreeID} = req.body;
 
 
-  const updateRes = userStorage.setCurrentUserDegree(student_id, degree_id);
+  const updateRes = userStorage.setCurrentUserDegree(studentID, degreeID);
   formatResponseObject(res, updateRes, "Changed current user degree", "Failed to create current user degree");
 };
 
