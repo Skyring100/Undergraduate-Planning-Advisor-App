@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getUserProfileByID, getAllCheckedOffBy} from "../../services/userService";
+import {getUserProfileByID, getAllCheckedOffBy, checkCourse, uncheckCourse} from "../../services/userService";
+import { getDegreeByID } from '../../services/degreeService';
 import {Checkbox} from 'expo-checkbox';
 import {StyleSheet, Text, View} from 'react-native';
 import { useState, useEffect, } from 'react';
@@ -10,13 +11,16 @@ export default function CourseCompletedButton({course}) {
     const thirdColour = useThirdColour();
     const checkedColour = useFirstColour();
     const uncheckedColour = useThemeText();
+    const [studentID, setStudentID] = useState("");
+    const [degreeID, setDegreeID] = useState(0);
 
     useEffect(() => {
         const checkAuto = async () => {
-            const studentID = await AsyncStorage.getItem("student_id");
-            const allChecked = (await getAllCheckedOffBy(studentID)).data;
-            console.log("got to checking time");
-            console.log(allChecked);
+            let x = await AsyncStorage.getItem("student_id");
+            setStudentID(x);
+            let y = (await getUserProfileByID(x)).data.current_degree_id;
+            setDegreeID(y);
+            const allChecked = (await getAllCheckedOffBy(x)).data;
             if (allChecked.includes(course)) {
                 setChecked(true);
                 console.log("checked off the box for: "+course);
@@ -25,6 +29,15 @@ export default function CourseCompletedButton({course}) {
         checkAuto();
     }, []);
 
+    const handleCourseCompletion = (val) => {
+        console.log(val);
+        console.log(studentID);
+        console.log(degreeID);
+        console.log(course);
+        if (val) checkCourse(studentID, degreeID, course);
+        else uncheckCourse(studentID, degreeID, course);
+    };
+     
     return (
         <View style={[styles.container]}>
             <Checkbox 
@@ -41,9 +54,6 @@ export default function CourseCompletedButton({course}) {
 }
 
 
-const handleCourseCompletion = (val) => {
-    console.log(val);
-};
 
 const styles = StyleSheet.create({
     container: {

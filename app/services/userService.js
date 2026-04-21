@@ -183,3 +183,33 @@ export const setCurrentUserDegreePlan = async (student_id, degree_plan_id) => {
         return {success: false, data: null};
     }
 };
+
+export const checkCourse = async (student_id, degree_id, course_id) => {
+    try{
+        const url = `${API_BASE_URL}/users/check_off`;
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({student_id, degree_id, course_id});
+        const response = await fetch(url, fetchReq);
+        const data = await response.json();
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error checking off the course:', error);
+        return {success: false, data: null};
+    }
+};
+
+export const uncheckCourse = async (student_id, degree_id, course_id) => {
+    try{
+        const url = `${API_BASE_URL}/users/uncheck_off`;
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({student_id, degree_id, course_id});
+        const response = await fetch(url, fetchReq);
+        const data = await response.json();
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error checking off the course:', error);
+        return {success: false, data: null};
+    }
+};

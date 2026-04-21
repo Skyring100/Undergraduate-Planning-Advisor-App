@@ -54,6 +54,39 @@ export function saveUser(studentID, email, firstName, lastName) {
   return userResult;
 }
 
+export function checkCourse(studentID, degreeID, courseID) {
+console.log(studentID);
+console.log(typeof(studentID));
+console.log(degreeID);
+console.log(typeof(degreeID));
+console.log(courseID);
+console.log(typeof(courseID));
+  const result = db.prepare(`
+  INSERT OR REPLACE INTO user_checked_course (student_id, degree_id, course_id) VALUES (?, ?, ?)
+      `).run(studentID, degreeID, courseID);
+
+  if (!result)
+  {
+    return undefined;
+  }
+
+  return result;
+}
+
+export function uncheckCourse(studentID, degreeID, courseID)
+{
+  const result = db.prepare(`
+  DELETE FROM user_checked_course WHERE (student_id, degree_id, course_id) = (?, ?, ?);
+      `).run(studentID, degreeID, courseID);
+
+  if (!result)
+  {
+    return undefined;
+  }
+
+  return result;
+}
+
 export function updateFirstName(studentID, firstName)
 {
   console.log(`${studentID}, ${firstName}`);
