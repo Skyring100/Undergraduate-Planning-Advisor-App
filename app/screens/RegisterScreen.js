@@ -2,9 +2,9 @@
 Degree program and start year will be dropdowns.
 On clicking register it will validate inputs and navigate to Dashboard page.*/
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions, ScrollView } from "react-native"
+import { TouchableOpacity, Text, StyleSheet, View, TextInput, Dimensions, ScrollView, Image, KeyboardAvoidingView, Platform } from "react-native"
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useUserStore } from '../contexts/UserContext';
 import BackButton from '../components/BackButton';
@@ -34,6 +34,11 @@ export default function RegisterScreen() {
     const [loading, setLoading] = useState(false);
 
     const {width} = useWindowDimensions();
+
+    const lastNameRef = useRef(null);
+    const emailInputRef = useRef(null);
+    const passwordInputRef = useRef(null);
+    const confirmedPasswordInputRef = useRef(null);
 
     const handleSubmit = async () => {
         if (!emailInput || !password || !confirmedPassword || !firstName) {
@@ -80,66 +85,80 @@ export default function RegisterScreen() {
     return(
         <SafeAreaProvider>
         <SafeAreaView style={[styles.screen]}>
+            <Image source={require('../assets/white-main-logo.png')} style={styles.logoImage} />
 
-            <View style={styles.card}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backWrap}>
-                    <Text style={styles.backText}>◀ Back to login</Text>
-                </TouchableOpacity>
-                    
-                <Text style={styles.title}>Sign Up</Text>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={{flex: 1}}>
 
-                <ScrollView showsVerticalScrollIndicator={false}>
-
-                    <TextInput
-                        autoFocus
-                        style={[styles.input]}
-                        placeholderTextColor="#777"
-                        placeholder="Enter your first name"
-                        autoCapitalize="none"
-                        value={firstName}
-                        onChangeText={setFirstName}
-                    />
-                    <TextInput
-                        style={[styles.input]}
-                        placeholderTextColor="#777"
-                        placeholder="Enter your last name (optional)"
-                        autoCapitalize="none"
-                        value={lastName}
-                        onChangeText={setLastName}
-                    />
-                    <TextInput
-                        style={[styles.input]}
-                        placeholderTextColor="#777"
-                        placeholder="Enter your email address"
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        value={emailInput}
-                        onChangeText={setEmailInput}
-                    />
-                    <TextInput
-                        style={[styles.input]}
-                        placeholderTextColor="#777"
-                        placeholder="Enter your password"
-                        secureTextEntry={true}
-                        autoCapitalize="none"
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                    <TextInput
-                        style={[styles.input]}
-                        placeholderTextColor="#777"
-                        placeholder="Re-enter your password"
-                        secureTextEntry={true}
-                        autoCapitalize="none"
-                        value={confirmedPassword}
-                        onChangeText={setConfirmedPassword}
-                    />
-
-                    <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={loading}>
-                        <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Submit'}</Text>
+                <View style={styles.card}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backWrap}>
+                        <Text style={styles.backText}>◀ Back to login</Text>
                     </TouchableOpacity>
-                </ScrollView>
-            </View>
+                        
+                    <Text style={styles.title}>Sign Up</Text>
+
+                    <ScrollView showsVerticalScrollIndicator={false}>
+
+                        <TextInput
+                            autoFocus
+                            style={[styles.input]}
+                            placeholderTextColor="#777"
+                            placeholder="Enter your first name"
+                            autoCapitalize="none"
+                            value={firstName}
+                            onChangeText={setFirstName}
+                            onSubmitEditing={() => lastNameRef.current.focus()}
+                        />
+                        <TextInput
+                            style={[styles.input]}
+                            placeholderTextColor="#777"
+                            placeholder="Enter your last name (optional)"
+                            autoCapitalize="none"
+                            value={lastName}
+                            onChangeText={setLastName}
+                            ref={lastNameRef}
+                            onSubmitEditing={() => emailInputRef.current.focus()}
+                        />
+                        <TextInput
+                            style={[styles.input]}
+                            placeholderTextColor="#777"
+                            placeholder="Enter your email address"
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                            value={emailInput}
+                            onChangeText={setEmailInput}
+                            ref={emailInputRef}
+                            onSubmitEditing={() => passwordInputRef.current.focus()}
+                        />
+                        <TextInput
+                            style={[styles.input]}
+                            placeholderTextColor="#777"
+                            placeholder="Enter your password"
+                            secureTextEntry={true}
+                            autoCapitalize="none"
+                            value={password}
+                            onChangeText={setPassword}
+                            ref={passwordInputRef}
+                            onSubmitEditing={() => confirmedPasswordInputRef.current.focus()}
+                        />
+                        <TextInput
+                            style={[styles.input]}
+                            placeholderTextColor="#777"
+                            placeholder="Re-enter your password"
+                            secureTextEntry={true}
+                            autoCapitalize="none"
+                            value={confirmedPassword}
+                            onChangeText={setConfirmedPassword}
+                            ref={confirmedPasswordInputRef}
+                            onSubmitEditing={handleSubmit}
+                        />
+
+                        <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={loading}>
+                            <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Submit'}</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
+                </View>
+            </KeyboardAvoidingView>
         </SafeAreaView >
         </SafeAreaProvider>
     );
@@ -195,6 +214,11 @@ const styles = StyleSheet.create({
         color: '#1B4D3E',
         fontSize: 14,
         fontWeight: '500'
+    },
+    logoImage: {
+        resizeMode: 'contain',
+        width: 230,
+        height: 150
     },
 });
 

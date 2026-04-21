@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         backgroundColor: '#1B4D3E',
-        justifyContent: 'flex-end',   // card hugs the bottom, green fills above
+        justifyContent: 'flex-end',
     },
     card: {
         backgroundColor: '#EFEFEF',
@@ -113,8 +113,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 30,
         paddingHorizontal: 28,
         paddingTop: 28,
-        paddingBottom: 30,
-        // Login card will naturally be shorter, Register taller due to more fields
+        paddingBottom: 110,
     },
     title: { 
         fontSize: 26, 
@@ -123,15 +122,13 @@ const styles = StyleSheet.create({
         color: '#111'
     },
     input: {
-        height: 50, backgroundColor: '#fff', borderRadius: 10,
-        paddingHorizontal: 16, fontSize: 15, marginBottom: 12, color: '#333',
-    },
-    forgotWrap: {
-        alignSelf: 'flex-end',
-        marginBottom: 20
-    },
-    forgotText: { color: '#444',
-        fontSize: 13
+        height: 50,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        paddingHorizontal: 16,
+        fontSize: 15,
+        marginBottom: 12,
+        color: '#333',
     },
     button: {
         height: 52,
@@ -150,8 +147,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     registerButtonText: { 
-    color: '#555',
-    fontSize: 14
+        color: '#555',
+        fontSize: 14
     },
     registerButtonTextBold: {
         fontWeight: 'bold',
@@ -160,6 +157,7 @@ const styles = StyleSheet.create({
     logoImage: {
         resizeMode: 'contain',
         width: 230,
-        height: 150
+        height: 150,
+        marginBottom: 10
     },
 });
