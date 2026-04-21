@@ -42,7 +42,6 @@ export default function AccountScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
-                <BackButton/>
                 <View style={styles.titleContainer}>
                     <Text style={[styles.title, themeText]}>Account</Text>
                 </View>
