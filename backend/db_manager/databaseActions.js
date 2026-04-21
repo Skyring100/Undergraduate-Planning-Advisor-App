@@ -119,7 +119,6 @@ function createTables(){
             course_id TEXT,
             PRIMARY KEY (student_id, degree_id, course_id),
             FOREIGN KEY (student_id) REFERENCES user(student_id),
-            FOREIGN KEY (course_id) REFERENCES course(course_id),
             FOREIGN KEY (degree_id) REFERENCES degree(degree_id)
         );
     `);

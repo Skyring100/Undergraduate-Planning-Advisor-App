@@ -49,6 +49,53 @@ const getAllCheckedOffBy = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
+const checkCourse = async (req, res) => {
+  const {student_id, degree_id, course_id} = req.body;
+
+console.log(student_id);
+console.log(typeof(student_id));
+console.log(degree_id);
+console.log(typeof(degree_id));
+console.log(course_id);
+console.log(typeof(course_id));
+  const resp = await userStorage.checkCourse(student_id, degree_id, course_id);
+  var result;
+  if (!resp) {
+    result = { 
+      success: false, 
+      message: 'Course could not be checked' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Course checked successfully', 
+      data: resp
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
+
+const uncheckCourse = async (req, res) => {
+  const {student_id, degree_id, course_id} = req.body;
+  const resp = await userStorage.uncheckCourse(student_id, degree_id, course_id);
+  var result;
+  if (!resp) {
+    result = { 
+      success: false, 
+      message: 'Course could not be unchecked' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Course unchecked successfully', 
+      data: resp
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
+
 const updateFirstName = async (req, res) => {
   console.log(req.url);
   console.log(req.params);
@@ -123,5 +170,7 @@ router.put('/last-name/:student_id', authenticate, updateLastName);
 router.get('/checked/:student_id', authenticate, getAllCheckedOffBy);
 router.put('/set-degree/:student_id', authenticate, setCurrentUserDegree);
 router.put('/set-degree-plan', authenticate, setCurrentUserDegreePlan);
+router.put('/check_off', authenticate, checkCourse);
+router.put('/uncheck_off', authenticate, uncheckCourse);
 
 module.exports = router;

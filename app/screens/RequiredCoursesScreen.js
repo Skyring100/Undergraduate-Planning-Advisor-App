@@ -86,6 +86,13 @@ export default function RequiredCoursesScreen() {
                 console.log("length is now "+allCoursesList.length+" (next is iteration "+(j + 1)+") ");
                 console.log("now working with "+JSON.stringify(allCoursesList.map(y => y.id))+" ");
             }
+            let iter = 0;
+            for (let j=0 ; j<allCoursesList.length; j++) {
+                if (allCoursesList[j].id.includes("X"))
+                    allCoursesList[j].id = allCoursesList[j].id + ("\u200C".repeat(iter++));
+            }
+
+
             allCoursesList[allCoursesList.length - 1].nesting = 1;
             console.log("got here");
             for (let i=1; i<=4; i++) {
