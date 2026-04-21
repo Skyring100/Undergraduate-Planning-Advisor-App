@@ -77,7 +77,7 @@ export default function AppHeader() {
 
                     </PopUp>
                 </View>
-                <Text style={[styles.headerText, themeText]}>{routeName}</Text>
+                <Text style={[styles.headerText]}>{routeName}</Text>
                 <View style={styles.navDrawerContainer}>
                     <View style={[styles.square, colour2]}>
                         <Pressable onPress={() => setIsDrawerOpen(true)} style={{ paddingTop: navWidth * 0.8 }}>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userStorage = require('../db_manager/userStorage');
 const {authenticate} = require('../firebaseTokenHandler');
+const {formatResponseObject} = require('../server');
 
 const getCurrentUser = async (req, res) => {
   const {student_id} = req.params;
@@ -56,7 +57,24 @@ const addCompletedCourses = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
+const setCurrentUserDegree = async (req, res) => {
+  const {student_id, degree_id} = req.body;
+
+
+  const updateRes = userStorage.setCurrentUserDegree(student_id, degree_id);
+  formatResponseObject(res, updateRes, "Changed current user degree", "Failed to create current user degree");
+};
+
+const setCurrentUserDegreePlan = async (req, res) => {
+  const {student_id, degree_plan_id} = req.body;
+
+  const updateRes = userStorage.setCurrentuserDegreePlan(student_id, degree_plan_id);
+  formatResponseObject(res, updateRes, "Changed current user degree plan", "Failed to create current user degree plan");
+};
+
 router.get('/profile/:student_id', authenticate,getCurrentUser);
 router.put('/courses/:student_id', authenticate, addCompletedCourses);
+router.put('/set-degree', authenticate, setCurrentUserDegree);
+router.put('/set-degree-plan', authenticate, setCurrentUserDegreePlan);
 
 module.exports = router;

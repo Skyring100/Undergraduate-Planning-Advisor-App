@@ -46,11 +46,6 @@ export default function RegisterScreen() {
             alert('Error', 'Please enter a valid email address');
             return;
         }
-        // Length validation: min 5, max 20 characters
-        if (emailInput.length < 5 || emailInput.length > 20) {
-            alert('Error', 'Email must be between 5 and 20 characters');
-            return;
-        }
         if (password.length < 6 || password.length > 20) {
             alert('Error', 'Password must be between 6 and 20 characters');
             return;
@@ -85,7 +80,6 @@ export default function RegisterScreen() {
     return(
         <SafeAreaProvider>
         <SafeAreaView style={[styles.container, {width: width}]}>
-            <BackButton/>
             <View style={styles.titleContainer}>
                 <Text style={[styles.title]}>Register</Text>
             </View>

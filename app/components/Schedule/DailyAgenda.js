@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
         margin: 8,
         height: '40%',
         width: 4,
-        backgroundColor: '#035642',
     },
     cardContent: {
         padding: 10,
@@ -160,7 +159,6 @@ const styles = StyleSheet.create({
         margin: 8,
         height: '50%',
         width: 4,
-        backgroundColor: '#035642',
         borderRadius: 2,
     },
     tlContent: {

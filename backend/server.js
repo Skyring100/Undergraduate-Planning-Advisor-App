@@ -25,7 +25,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/sections', sectionRoutes);
 app.use('/api/degrees', degreeRoutes);
-app.use('/api/degreePlans', degreePlanRoutes);
+app.use('/api/degree_plans', degreePlanRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ 
@@ -45,6 +45,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((req, res) => {
+  console.log("Url not found: "+req.url);
   res.status(404).json({ 
     success: false, 
     message: 'Route not found',
@@ -56,4 +57,22 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-module.exports = app;
+function formatResponseObject(responseObj, databaseResult, messageSuccess, messageFail){
+  var result;
+  if (!databaseResult) {
+    result = { 
+      success: false, 
+      message: messageFail
+    };
+  } else{
+    result = {
+      success: true, 
+      message: messageSuccess, 
+      data: databaseResult
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  responseObj.status(statusCode).json(result);
+}
+
+module.exports = {app, formatResponseObject};

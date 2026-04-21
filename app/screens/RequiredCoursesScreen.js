@@ -1,7 +1,7 @@
 /*RequiredCourses page will show the list of courses the user is required to take for their degree program.
 It will also show what electives they have chosen for each degree planner.
 It will have a dropdown to select different degree planners and view the courses accordingly.
-There will be a button that will navigate to the CourseList page.*/ 
+There will be a button that will navigate to the CourseList page.*/
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -13,6 +13,10 @@ import CoursePopUp from '../components/Requistes/CoursePopUp';
 import { createDegree, getDegreeByID } from '../services/degreeService';
 import all_courses from '../data/UNBC_course_data.json';
 import CourseCompletedButton from '../components/Requistes/CourseCompletedButton';
+import { useRoute } from '@react-navigation/native';
+import AddButton from '../components/Planner/AddButton';
+import { useNavigation } from '@react-navigation/native';
+
 
 const DummyData = [
     {
@@ -114,7 +118,7 @@ const DummyElectives = [
                 id: "WMST 303",
                 title: "XXXX"
             },
-            
+
         ]
     },
     {
@@ -140,7 +144,7 @@ const newDegree = {
     course_reqs: [
         "CPSC100", "CPSC101", "CPSC141", "CPSC230", "CPSC231", "ENGL270", "CPSC300", "CPSC320", "CPSC321", "CPSC444"
     ],
-    credit_reqs : []
+    credit_reqs: []
 }
 
 export default function RequiredCoursesScreen() {
@@ -149,34 +153,14 @@ export default function RequiredCoursesScreen() {
     const themeBg = useThemeBackground();
     const themeShaded = useThemeShaded();
     const firstColour = useFirstColour();
-    const {width, height} = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
+    const navigation = useNavigation();
 
-    /*
-    useEffect(() => {
-        createDegree(newDegree).then((apiResult) => {
-            if (apiResult.success){
-                const reqs = newDegree.course_reqs;
-                const matchedCourses = all_courses.all_courses.filter(course => reqs.includes(course.id));
-                const grouped = groupByLevel(matchedCourses);
-                setRequirements(grouped);
-            }else{
-                alert("API call was unsuccessful");
-                setRequirements([]);
-            }
-        });
 
-    }, []);
-    
-    useEffect(() => {
-        getDegreeByID(1).then((apiResult) => {
-            if (apiResult.success){
-                console.log(apiResult.data);
-            }else{
-                alert("API call was unsuccessful");
-                setRequirements([]);
-            }
-        });
+    // const themeBg = useThemeBackground();
+    // TODO: use "setCurrentUserDegree" in userService to change the user's selected degree
+    // Whenever you want to access selected degree, use "await AsyncStorage.getItem("current_degree_id")"
 
     }, []);
     */
@@ -203,15 +187,18 @@ export default function RequiredCoursesScreen() {
                                 ))}
                             </SafeAreaView>
 
-                        }
-                    />
-                </SafeAreaView>
-            </SafeAreaProvider>
-        )
+                    }
+                />
+
+            </SafeAreaView>
+        </SafeAreaProvider>
+    )
 }
 
-function LevelSection({levelNumber, courseData}) {
+
+function LevelSection({ levelNumber, courseData }) {
     const themeText = useThemeText();
+<<<<<<< HEAD
     const themeShaded = useThemeShaded();
     const themeBg = useThemeBackground();
     const firstColour = useSecondColour();
@@ -241,6 +228,34 @@ function LevelSection({levelNumber, courseData}) {
                                 <CoursePopUp course={course}></CoursePopUp>
                             </View>
                             <CourseCompletedButton/>
+=======
+    const secondColour = useSecondColour();
+    const thirdColour = useThirdColour();
+    const route = useRoute();
+    const { yearIndex, semesterIndex, degreePlanID } = route.params;
+
+
+    return (
+        <View>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
+                <Text style={[styles.levelHeader, secondColour, themeText]}>Level {levelNumber}</Text>
+                <Text style={[styles.done, secondColour, themeText]}>Done</Text>
+            </View>
+            <View style={{ flexDirection: 'column', justifyContent: 'center', }}>
+                {
+                    courseData.map(course => (
+
+                        <View key={course.id} style={{ flexDirection: 'row', justifyContent: 'center', }}>
+                            {//<Text style={[styles.courseHeader, thirdColour, themeText]}>{course.id}</Text>
+                            }
+                            <CoursePopUp
+                                course={course}
+                                yearIndex={yearIndex}
+                                semesterIndex={semesterIndex}
+                                degreePlanID={degreePlanID}
+                            />
+                            <CourseCompletedButton />
+>>>>>>> refs/remotes/origin/master
                         </View>
                     ))
                 }
@@ -249,7 +264,7 @@ function LevelSection({levelNumber, courseData}) {
     )
 }
 
-function groupByLevel(courseList){
+function groupByLevel(courseList) {
     const groups = {};
     courseList.forEach(course => {
         const level = Math.floor(parseInt(course.id) / 100) * 100;
@@ -272,6 +287,7 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
     },
+<<<<<<< HEAD
     verticalLine: {
         padding: 4,
         borderRadius: 10,
@@ -289,9 +305,12 @@ const styles = StyleSheet.create({
     },
     levelHeader:{
         fontSize: 18,
+=======
+    levelHeader: {
+>>>>>>> refs/remotes/origin/master
         fontWeight: 'bold',
     },
-    courseHeader:{
+    courseHeader: {
         color: '#ffffffff',
         fontWeight: 'bold',
         fontSize: 20,

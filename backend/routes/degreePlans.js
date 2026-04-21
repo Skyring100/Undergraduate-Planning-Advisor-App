@@ -27,16 +27,17 @@ const getDegreePlanByID = async (req, res) => {
 
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
+  console.log("Result below:");
   console.log(result);
 };
 
 const createDegreePlan = async (req, res) => {
-  const { degree_plan_name, student_id } = req.body;
+  const { degree_plan_name, student_id, degree_id } = req.body;
 
   console.log(req.url);
   console.log(req.body);
 
-  const creationSuccess = await degreePlanStorage.createDegreePlan(degree_plan_name, student_id);
+  const creationSuccess = await degreePlanStorage.createDegreePlan(degree_plan_name, student_id, degree_id);
 
   var result;
   if (!creationSuccess) {
@@ -48,21 +49,23 @@ const createDegreePlan = async (req, res) => {
     result = {
       success: true, 
       message: 'Created degree plan', 
+      data: creationSuccess
     };
   }
 
   res.status(200).json(result);
+  console.log("Result below:");
   console.log(result);
 };
 
 
 const addCourseToDegreePlan = async (req, res) => {
-  const { degree_plan_id, year_num, semester_id, course_id } = req.body;
+  const { degree_plan_id, year, semester_id, course_id } = req.body;
 
   console.log(req.url);
   console.log(req.body);
 
-  const creationSuccess = await degreePlanStorage.addCourseToDegreePlan(degree_plan_id, year_num, semester_id, course_id);
+  const creationSuccess = await degreePlanStorage.addCourseToDegreePlan(degree_plan_id, year, semester_id, course_id);
 
   var result;
   if (!creationSuccess) {

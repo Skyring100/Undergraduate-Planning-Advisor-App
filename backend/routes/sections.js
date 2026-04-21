@@ -107,7 +107,7 @@ const addSection = async (req, res) => {
 
 router.get('/course/:courseID', authenticate, getSectionsForCourse);
 router.get('/:crn', authenticate, getSectionByCRN);
-router.get('/dow/:dow', authenticate, getSectionsOnDayOfWeek);
+router.get('/dow/:dow', getSectionsOnDayOfWeek);
 router.post('/create', authenticate, addSection);
 
 module.exports = router;

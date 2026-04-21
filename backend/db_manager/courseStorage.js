@@ -17,6 +17,18 @@ export function getAllCourses()
     return courses;
 }
 
+export function getCoursesByDepartment(department){
+    const courses = db.prepare('SELECT * FROM course WHERE course.department=?').get(department);
+    return courses;
+}
+
+export function getDepartmentCodes(){
+    const departments = db.prepare('SELECT department FROM course GROUP BY department').all();
+    console.log("Departments:");
+    console.log(departments);
+    return departments;
+}
+
 export function getPrereqsOf(target) {
     const prereqs = db.prepare('SELECT * FROM prereq WHERE course_id=? ORDER BY ordering;').all(target).map(prereq => prereq.prereq_id);
     return prereqs;

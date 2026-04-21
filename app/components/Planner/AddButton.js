@@ -8,9 +8,15 @@ export default function AddButton(props) {
 
     return (
         <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
-            <View style={[styles.addButton, firstColour, 
-                    {height: props.height, width: props.width, borderColor: props.borderColour, borderWidth: props.borderWidth}]}>
-                <Text style={[styles.addButtonText, themeText, ]}>{props.title}</Text>
+            <View style={[styles.addButton, 
+                    {height: props.height, 
+                    width: props.width, 
+                    borderColor: props.borderColour, 
+                    borderWidth: props.borderWidth,
+                    backgroundColor: props.backgroundColor,
+                    opacity: props.opacity
+                    }]}>
+                <Text style={[styles.addButtonText, {color: props.color} ]}>{props.title}</Text>
             </View>
             
         </TouchableOpacity>
@@ -21,12 +27,13 @@ export default function AddButton(props) {
 const styles = StyleSheet.create({
     addButton: {
         padding: 5,
-        borderRadius: 5,
+        borderRadius: 18,
         justifyContent: 'center',
         alignItems: 'center',
+        borderStyle: 'dashed',
     },
     addButtonText: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         marginTop: -4,
     },

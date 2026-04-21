@@ -18,6 +18,7 @@ import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../servi
 import {prereqString} from "../services/courseService";
 import {getDegreePlanByID} from "../services/degreePlannerService";
 import {getUserProfileByID} from "../services/userService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function EvaluatorScreen() {
     const navigation = useNavigation();
@@ -41,18 +42,15 @@ export default function EvaluatorScreen() {
     const themeShaded = useThemeShaded();
     const themeGreyed = useThemeGreyed();
     const {width} = useWindowDimensions();
-    const [gpa, setGPA] = useState(4.33)
+    const [gpa, setGPA] = useState("-");
     
     // to find when the next courses are
     const nextCourseTime = (() => {
         let d = new Date(); 
-        /* TODO: uncomment this when using the actual date in the future
         return ({
-            year: d.getFullYear() + (d.getMonth >= 9 ? 1 : 0), 
+            year: d.getFullYear() + (d.getMonth() >= 9 ? 1 : 0), 
             semester: (Math.floor((d.getMonth()-1+4)/4)*4 + 1 )%12,
         });
-        */
-        return ({year: 2028, semester: 9});
     })();
     let courseAnimationIterator = 0;
 
@@ -79,10 +77,14 @@ export default function EvaluatorScreen() {
 
     useEffect(() => {
         const pullAsync = async () => {
+            const degreePlanID = await AsyncStorage.getItem("current_degree_plan_id");
+            const studentID = await AsyncStorage.getItem("student_id");
             // TODO: change this line in prod
-            const resp = await getDegreePlanByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-            const userprofile = await getUserProfileByID("H8RSahsD9sRKayfDPGV6pnBxU6n1");
-            console.log(userprofile);
+            const resp = await getDegreePlanByID(degreePlanID);
+            console.log("resp: " + JSON.stringify(resp));
+            const userprofile = await getUserProfileByID(studentID).data || {};
+            console.log("got here");
+            setGPA(userprofile.gpa);
             const data = await (async () => {
                 const d = await Promise.all(
                     resp.data.data.map(
@@ -98,29 +100,33 @@ export default function EvaluatorScreen() {
                                 completedCourses.map(comp => comp.course_id),
                                 course.course_id
                             );
-                            console.log(JSON.stringify(pqString));
-                            console.log("Course awaited successfully");
-                            courseObj.data.prereq_string = pqString.data;
-                            console.log(`${completedCourses.map(comp => comp.course_id)}: ${matchData.message} ${course.course_id}`);
                             return courseObj;
                         }
                     ));
-                console.log(JSON.stringify(d));
+                console.log("got past d");
+                console.log("d: " + JSON.stringify(d));
                 const e = d.filter(course => course.success).map(course => course.data).sort(course => course.course_id);
-                console.log(e);
+                console.log("got past e");
                 setProgressBarPercent((completedCourses.length/e.length)*100);
+                console.log("got past progbar percent setting");
+                console.log(nextCourseTime.year)
+                console.log(nextCourseTime.semester)
+                console.log(e[0])
                 setSemesterNumberText("Year " + (nextCourseTime.year - (e[0].year_num) + ((nextCourseTime.semester - 4) < 9 ? 1 : 0))
                     + " - " + ((nextCourseTime.semester - 4) == 1 ? "Winter" : (
                     nextCourseTime.semester - 4 == 5 ? "Spring" : "Fall")) + " Semester");
-                console.log(semesterNumberText);
-                console.log("got here");
-                setIsLoading(false);
+                console.log("got past progbar percent setting");
+                try {
+                setIsLoading(null);
+                } catch (e) {
+                    console.log("this happened " + e.message);
+                }
+                console.log("no longer loading");
                 return e;
             })();
+            console.log("left async");
             setDegreeCourses(data);
-            console.log("and processed:");
-            console.log(data);
-            console.log(number);
+            console.log("courses now set");
         };
         try {
             pullAsync();
@@ -157,9 +163,6 @@ export default function EvaluatorScreen() {
     const nextCourses = degreeCourses.filter(course => {
         const notCompleted = !completedCourses.map(other => other.id).includes(course.course_id);
         const nextSemester = nextCourseTime.year == course.year_num && nextCourseTime.semester == course.semester_id;
-        console.log(`nextSemester: ${nextSemester}`);
-        console.log(`this course's year: ${course.year_num}`);
-        console.log(`this course's semester: ${course.semester_id}`);
 
         return notCompleted && nextSemester;
     });
@@ -204,7 +207,6 @@ export default function EvaluatorScreen() {
                             </Text>
                             <View style={{flexDirection: "row", flexWrap: "wrap", gap: 10}}>
                                 {   (() => {
-                                        console.log(course);
                                         if (course.prereq_string === undefined) return <></>;
                                         return (course.prereq_string).map(obj => {
                                             return (
@@ -242,7 +244,7 @@ export default function EvaluatorScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[styles.container, themeBg, {width: width}]}>
-                    <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+                <ScrollView contentContainerStyle={{paddingBottom: 20}}>
                     <View style={styles.containerSmall}>
                         <View style={[styles.progressBarHolder, themeShaded]}>
                             <View style={[styles.doubleSideTextHolder, {paddingLeft: 10, paddingRight: 10,}]}>
@@ -255,7 +257,11 @@ export default function EvaluatorScreen() {
                             <View style={[styles.progressBarHolder, themeShaded, {flexShrink: 1, width: 170, flexDirection: "column", alignItems: "center", justifyContent: "space-evenly"}]}>
                                 <Text style={themeText}>You're running a</Text>
                                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-evenly", gap: 10,}}>
-                                    <Text style={[styles.bigGPAText, {color: floatToColour(gpa / 4.33)}]}>{gpa.toFixed(2) /* TODO: make this pull from degree service */}</Text>
+                                    
+                                    {isLoading ? <></> : 
+                                    <Text style={[styles.bigGPAText, {color: floatToColour(gpa / 4.33)}]}>{(+NaN).toFixed(2) /* TODO: make this pull from degree service */}</Text>
+                                    }
+                                    
                                     <Text style={themeText}>GPA</Text>
                                 </View>
                             </View>
@@ -282,54 +288,67 @@ export default function EvaluatorScreen() {
                             + " semester looks."));
                         })()
                         }</Text>
-                        {(() => {if (nextCourses.filter(c => c.matches).length > 0) 
-                                return (
-                                    <>
-                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
-                                            You've got the prereqs for these:
-                                        </Text>
-                                    </>
-                                );}
-                        )()}
-                        <View style={[styles.courseBubbleBubble, themeShaded]}>
-                            {(() => {
-                                if (isLoading) return (<><Text>Loading...</Text></>); else
-                                return nextCourses.filter(c => c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
-                                })()
-                            }
-                        </View>
-                        {(() => {if (nextCourses.filter(c => !c.matches).length > 0) 
-                                return (
-                                    <>
-                                        <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
-                                            You're still missing some for these:
-                                        </Text>
-                                    </>
-                                );}
-                        )()}
-                        <View style={[styles.courseBubbleBubble, themeShaded]}>
-                            {(() => {
-                                if (isLoading) return (<><Text>Loading...</Text></>); else
-                                return nextCourses.filter(c => !c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
-                                })()
-                            }
-                        </View>
-                        {(() => {if (completedCourses.length > 0) 
+                        {(() => {
+                            if (isLoading) {return (<>
+                                <Text style={{
+                                    padding: 20, 
+                                    alignSelf: "center", 
+                                    color: "white", 
+                                    fontWeight: "600",
+                                }}>
+                                    We had some trouble loading your next courses
+                                </Text>
+                            </>);}
+                            return (<>
+                                {(() => {if (nextCourses.filter(c => c.matches).length > 0) 
+                                        return (
+                                            <>
+                                                <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                                    You've got the prereqs for these:
+                                                </Text>
+                                            </>
+                                        );}
+                                )()}
+                                <View style={[styles.courseBubbleBubble, themeShaded]}>
+                                    {(() => {
+                                        return nextCourses.filter(c => c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                        })()
+                                    }
+                                </View>
+                                {(() => {if (nextCourses.filter(c => !c.matches).length > 0) 
+                                        return (
+                                            <>
+                                                <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
+                                                    You're still missing some for these:
+                                                </Text>
+                                            </>
+                                        );}
+                                )()}
+                                <View style={[styles.courseBubbleBubble, themeShaded]}>
+                                    {(() => {
+                                        return nextCourses.filter(c => !c.matches).map(c => courseToAnimatedView(c, ++courseAnimationIterator, undefined));
+                                        })()
+                                    }
+                                </View>
+                            </>);
+                        })()}
+                        {(() => {
+                            if (isLoading) return (<><Text style={{padding: 20, alignSelf: "center", color: "white", fontWeight: "600",}}>We had some trouble loading your complete courses</Text></>); else
+                            if (completedCourses.length > 0) 
                                 return (
                                     <>
                                         <Text style={[styles.enrollHeader, themeText, {margin: 5}]}>
                                             You've completed these:
                                         </Text>
                                     </>
-                                );}
-                        )()}
-                        <View style={[styles.courseBubbleBubble, themeShaded]}>
-                            {(() => {
-                                if (isLoading) return (<><Text>Loading...</Text></>); else
-                                return completedCourses.map(c => courseToAnimatedView(c, ++courseAnimationIterator, c.grade || ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"][Math.floor(Math.random() * 13)]));
-                                })()
-                            }
-                        </View>
+                                );
+                            <View style={[styles.courseBubbleBubble, themeShaded]}>
+                                {(() => {
+                                    return completedCourses.map(c => courseToAnimatedView(c, ++courseAnimationIterator, c.grade || ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"][Math.floor(Math.random() * 13)]));
+                                    })()
+                                }
+                            </View>
+                        })()}
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -358,6 +377,8 @@ const styles = StyleSheet.create({
         borderRadius: 10, 
         marginLeft: 10, 
         marginRight: 10, 
+        marginTop: 10,
+        marginBottom: 10,
     },
     doubleSideTextHolder: {
         flexDirection: "row",

@@ -3,6 +3,7 @@ import { API_BASE_URL, getBaseRequestHTTP } from './api.js';
 
 export const getAllCourses = async () => {
     const url = `${API_BASE_URL}/courses/all`;
+    console.log(url);
     const token = await AsyncStorage.getItem('authToken');
     
     const fetchReq = getBaseRequestHTTP('GET', token);
@@ -15,6 +16,7 @@ export const getAllCourses = async () => {
 
 export const getCourseById = async (id) => {
     const url = `${API_BASE_URL}/courses/${id}`;
+    console.log(url);
     const token = await AsyncStorage.getItem('authToken');
 
     const fetchReq = getBaseRequestHTTP('GET', token);
@@ -25,6 +27,35 @@ export const getCourseById = async (id) => {
 
     return data;
 };
+
+export const getCoursesByDepartment = async (department) => {
+    const url = `${API_BASE_URL}/courses/department/${department}`;
+    console.log(url);
+    const token = await AsyncStorage.getItem('authToken');
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
+
+    const data = await response.json();
+
+    return data;
+};
+
+export const getDepartmentCodes = async () => {
+    const url = `${API_BASE_URL}/courses/department-codes`;
+    console.log(url);
+    const token = await AsyncStorage.getItem('authToken');
+
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
+
+    const data = await response.json();
+
+    return data;
+};
+
 
 export const checkPrereqs = async (completed, target) => {
     const completedString = completed.join(",");

@@ -30,9 +30,6 @@ export default function SettingsScreen() {
                 <View style={{alignItems: 'center', justifyContent: 'center',}}>
                     <ColourDropdown/>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', flex:1}}>
-                    <LogoutButton/>
-                </View>
             </SafeAreaView >
         </SafeAreaProvider>
     );

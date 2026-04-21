@@ -67,3 +67,43 @@ export const addCompletedCourses = async (student_id, courses) => {
       }
 };
 
+
+export const setCurrentUserDegree = async (student_id, degree_id) => {
+  try{
+        const url = `${API_BASE_URL}/set-degree}`;
+        console.log(url);
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({student_id, degree_id});
+        const response = await fetch(url, fetchReq);
+        
+        const data = await response.json();
+        console.log(data);
+
+        await AsyncStorage.setItem('current_degree_id', degree_id);
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error adding setting current degree for user:', error);
+        return {success: false, data: null};
+    }
+  };
+
+  export const setCurrentUserDegreePlan = async (student_id, degree_plan_id) => {
+    try{
+        const url = `${API_BASE_URL}/set-degree-plan}`;
+        console.log(url);
+        const token = await AsyncStorage.getItem('authToken');
+        const fetchReq = getBaseRequestHTTP('PUT', token);
+        fetchReq['body'] = JSON.stringify({student_id, degree_plan_id});
+        const response = await fetch(url, fetchReq);
+        
+        const data = await response.json();
+        console.log(data);
+
+        await AsyncStorage.setItem('current_degree_plan_id', degree_plan_id);
+        return {success: true, data};
+    } catch (error) {
+        console.error('Error adding setting current degree plan for user:', error);
+        return {success: false, data: null};
+    }
+  };

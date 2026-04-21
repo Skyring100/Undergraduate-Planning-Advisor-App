@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -50,6 +51,7 @@
   },
   "private": true,
   "devDependencies": {
+    "patch-package": "^8.0.1",
     "react-native-dotenv": "^3.4.11"
   }
 }

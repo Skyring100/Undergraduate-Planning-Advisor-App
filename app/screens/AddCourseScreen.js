@@ -8,6 +8,9 @@ import RequiredCoursesScreen from './RequiredCoursesScreen';
 import CourseListScreen from './CourseListScreen';
 import { useLinkBuilder } from '@react-navigation/native';
 import { PlatformPressable } from '@react-navigation/elements';
+import { useRoute } from '@react-navigation/native';
+import CourseList from '../components/Planner/CourseList';
+
 
 
 function TabBar({ state, descriptors, navigation, position }) {
@@ -75,23 +78,36 @@ function TabBar({ state, descriptors, navigation, position }) {
 
 const Tab = createMaterialTopTabNavigator();
 
-function Tabs() {
+function Tabs({yearIndex, semesterIndex, degreePlanID}) {
     return (
         <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-            <Tab.Screen name="Required Courses" component={RequiredCoursesScreen} />
-            <Tab.Screen name="All Courses" component={CourseListScreen} />
+            <Tab.Screen 
+                name="Required Courses" 
+                component={RequiredCoursesScreen} 
+                initialParams={{yearIndex, semesterIndex, degreePlanID}}
+                />
+            <Tab.Screen 
+                name="All Courses" 
+                component={CourseList}
+                initialParams={{yearIndex, semesterIndex, degreePlanID}}
+                />
         </Tab.Navigator>
     )
 }
    
 export default function AddCourseScreen() {
     const navigation = useNavigation();
-    
+    const route = useRoute();
+    const {yearIndex, semesterIndex, degreePlanID} = route.params;
 
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-                <Tabs />
+                <Tabs 
+                yearIndex ={yearIndex}
+                semesterIndex={semesterIndex}
+                degreePlanID={degreePlanID}
+                />
 
             </SafeAreaView>
         </SafeAreaProvider>

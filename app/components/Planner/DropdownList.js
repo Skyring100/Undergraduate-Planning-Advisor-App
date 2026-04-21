@@ -1,15 +1,22 @@
 import { View, TextInput, Pressable, Text, TouchableOpacity, StyleSheet, FlatList, Modal, TouchableWithoutFeedback } from "react-native";
-import React, { useCallback, useRef, useState} from "react";
-import { useThemeText, useFirstColour, useThemeBackground } from "../../contexts/ThemeContext";
+import React, { useCallback, useEffect, useRef, useState} from "react";
+import { useThemeText, useFirstColour, useThemeBackground, useThemeShaded } from "../../contexts/ThemeContext";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { createDegreePlan, getDegreePlanByID } from "../../services/degreePlannerService";
+import { getUserProfileByID } from "../../services/userService";
+import { getAuth } from 'firebase/auth';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { readFile, writeFile } from "fs/promises";
 
 
-export default function DropdownList(){
+
+export default function DropdownList({onPlanSelect}){
     const [isOpen, setIsOpen] = useState(false);
     const themeText = useThemeText();
-    const firstColour = useFirstColour();
+    const firstColour = useThemeShaded();
     const themeBg = useThemeBackground();
-    const data = ['Default Planner 1', 'Planner 2', 'Create New Planner'];
+    const [planners, setPlanners] = useState([]);
+    const [studentId, setStudentId] = useState(null);
     const toggleDropdown = useCallback(() => setIsOpen(!isOpen), []);
     const dropdownRef = useRef(null);
     const [top, setTop] = useState(0);
@@ -22,22 +29,73 @@ export default function DropdownList(){
     const [value, setValue] = useState('');
     const [visible, setVisible] = useState(false);
 
-    const onSelect = useCallback((item) =>{
+    const onSelect = useCallback((item, planData) =>{
         setValue(item);
         setIsOpen(false);
-        if(item === 'Create New Planner'){
-            setVisible(true);
-        } else {
+        
             //grab data from database for specific planner and update planner screen
-        }
-    }, [visible])
+            onPlanSelect && onPlanSelect(planData)
+        
+    })
 
-    const createPlanner = (textInput) => {
+
+    const createPlanner = async (textInput) => {
+        const uid = await AsyncStorage.getItem("student_id");
+            if(!uid){
+                console.error('No logged in user');
+                return;
+            }
+
+        const profile = await getUserProfileByID(uid);
+        if(!profile.success){
+            console.error('Could not get user profile');
+            return;
+        }
+
+        const student_id = profile.data.student_id;
+
         //create new planner in database and update planner screen with new data
-        data.concat(textInput);
-        setVisible(!visible);
+        const result = await createDegreePlan(textInput, student_id);
+        console.log('student_id used for refetch: ', student_id);
+
+        if(result.success){
+            const updated = await getDegreePlanByID(student_id);
+            console.log('Updated data: ', JSON.stringify(updated));
+            if (updated.success){
+               setPlanners(updated.data.data); 
+            }
+            
+           setVisible(false); 
+        }
+
+        console.log('Create plan result: ', JSON.stringify(result));
+        
     }
-    const [textInput, setTextInput] = useState('Planner ' + (data.length + 1));
+
+    const [textInput, setTextInput] = useState('Planner ' + (planners.length + 1));
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const uid = await AsyncStorage.getItem("student_id");
+            if(!uid){
+                console.error('No logged in user');
+                return;
+            }
+
+            const profile = await getUserProfileByID(uid);
+
+            if(profile.success) {
+                const sid = profile.data.student_id;
+                setStudentId(sid);
+                const result = await getDegreePlanByID(sid);
+                if(result.success) {
+                    setPlanners(result.data.data);
+                }
+            }
+        };
+        fetchData();
+    }, []);
+
 
     return (
         <View ref={dropdownRef}>
@@ -71,17 +129,27 @@ export default function DropdownList(){
                         <View style={styles.backdrop}>
                             <View style={[styles.dropdownOptions, themeBg, {top: top}]} >
                             <FlatList
-                                keyExtractor={(item) => item}
-                                data={data}
+                                data={planners}
+                                keyExtractor={(item) => item.degree_plan_id.toString()}
                                 renderItem={({ item }) => (
                                     <TouchableOpacity 
                                         activeOpacity={0.8} 
                                         style={[styles.dropdownItem, themeBg]}
-                                        onPress={() => onSelect(item)}>
-                                        <Text style={[styles.text, themeText]}>{item}</Text>
+                                        onPress={() => onSelect(item.degree_plan_name, item)}>
+                                        <Text style={[styles.text, themeText]}>{item.degree_plan_name}</Text>
                                     </TouchableOpacity>
                                 )}
                                 ItemSeparatorComponent={() => <View style = {styles.seperator}/>}
+                                ListFooterComponent={() => 
+                                    <TouchableOpacity 
+                                        activeOpacity={0.8} 
+                                        style={[styles.dropdownItem, themeBg]}
+                                        onPress={(e) => {
+                                            e.stopPropagation();
+                                            setIsOpen(false);
+                                            setVisible(true);}}>
+                                        <Text style={[styles.text, themeText]}>Create New Planner</Text>
+                                    </TouchableOpacity>}
                             />
                             </View>
                         </View>
@@ -111,7 +179,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 15,
-        borderRadius: 8,
+        borderRadius: 18,
     },
     dropdownOptions: {
         position: 'absolute',

@@ -1,25 +1,23 @@
+
 /*CourseList page will show the list of all courses.
 It will have a search bar to filter courses by name or CRN.
 Each course will have an 'Add to Planner' button that allows users to add the course to their degree planner.*/
 
 import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, TouchableOpacity, TextInput, Button, Modal, Pressable } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import degreePlanData from '../data/degree_plans.json'
 import BackButton from '../components/BackButton';
 import { useThemeText, useThemeBackground,
     useFirstColour, useSecondColour, useThirdColour} from "../contexts/ThemeContext";
-import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
 import CollapsibleView from '../components/CollapsibleView';
+import { getAllCourses } from '../services/courseService';
 import CoursePopUp from '../components/CoursePopUp';
 import { addCourseToDegreePlan } from '../services/degreePlannerService';
-import { getAllCourses, getCoursesByDepartment } from '../services/courseService';
 
 
 
 
-
-export default function CourseListScreen() {
+export default function CourseList() {
 
     // when this is added, use these as style components for text colour instead of #fff and #000
     const themeText = useThemeText();
@@ -33,11 +31,33 @@ export default function CourseListScreen() {
 
     const [selectedCourse, setSelectedCourse] = useState(null);
 
+    const route = useRoute();
+    const navigation = useNavigation();
+    const {yearIndex, semesterIndex, degreePlanID} = route.params;
 
+    const handleAddToPlanner = async() =>{
+        console.log('Adding course with: ', {
+            degreePlanID,
+            yearIndex,
+            semesterIndex,
+            course_id: selectedCourse.course_id
+        })
+        const result = await addCourseToDegreePlan(
+            degreePlanID,
+            yearIndex+1,
+            semesterIndex+1,
+            selectedCourse.course_id
+        );
 
-    const departments = []; // Example departments, replace with actual data if available
+        console.log('Add course result: ', JSON.stringify(result));
 
-   
+        if(result.success){
+            setSelectedCourse(null);
+            navigation.goBack();
+        } else {
+            console.error('Failed to add course');
+        }
+    }
 
     useEffect(() => {
         getAllCourses().then((apiResult) => {
@@ -103,7 +123,9 @@ export default function CourseListScreen() {
                             <Pressable onPress={() => setSelectedCourse(null)} style={[styles.buttonClose]}>
                             <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
-                            
+                            <Pressable onPress={handleAddToPlanner} style={[styles.buttonClose]}>
+                                <Text style={styles.textStyle}>Add to Planner</Text>
+                            </Pressable>
                             </View>
                         </View>
                         )}
@@ -125,7 +147,10 @@ export default function CourseListScreen() {
                                 <Text style={styles.courseTitle}>{item.course_id}</Text>
                                 <Text style={styles.courseText}>{item.title}</Text>
                                 <Text style={styles.courseText}>{item.prereq}</Text>
-                                
+                                <View  style={{flexDirection:'row', flex:1}}>
+                                    <View style={{flex:1}}/>
+                                    <Button style={{flex:1}} title='+'/>
+                                </View>
                                 
                             </View>
 

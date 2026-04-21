@@ -8,7 +8,7 @@ import {
     CalendarUtils,
 } from 'react-native-calendars';
 import AddSectionButton from "../components/Schedule/AddSectionButton";
-import { useFirstColour, useThemeText, useThemeBackground, useThemeShaded, borderColour} from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeShaded, borderColour, useFirstColour, useFourthColour} from "../contexts/ThemeContext";
 import { useSchedule } from "../contexts/ScheduleContext";
 
 const days = ['Y', 'M', 'T', 'W', 'R', 'F', 'S'];
@@ -39,7 +39,8 @@ const initialTime = {hour: 8, minute: 0};
 export default function AgendaScreen(){
     const themeTxt = useThemeText();
     const themeBg = useThemeBackground();
-    const firstBg = useFirstColour();
+    const firstColour = useFirstColour();
+    const extraColour = useFourthColour();
     const grey = useThemeShaded();
     const {width, height} = useWindowDimensions();
     const {fetchByDay, refreshToken} = useSchedule();
@@ -101,7 +102,7 @@ export default function AgendaScreen(){
 
     
 
-    const timelineProps ={
+    const timelineProps = {
         //format24h: false,
         scrollToFirst: true,
         initialTime: initialTime,
@@ -119,11 +120,15 @@ export default function AgendaScreen(){
                 }
             },
             nowIndicatorLine: {
-                backgroundColor: firstBg.backgroundColor,
+                ...firstColour,
                 height: 2,
             },
             nowIndicatorKnob:{
-                backgroundColor: firstBg.backgroundColor,
+                ...extraColour,
+                height: 2,
+            },
+            nowIndicatorKnob:{
+                ...extraColour,
                 height: 8,
                 width: 8,
             },
@@ -139,12 +144,11 @@ export default function AgendaScreen(){
             }
         },
 
-        // TODO: mateus why is there a white border around every element pls fix
         renderEvent: ( item ) => (
             <>
             <View style = {{flex:1, flexDirection: 'row'}}>
                 <View style={[styles.card, grey]}>
-                    <View style={[styles.cardAccent, firstBg]}/>
+                    <View style={[styles.cardAccent, firstColour]}/>
                         <View style={styles.cardContent}>
                             <Text style={[styles.cardCourseId, themeTxt]}>{item.course_id}</Text>
                             <Text style={[styles.cardCourseName, themeTxt]}>{item.course_name}</Text>
@@ -186,8 +190,8 @@ export default function AgendaScreen(){
                                 textSectionTitleColor: themeTxt.color,
                                 dayTextColor: themeTxt.color,
                                 monthTextColor: themeTxt.color,
-                                selectedDayBackgroundColor: firstBg.backgroundColor,
-                                todayTextColor: firstBg.backgroundColor,
+                                selectedDayBackgroundColor: extraColour.backgroundColor,
+                                todayTextColor: extraColour.backgroundColor, 
                                 textDayFontFamily: 'Montserrat',
                                 textDayFontSize: 15,
                                 textDayHeaderFontFamily: 'Montserrat',
@@ -200,6 +204,7 @@ export default function AgendaScreen(){
                         <AddSectionButton/>
                     </View>
                     <TimelineList
+                        key={currentDate}
                         events={eventsByDate}
                         timelineProps={timelineProps}
                         showNowIndicator

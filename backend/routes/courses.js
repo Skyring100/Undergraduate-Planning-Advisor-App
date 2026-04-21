@@ -4,6 +4,7 @@ const courseStorage = require('../db_manager/courseStorage');
 const {authenticate} = require('../firebaseTokenHandler');
 
 const getCourseById = async (req, res) => {
+  console.log(req.url);
   const { id } = req.params;
 
   const course = courseStorage.getCourseById(id);
@@ -28,6 +29,7 @@ const getCourseById = async (req, res) => {
 };
 
 const getAllCourses = async (req, res) => {
+  console.log(req.url);
   const courses = courseStorage.getAllCourses();
   var result;
   if (!courses) {
@@ -45,7 +47,48 @@ const getAllCourses = async (req, res) => {
 
   const statusCode = result.success ? 200 : 404;
   res.status(statusCode).json(result);
+};
 
+const getCoursesByDepartment = async (req, res) => {
+  console.log(req.url);
+  console.log(req.params);
+  const {department} = req.params;
+  const courses = courseStorage.getCoursesByDepartment(department);
+  var result;
+  if (!courses) {
+    result = { 
+      success: false, 
+      message: 'Courses not found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Courses found', 
+      data: courses
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
+
+const getDepartmentCodes = async (req, res) => {
+  console.log(req.url);
+  const codes = courseStorage.getDepartmentCodes();
+  var result;
+  if (!codes) {
+    result = { 
+      success: false, 
+      message: 'Could not get department codes' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Department codes successful', 
+      data: codes
+    };
+  }
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
 };
 
 const prereqCheck = async (req, res) => {
@@ -123,8 +166,10 @@ const prereqString = async (req, res) => {
 };
 
 router.get('/all', authenticate, getAllCourses);
-router.get('/:id', authenticate, getCourseById);
+router.get('/id/:id', authenticate, getCourseById);
 router.get('/allprereqs/:target', authenticate, prereqList);
 router.get('/check/:completed/:target', authenticate, prereqCheck);
 router.get('/string/:completed/:target', authenticate, prereqString);
+router.get('/department/:department', authenticate, getCoursesByDepartment);
+router.get('/department-codes', authenticate, getDepartmentCodes);
 module.exports = router;
