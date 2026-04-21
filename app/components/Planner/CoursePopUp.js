@@ -1,24 +1,61 @@
 import { TouchableOpacity, Text, StyleSheet, Modal, Pressable, View, Dimensions } from 'react-native';
 import {useState} from 'react';
-import { useThemeText, useThirdColour} from '../contexts/ThemeContext';
+import { useThemeText, useThirdColour} from '../../contexts/ThemeContext';
+import { addCourseToDegreePlan } from '../../services/degreePlannerService';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export default function CoursePopUPButton({course}) {
+export default function CoursePopUPButton({course, yearIndex, semesterIndex, degreePlanID}) {
     const [modalVisible, setModalVisible] = useState(false);
     const handlePress = () => {
         setModalVisible(true);
     }
     const themeText = useThemeText();
     const thirdColour = useThirdColour();
-    const buttonText = (course.course_id != null) ? course.course_id : "----";
+    const buttonText = (course.id != null) ? course.id : "----";
+    const buttonText2 = (course.title != null) ? course.title : "----";
+    const navigation = useNavigation();
+
+    const handleAddToPlanner = async() =>{
+        try{
+            const key = `degree_plan_${degreePlanID}`;
+            const raw = await AsyncStorage.getItem(key);
+            const plan = raw ? JSON.parse(raw) : {degree_ids: [], years: []};
+
+            let year = plan.years.find(y => y.year_number === yearIndex + 1);
+            if (!year){
+                    year = {year_number: yearIndex+1, semesters:[]};
+                    plan.years.push(year);
+            }
+
+            let semester = year.semesters.find(s => s.semester_number === semesterIndex + 1);
+            if (!semester){
+                semester = {semester_number: semesterIndex+1, courses:[]};
+                year.semesters.push(semester);
+            }
+
+            if (!semester.courses.includes(course.id)){
+                semester.courses.push(course.id);
+            }
+
+            await AsyncStorage.setItem(key, JSON.stringify(plan));
+            console.log('Degree Plan: ', JSON.stringify(plan));
+            //setSelectedCourse(null);
+            //navigation.goBack();
+        } catch (e) {
+            console.error('Failed to add course: ', e);
+        }
+    };
 
     return (
         <TouchableOpacity
-            style={[styles.courseButton, thirdColour]}
+            style={[styles.courseButton]}
             onPress={handlePress}
             activeOpacity={0.7}
         >
             <Text style={[styles.buttonText, themeText]}>{buttonText}</Text>
+            <Text style={[styles.buttonTextLight, themeText]}>{buttonText2}</Text>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -29,15 +66,14 @@ export default function CoursePopUPButton({course}) {
                 <View style={styles.popupBackground}>
                     <View style={styles.mainContent}>
                         <View>
-                            <Text style={styles.modalText}>{course.course_id.replace(/\n/g, ' ')}: {course.title}</Text>
-                            <Text style={styles.modalText}>{course.title}</Text>
-                            <Text style={styles.modalText}>{course.description}</Text>
+                            <Text style={styles.modalText}>{buttonText}: {buttonText2}</Text>
+                            <Text style={styles.modalText}>{course.desc}</Text>
                             <Text style={styles.modalText}>{course.prereq}</Text>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Pressable onPress={() => setModalVisible(!modalVisible)} style={[styles.buttonClose, thirdColour]}>
                                 <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
-                            <Pressable onPress={() => {}} style={[styles.buttonClose, thirdColour]}>
+                            <Pressable onPress={handleAddToPlanner} style={[styles.buttonClose, thirdColour]}>
                                 <Text style={styles.textStyle}>Add to Planner</Text>
                             </Pressable>
                             </View>
@@ -57,13 +93,22 @@ export const styles = StyleSheet.create({
         //backgroundColor: '#078d6e',
         textAlign: 'center',
         width: '70%',
+        flexDirection: "row",
+        alignItems: "center",
     },
     buttonText: {
         color: '#fff',
         fontSize: 16,
         fontWeight: '600',
         padding: 5
-    },popupBackground: {
+    },
+    buttonTextLight: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '400',
+        padding: 5
+    },
+    popupBackground: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

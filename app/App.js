@@ -34,6 +34,7 @@ import { DrawerProvider, useDrawer } from './contexts/DrawerContext';
 
 const Stack = createNativeStackNavigator();
 const hideBar = ['Login', 'Register'];
+const hideHeader = ['Login', 'Register', 'Dashboard'];
 
 function AppContent({currentRoute}) {
         const { isDrawerOpen, setIsDrawerOpen } = useDrawer();
@@ -51,8 +52,8 @@ function AppContent({currentRoute}) {
                     screenOptions={{
                         header: (props) => <AppHeader {...props}/>,
                     }}>
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="Register" component={RegisterScreen} options={{ animation: 'slide_from_bottom' }} />
+                    <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+                    <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
                     <Stack.Screen name="Dashboard" component={DashboardScreen} />
                     <Stack.Screen name="Settings" component={SettingsScreen} />
                     <Stack.Screen name="Planner" component={PlannerScreen} />

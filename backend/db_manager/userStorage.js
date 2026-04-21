@@ -8,7 +8,7 @@ export function getUserByEmail(email) {
     return undefined;
   }
   const completed_courses = db.prepare('SELECT course_id, in_progress, grade FROM user_completed_course WHERE user_completed_course.student_id=?').get(user.student_id);
-  const degrees = db.prepare(`SELECT degree.degree_name FROM user_taking_degree 
+  const degrees = db.prepare(`SELECT degree.degree_name, degree.degree_id FROM user_taking_degree 
     LEFT JOIN degree ON user_taking_degree.degree_id = degree.degree_id
     WHERE user_taking_degree.student_id=?`).get(user.student_id);
   user.completed_courses = completed_courses;
@@ -23,9 +23,9 @@ export function getUserByStudentID(id){
     return undefined;
   }
   const completed_courses = db.prepare('SELECT course_id, in_progress, grade FROM user_completed_course WHERE user_completed_course.student_id=?').all(user.student_id);
-  const degrees = db.prepare(`SELECT degree_name FROM user_taking_degree 
+  const degrees = db.prepare(`SELECT degree.degree_name, degree.degree_id FROM user_taking_degree 
     LEFT JOIN degree ON user_taking_degree.degree_id = degree.degree_id
-    WHERE user_taking_degree.student_id=?`).get(user.student_id);
+    WHERE user_taking_degree.student_id=?`).all(user.student_id);
   user.completed_courses = completed_courses;
   user.degrees = degrees;
   console.log("will be returning:");

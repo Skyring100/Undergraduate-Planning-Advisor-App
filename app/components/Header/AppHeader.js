@@ -10,6 +10,7 @@ import { useNavigationState } from '@react-navigation/native';
 import { useDrawer } from '../../contexts/DrawerContext';
 import BackButton from '../BackButton';
 
+
 //<Header title='Gradian' style={styles.header}/>
 const screenWidth = Dimensions.get('window').width;
 
@@ -93,9 +94,7 @@ export default function AppHeader() {
 
     return (
         <View>
-            <CustomHeader>
-
-            </CustomHeader>
+            <CustomHeader/>
         </View>
 
     );
