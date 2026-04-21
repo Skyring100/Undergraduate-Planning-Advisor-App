@@ -12,6 +12,9 @@ import { Button } from 'react-native';
 import { addSections } from '../services/sectionService';
 import { useSchedule } from '../contexts/ScheduleContext';
 
+import { getDegreePlanByID } from '../services/degreePlannerService';
+
+
 export default function EditDegreeReqScreen() {
     const [name, setName] = useState('');
     const [isMinor, setIsMinor] = useState(false);
@@ -29,22 +32,25 @@ export default function EditDegreeReqScreen() {
     const textInputColor = useThemeShaded();
 
 
-    const submit = async () => {
+    const submit = async (plan) => {
         try {
             courseReqs.push(courseId, minGrade);
             creditReqs.push(desc, numCred);
 
+            invalidateCache();
+            refetch();
+            alert("Info saved!");
         } catch (e) {
             console.error('Error editing requirements: ', e);
         }
     }
 
-    function SubmitInfo() {
+    function SubmitInfo(plan) {
         if (name === '' || courseId === '' || minGrade === '' || numCred === 0) {
             alert("Empty information, try again.")
         }
         else {
-            submit()
+            submit(plan)
         }
     }
 
