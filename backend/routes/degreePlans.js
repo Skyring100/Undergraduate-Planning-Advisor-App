@@ -31,6 +31,35 @@ const getDegreePlanByID = async (req, res) => {
   console.log(result);
 };
 
+
+const getUserDegreePlans = async (req, res) => {
+  const { student_id } = req.params;
+
+  console.log(req.url);
+  console.log(req.params);
+
+  const degreePlan = degreePlanStorage.getUserDegreePlans(student_id);
+
+  var result;
+  if (!degreePlan) {
+    result = { 
+      success: false, 
+      message: 'No degree plan found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'degree plan found', 
+      data: degreePlan
+    };
+  }
+
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+  console.log("Result below:");
+  console.log(result);
+};
+
 const createDegreePlan = async (req, res) => {
   const { degree_plan_name, student_id, degree_id } = req.body;
 
@@ -86,10 +115,32 @@ const addCourseToDegreePlan = async (req, res) => {
 };
 
 
+const getAllDegreePlans = async (req, res) => {
+  console.log(req.url);
+  const degrees = degreePlanStorage.getAllDegreePlans();
+  var result;
+  if (!degrees) {
+    result = { 
+      success: false, 
+      message: 'Degree plans not found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'degree plans found', 
+      data: degrees
+    };
+  }
+  console.log(result);
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+};
 
 
-router.get('/:degree_plan_id', authenticate, getDegreePlanByID);
+router.get('/by_id/:degree_plan_id', authenticate, getDegreePlanByID);
+
 router.post('/create', authenticate, createDegreePlan);
 router.post('/addCourse', authenticate, addCourseToDegreePlan);
+router.get('/all', authenticate, getAllDegreePlans)
 
 module.exports = router;

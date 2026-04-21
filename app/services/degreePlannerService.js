@@ -13,6 +13,8 @@ export const getAllDegreePlans = async () => {
     return data;
 };
 
+
+
 export const addCourseToDegreePlan = async (degreePlanID, year, semester, course) => {
     try{
         const url = `${API_BASE_URL}/degree_plans/addCourse`;
@@ -60,7 +62,7 @@ export const createDegreePlan = async (degreePlanName, studentID, degreeID) => {
 
 export const getDegreePlanByID = async (degreePlanID) => {
     try{
-        const url = `${API_BASE_URL}/degree_plans/${degreePlanID}`;
+        const url = `${API_BASE_URL}/degree_plans/by_id/${degreePlanID}`;
             const token = await AsyncStorage.getItem('authToken');
             const fetchReq = getBaseRequestHTTP('GET', token);
             const response = await fetch(url, fetchReq);
@@ -72,3 +74,18 @@ export const getDegreePlanByID = async (degreePlanID) => {
         }
 };
 
+
+export const getUserDegreePlans = async (studentID) => {
+    try{
+        const url = `${API_BASE_URL}/degree_plans/user/${studentID}`;
+            const token = await AsyncStorage.getItem('authToken');
+            const fetchReq = getBaseRequestHTTP('GET', token);
+            const response = await fetch(url, fetchReq);
+            const data = await response.json();
+            console.log(data);
+            return {success: true, data: data};
+        } catch (error) {
+            console.error('Error getting degree plan:', error);
+            return {success: false, data: null};
+        }
+};

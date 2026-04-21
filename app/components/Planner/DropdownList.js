@@ -64,8 +64,8 @@ export default function DropdownList({onPlanSelect}){
             
                 const result = await getAllDegreePlans();
                 if(result.success) {
-                    setPlanners(result.data.data);
-                    console.log('Planners: ', result.data.data);
+                    setPlanners(result.data);
+                    console.log('Planners: ', result.data);
                     console.log('------------------------------------------');
                 }
         
