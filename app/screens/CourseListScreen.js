@@ -125,10 +125,7 @@ export default function CourseListScreen() {
                                 <Text style={styles.courseTitle}>{item.course_id}</Text>
                                 <Text style={styles.courseText}>{item.title}</Text>
                                 <Text style={styles.courseText}>{item.prereq}</Text>
-                                <View  style={{flexDirection:'row', flex:1}}>
-                                    <View style={{flex:1}}/>
-                                    <Button style={{flex:1}} title='+'/>
-                                </View>
+                                
                                 
                             </View>
 

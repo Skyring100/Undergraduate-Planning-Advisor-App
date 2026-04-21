@@ -67,9 +67,6 @@ export default function AccountScreen() {
                     <ColourButton colour={'Orange'} index={6}/>
                     <ColourButton colour={'Grey'} index={7}/>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', flex:1}}>
-                    <LogoutButton/>
-                </View>
             </SafeAreaView >
         </SafeAreaProvider>
     );

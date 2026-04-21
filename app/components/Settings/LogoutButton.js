@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Dimensions, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {mainDark, mainLight, useThemeStore, useFirstColour} from "../../contexts/ThemeContext";
 
@@ -13,10 +13,18 @@ export default function LogoutButton() {
     const navigation = useNavigation();
     const firstBg = useFirstColour();
     const handlePress = async () => {
-        await AsyncStorage.setItem('authToken', '');
-        console.log("Token reset", await AsyncStorage.getItem('authToken'));
-        navigation.navigate('Login',{});
+        Alert.alert('Logout', 'Do you want to logout?', [
+                        { text: 'Cancel', onPress: () => null, style: 'cancel' },
+                        { text: 'YES', onPress: async () => {
+                            await AsyncStorage.setItem('authToken', '');
+                            console.log("Token reset", await AsyncStorage.getItem('authToken'));
+                            navigation.navigate('Login',{});
+                        }},
+        ]);
+        
     };
+
+    
     
     return (
         <TouchableOpacity
