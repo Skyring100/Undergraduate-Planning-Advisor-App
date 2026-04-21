@@ -26,6 +26,27 @@ const getDegreeByID = async (req, res) => {
   res.status(statusCode).json(result);
 };
 
+const getAllDegrees = async (req, res) => {
+  console.log(req.url);
+  const degrees = degreeStorage.getAllDegrees();
+  var result;
+  if (!degrees) {
+    result = { 
+      success: false, 
+      message: 'Degrees not found' 
+    };
+  } else{
+    result = {
+      success: true, 
+      message: 'Degrees found', 
+      data: degrees
+    };
+  }
+
+  const statusCode = result.success ? 200 : 404;
+  res.status(statusCode).json(result);
+}
+
 const createDegree = async (req, res) => {
   const { name, is_minor, course_reqs, credit_reqs } = req.body;
 
@@ -60,7 +81,7 @@ const createDegree = async (req, res) => {
 
 
 
-
+router.get('/all', authenticate, getAllDegrees);
 router.get('/:degreeID', authenticate, getDegreeByID);
 router.post('/create', authenticate, createDegree);
 

@@ -68,3 +68,14 @@ export const getDegreeByID = async (degreeID) => {
     }
 };
 
+export const getAllDegrees = async () => {
+    const url = `${API_BASE_URL}/degrees/all`;
+    const token = await AsyncStorage.getItem('authToken');
+    
+    const fetchReq = getBaseRequestHTTP('GET', token);
+    const response = await fetch(url, fetchReq);
+
+    const data = await response.json();
+
+    return data.data ?? [];
+};
