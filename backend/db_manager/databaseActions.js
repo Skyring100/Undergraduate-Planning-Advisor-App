@@ -246,6 +246,7 @@ function dummyData(){
     db.exec(`
         INSERT OR REPLACE INTO degree_credit_requirement VALUES
             (1, 1, '400-Level Courses', 12);
+            (2, 1, '400-Level Courses', 12);
     `);
 
     db.exec(`

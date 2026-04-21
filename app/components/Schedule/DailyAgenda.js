@@ -32,9 +32,9 @@ export default function DailyAgenda({variant = 'card', schedule = []}) {
                             <View style={styles.timeLine} />
                             <View style={styles.tlContainer}>
                                 {classes.map(cls => (
-                                    <View key={cls.crn} style={[styles.tlClass, themeBg, {borderColor: themeText.color}]}>
+                                    <View key={cls.crn} style={[styles.tlClass, themeBg]}>
                                         <View style={[styles.tlAccent, firstBg]} />
-                                        <View style={styles.tlContent}>
+                                        <View style={[styles.tlContent]}>
                                             <Text style={[styles.cardCourseId, themeText]}>{cls.course_id}</Text>
                                             <Text style={[styles.cardCourseName, themeText]}>{cls.course_name}</Text>
                                             <View style={styles.cardInfo}>
@@ -149,7 +149,6 @@ const styles = StyleSheet.create({
     tlClass: {
         flexDirection: 'row',
         borderRadius: 8,
-        borderWidth: 1,
         marginBottom: 4,
         marginRight: 8,
         elevation: 2,
