@@ -41,7 +41,7 @@ export default function CoursePopUPButton({course, yearIndex, semesterIndex, deg
 
             await AsyncStorage.setItem(key, JSON.stringify(plan));
             console.log('Degree Plan: ', JSON.stringify(plan));
-            //setSelectedCourse(null);
+            setModalVisible(false);
             //navigation.goBack();
         } catch (e) {
             console.error('Failed to add course: ', e);

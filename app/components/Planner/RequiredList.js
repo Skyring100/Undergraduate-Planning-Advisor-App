@@ -3,141 +3,25 @@ It will also show what electives they have chosen for each degree planner.
 It will have a dropdown to select different degree planners and view the courses accordingly.
 There will be a button that will navigate to the CourseList page.*/
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, FlatList, Text, ScrollView, useWindowDimensions, Modal, Pressable } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import BackButton from '../BackButton';
 import { useThemeText, useThemeBackground, useThemeShaded,
     useFirstColour, useSecondColour, useThirdColour} from "../../contexts/ThemeContext";
-import CourseListButton from '../Planner/CourseListButton';
-import CoursePopUPButton from './CoursePopUp';
+import CourseListButton from './CourseListButton';
+import CoursePopUp from './CoursePopUp';
 import { createDegree, getDegreeByID } from '../../services/degreeService';
 import all_courses from '../../data/UNBC_course_data.json';
 import CourseCompletedButton from '../Requistes/CourseCompletedButton';
 import { useRoute } from '@react-navigation/native';
 import AddButton from './AddButton';
 import { useNavigation } from '@react-navigation/native';
+import {getCourseById, getPrereqsOf, checkPrereqs, getAllCourses} from "../../services/courseService";
+import {prereqString} from "../../services/courseService";
+import {getDegreePlanByID} from "../../services/degreePlannerService";
+import {getUserProfileByID, getAllCheckedOffBy} from "../../services/userService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const DummyData = [
-    {
-        levelNumber: 100,
-        courselist: [
-            {
-                id: "CPSC100",
-                title: "Computer Programming I",
-            },
-            {
-                id: "CPSC101",
-                title: "Computer Programming II",
-            },
-            {
-                id: "CPSC141",
-                title: "Discrete Computational Mathematics",
-            },
-        ]
-    },
-    {
-        levelNumber: 200,
-        courselist: [
-            {
-                id: "CPSC230",
-                title: "Introduction to Logic Design"
-            },
-            {
-                id: "CPSC231",
-                title: "Computer Organization and Architecture"
-            },
-            {
-                id: "ENGL270",
-                title: "Expository Writing"
-            },
-        ]
-    },
-    {
-        levelNumber: 300,
-        courselist: [
-            {
-                id: "CPSC300",
-                title: "Software Engineering"
-            },
-            {
-                id: "CPSC320",
-                title: "Programming Languages"
-            },
-            {
-                id: "CPSC321",
-                title: "Operating Systems"
-            },
-        ]
-    },
-    {
-        levelNumber: 400,
-        courselist: [
-            {
-                id: "CPSC444",
-                title: "Computer Networks"
-            }
-        ]
-    },]
-
-const DummyElectives = [
-    {
-        levelNumber: 100,
-        courselist: [
-            {
-                id: "FUN 100",
-                title: "Introduction to Fun"
-            },
-            {
-                id: "COMM 100",
-                title: "Introduction to Canadian Business"
-            },
-        ]
-    },
-    {
-        levelNumber: 200,
-        courselist: [
-            {
-                id: "ANTH 203",
-                title: "XXXX"
-            },
-            {
-                id: "ANTH 213",
-                title: "XXXX"
-            },
-            {
-                id: "NURS 205",
-                title: "XXXX"
-            },
-        ]
-    },
-    {
-        levelNumber: 300,
-        courselist: [
-            {
-                id: "WMST 303",
-                title: "XXXX"
-            },
-
-        ]
-    },
-    {
-        levelNumber: 400,
-        courselist: [
-            {
-                id: "CPSC 450",
-                title: "XXXX"
-            },
-            {
-                id: "CPSC 475",
-                title: "XXXX"
-            },
-            {
-                id: "CPSC 499",
-                title: "XXXX"
-            }
-        ]
-    },]
 const newDegree = {
     name: 'Computer Science',
     is_minor: false,
@@ -147,7 +31,7 @@ const newDegree = {
     credit_reqs: []
 }
 
-export default function RequiredCoursesScreen() {
+export default function RequiredList() {
     // when this is added, use these as style components for text colour instead of #fff and #000
     const themeText = useThemeText();
     const themeBg = useThemeBackground();
@@ -155,7 +39,76 @@ export default function RequiredCoursesScreen() {
     const firstColour = useFirstColour();
     const { width, height } = useWindowDimensions();
     const [requirements, setRequirements] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const navigation = useNavigation();
+
+    const [degreeCourses, setDegreeCourses] = useState([]);
+    const [checked, setChecked] = useState([]);
+
+    
+    useEffect(() => {
+        const pullAsync = async () => {
+            const studentID = await AsyncStorage.getItem("student_id");
+            // TODO: change this line in prod
+            const user = (await getUserProfileByID(studentID)).data;
+            const curDegree = (await getDegreeByID(user.current_degree_id)).data.data;
+
+            // get degree course time town epic poggers yippee
+            let degreeCoursesToCopy = [];
+            let allCoursesList = await Promise.all(
+                curDegree.map(async c => {
+                    console.log("processing course "+c.course_id);
+                    const courseObj = (await getCourseById(c.course_id)).data;
+                    console.log("got title "+courseObj.title);
+                    return {
+                        id: c.course_id,
+                        title: courseObj.title.trim(),
+                        nesting: c.nesting
+                    };
+                })
+            );
+            for (let j=0; j<allCoursesList.length; j++) {
+                console.log("flattening at "+j+" ("+allCoursesList[j].id+") ");
+                while (allCoursesList[j].nesting == 2 && j < allCoursesList.length - 1) {
+                    console.log("j at top: "+j+"/"+(allCoursesList.length));
+                    console.log(JSON.stringify(allCoursesList.map(course => course.id)));
+                    let entry2 = allCoursesList[j + 1];
+                    console.log("including "+entry2.id);
+                    allCoursesList[j].id = allCoursesList[j].id + "\n\u1D52\u02B3 " + entry2.id;
+                    allCoursesList[j].title = allCoursesList[j].title + "\n\u1D52\u02B3 " + entry2.title;
+                    allCoursesList[j].nesting = entry2.nesting;
+                    allCoursesList.splice(j + 1, 1); // remove the other entry
+                    console.log(JSON.stringify(allCoursesList.map(course => course.id)));
+                    console.log("nesting: "+allCoursesList[j].nesting);
+                    console.log("j: "+j+"/"+(allCoursesList.length));
+                }
+                console.log("escaped while loop")
+                console.log("length is now "+allCoursesList.length+" (next is iteration "+(j + 1)+") ");
+                console.log("now working with "+JSON.stringify(allCoursesList.map(y => y.id))+" ");
+            }
+            allCoursesList[allCoursesList.length - 1].nesting = 1;
+            console.log("got here");
+            for (let i=1; i<=4; i++) {
+                console.log("pushing courses at year "+i);
+                degreeCoursesToCopy.push({
+                    levelNumber: i * 100,
+                    courselist: allCoursesList.filter(x => +(x.id[4]) == i)
+                });
+            }
+            setDegreeCourses(degreeCoursesToCopy);
+
+            const chkd = (await getAllCheckedOffBy(studentID)).data;
+            console.log(chkd);
+
+
+            setIsLoading(false);
+        };
+        try {
+            pullAsync();
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
 
 
     // const themeBg = useThemeBackground();
@@ -164,15 +117,17 @@ export default function RequiredCoursesScreen() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={[themeBg]}>
+                
                 <FlatList
-                    data={DummyData}
-                    renderItem={({item: l}) => (
+                    data={degreeCourses}
+                    renderItem={({item: l}) => (isLoading ? <><Text>Loading</Text></> :
                         <View key={l.levelNumber} style={{padding: 10, paddingBottom: 0, ...themeShaded, margin: 10, borderRadius: 20,}}>
                             <LevelSection levelNumber={l.levelNumber} courseData={l.courselist}></LevelSection>
                         </View>
                     )}
                     keyExtractor={(l) => l.levelNumber.toString()}
-                    ListFooterComponent={
+                />
+                    {/*ListFooterComponent={
                         <SafeAreaView style={{marginBottom: 50}}>
                             <Text style={[styles.header, themeText, firstColour]}>Breadth</Text>
                             {DummyElectives.map(l => (
@@ -181,9 +136,7 @@ export default function RequiredCoursesScreen() {
                                 </View>
                             ))}
                         </SafeAreaView>
-
-                }
-            />
+                    }*/}
 
         </SafeAreaView>
     </SafeAreaProvider>
@@ -191,7 +144,7 @@ export default function RequiredCoursesScreen() {
 }
 
 
-function LevelSection({ levelNumber, courseData }) {
+function LevelSection({ levelNumber, courseData, allCheckedCourses}) {
     const themeText = useThemeText();
     const themeShaded = useThemeShaded();
     const themeBg = useThemeBackground();
@@ -210,7 +163,7 @@ function LevelSection({ levelNumber, courseData }) {
                 {
                     courseData.map(course => (
                         
-                        <View key={course.id} style={{
+                        <View key={Math.random()} style={{
                             flexDirection: 'row', 
                             justifyContent: 'space-between',
                             borderRadius: 10,
@@ -223,9 +176,14 @@ function LevelSection({ levelNumber, courseData }) {
                             }
                             <View style={{flexDirection: "row", alignItems: "center",}}>
                                 <View style={[styles.verticalLine, firstColour]}></View>
-                                <CoursePopUPButton course={course}></CoursePopUPButton>
+                                <CoursePopUp 
+                                    course={course}
+                                    yearIndex={yearIndex}
+                                    semesterIndex={semesterIndex}
+                                    degreePlanID={degreePlanID}
+                                ></CoursePopUp>
                             </View>
-                            <CourseCompletedButton/>
+                            <CourseCompletedButton course={course.id}/>
                         </View>
                     ))
                 }
