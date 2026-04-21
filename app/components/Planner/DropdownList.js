@@ -86,7 +86,7 @@ export default function DropdownList({onPlanSelect}){
                 activeOpacity={0.8}
                 style={[styles.dropdownButton, firstColour]}
             >
-                <Text style={[styles.text, themeText]}>{value || "Default Planner 1"}</Text>
+                <Text style={[styles.text, themeText]}>{value || "Create New Planner"}</Text>
                 <Text style={[styles.text, themeText]}>{isOpen ? " ▲ " : " ▼ "}</Text>
             </TouchableOpacity>
             <Modal 
