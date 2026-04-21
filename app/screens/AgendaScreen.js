@@ -8,7 +8,7 @@ import {
     CalendarUtils,
 } from 'react-native-calendars';
 import AddSectionButton from "../components/Schedule/AddSectionButton";
-import { useThemeText, useThemeBackground, useThemeShaded, borderColour} from "../contexts/ThemeContext";
+import { useThemeText, useThemeBackground, useThemeShaded, borderColour, useFirstColour, useFourthColour} from "../contexts/ThemeContext";
 import { useSchedule } from "../contexts/ScheduleContext";
 
 const days = ['Y', 'M', 'T', 'W', 'R', 'F', 'S'];
@@ -39,6 +39,8 @@ const initialTime = {hour: 8, minute: 0};
 export default function AgendaScreen(){
     const themeTxt = useThemeText();
     const themeBg = useThemeBackground();
+    const firstColour = useFirstColour();
+    const extraColour = useFourthColour();
     const grey = useThemeShaded();
     const {width, height} = useWindowDimensions();
     const {fetchByDay, refreshToken} = useSchedule();
@@ -118,11 +120,11 @@ export default function AgendaScreen(){
                 }
             },
             nowIndicatorLine: {
-                backgroundColor: '#035642',
+                ...extraColour,
                 height: 2,
             },
             nowIndicatorKnob:{
-                backgroundColor: '#035642',
+                ...extraColour,
                 height: 8,
                 width: 8,
             },
@@ -184,8 +186,8 @@ export default function AgendaScreen(){
                                 textSectionTitleColor: themeTxt.color,
                                 dayTextColor: themeTxt.color,
                                 monthTextColor: themeTxt.color,
-                                selectedDayBackgroundColor: '#035642',
-                                todayTextColor: '#035642',
+                                selectedDayBackgroundColor: extraColour.backgroundColor,
+                                todayTextColor: extraColour.backgroundColor, 
                                 textDayFontFamily: 'Montserrat',
                                 textDayFontSize: 15,
                                 textDayHeaderFontFamily: 'Montserrat',

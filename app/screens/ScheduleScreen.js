@@ -79,7 +79,6 @@ export default function ScheduleScreen() {
         <SafeAreaView style={{ ...themeBg, minHeight: height, width: width,}}>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', ...themeBg, width: 500 }}>
-                <BackButton />
                 <AddSectionButton />
             </View>
 

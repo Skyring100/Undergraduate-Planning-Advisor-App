@@ -101,8 +101,8 @@ async function addTokenData(data, token){
     await AsyncStorage.setItem('authToken', token);
     await AsyncStorage.setItem('email', data.data.email);
     await AsyncStorage.setItem('student_id', data.data.student_id);
-    await AsyncStorage.setItem('current_degree_id', data.data.current_degree_id);
-    await AsyncStorage.setItem('current_degree_plan_id', data.data.current_degree_plan_id);
+    await AsyncStorage.setItem('current_degree_id', JSON.stringify(data.data.current_degree_id));
+    await AsyncStorage.setItem('current_degree_plan_id', JSON.stringify(data.data.current_degree_plan_id));
   }catch(err){
     console.log(err);
   }

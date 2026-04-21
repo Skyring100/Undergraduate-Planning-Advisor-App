@@ -1,0 +1,154 @@
+# vim commands
+# %s/\([A-Z]\{4}\) \([0-9X]\{3}\)/\1\2/g
+# %s/\([0-9X]\{3}\)$/\1, 1/g
+# %s/, 2/, 2/g
+# %s/\([A-Z]\{4}[0-9X]\{3}\)/2, "\1", "C-"/g
+
+
+Computer Science
+INSERT INTO degree_course_requirement VALUES 
+(1, "CPSC100", "C-", 1),
+(1, "CPSC101", "C-", 1),
+(1, "CPSC141", "C-", 1),
+(1, "ENGL170", "C-", 2),
+(1, "ENGL270", "C-", 1),
+(1, "MATH100", "C-", 1),
+(1, "CPSC224", "C-", 1),
+(1, "CPSC230", "C-", 1),
+(1, "CPSC231", "C-", 1),
+(1, "CPSC260", "C-", 1),
+(1, "CPSC281", "C-", 1),
+(1, "MATH220", "C-", 1),
+(1, "CPSC300", "C-", 1),
+(1, "CPSC320", "C-", 1),
+(1, "CPSC321", "C-", 1),
+(1, "CPSC340", "C-", 1),
+(1, "CPSC344", "C-", 2),
+(1, "CPSC444", "C-", 1),
+(1, "CPSC4XX", "C-", 1),
+(1, "CPSC4XX", "C-", 1),
+(1, "CPSC4XX", "C-", 1),
+(1, "CPSC4XX", "C-", 1),
+(1, "CPSC1XX", "C-", 2),
+(1, "CPSC2XX", "C-", 2),
+(1, "CPSC3XX", "C-", 2),
+(1, "CPSC4XX", "C-", 2),
+(1, "MATH335", "C-", 2),
+(1, "STAT371", "C-", 1),
+(1, "CPSC1XX", "C-", 2),
+(1, "CPSC2XX", "C-", 2),
+(1, "CPSC3XX", "C-", 2),
+(1, "CPSC4XX", "C-", 2),
+(1, "MATH335", "C-", 2),
+(1, "STAT371", "C-", 1),
+(1, "CPSC1XX", "C-", 2),
+(1, "CPSC2XX", "C-", 2),
+(1, "CPSC3XX", "C-", 2),
+(1, "CPSC4XX", "C-", 2),
+(1, "MATH335", "C-", 2),
+(1, "STAT371", "C-", 1),
+(1, "BIOL103", "C-", 2),
+(1, "BIOL104", "C-", 2),
+(1, "CHEM100", "C-", 2),
+(1, "CHEM101", "C-", 2),
+(1, "ENVS101", "C-", 2),
+(1, "GEOG204", "C-", 2),
+(1, "GEOG205", "C-", 2),
+(1, "GEOG210", "C-", 2),
+(1, "PHYS100", "C-", 2),
+(1, "PHYS101", "C-", 2),
+(1, "PHYS110", "C-", 2),
+(1, "PHYS111", "C-", 2),
+(1, "PSYC101", "C-", 1),
+(1, "BIOL103", "C-", 2),
+(1, "BIOL104", "C-", 2),
+(1, "CHEM100", "C-", 2),
+(1, "CHEM101", "C-", 2),
+(1, "ENVS101", "C-", 2),
+(1, "GEOG204", "C-", 2),
+(1, "GEOG205", "C-", 2),
+(1, "GEOG210", "C-", 2),
+(1, "PHYS100", "C-", 2),
+(1, "PHYS101", "C-", 2),
+(1, "PHYS110", "C-", 2),
+(1, "PHYS111", "C-", 2),
+(1, "PSYC101", "C-", 1);
+
+Mathematics and Statistics
+INSERT INTO degree_course_requirement VALUES 
+(2, "ENGL170", "C-", 2),
+(2, "ENGL270", "C-", 1),
+(2, "CPSC100", "C-", 1),
+(2, "CPSC141", "C-", 1),
+(2, "MATH100", "C-", 1),
+(2, "MATH101", "C-", 1),
+(2, "MATH202", "C-", 1),
+(2, "MATH204", "C-", 1),
+(2, "MATH220", "C-", 1),
+(2, "MATH224", "C-", 1),
+(2, "MATH230", "C-", 1),
+(2, "BIOL103", "C-", 2),
+(2, "BIOL104", "C-", 2),
+(2, "CHEM100", "C-", 2),
+(2, "CHEM101", "C-", 2),
+(2, "PHYS100", "C-", 2),
+(2, "PHYS101", "C-", 2),
+(2, "PHYS111", "C-", 1),
+(2, "BIOL103", "C-", 2),
+(2, "BIOL104", "C-", 2),
+(2, "CHEM100", "C-", 2),
+(2, "CHEM101", "C-", 2),
+(2, "PHYS100", "C-", 2),
+(2, "PHYS101", "C-", 2),
+(2, "PHYS111", "C-", 1),
+(2, "MATH301", "C-", 1),
+(2, "MATH302", "C-", 1),
+(2, "MATH320", "C-", 1),
+(2, "MATH335", "C-", 2),
+(2, "MATH336", "C-", 1),
+(2, "STAT371", "C-", 1),
+(2, "STAT372", "C-", 1),
+(2, "MATH326", "C-", 2),
+(2, "MATH405", "C-", 1),
+(2, "MATH4XX", "C-", 1),
+(2, "MATH4XX", "C-", 1),
+(2, "MATH4XX", "C-", 1),
+(2, "MATH4XX", "C-", 1);
+
+Breadth (universal)
+
+one of
+ENGL
+HIST
+PHIL
+WMST
+
+one of
+ASTR
+CHEM
+CPSC
+MATH
+PHYS
+STAT
+
+one of
+BIOL
+GEOG
+ENSC
+ENVS
+FSTY
+HHSC
+NREM
+
+one of
+ANTH
+COMM
+ECON
+EDUC
+ENPL
+FNST
+INTS
+NORS
+ORTM
+POLS
+PSYC
