@@ -171,7 +171,7 @@ export default function PlannerScreen() {
 
     return(
         <SafeAreaProvider>
-            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10, flex: 1, gap: 10}}>
+            <SafeAreaView style={{...themeBg, flexDirection: 'column', padding: 10, flex: 1, gap: 10, paddingTop: 15}}>
                 <Modal 
                 visible={visible} 
                 transparent={true} 
@@ -251,24 +251,25 @@ export default function PlannerScreen() {
 function YearSection({yearNumber, semesterData, currentPlan}) {
     
     const themeText = useThemeText();
-    const secondColour = useSecondColour();
-    const thirdColour = useThirdColour();
+    const colour = useFirstColour();
+    const shade = useThemeShaded();
+    const themebg = useThemeBackground();
     const navigation = useNavigation();
     
 
-    var semesterWidth;
+    // var semesterWidth;
 
-    switch(semesterData.length){
-        case 2:
-            semesterWidth = '50%'
-            break;
-        case 3:
-            semesterWidth = '33.333%'
-            break;
-        case 1:
-            semesterWidth = '100%'
-            break;
-    }
+    // switch(semesterData.length){
+    //     case 2:
+    //         semesterWidth = '50%'
+    //         break;
+    //     case 3:
+    //         semesterWidth = '33.333%'
+    //         break;
+    //     case 1:
+    //         semesterWidth = '100%'
+    //         break;
+    // }
 
     function GetSemesterTitle(semNum){
         switch(semNum){
@@ -282,19 +283,23 @@ function YearSection({yearNumber, semesterData, currentPlan}) {
     }
 
     return (
-        <View>
-            <View style={[styles.yearHeader, secondColour]}>
-                <Text style={[styles.yearText, themeText]}>Year {yearNumber}</Text>
+        <View style={{marginVertical: 5}}>
+            <View style={[styles.yearHeader, colour]}>
+                <Text style={styles.yearText}>Year {yearNumber}</Text>
             </View>
             
-            <View style={{flexDirection: 'row', justifyContent: 'center',}}>
+            <View style={[styles.yearContainer, shade]}>
                 {
                     semesterData.map(sem => (
-                        <View key={sem.semesterNumber} style={{width: semesterWidth}}>
-                            <Text style={[styles.semesterHeader, themeText, thirdColour]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
+                        <View key={sem.semesterNumber} style={{width: '100%'}}>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', zIndex: 2}}>
+                                <Text style={[styles.semesterHeader, themeText, shade]}>{GetSemesterTitle(sem.semesterNumber)}</Text>
+                                <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1, degreePlanID: currentPlan})}} height={'auto'} width={'auto'} title=" + " marginTop={5} ></AddButton>
+                            </View>
+                            <View style={[styles.line, {borderColor: colour.backgroundColor}]}/>
                             <SemesterCourses courses={sem.courses}></SemesterCourses>
-                            <AddButton onPress={() => {navigation.navigate('AddCourse',{yearIndex: yearNumber-1, semesterIndex: sem.semesterNumber-1, degreePlanID: currentPlan})}} height={40} width={'100%'} title=" + " borderColour={"#000000"} borderWidth={1}></AddButton>
                         </View>
+                        
                     ))
                 }
             </View>
@@ -322,25 +327,28 @@ function SemesterCourses({courses}){
 const styles = StyleSheet.create({
     yearHeader:{
         padding: 5,
+        paddingLeft: 20,
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderWidth: 1,
+        borderRadius: 20,
+        zIndex: 1,
     },
     yearText: {
         fontWeight: 'bold',
         fontSize: 25,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#ffffff',
     },
     semesterHeader:{
         color: '#ffffffff',
         fontWeight: 'bold',
         fontSize: 20,
-        textAlign: 'center',
-        borderWidth: 1,
+        textAlign: 'left',
         height: 40,
         padding: 8,
+        width: 'auto',
     },
     semesterSection: {
         width: '50%'
@@ -360,4 +368,22 @@ const styles = StyleSheet.create({
         elevation: 5,
         width: '80%',
     },
+    yearContainer:{
+        justifyContent: 'center', 
+        paddingTop: 45, 
+        marginTop: -40,
+        borderRadius: 20,
+        padding: 10,
+        
+    },
+    line:{
+        height: 21,
+        width: '89%',
+        borderBottomWidth: 4,
+        borderStyle: 'dotted',
+        zIndex: 1,
+        marginTop: -38,
+        marginBottom: 20,
+        marginHorizontal: 15,
+    }
 });
