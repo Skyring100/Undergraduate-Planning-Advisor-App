@@ -126,12 +126,8 @@ router.get('/profile/:student_id', authenticate,getCurrentUser);
 router.put('/courses/:student_id', authenticate, addCompletedCourses);
 router.put('/first-name/:student_id', authenticate, updateFirstName);
 router.put('/last-name/:student_id', authenticate, updateLastName);
-<<<<<<< HEAD
 router.get('/checked/:student_id', authenticate, getAllCheckedOffBy);
-router.put('/set-degree', authenticate, setCurrentUserDegree);
-=======
 router.put('/set-degree/:student_id', authenticate, setCurrentUserDegree);
->>>>>>> refs/remotes/origin/master
 router.put('/set-degree-plan', authenticate, setCurrentUserDegreePlan);
 
 module.exports = router;
