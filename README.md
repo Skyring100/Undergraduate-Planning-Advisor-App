@@ -8,6 +8,10 @@ To run backend:
 - npm install
 - npm run dev
 
+To run backend tests:
+- cd .\app\
+- node --env-file=.env .\testBackend.js
+
 Note: In order for app to communicate with backend, the file in /app/.env must have EXPO_PUBLIC_BACKEND_IP and EXPO_PUBLIC_BACKEND_PORT values for the backend process
 - If running both app and backend on same machine, simply user your local IP address
 - This can be found by opening command prompt and running 'ipconfig' and using the address associated with 'IPv4 Address'
